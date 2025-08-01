@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hematología - Sistema de Evaluación</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Main navigation sidebar -->
+        <aside class="sidebar" id="sidebar" style="overflow-y: auto; height: 100vh;">
+            <div class="sidebar-header" onclick="window.location.href='../../index.html'" style="cursor: pointer;">
+                <i class="fas fa-heartbeat logo"></i>
+                <h1 class="app-title">HealthOS</h1>
+            </div>
+            <nav class="nav-list">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-th-large nav-icon"></i>
+                        <span class="nav-text">Panel de control</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link active" id="hemato-nav-link" onclick="toggleHematoSubMenu(event)">
+                        <i class="fas fa-tint nav-icon"></i>
+                        <span class="nav-text">Hematología</span>
+                    </a>
+                    <!-- Submenu for Hematology sections -->
+                    <ul class="sub-menu" id="hemato-sub-menu">
+                        <li class="sub-menu-item"><a href="#anamnesis" onclick="scrollToSection('anamnesis')">Anamnesis</a></li>
+                        <li class="sub-menu-item"><a href="#physical-exam" onclick="scrollToSection('physical-exam')">Examen Físico Gral.</a></li>
+                        <li class="sub-menu-item"><a href="#lymph-nodes" onclick="scrollToSection('lymph-nodes')">Ganglios Linfáticos</a></li>
+                        <li class="sub-menu-item"><a href="#abdominal-exam" onclick="scrollToSection('abdominal-exam')">Abdomen y Org.</a></li>
+                        <li class="sub-menu-item"><a href="#hematologic-scales" onclick="scrollToSection('hematologic-scales')">Escalas Hematológicas</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="../cardiology/index.html" class="nav-link">
+                        <i class="fas fa-heartbeat nav-icon"></i>
+                        <span class="nav-text">Cardiología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../gastroenterology/index.html" class="nav-link">
+                        <i class="fas fa-stomach nav-icon"></i>
+                        <span class="nav-text">Gastroenterología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../dermatology/index.html" class="nav-link">
+                        <i class="fas fa-allergies nav-icon"></i>
+                        <span class="nav-text">Dermatología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../endocrinology/index.html" class="nav-link">
+                        <i class="fas fa-flask nav-icon"></i>
+                        <span class="nav-text">Endocrinología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../geriatrics/index.html" class="nav-link">
+                        <i class="fas fa-user-friends nav-icon"></i>
+                        <span class="nav-text">Geriatría</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../infectious_diseases/index.html" class="nav-link">
+                        <i class="fas fa-microscope nav-icon"></i>
+                        <span class="nav-text">Enfermedades Infecciosas</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../musculoskeletal/index.html" class="nav-link">
+                        <i class="fas fa-bone nav-icon"></i>
+                        <span class="nav-text">Musculoesquelético</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../ophthalmology/index.html" class="nav-link">
+                        <i class="fas fa-eye nav-icon"></i>
+                        <span class="nav-text">Oftalmología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../otolaryngology/index.html" class="nav-link">
+                        <i class="fas fa-ear-listen nav-icon"></i>
+                        <span class="nav-text">Otorrinolaringología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../pneumology/index.html" class="nav-link">
+                        <i class="fas fa-lungs nav-icon"></i>
+                        <span class="nav-text">Neumología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../psychiatry/index.html" class="nav-link">
+                        <i class="fas fa-brain nav-icon"></i>
+                        <span class="nav-text">Psiquiatría</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../rheumatology/index.html" class="nav-link">
+                        <i class="fas fa-joint nav-icon"></i>
+                        <span class="nav-text">Reumatología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../urology/index.html" class="nav-link">
+                        <i class="fas fa-user-md nav-icon"></i>
+                        <span class="nav-text">Urología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-notes-medical nav-icon"></i>
+                        <span class="nav-text">Registros</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-cog nav-icon"></i>
+                        <span class="nav-text">Configuración</span>
+                    </a>
+                </li>
+            </nav>
+            <!-- Toggle button to collapse/expand sidebar on large screens -->
+            <button class="btn btn-secondary mt-auto hidden md:flex items-center justify-center" onclick="toggleSidebar()">
+                <i class="fas fa-chevron-left" id="sidebar-toggle-icon"></i>
+            </button>
+        </aside>
+
+        <!-- Content area container (main-content and top-bar) -->
+        <div class="content-area" id="contentArea">
+            <!-- Fixed top bar -->
+            <div class="top-bar" id="topBar">
+                <div class="flex items-center gap-4">
+                    <!-- Button for main sidebar on mobile -->
+                    <button class="btn btn-secondary md:hidden" onclick="toggleSidebar()">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="flex items-center gap-4">
+                        <img src="../../img/2.svg" alt="Hematología" class="h-10 w-10">
+                        <h2 class="page-title">Hematología</h2>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <!-- Button for real-time report panel -->
+                    <button class="btn btn-primary" onclick="toggleStickyPanel()">
+                        <i class="fas fa-file-medical-alt"></i> <span class="hidden md:inline">Informe</span>
+                    </button>
+                    <div class="user-profile">
+
+                        <div class="user-avatar">JP</div>
+                        <span class="user-name">Dr. Juan Pérez</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main content area for specialty page -->
+            <main class="main-content" id="mainContent">
+                <!-- Specialty Dashboard / Overview Section -->
+                <div class="section-container" id="overview">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-chart-bar"></i> Resumen de la especialidad</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main expanded">
+                        <div class="specialty-dashboard">
+                            <div class="dashboard-item-specialty">
+                                <i class="fas fa-user-md"></i>
+                                <div>Progreso del examen</div>
+                                <div class="value" id="exam-progress">0%</div>
+                            </div>
+                            <div class="dashboard-item-specialty">
+                                <i class="fas fa-clipboard-list"></i>
+                                <div>Secciones completadas</div>
+                                <div class="value" id="sections-completed">0/5</div>
+                            </div>
+                            <div class="dashboard-item-specialty" id="alerts-item">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <div>Alertas</div>
+                                <div class="value" id="alert-count">0</div>
+                            </div>
+                            <div class="dashboard-item-specialty" id="warnings-item">
+                                <i class="fas fa-exclamation-circle"></i>
+                                <div>Avisos</div>
+                                <div class="value" id="warning-count">0</div>
+                            </div>
+                            <div class="dashboard-item-specialty" id="findings-item">
+                                <i class="fas fa-search"></i>
+                                <div>Hallazgos</div>
+                                <div class="value" id="findings-count">0</div>
+                            </div>
+                            <div class="dashboard-item-specialty" id="vitals-status-item">
+                                <i class="fas fa-heartbeat"></i>
+                                <div>Signos Vitales</div>
+                                <div class="value" id="vitals-status">Pendiente</div>
+                            </div>
+                        </div>
+                        <div class="flex justify-center gap-4 mt-8">
+                            <button class="btn btn-primary" onclick="generateConclusion()">
+                                <i class="fas fa-file-medical"></i> Generar Informe
+                            </button>
+                            <button class="btn btn-secondary" onclick="clearForm()">
+                                <i class="fas fa-eraser"></i> Limpiar Formulario
+                            </button>
+                            <button class="btn btn-secondary" onclick="expandAllSections()">
+                                <i class="fas fa-expand-alt"></i> Expandir Todo
+                            </button>
+                            <button class="btn btn-secondary" onclick="collapseAllSections()">
+                                <i class="fas fa-compress-alt"></i> Contraer Todo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section: Anamnesis y Quejas Principales -->
+                <div class="section-container" id="anamnesis">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-user-edit"></i> Anamnesis y Quejas Principales</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-clipboard-list"></i> Quejas Hematológicas Principales</h4>
+                            <div class="form-grid">
+                                <div class="form-item"><input type="checkbox" id="fatiga-astenia" onchange="updateDashboard()"><label for="fatiga-astenia">Fatiga/Astenia</label></div>
+                                <div class="form-item"><input type="checkbox" id="palidez" onchange="syncPalidezFields(this); updateDashboard()"><label for="palidez">Palidez</label></div>
+                                <div class="form-item"><input type="checkbox" id="disnea-esfuerzo" onchange="updateDashboard()"><label for="disnea-esfuerzo">Disnea de esfuerzo</label></div>
+                                <div class="form-item"><input type="checkbox" id="palpitaciones" onchange="updateDashboard()"><label for="palpitaciones">Palpitaciones</label></div>
+                                <div class="form-item"><input type="checkbox" id="sangrado-espontaneo" onchange="updateDashboard()"><label for="sangrado-espontaneo">Sangrado espontáneo</label></div>
+                                <div class="form-item"><input type="checkbox" id="equimosis-faciles" onchange="updateDashboard()"><label for="equimosis-faciles">Equimosis fáciles</label></div>
+                                <div class="form-item"><input type="checkbox" id="petequias" onchange="updateDashboard()"><label for="petequias">Petequias</label></div>
+                                <div class="form-item"><input type="checkbox" id="sangrado-menstrual" onchange="updateDashboard()"><label for="sangrado-menstrual">Sangrado menstrual abundante</label></div>
+                                <div class="form-item"><input type="checkbox" id="epistaxis" onchange="updateDashboard()"><label for="epistaxis">Epistaxis</label></div>
+                                <div class="form-item"><input type="checkbox" id="sangrado-gingival" onchange="updateDashboard()"><label for="sangrado-gingival">Sangrado gingival</label></div>
+                                <div class="form-item"><input type="checkbox" id="adenopatias-palpables" onchange="updateDashboard()"><label for="adenopatias-palpables">Adenopatías palpables</label></div>
+                                <div class="form-item"><input type="checkbox" id="fiebre" onchange="updateDashboard()"><label for="fiebre">Fiebre</label></div>
+                                <div class="form-item"><input type="checkbox" id="sudoracion-nocturna" onchange="updateDashboard()"><label for="sudoracion-nocturna">Sudoración nocturna</label></div>
+                                <div class="form-item"><input type="checkbox" id="perdida-peso" onchange="updateDashboard()"><label for="perdida-peso">Pérdida de peso involuntaria</label></div>
+                                <div class="form-item"><input type="checkbox" id="dolor-oseo" onchange="updateDashboard()"><label for="dolor-oseo">Dolor óseo</label></div>
+                                <div class="form-item"><input type="checkbox" id="infecciones-recurrentes" onchange="updateDashboard()"><label for="infecciones-recurrentes">Infecciones recurrentes</label></div>
+                                <div class="form-item"><input type="checkbox" id="ictericia" onchange="syncIctericiaFields(this); updateDashboard()"><label for="ictericia">Ictericia</label></div>
+                                <div class="form-item"><input type="checkbox" id="orinas-oscuras" onchange="updateDashboard()"><label for="orinas-oscuras">Orinas oscuras</label></div>
+                                <div class="form-item"><input type="checkbox" id="sin-quejas-hemato" onchange="handleNoComplaints()"><label for="sin-quejas-hemato">Sin quejas</label></div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-search"></i> Caracterización de Síntomas</h4>
+                            <div class="bleeding-assessment mb-4">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Evaluación de Sangrado</h5>
+                                <div class="measurement">
+                                    <label>Escala EVA sangrado:</label>
+                                    <div class="flex items-center gap-2 w-full">
+                                        <input type="range" id="bleeding-intensity" min="0" max="10" value="0" oninput="updateBleedingValue(this.value)" class="flex-grow">
+                                        <span class="text-hemato-alert font-bold" id="bleeding-value">0</span><span>/10</span>
+                                    </div>
+                                </div>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="sangrado-cutaneo" onchange="updateDashboard()"><label for="sangrado-cutaneo">Sangrado cutáneo</label></div>
+                                    <div class="form-item"><input type="checkbox" id="sangrado-mucosas" onchange="updateDashboard()"><label for="sangrado-mucosas">Sangrado mucosas</label></div>
+                                    <div class="form-item"><input type="checkbox" id="sangrado-gastrointestinal" onchange="updateDashboard()"><label for="sangrado-gastrointestinal">Sangrado gastrointestinal</label></div>
+                                    <div class="form-item"><input type="checkbox" id="sangrado-genitourinario" onchange="updateDashboard()"><label for="sangrado-genitourinario">Sangrado genitourinario</label></div>
+                                    <div class="form-item"><input type="checkbox" id="sangrado-post-trauma" onchange="updateDashboard()"><label for="sangrado-post-trauma">Sangrado post-trauma</label></div>
+                                    <div class="form-item"><input type="checkbox" id="sangrado-post-cirugia" onchange="updateDashboard()"><label for="sangrado-post-cirugia">Sangrado post-cirugía</label></div>
+                                </div>
+                            </div>
+
+                            <div class="anemia-assessment">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Síntomas de Anemia</h5>
+                                <div class="measurement">
+                                    <label>Tolerancia al ejercicio:</label>
+                                    <select id="exercise-tolerance" onchange="evaluateAnemiaSeverity()">
+                                        <option value="">Seleccionar</option>
+                                        <option value="0">Normal</option>
+                                        <option value="1">Levemente reducida</option>
+                                        <option value="2">Moderadamente reducida</option>
+                                        <option value="3">Severamente limitada</option>
+                                        <option value="4">Síntomas en reposo</option>
+                                    </select>
+                                </div>
+                                <div class="score-item">
+                                    <span>Severidad de anemia:</span>
+                                    <span class="score-value" id="anemia-severity">--</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-history"></i> Antecedentes Hematológicos</h4>
+                            <div class="mb-4">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Historia Personal</h5>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="anemia-previa" onchange="updateDashboard()"><label for="anemia-previa">Anemia previa</label></div>
+                                    <div class="form-item"><input type="checkbox" id="transfusiones" onchange="updateDashboard()"><label for="transfusiones">Transfusiones previas</label></div>
+                                    <div class="form-item"><input type="checkbox" id="trombosis-previa" onchange="updateDashboard()"><label for="trombosis-previa">Trombosis previa</label></div>
+                                    <div class="form-item"><input type="checkbox" id="sangrado-quirurgico" onchange="updateDashboard()"><label for="sangrado-quirurgico">Sangrado quirúrgico previo</label></div>
+                                    <div class="form-item"><input type="checkbox" id="cancer-hematologico" onchange="updateDashboard()"><label for="cancer-hematologico">Cáncer hematológico</label></div>
+                                    <div class="form-item"><input type="checkbox" id="quimioterapia" onchange="updateDashboard()"><label for="quimioterapia">Quimioterapia previa</label></div>
+                                    <div class="form-item"><input type="checkbox" id="radioterapia" onchange="updateDashboard()"><label for="radioterapia">Radioterapia previa</label></div>
+                                    <div class="form-item"><input type="checkbox" id="esplenectomia" onchange="updateDashboard()"><label for="esplenectomia">Esplenectomía</label></div>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Historia Familiar</h5>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="familia-anemia" onchange="updateDashboard()"><label for="familia-anemia">Anemia familiar</label></div>
+                                    <div class="form-item"><input type="checkbox" id="familia-hemofilia" onchange="updateDashboard()"><label for="familia-hemofilia">Hemofilia</label></div>
+                                    <div class="form-item"><input type="checkbox" id="familia-trombofilia" onchange="updateDashboard()"><label for="familia-trombofilia">Trombofilia</label></div>
+                                    <div class="form-item"><input type="checkbox" id="familia-leucemia" onchange="updateDashboard()"><label for="familia-leucemia">Leucemia</label></div>
+                                    <div class="form-item"><input type="checkbox" id="familia-linfoma" onchange="updateDashboard()"><label for="familia-linfoma">Linfoma</label></div>
+                                    <div class="form-item"><input type="checkbox" id="familia-sangrado" onchange="updateDashboard()"><label for="familia-sangrado">Trastornos de sangrado</label></div>
+                                </div>
+                            </div>
+                            <div>
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Medicamentos</h5>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="medicamento-anticoagulantes" onchange="updateDashboard()"><label for="medicamento-anticoagulantes">Anticoagulantes</label></div>
+                                    <div class="form-item"><input type="checkbox" id="medicamento-antiplaquetarios" onchange="updateDashboard()"><label for="medicamento-antiplaquetarios">Antiplaquetarios</label></div>
+                                    <div class="form-item"><input type="checkbox" id="medicamento-aines" onchange="updateDashboard()"><label for="medicamento-aines">AINEs</label></div>
+                                    <div class="form-item"><input type="checkbox" id="medicamento-hierro" onchange="updateDashboard()"><label for="medicamento-hierro">Suplementos de hierro</label></div>
+                                    <div class="form-item"><input type="checkbox" id="medicamento-b12" onchange="updateDashboard()"><label for="medicamento-b12">Vitamina B12</label></div>
+                                    <div class="form-item"><input type="checkbox" id="medicamento-folato" onchange="updateDashboard()"><label for="medicamento-folato">Ácido fólico</label></div>
+                                    <div class="form-item"><input type="checkbox" id="medicamento-corticoides" onchange="updateDashboard()"><label for="medicamento-corticoides">Corticosteroides</label></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Section: Examen Físico General -->
+                <div class="section-container" id="physical-exam">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-user"></i> Examen Físico General</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="legend mb-4">
+                            <div class="legend-item">
+                                <div class="legend-color anemia-color"></div>
+                                <span>Anemia</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color bleeding-color"></div>
+                                <span>Sangrado</span>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-eye"></i> Inspección General</h4>
+                            <div class="anemia-assessment mb-4">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Signos de Anemia</h5>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="palidez-piel" onchange="updateDashboard()"><label for="palidez-piel">Palidez de piel</label></div>
+                                    <div class="form-item"><input type="checkbox" id="palidez-conjuntival" onchange="updateDashboard()"><label for="palidez-conjuntival">Palidez conjuntival</label></div>
+                                    <div class="form-item"><input type="checkbox" id="palidez-lechos-ungueales" onchange="updateDashboard()"><label for="palidez-lechos-ungueales">Palidez de lechos ungueales</label></div>
+                                    <div class="form-item"><input type="checkbox" id="palidez-mucosa-oral" onchange="syncPalidezFields(this); updateDashboard()"><label for="palidez-mucosa-oral">Palidez de mucosa oral</label></div>
+                                    <div class="form-item"><input type="checkbox" id="taquicardia" onchange="updateDashboard()"><label for="taquicardia">Taquicardia</label></div>
+                                    <div class="form-item"><input type="checkbox" id="soplo-funcional" onchange="updateDashboard()"><label for="soplo-funcional">Soplo funcional</label></div>
+                                    <div class="form-item"><input type="checkbox" id="unas-coiloniquia" onchange="updateDashboard()"><label for="unas-coiloniquia">Coiloniquia (uñas en cuchara)</label></div>
+                                    <div class="form-item"><input type="checkbox" id="sindrome-piernas-inquietas" onchange="updateDashboard()"><label for="sindrome-piernas-inquietas">Síndrome piernas inquietas</label></div>
+                                </div>
+                                <div class="measurement mt-4">
+                                    <label>Grado de palidez conjuntival:</label>
+                                    <select id="conjunctival-pallor" onchange="evaluatePallor()">
+                                        <option value="">Seleccionar</option>
+                                        <option value="0">Normal</option>
+                                        <option value="1">Leve</option>
+                                        <option value="2">Moderada</option>
+                                        <option value="3">Severa</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="bleeding-assessment mb-4">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Signos de Sangrado</h5>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="petequias-fisico" onchange="updateDashboard()"><label for="petequias-fisico">Petequias</label></div>
+                                    <div class="form-item"><input type="checkbox" id="purpura" onchange="updateDashboard()"><label for="purpura">Púrpura</label></div>
+                                    <div class="form-item"><input type="checkbox" id="equimosis" onchange="updateDashboard()"><label for="equimosis">Equimosis</label></div>
+                                    <div class="form-item"><input type="checkbox" id="hematomas" onchange="updateDashboard()"><label for="hematomas">Hematomas</label></div>
+                                    <div class="form-item"><input type="checkbox" id="sangrado-gingival-fisico" onchange="updateDashboard()"><label for="sangrado-gingival-fisico">Sangrado gingival</label></div>
+                                    <div class="form-item"><input type="checkbox" id="epistaxis-activa" onchange="updateDashboard()"><label for="epistaxis-activa">Epistaxis activa</label></div>
+                                    <div class="form-item"><input type="checkbox" id="hemorragias-retinianas" onchange="updateDashboard()"><label for="hemorragias-retinianas">Hemorragias retinianas</label></div>
+                                </div>
+                                <div class="measurement mt-4">
+                                    <label>Distribución de petequias:</label>
+                                    <div class="form-grid">
+                                        <div class="form-item"><input type="checkbox" id="petequias-miembros-inf" onchange="updateDashboard()"><label for="petequias-miembros-inf">Miembros inferiores</label></div>
+                                        <div class="form-item"><input type="checkbox" id="petequias-tronco" onchange="updateDashboard()"><label for="petequias-tronco">Tronco</label></div>
+                                        <div class="form-item"><input type="checkbox" id="petequias-brazos" onchange="updateDashboard()"><label for="petequias-brazos">Brazos</label></div>
+                                        <div class="form-item"><input type="checkbox" id="petequias-cara" onchange="updateDashboard()"><label for="petequias-cara">Cara</label></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sub-section-card">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Otros Hallazgos</h5>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="ictericia-fisico" onchange="syncIctericiaFields(this); updateDashboard()"><label for="ictericia-fisico">Ictericia</label></div>
+                                    <div class="form-item"><input type="checkbox" id="cianosis" onchange="updateDashboard()"><label for="cianosis">Cianosis</label></div>
+                                    <div class="form-item"><input type="checkbox" id="edema" onchange="updateDashboard()"><label for="edema">Edema</label></div>
+                                    <div class="form-item"><input type="checkbox" id="ulceras-miembros" onchange="updateDashboard()"><label for="ulceras-miembros">Úlceras en miembros</label></div>
+                                    <div class="form-item"><input type="checkbox" id="lesiones-cutaneas" onchange="updateDashboard()"><label for="lesiones-cutaneas">Lesiones cutáneas específicas</label></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-heartbeat"></i> Signos Vitales</h4>
+                            <div class="mb-4">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Mediciones</h5>
+                                <div class="measurement">
+                                    <label>Frecuencia cardíaca:</label>
+                                    <input type="number" class="input-field" id="frecuencia-cardiaca" min="40" max="200" onchange="evaluateVitalSigns()">
+                                    <span>lpm</span>
+                                </div>
+                                <div class="measurement">
+                                    <label>Presión arterial sistólica:</label>
+                                    <input type="number" class="input-field" id="pas" min="70" max="250" onchange="evaluateVitalSigns()">
+                                    <span>mmHg</span>
+                                </div>
+                                <div class="measurement">
+                                    <label>Presión arterial diastólica:</label>
+                                    <input type="number" class="input-field" id="pad" min="40" max="150" onchange="evaluateVitalSigns()">
+                                    <span>mmHg</span>
+                                </div>
+                                <div class="measurement">
+                                    <label>Temperatura:</label>
+                                    <input type="number" class="input-field" id="temperatura" min="35" max="42" step="0.1" onchange="evaluateVitalSigns()">
+                                    <span>°C</span>
+                                </div>
+                                <div class="score-item">
+                                    <span>Evaluación cardiovascular:</span>
+                                    <span class="score-value" id="cardiovascular-assessment">--</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section: Examen de Ganglios Linfáticos -->
+                <div class="section-container" id="lymph-nodes">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-node"></i> Examen de Ganglios Linfáticos</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="legend mb-4">
+                            <div class="legend-item">
+                                <div class="legend-color lymph-color"></div>
+                                <span>Evaluación Linfática</span>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-sitemap"></i> Cadenas Ganglionares</h4>
+                            <div class="bilateral-container">
+                                <div class="side-container">
+                                    <h5 class="side-header">Lado Derecho</h5>
+                                    <div class="mb-4">
+                                        <h6 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Cuello</h6>
+                                        <div class="form-item">
+                                            <span>Cervicales anteriores</span>
+                                            <div class="flex items-center gap-2 ml-auto">
+                                                <input type="checkbox" id="cervical-ant-der-palpable" onchange="calculateLymphNodeStats()"><label for="cervical-ant-der-palpable">P</label>
+                                                <input type="number" class="input-field w-16" id="cervical-ant-der-size" placeholder="cm" onchange="calculateLymphNodeStats()">
+                                                <input type="checkbox" id="cervical-ant-der-doloroso" onchange="calculateLymphNodeStats()"><label for="cervical-ant-der-doloroso">D</label>
+                                                <input type="checkbox" id="cervical-ant-der-duro" onchange="calculateLymphNodeStats()"><label for="cervical-ant-der-duro">Dur</label>
+                                                <input type="checkbox" id="cervical-ant-der-fijo" onchange="calculateLymphNodeStats()"><label for="cervical-ant-der-fijo">F</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-item">
+                                            <span>Cervicales posteriores</span>
+                                            <div class="flex items-center gap-2 ml-auto">
+                                                <input type="checkbox" id="cervical-post-der-palpable" onchange="calculateLymphNodeStats()"><label for="cervical-post-der-palpable">P</label>
+                                                <input type="number" class="input-field w-16" id="cervical-post-der-size" placeholder="cm" onchange="calculateLymphNodeStats()">
+                                                <input type="checkbox" id="cervical-post-der-doloroso" onchange="calculateLymphNodeStats()"><label for="cervical-post-der-doloroso">D</label>
+                                                <input type="checkbox" id="cervical-post-der-duro" onchange="calculateLymphNodeStats()"><label for="cervical-post-der-duro">Dur</label>
+                                                <input type="checkbox" id="cervical-post-der-fijo" onchange="calculateLymphNodeStats()"><label for="cervical-post-der-fijo">F</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-item">
+                                            <span>Supraclaviculares</span>
+                                            <div class="flex items-center gap-2 ml-auto">
+                                                <input type="checkbox" id="supraclavicular-der-palpable" onchange="calculateLymphNodeStats()"><label for="supraclavicular-der-palpable">P</label>
+                                                <input type="number" class="input-field w-16" id="supraclavicular-der-size" placeholder="cm" onchange="calculateLymphNodeStats()">
+                                                <input type="checkbox" id="supraclavicular-der-doloroso" onchange="calculateLymphNodeStats()"><label for="supraclavicular-der-doloroso">D</label>
+                                                <input type="checkbox" id="supraclavicular-der-duro" onchange="calculateLymphNodeStats()"><label for="supraclavicular-der-duro">Dur</label>
+                                                <input type="checkbox" id="supraclavicular-der-fijo" onchange="calculateLymphNodeStats()"><label for="supraclavicular-der-fijo">F</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-4">
+                                        <h6 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Axila</h6>
+                                        <div class="form-item">
+                                            <span>Axilares</span>
+                                            <div class="flex items-center gap-2 ml-auto">
+                                                <input type="checkbox" id="axilar-der-palpable" onchange="calculateLymphNodeStats()"><label for="axilar-der-palpable">P</label>
+                                                <input type="number" class="input-field w-16" id="axilar-der-size" placeholder="cm" onchange="calculateLymphNodeStats()">
+                                                <input type="checkbox" id="axilar-der-doloroso" onchange="calculateLymphNodeStats()"><label for="axilar-der-doloroso">D</label>
+                                                <input type="checkbox" id="axilar-der-duro" onchange="calculateLymphNodeStats()"><label for="axilar-der-duro">Dur</label>
+                                                <input type="checkbox" id="axilar-der-fijo" onchange="calculateLymphNodeStats()"><label for="axilar-der-fijo">F</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h6 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Ingle</h6>
+                                        <div class="form-item">
+                                            <span>Inguinales</span>
+                                            <div class="flex items-center gap-2 ml-auto">
+                                                <input type="checkbox" id="inguinal-der-palpable" onchange="calculateLymphNodeStats()"><label for="inguinal-der-palpable">P</label>
+                                                <input type="number" class="input-field w-16" id="inguinal-der-size" placeholder="cm" onchange="calculateLymphNodeStats()">
+                                                <input type="checkbox" id="inguinal-der-doloroso" onchange="calculateLymphNodeStats()"><label for="inguinal-der-doloroso">D</label>
+                                                <input type="checkbox" id="inguinal-der-duro" onchange="calculateLymphNodeStats()"><label for="inguinal-der-duro">Dur</label>
+                                                <input type="checkbox" id="inguinal-der-fijo" onchange="calculateLymphNodeStats()"><label for="inguinal-der-fijo">F</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="side-container">
+                                    <h5 class="side-header">Lado Izquierdo</h5>
+                                    <div class="mb-4">
+                                        <h6 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Cuello</h6>
+                                        <div class="form-item">
+                                            <span>Cervicales anteriores</span>
+                                            <div class="flex items-center gap-2 ml-auto">
+                                                <input type="checkbox" id="cervical-ant-izq-palpable" onchange="calculateLymphNodeStats()"><label for="cervical-ant-izq-palpable">P</label>
+                                                <input type="number" class="input-field w-16" id="cervical-ant-izq-size" placeholder="cm" onchange="calculateLymphNodeStats()">
+                                                <input type="checkbox" id="cervical-ant-izq-doloroso" onchange="calculateLymphNodeStats()"><label for="cervical-ant-izq-doloroso">D</label>
+                                                <input type="checkbox" id="cervical-ant-izq-duro" onchange="calculateLymphNodeStats()"><label for="cervical-ant-izq-duro">Dur</label>
+                                                <input type="checkbox" id="cervical-ant-izq-fijo" onchange="calculateLymphNodeStats()"><label for="cervical-ant-izq-fijo">F</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-item">
+                                            <span>Cervicales posteriores</span>
+                                            <div class="flex items-center gap-2 ml-auto">
+                                                <input type="checkbox" id="cervical-post-izq-palpable" onchange="calculateLymphNodeStats()"><label for="cervical-post-izq-palpable">P</label>
+                                                <input type="number" class="input-field w-16" id="cervical-post-izq-size" placeholder="cm" onchange="calculateLymphNodeStats()">
+                                                <input type="checkbox" id="cervical-post-izq-doloroso" onchange="calculateLymphNodeStats()"><label for="cervical-post-izq-doloroso">D</label>
+                                                <input type="checkbox" id="cervical-post-izq-duro" onchange="calculateLymphNodeStats()"><label for="cervical-post-izq-duro">Dur</label>
+                                                <input type="checkbox" id="cervical-post-izq-fijo" onchange="calculateLymphNodeStats()"><label for="cervical-post-izq-fijo">F</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-item">
+                                            <span>Supraclaviculares</span>
+                                            <div class="flex items-center gap-2 ml-auto">
+                                                <input type="checkbox" id="supraclavicular-izq-palpable" onchange="calculateLymphNodeStats()"><label for="supraclavicular-izq-palpable">P</label>
+                                                <input type="number" class="input-field w-16" id="supraclavicular-izq-size" placeholder="cm" onchange="calculateLymphNodeStats()">
+                                                <input type="checkbox" id="supraclavicular-izq-doloroso" onchange="calculateLymphNodeStats()"><label for="supraclavicular-izq-doloroso">D</label>
+                                                <input type="checkbox" id="supraclavicular-izq-duro" onchange="calculateLymphNodeStats()"><label for="supraclavicular-izq-duro">Dur</label>
+                                                <input type="checkbox" id="supraclavicular-izq-fijo" onchange="calculateLymphNodeStats()"><label for="supraclavicular-izq-fijo">F</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-4">
+                                        <h6 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Axila</h6>
+                                        <div class="form-item">
+                                            <span>Axilares</span>
+                                            <div class="flex items-center gap-2 ml-auto">
+                                                <input type="checkbox" id="axilar-izq-palpable" onchange="calculateLymphNodeStats()"><label for="axilar-izq-palpable">P</label>
+                                                <input type="number" class="input-field w-16" id="axilar-izq-size" placeholder="cm" onchange="calculateLymphNodeStats()">
+                                                <input type="checkbox" id="axilar-izq-doloroso" onchange="calculateLymphNodeStats()"><label for="axilar-izq-doloroso">D</label>
+                                                <input type="checkbox" id="axilar-izq-duro" onchange="calculateLymphNodeStats()"><label for="axilar-izq-duro">Dur</label>
+                                                <input type="checkbox" id="axilar-izq-fijo" onchange="calculateLymphNodeStats()"><label for="axilar-izq-fijo">F</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h6 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Ingle</h6>
+                                        <div class="form-item">
+                                            <span>Inguinales</span>
+                                            <div class="flex items-center gap-2 ml-auto">
+                                                <input type="checkbox" id="inguinal-izq-palpable" onchange="calculateLymphNodeStats()"><label for="inguinal-izq-palpable">P</label>
+                                                <input type="number" class="input-field w-16" id="inguinal-izq-size" placeholder="cm" onchange="calculateLymphNodeStats()">
+                                                <input type="checkbox" id="inguinal-izq-doloroso" onchange="calculateLymphNodeStats()"><label for="inguinal-izq-doloroso">D</label>
+                                                <input type="checkbox" id="inguinal-izq-duro" onchange="calculateLymphNodeStats()"><label for="inguinal-izq-duro">Dur</label>
+                                                <input type="checkbox" id="inguinal-izq-fijo" onchange="calculateLymphNodeStats()"><label for="inguinal-izq-fijo">F</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-xs text-gray-500 mt-4 text-center">
+                                P = Palpable, D = Doloroso, Dur = Duro, F = Fijo
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-chart-bar"></i> Evaluación Global de Adenopatías</h4>
+                            <div class="score-calculation">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Resumen de Hallazgos</h5>
+                                <div class="score-item">
+                                    <span>Número de cadenas afectadas:</span>
+                                    <span class="score-value" id="affected-chains">0</span>
+                                </div>
+                                <div class="score-item">
+                                    <span>Tamaño máximo:</span>
+                                    <span class="score-value" id="max-node-size">0 cm</span>
+                                </div>
+                                <div class="score-item">
+                                    <span>Características preocupantes:</span>
+                                    <span class="score-value" id="concerning-features">Ninguna</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section: Examen Abdominal y Organomegalias -->
+                <div class="section-container" id="abdominal-exam">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-hand-holding-medical"></i> Examen Abdominal y Organomegalias</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="legend mb-4">
+                            <div class="legend-item">
+                                <div class="legend-color organomegaly-color"></div>
+                                <span>Organomegalias</span>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-liver"></i> Hepatomegalia</h4>
+                            <div class="organomegaly-assessment">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Evaluación del Hígado</h5>
+                                <div class="measurement">
+                                    <label>Borde hepático palpable:</label>
+                                    <div class="test-controls">
+                                        <div class="test-checkbox"><input type="checkbox" id="hepatomegalia" onchange="evaluateOrganomegaly()"><span>Sí</span></div>
+                                    </div>
+                                </div>
+                                <div class="measurement">
+                                    <label>Distancia reborde costal:</label>
+                                    <input type="number" class="input-field" id="hepatomegalia-cm" min="0" max="20" step="0.5" onchange="evaluateOrganomegaly()">
+                                    <span>cm</span>
+                                </div>
+                                <div class="measurement">
+                                    <label>Consistencia hepática:</label>
+                                    <select id="hepatic-consistency" onchange="updateDashboard()">
+                                        <option value="">Seleccionar</option>
+                                        <option value="blanda">Blanda</option>
+                                        <option value="firme">Firme</option>
+                                        <option value="dura">Dura</option>
+                                        <option value="nodular">Nodular</option>
+                                    </select>
+                                </div>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="hepatomegalia-dolorosa" onchange="updateDashboard()"><label for="hepatomegalia-dolorosa">Dolorosa</label></div>
+                                    <div class="form-item"><input type="checkbox" id="hepatomegalia-lisa" onchange="updateDashboard()"><label for="hepatomegalia-lisa">Lisa</label></div>
+                                    <div class="form-item"><input type="checkbox" id="hepatomegalia-irregular" onchange="updateDashboard()"><label for="hepatomegalia-irregular">Irregular</label></div>
+                                </div>
+                                <div class="score-item">
+                                    <span>Grado de hepatomegalia:</span>
+                                    <span class="score-value" id="hepatomegaly-grade">--</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-circle"></i> Esplenomegalia</h4>
+                            <div class="organomegaly-assessment">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Evaluación del Bazo</h5>
+                                <div class="measurement">
+                                    <label>Bazo palpable:</label>
+                                    <div class="test-controls">
+                                        <div class="test-checkbox"><input type="checkbox" id="esplenomegalia" onchange="evaluateOrganomegaly()"><span>Sí</span></div>
+                                    </div>
+                                </div>
+                                <div class="measurement">
+                                    <label>Distancia reborde costal:</label>
+                                    <input type="number" class="input-field" id="esplenomegalia-cm" min="0" max="20" step="0.5" onchange="evaluateOrganomegaly()">
+                                    <span>cm</span>
+                                </div>
+                                <div class="measurement">
+                                    <label>Clasificación de Hackett:</label>
+                                    <select id="spleen-hackett" onchange="evaluateOrganomegaly()">
+                                        <option value="">Seleccionar</option>
+                                        <option value="0">Grado 0 (no palpable)</option>
+                                        <option value="1">Grado 1 (palpable)</option>
+                                        <option value="2">Grado 2 (no rebasa línea media)</option>
+                                        <option value="3">Grado 3 (rebasa línea media)</option>
+                                        <option value="4">Grado 4 (llega a fosa ilíaca)</option>
+                                        <option value="5">Grado 5 (rebasa fosa ilíaca)</option>
+                                    </select>
+                                </div>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="esplenomegalia-dolorosa" onchange="updateDashboard()"><label for="esplenomegalia-dolorosa">Dolorosa</label></div>
+                                    <div class="form-item"><input type="checkbox" id="esplenomegalia-lisa" onchange="updateDashboard()"><label for="esplenomegalia-lisa">Lisa</label></div>
+                                    <div class="form-item"><input type="checkbox" id="esplenomegalia-irregular" onchange="updateDashboard()"><label for="esplenomegalia-irregular">Irregular</label></div>
+                                </div>
+                                <div class="score-item">
+                                    <span>Grado de esplenomegalia:</span>
+                                    <span class="score-value" id="splenomegaly-grade">--</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-diagnoses"></i> Otros Hallazgos Abdominales</h4>
+                            <div class="mb-4">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Masas y Otros Hallazgos</h5>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="masas-abdominales" onchange="updateDashboard()"><label for="masas-abdominales">Masas abdominales</label></div>
+                                    <div class="form-item"><input type="checkbox" id="ascitis" onchange="updateDashboard()"><label for="ascitis">Ascitis</label></div>
+                                    <div class="form-item"><input type="checkbox" id="circulacion-colateral" onchange="updateDashboard()"><label for="circulacion-colateral">Circulación colateral</label></div>
+                                    <div class="form-item"><input type="checkbox" id="dolor-abdominal" onchange="updateDashboard()"><label for="dolor-abdominal">Dolor abdominal</label></div>
+                                    <div class="form-item"><input type="checkbox" id="signo-murphy" onchange="updateDashboard()"><label for="signo-murphy">Signo de Murphy</label></div>
+                                </div>
+                                <div class="measurement mt-4">
+                                    <label>Descripción de masas:</label>
+                                    <textarea class="input-field w-full" id="abdominal-masses-description" placeholder="Describir localización, tamaño, características..." onchange="updateDashboard()"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section: Escalas de Evaluación Hematológica -->
+                <div class="section-container" id="hematologic-scales">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-calculator"></i> Escalas de Evaluación Hematológica</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-walking"></i> Escala ECOG Performance Status</h4>
+                            <div class="functional-status">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Estado Funcional</h5>
+                                <div class="severity-grid">
+                                    <div class="severity-item"><input type="radio" name="ecog-status" id="ecog-0" value="0" onchange="calculateECOGScore()"><label for="ecog-0">ECOG 0: Completamente activo</label></div>
+                                    <div class="severity-item"><input type="radio" name="ecog-status" id="ecog-1" value="1" onchange="calculateECOGScore()"><label for="ecog-1">ECOG 1: Actividad limitada</label></div>
+                                    <div class="severity-item"><input type="radio" name="ecog-status" id="ecog-2" value="2" onchange="calculateECOGScore()"><label for="ecog-2">ECOG 2: Ambulatorio &gt;50% tiempo</label></div>
+                                    <div class="severity-item"><input type="radio" name="ecog-status" id="ecog-3" value="3" onchange="calculateECOGScore()"><label for="ecog-3">ECOG 3: Limitado al sillón/cama &gt;50%</label></div>
+                                    <div class="severity-item"><input type="radio" name="ecog-status" id="ecog-4" value="4" onchange="calculateECOGScore()"><label for="ecog-4">ECOG 4: Completamente discapacitado</label></div>
+                                </div>
+                                <div class="score-item mt-4">
+                                    <span>ECOG Score:</span>
+                                    <span class="score-value" id="ecog-score">--</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-blood-droplet"></i> Escala de Sangrado ISTH</h4>
+                            <div class="bleeding-assessment">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Evaluación de Sangrado Según ISTH</h5>
+                                <div class="mb-3">
+                                    <h6 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Sangrado Menstrual (mujeres)</h6>
+                                    <div class="severity-grid">
+                                        <div class="severity-item"><input type="radio" name="isth-menstrual" id="isth-menstrual-0" value="0" onchange="calculateISThScore()"><label for="isth-menstrual-0">0: Normal</label></div>
+                                        <div class="severity-item"><input type="radio" name="isth-menstrual" id="isth-menstrual-1" value="1" onchange="calculateISThScore()"><label for="isth-menstrual-1">1: Levemente aumentado</label></div>
+                                        <div class="severity-item"><input type="radio" name="isth-menstrual" id="isth-menstrual-2" value="2" onchange="calculateISThScore()"><label for="isth-menstrual-2">2: Claramente aumentado</label></div>
+                                        <div class="severity-item"><input type="radio" name="isth-menstrual" id="isth-menstrual-3" value="3" onchange="calculateISThScore()"><label for="isth-menstrual-3">3: Severo</label></div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <h6 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Sangrado Post-parto</h6>
+                                    <div class="severity-grid">
+                                        <div class="severity-item"><input type="radio" name="isth-postparto" id="isth-postparto-0" value="0" onchange="calculateISThScore()"><label for="isth-postparto-0">0: Normal</label></div>
+                                        <div class="severity-item"><input type="radio" name="isth-postparto" id="isth-postparto-1" value="1" onchange="calculateISThScore()"><label for="isth-postparto-1">1: Requerió tratamiento</label></div>
+                                        <div class="severity-item"><input type="radio" name="isth-postparto" id="isth-postparto-2" value="2" onchange="calculateISThScore()"><label for="isth-postparto-2">2: Requerió transfusión</label></div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <h6 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Sangrado relacionado con Cirugía</h6>
+                                    <div class="severity-grid">
+                                        <div class="severity-item"><input type="radio" name="isth-cirugia" id="isth-cirugia-0" value="0" onchange="calculateISThScore()"><label for="isth-cirugia-0">0: Normal</label></div>
+                                        <div class="severity-item"><input type="radio" name="isth-cirugia" id="isth-cirugia-1" value="1" onchange="calculateISThScore()"><label for="isth-cirugia-1">1: Requerió revisión</label></div>
+                                        <div class="severity-item"><input type="radio" name="isth-cirugia" id="isth-cirugia-2" value="2" onchange="calculateISThScore()"><label for="isth-cirugia-2">2: Requerió transfusión</label></div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <h6 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Sangrado dental</h6>
+                                    <div class="severity-grid">
+                                        <div class="severity-item"><input type="radio" name="isth-dental" id="isth-dental-0" value="0" onchange="calculateISThScore()"><label for="isth-dental-0">0: Normal</label></div>
+                                        <div class="severity-item"><input type="radio" name="isth-dental" id="isth-dental-1" value="1" onchange="calculateISThScore()"><label for="isth-dental-1">1: Reportado por paciente/dentista</label></div>
+                                        <div class="severity-item"><input type="radio" name="isth-dental" id="isth-dental-2" value="2" onchange="calculateISThScore()"><label for="isth-dental-2">2: Requerió intervención</label></div>
+                                    </div>
+                                </div>
+                                <div class="score-item mt-4">
+                                    <span>Puntuación ISTH total:</span>
+                                    <span class="score-value" id="isth-total-score">0</span>
+                                </div>
+                                <div class="score-item">
+                                    <span>Interpretación:</span>
+                                    <span class="score-value" id="isth-interpretation">--</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-notes-medical"></i> Síntomas B (Linfomas)</h4>
+                            <div class="score-calculation">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Evaluación de Síntomas B</h5>
+                                <div class="test-item">
+                                    <label>Fiebre &gt;38°C sin causa aparente</label>
+                                    <div class="test-controls">
+                                        <div class="test-checkbox"><input type="checkbox" id="sintoma-b-fiebre" onchange="calculateBSymptoms()"><span class="positive">Presente</span></div>
+                                    </div>
+                                </div>
+                                <div class="test-item">
+                                    <label>Sudoración nocturna profusa</label>
+                                    <div class="test-controls">
+                                        <div class="test-checkbox"><input type="checkbox" id="sintoma-b-sudoracion" onchange="calculateBSymptoms()"><span class="positive">Presente</span></div>
+                                    </div>
+                                </div>
+                                <div class="test-item">
+                                    <label>Pérdida de peso &gt;10% en 6 meses</label>
+                                    <div class="test-controls">
+                                        <div class="test-checkbox"><input type="checkbox" id="sintoma-b-peso" onchange="calculateBSymptoms()"><span class="positive">Presente</span></div>
+                                    </div>
+                                </div>
+                                <div class="score-item mt-4">
+                                    <span>Síntomas B presentes:</span>
+                                    <span class="score-value" id="b-symptoms-count">0</span>
+                                    <span>/3</span>
+                                </div>
+                                <div class="score-item">
+                                    <span>Clasificación:</span>
+                                    <span class="score-value" id="b-symptoms-classification">--</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-medkit"></i> Índice de Comorbilidad de Charlson</h4>
+                            <div class="score-calculation">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Comorbilidades</h5>
+                                <div class="mb-3">
+                                    <h6 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Puntuación 1</h6>
+                                    <div class="form-grid">
+                                        <div class="form-item"><input type="checkbox" id="charlson-iam" onchange="calculateCharlson()"><label for="charlson-iam">IAM</label></div>
+                                        <div class="form-item"><input type="checkbox" id="charlson-icc" onchange="calculateCharlson()"><label for="charlson-icc">ICC</label></div>
+                                        <div class="form-item"><input type="checkbox" id="charlson-evc" onchange="calculateCharlson()"><label for="charlson-evc">EVC</label></div>
+                                        <div class="form-item"><input type="checkbox" id="charlson-demencia" onchange="calculateCharlson()"><label for="charlson-demencia">Demencia</label></div>
+                                        <div class="form-item"><input type="checkbox" id="charlson-epoc" onchange="calculateCharlson()"><label for="charlson-epoc">EPOC</label></div>
+                                        <div class="form-item"><input type="checkbox" id="charlson-colagenosis" onchange="calculateCharlson()"><label for="charlson-colagenosis">Colagenosis</label></div>
+                                        <div class="form-item"><input type="checkbox" id="charlson-ulcera" onchange="calculateCharlson()"><label for="charlson-ulcera">Úlcera péptica</label></div>
+                                        <div class="form-item"><input type="checkbox" id="charlson-hepatopatia-leve" onchange="calculateCharlson()"><label for="charlson-hepatopatia-leve">Hepatopatía leve</label></div>
+                                        <div class="form-item"><input type="checkbox" id="charlson-diabetes" onchange="calculateCharlson()"><label for="charlson-diabetes">Diabetes</label></div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <h6 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Puntuación 2</h6>
+                                    <div class="form-grid">
+                                        <div class="form-item"><input type="checkbox" id="charlson-hemiplejia" onchange="calculateCharlson()"><label for="charlson-hemiplejia">Hemiplejía</label></div>
+                                        <div class="form-item"><input type="checkbox" id="charlson-renal-moderada" onchange="calculateCharlson()"><label for="charlson-renal-moderada">Insuficiencia renal moderada</label></div>
+                                        <div class="form-item"><input type="checkbox" id="charlson-diabetes-complicada" onchange="calculateCharlson()"><label for="charlson-diabetes-complicada">Diabetes complicada</label></div>
+                                        <div class="form-item"><input type="checkbox" id="charlson-tumor" onchange="calculateCharlson()"><label for="charlson-tumor">Tumor</label></div>
+                                        <div class="form-item"><input type="checkbox" id="charlson-leucemia" onchange="calculateCharlson()"><label for="charlson-leucemia">Leucemia</label></div>
+                                        <div class="form-item"><input type="checkbox" id="charlson-linfoma" onchange="calculateCharlson()"><label for="charlson-linfoma">Linfoma</label></div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <h6 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Puntuación 3</h6>
+                                    <div class="form-grid">
+                                        <div class="form-item"><input type="checkbox" id="charlson-hepatopatia-severa" onchange="calculateCharlson()"><label for="charlson-hepatopatia-severa">Hepatopatía severa</label></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h6 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Puntuación 6</h6>
+                                    <div class="form-grid">
+                                        <div class="form-item"><input type="checkbox" id="charlson-tumor-metastasico" onchange="calculateCharlson()"><label for="charlson-tumor-metastasico">Tumor metastásico</label></div>
+                                        <div class="form-item"><input type="checkbox" id="charlson-sida" onchange="calculateCharlson()"><label for="charlson-sida">SIDA</label></div>
+                                    </div>
+                                </div>
+                                <div class="score-item mt-4">
+                                    <span>Índice de Charlson:</span>
+                                    <span class="score-value" id="charlson-score">0</span>
+                                </div>
+                                <div class="score-item">
+                                    <span>Supervivencia estimada a 10 años:</span>
+                                    <span class="score-value" id="charlson-survival">--</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- Fixed report panel (right) -->
+        <div class="sticky-report-panel" id="stickyConclusion">
+            <div class="sticky-header">
+                <span><i class="fas fa-file-medical-alt"></i> Informe en Tiempo Real</span>
+                <div class="sticky-controls">
+                    <button class="sticky-btn" onclick="copyStickyToClipboard()" title="Copiar informe">
+                        <i class="fas fa-copy"></i>
+                    </button>
+                    <button class="sticky-btn" onclick="printStickyConclusion()" title="Imprimir informe">
+                        <i class="fas fa-print"></i>
+                    </button>
+                    <button class="sticky-btn" onclick="generateStickyConclusion()" title="Actualizar informe">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+                </div>
+            </div>
+            <pre class="sticky-content" id="stickyContent">
+El informe se generará aquí a medida que completes los campos.
+            </pre>
+        </div>
+    </div>
+
+    <!-- Copy notification -->
+    <div class="copy-notification fixed bottom-8 right-8 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg opacity-0 transition-opacity duration-300" id="copyNotification">
+        <i class="fas fa-check-circle mr-2"></i>
+        <span>¡Informe copiado al portapapeles!</span>
+    </div>
+
+    <!-- Theme toggle button -->
+    <button class="theme-toggle" onclick="toggleTheme()">
+        <i class="fas fa-moon" id="theme-icon"></i>
+    </button>
+
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

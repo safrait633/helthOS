@@ -1,0 +1,17 @@
+.app-container {
+    display: flex;
+}
+
+.sidebar {
+    width: 250px;
+    transition: width 0.3s;
+}
+
+.sidebar.collapsed {
+    width: 80px;
+}
+
+.content-area {
+    flex-grow: 1;
+    padding: 20px;
+}

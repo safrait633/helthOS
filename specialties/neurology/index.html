@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen Neurológico - Sistema HealthOS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- SIDEBAR -->
+        <aside class="sidebar" id="sidebar" style="overflow-y: auto; height: 100vh;">
+            <div class="sidebar-header" onclick="window.location.href='../../index.html'" style="cursor: pointer;">
+                <i class="fas fa-heartbeat logo"></i>
+                <h1 class="app-title">HealthOS</h1>
+            </div>
+            <nav class="nav-list">
+                <li class="nav-item">
+                    <a href="../../index.html" class="nav-link">
+                        <i class="fas fa-th-large nav-icon"></i>
+                        <span class="nav-text">Panel de control</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../gastroenterology/index.html" class="nav-link">
+                        <i class="fas fa-stomach nav-icon"></i>
+                        <span class="nav-text">Gastroenterología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../ophthalmology/index.html" class="nav-link">
+                        <i class="fas fa-eye nav-icon"></i>
+                        <span class="nav-text">Oftalmología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="./index.html" class="nav-link active" id="specialty-nav-link">
+                        <i class="fas fa-brain nav-icon"></i>
+                        <span class="nav-text">Neurología</span>
+                    </a>
+                </li>
+                <!-- Add other specialties here -->
+            </nav>
+        </aside>
+
+        <!-- CONTENT AREA -->
+        <div class="content-area" id="contentArea">
+            <!-- TOP BAR -->
+            <div class="top-bar" id="topBar">
+                <div class="flex items-center gap-4">
+                    <button class="btn btn-secondary md:hidden" onclick="toggleSidebar()">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div style="display: flex; align-items: center;">
+                    <img src="../../img/7.svg" alt="" class="h-10 w-10" style="margin-right: 10px;">
+                    <h2 class="page-title">Neurología</h2>
+                </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button class="btn btn-primary">
+                        <i class="fas fa-file-medical-alt"></i> <span class="hidden md:inline">Informe</span>
+                    </button>
+                    <div class="user-profile">
+                        <div class="user-avatar">JP</div>
+                        <span class="user-name">Dr. Juan Pérez</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MAIN CONTENT -->
+            <main class="main-content" id="mainContent">
+                <div class="section-container">
+                    <h3 class="section-title">Examen Neurológico</h3>
+                    <p>Contenido del examen neurológico...</p>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

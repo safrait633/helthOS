@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen Oftalmología - Algoritmo de Evaluación</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- SIDEBAR -->
+        <aside class="sidebar" id="sidebar" style="overflow-y: auto; height: 100vh;">
+            <div class="sidebar-header" onclick="window.location.href='../../index.html'" style="cursor: pointer;">
+                <i class="fas fa-heartbeat logo"></i>
+                <h1 class="app-title">HealthOS</h1>
+            </div>
+            <nav class="nav-list">
+                <li class="nav-item">
+                    <a href="../cardiology/index.html" class="nav-link">
+                        <i class="fas fa-heartbeat nav-icon"></i>
+                        <span class="nav-text">Cardiología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../gastroenterology/index.html" class="nav-link">
+                        <i class="fas fa-stomach nav-icon"></i>
+                        <span class="nav-text">Gastroenterología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../dermatology/index.html" class="nav-link">
+                        <i class="fas fa-allergies nav-icon"></i>
+                        <span class="nav-text">Dermatología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../endocrinology/index.html" class="nav-link">
+                        <i class="fas fa-flask nav-icon"></i>
+                        <span class="nav-text">Endocrinología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../geriatrics/index.html" class="nav-link">
+                        <i class="fas fa-user-friends nav-icon"></i>
+                        <span class="nav-text">Geriatría</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../hematology/index.html" class="nav-link">
+                        <i class="fas fa-tint nav-icon"></i>
+                        <span class="nav-text">Hematología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../infectious_diseases/index.html" class="nav-link">
+                        <i class="fas fa-microscope nav-icon"></i>
+                        <span class="nav-text">Enfermedades Infecciosas</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../musculoskeletal/index.html" class="nav-link">
+                        <i class="fas fa-bone nav-icon"></i>
+                        <span class="nav-text">Musculoesquelético</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link active" id="oftalmologia-nav-link" onclick="event.preventDefault(); this.classList.toggle('active');">
+                        <i class="fas fa-eye nav-icon"></i>
+                        <span class="nav-text">Oftalmología</span>
+                    </a>
+                    <ul class="sub-menu" id="oftalmologia-sub-menu">
+                        <li class="sub-menu-item"><a href="#anamnesis-section" onclick="scrollToSection('anamnesis-section')">Anamnesis</a></li>
+                        <li class="sub-menu-item"><a href="#visual-acuity-section" onclick="scrollToSection('visual-acuity-section')">Agudeza Visual</a></li>
+                        <li class="sub-menu-item"><a href="#pupil-exam-section" onclick="scrollToSection('pupil-exam-section')">Examen Pupilar</a></li>
+                        <li class="sub-menu-item"><a href="#external-exam-section" onclick="scrollToSection('external-exam-section')">Examen Externo</a></li>
+                        <li class="sub-menu-item"><a href="#motility-exam-section" onclick="scrollToSection('motility-exam-section')">Motilidad Ocular</a></li>
+                        <li class="sub-menu-item"><a href="#anterior-segment-section" onclick="scrollToSection('anterior-segment-section')">Segmento Anterior</a></li>
+                        <li class="sub-menu-item"><a href="#pressure-exam-section" onclick="scrollToSection('pressure-exam-section')">Presión Intraocular</a></li>
+                        <li class="sub-menu-item"><a href="#fundoscopy-section" onclick="scrollToSection('fundoscopy-section')">Fundoscopía</a></li>
+                        <li class="sub-menu-item"><a href="#scales-section" onclick="scrollToSection('scales-section')">Escalas</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="../otolaryngology/index.html" class="nav-link">
+                        <i class="fas fa-ear-listen nav-icon"></i>
+                        <span class="nav-text">Otorrinolaringología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../pneumology/index.html" class="nav-link">
+                        <i class="fas fa-lungs nav-icon"></i>
+                        <span class="nav-text">Neumología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../psychiatry/index.html" class="nav-link">
+                        <i class="fas fa-brain nav-icon"></i>
+                        <span class="nav-text">Psiquiatría</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../rheumatology/index.html" class="nav-link">
+                        <i class="fas fa-joint nav-icon"></i>
+                        <span class="nav-text">Reumatología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../urology/index.html" class="nav-link">
+                        <i class="fas fa-user-md nav-icon"></i>
+                        <span class="nav-text">Urología</span>
+                    </a>
+                </li>
+            </nav>
+            <button class="btn btn-secondary mt-auto" style="background-color: var(--bg-light); color: var(--text-dark); border: 1px solid var(--border-light);">
+                <i class="fas fa-sign-out-alt"></i>
+                <span class="nav-text">Cerrar Sesión</span>
+            </button>
+        </aside>
+
+        <!-- CONTENT AREA -->
+        <div class="content-area" id="contentArea">
+            <div class="top-bar" id="topBar">
+                <div style="display: flex; align-items: center;">
+                    <img src="../../img/9.svg" alt="Oftalmología" class="h-10 w-10">
+                    <h2 class="page-title">Examen de Oftalmología</h2>
+                </div>
+                <div class="user-profile">
+                    <div class="user-avatar">DO</div>
+                    <span class="user-name">Dr. Oftalmólogo</span>
+                </div>
+            </div>
+
+            <main class="main-content" id="mainContent">
+                <!-- DASHBOARD WIDGET -->
+                <div class="dashboard-widget section-container" id="dashboard-summary">
+                    <div class="section-header-main expanded" onclick="this.classList.toggle('expanded')">
+                        <h3 class="section-title-main"><i class="fas fa-tachometer-alt"></i> Resumen del Examen</h3>
+                         <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="dashboard-grid section-content-main" style="max-height: 5000px;">
+                        <div class="dashboard-item"><i class="fas fa-user-md"></i><div>Examen</div><div id="exam-progress">0%</div></div>
+                        <div class="dashboard-item"><i class="fas fa-clipboard-list"></i><div>Secciones</div><div id="sections-completed">0/9</div></div>
+                        <div class="dashboard-item dashboard-alert" id="alerts-item"><i class="fas fa-exclamation-triangle"></i><div>Alertas</div><div id="alert-count">0</div></div>
+                        <div class="dashboard-item dashboard-warning" id="warnings-item"><i class="fas fa-exclamation-circle"></i><div>Avisos</div><div id="warning-count">0</div></div>
+                        <div class="dashboard-item dashboard-normal" id="findings-item"><i class="fas fa-search"></i><div>Hallazgos</div><div id="findings-count">0</div></div>
+                        <div class="dashboard-item"><i class="fas fa-eye"></i><div>AV OD</div><div id="av-od-status">--</div></div>
+                        <div class="dashboard-item"><i class="fas fa-eye"></i><div>AV OI</div><div id="av-oi-status">--</div></div>
+                        <div class="dashboard-item"><i class="fas fa-eye-dropper"></i><div>PIO OD</div><div id="pio-od-status">--</div></div>
+                        <div class="dashboard-item"><i class="fas fa-eye-dropper"></i><div>PIO OI</div><div id="pio-oi-status">--</div></div>
+                    </div>
+                </div>
+
+                <!-- 1. Anamnesis y Quejas Principales -->
+                <div class="section-container" id="anamnesis-section">
+                    <div class="section-header-main" onclick="this.classList.toggle('expanded')">
+                        <h3 class="section-title-main"><i class="fas fa-user-edit"></i> Anamnesis y Quejas Principales</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-clipboard-list"></i> Quejas Oftalmológicas Principales</h4>
+                            <div class="form-grid">
+                                <div class="form-item"><input type="checkbox" id="dolor-ocular" onchange="handlePainComplaint(this)"><label for="dolor-ocular">Dolor ocular</label></div>
+                                <div class="form-item"><input type="checkbox" id="vision-borrosa" onchange="updateDashboard()"><label for="vision-borrosa">Visión borrosa</label></div>
+                                <div class="form-item"><input type="checkbox" id="perdida-vision" onchange="updateDashboard()"><label for="perdida-vision">Pérdida de visión</label></div>
+                                <div class="form-item"><input type="checkbox" id="diplopia" onchange="updateDashboard()"><label for="diplopia">Diplopía</label></div>
+                                <div class="form-item"><input type="checkbox" id="fotofobia" onchange="updateDashboard()"><label for="fotofobia">Fotofobia</label></div>
+                                <div class="form-item"><input type="checkbox" id="lagrimeo" onchange="updateDashboard()"><label for="lagrimeo">Lagrimeo</label></div>
+                                <div class="form-item"><input type="checkbox" id="ojo-seco" onchange="updateDashboard()"><label for="ojo-seco">Ojo seco</label></div>
+                                <div class="form-item"><input type="checkbox" id="secrecion-ocular" onchange="updateDashboard()"><label for="secrecion-ocular">Secreción ocular</label></div>
+                                <div class="form-item"><input type="checkbox" id="prurito-ocular" onchange="updateDashboard()"><label for="prurito-ocular">Prurito ocular</label></div>
+                                <div class="form-item"><input type="checkbox" id="sensacion-cuerpo-extrano" onchange="updateDashboard()"><label for="sensacion-cuerpo-extrano">Sensación de cuerpo extraño</label></div>
+                                <div class="form-item"><input type="checkbox" id="halos-visuales" onchange="updateDashboard()"><label for="halos-visuales">Halos visuales</label></div>
+                                <div class="form-item"><input type="checkbox" id="destellos-luz" onchange="updateDashboard()"><label for="destellos-luz">Destellos de luz</label></div>
+                                <div class="form-item"><input type="checkbox" id="moscas-volantes" onchange="updateDashboard()"><label for="moscas-volantes">Moscas volantes</label></div>
+                                <div class="form-item"><input type="checkbox" id="ceguera-nocturna" onchange="updateDashboard()"><label for="ceguera-nocturna">Ceguera nocturna</label></div>
+                                <div class="form-item"><input type="checkbox" id="perdida-campo-visual" onchange="updateDashboard()"><label for="perdida-campo-visual">Pérdida de campo visual</label></div>
+                                <div class="form-item"><input type="checkbox" id="metamorfopsia" onchange="updateDashboard()"><label for="metamorfopsia">Metamorfopsia</label></div>
+                                <div class="form-item"><input type="checkbox" id="cefalea" onchange="updateDashboard()"><label for="cefalea">Cefalea</label></div>
+                                <div class="form-item"><input type="checkbox" id="ptosis-palpebral" onchange="updateDashboard()"><label for="ptosis-palpebral">Ptosis palpebral</label></div>
+                                <div class="form-item"><input type="checkbox" id="ojo-rojo" onchange="updateDashboard()"><label for="ojo-rojo">Ojo rojo</label></div>
+                                <div class="form-item"><input type="checkbox" id="sin-quejas-oftalmo" onchange="handleNoComplaints()"><label for="sin-quejas-oftalmo">Sin quejas</label></div>
+                            </div>
+                        </div>
+                        <div class="sub-section-card" id="pain-characteristics-section" style="display: none;">
+                            <h4 class="sub-section-title"><i class="fas fa-thermometer-half"></i> Características del Dolor Ocular</h4>
+                            <div class="form-grid">
+                                <div class="form-item"><label for="dolor-od-intensidad">Dolor OD (EVA):</label><input type="range" id="dolor-od-intensidad" min="0" max="10" value="0" oninput="updateDolorValue('od', this.value)"><span id="dolor-od-value">0</span>/10</div>
+                                <div class="form-item"><label for="dolor-oi-intensidad">Dolor OI (EVA):</label><input type="range" id="dolor-oi-intensidad" min="0" max="10" value="0" oninput="updateDolorValue('oi', this.value)"><span id="dolor-oi-value">0</span>/10</div>
+                                <div class="form-item"><input type="radio" name="tipo-dolor-ocular" id="dolor-punzante" onchange="updateDashboard()"><label for="dolor-punzante">Punzante</label></div>
+                                <div class="form-item"><input type="radio" name="tipo-dolor-ocular" id="dolor-urente" onchange="updateDashboard()"><label for="dolor-urente">Urente</label></div>
+                                <div class="form-item"><input type="radio" name="tipo-dolor-ocular" id="dolor-presion" onchange="updateDashboard()"><label for="dolor-presion">Presión</label></div>
+                                <div class="form-item"><input type="radio" name="tipo-dolor-ocular" id="dolor-arenoso" onchange="updateDashboard()"><label for="dolor-arenoso">Arenoso</label></div>
+                                <div class="form-item"><input type="radio" name="tipo-dolor-ocular" id="dolor-orbital" onchange="updateDashboard()"><label for="dolor-orbital">Orbital profundo</label></div>
+                            </div>
+                        </div>
+                         <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-history"></i> Historia Ocular y Antecedentes</h4>
+                             <div class="form-grid">
+                                <div class="form-item"><input type="checkbox" id="uso-lentes" onchange="updateDashboard()"><label for="uso-lentes">Uso de lentes</label></div>
+                                <div class="form-item"><input type="checkbox" id="cirugia-ocular-previa" onchange="updateDashboard()"><label for="cirugia-ocular-previa">Cirugía ocular previa</label></div>
+                                <div class="form-item"><input type="checkbox" id="trauma-ocular" onchange="updateDashboard()"><label for="trauma-ocular">Trauma ocular</label></div>
+                                <div class="form-item"><input type="checkbox" id="glaucoma-familiar" onchange="updateGlaucomaHighlights(this)"><label for="glaucoma-familiar">Antecedente familiar de glaucoma</label></div>
+                                <div class="form-item"><input type="checkbox" id="diabetes" onchange="updateDiabetesHighlights(this)"><label for="diabetes">Diabetes mellitus</label></div>
+                                <div class="form-item"><input type="checkbox" id="hipertension" onchange="updateHypertensionHighlights(this)"><label for="hipertension">Hipertensión arterial</label></div>
+                                <div class="form-item"><input type="checkbox" id="medicamentos-oftalmicos" onchange="updateDashboard()"><label for="medicamentos-oftalmicos">Uso de medicamentos oftálmicos</label></div>
+                                <div class="form-item"><input type="checkbox" id="corticoides-topicos" onchange="updateDashboard()"><label for="corticoides-topicos">Uso de corticoides tópicos</label></div>
+                                <div class="form-item"><input type="checkbox" id="exposicion-uv" onchange="updateDashboard()"><label for="exposicion-uv">Exposición UV excesiva</label></div>
+                                <div class="form-item"><input type="checkbox" id="trabajo-computadora" onchange="updateDashboard()"><label for="trabajo-computadora">Trabajo prolongado en computadora</label></div>
+                                <div class="form-item"><input type="checkbox" id="exposicion-quimicos" onchange="updateDashboard()"><label for="exposicion-quimicos">Exposición a químicos</label></div>
+                                <div class="form-item"><input type="checkbox" id="soldadura" onchange="updateDashboard()"><label for="soldadura">Soldadura</label></div>
+                                <div class="form-item"><input type="checkbox" id="miopía-alta" onchange="updateDashboard()"><label for="miopía-alta">Miopía alta</label></div>
+                                <div class="form-item"><input type="checkbox" id="edad-avanzada" onchange="updateDashboard()"><label for="edad-avanzada">Edad avanzada (&gt;60 años)</label></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Agudeza Visual -->
+                <div class="section-container" id="visual-acuity-section">
+                    <div class="section-header-main" onclick="this.classList.toggle('expanded')">
+                        <h3 class="section-title-main"><i class="fas fa-chart-bar"></i> Evaluación de la Agudeza Visual</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-glasses"></i> Agudeza Visual de Lejos (6m / 20ft)</h4>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <h5 class="font-semibold mb-2 text-center">Ojo Derecho (OD)</h5>
+                                    <div class="form-grid">
+                                        <div class="form-item"><label for="av-lejos-od-sc">Sin Corrección:</label><input type="text" class="acuity-input" id="av-lejos-od-sc" placeholder="20/20" onchange="updateDashboard(); evaluateAVStatus('od')"></div>
+                                        <div class="form-item"><label for="av-lejos-od-cc">Con Corrección:</label><input type="text" class="acuity-input" id="av-lejos-od-cc" placeholder="20/20" onchange="updateDashboard(); evaluateAVStatus('od')"></div>
+                                        <div class="form-item"><label for="av-lejos-od-ph">Ag. Estenopeico:</label><input type="text" class="acuity-input" id="av-lejos-od-ph" placeholder="20/20" onchange="updateDashboard(); evaluateAVStatus('od')"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h5 class="font-semibold mb-2 text-center">Ojo Izquierdo (OI)</h5>
+                                    <div class="form-grid">
+                                        <div class="form-item"><label for="av-lejos-oi-sc">Sin Corrección:</label><input type="text" class="acuity-input" id="av-lejos-oi-sc" placeholder="20/20" onchange="updateDashboard(); evaluateAVStatus('oi')"></div>
+                                        <div class="form-item"><label for="av-lejos-oi-cc">Con Corrección:</label><input type="text" class="acuity-input" id="av-lejos-oi-cc" placeholder="20/20" onchange="updateDashboard(); evaluateAVStatus('oi')"></div>
+                                        <div class="form-item"><label for="av-lejos-oi-ph">Ag. Estenopeico:</label><input type="text" class="acuity-input" id="av-lejos-oi-ph" placeholder="20/20" onchange="updateDashboard(); evaluateAVStatus('oi')"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-glasses"></i> Agudeza Visual de Cerca (40 cm)</h4>
+                             <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <h5 class="font-semibold mb-2 text-center">Ojo Derecho (OD)</h5>
+                                    <div class="form-grid">
+                                        <div class="form-item"><label for="av-cerca-od-sc">Sin Corrección:</label><input type="text" class="acuity-input" id="av-cerca-od-sc" placeholder="J1" onchange="updateDashboard()"></div>
+                                        <div class="form-item"><label for="av-cerca-od-cc">Con Corrección:</label><input type="text" class="acuity-input" id="av-cerca-od-cc" placeholder="J1" onchange="updateDashboard()"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h5 class="font-semibold mb-2 text-center">Ojo Izquierdo (OI)</h5>
+                                    <div class="form-grid">
+                                        <div class="form-item"><label for="av-cerca-oi-sc">Sin Corrección:</label><input type="text" class="acuity-input" id="av-cerca-oi-sc" placeholder="J1" onchange="updateDashboard()"></div>
+                                        <div class="form-item"><label for="av-cerca-oi-cc">Con Corrección:</label><input type="text" class="acuity-input" id="av-cerca-oi-cc" placeholder="J1" onchange="updateDashboard()"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-bullseye"></i> Evaluación de Campo Visual</h4>
+                            <div class="grid md:grid-cols-2 gap-6">
+                               <div>
+                                    <h5 class="font-semibold mb-2 text-center">Campo Visual Ojo Derecho</h5>
+                                    <div class="field-grid">
+                                        <div class="field-quadrant" onclick="toggleFieldDefect(this)" data-field="od-sup-temporal">Sup Temporal</div>
+                                        <div class="field-quadrant" onclick="toggleFieldDefect(this)" data-field="od-sup-nasal">Sup Nasal</div>
+                                        <div class="field-quadrant" onclick="toggleFieldDefect(this)" data-field="od-inf-temporal">Inf Temporal</div>
+                                        <div class="field-quadrant" onclick="toggleFieldDefect(this)" data-field="od-inf-nasal">Inf Nasal</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h5 class="font-semibold mb-2 text-center">Campo Visual Ojo Izquierdo</h5>
+                                    <div class="field-grid">
+                                        <div class="field-quadrant" onclick="toggleFieldDefect(this)" data-field="oi-sup-nasal">Sup Nasal</div>
+                                        <div class="field-quadrant" onclick="toggleFieldDefect(this)" data-field="oi-sup-temporal">Sup Temporal</div>
+                                        <div class="field-quadrant" onclick="toggleFieldDefect(this)" data-field="oi-inf-nasal">Inf Nasal</div>
+                                        <div class="field-quadrant" onclick="toggleFieldDefect(this)" data-field="oi-inf-temporal">Inf Temporal</div>
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="form-grid mt-4">
+                                <div class="form-item"><input type="checkbox" id="campo-normal" onchange="updateDashboard()"><label for="campo-normal">Campo visual normal</label></div>
+                                <div class="form-item"><input type="checkbox" id="hemianopsia-homónima" onchange="updateDashboard()"><label for="hemianopsia-homónima">Hemianopsia homónima</label></div>
+                                <div class="form-item"><input type="checkbox" id="hemianopsia-heteronima" onchange="updateDashboard()"><label for="hemianopsia-heteronima">Hemianopsia heterónima</label></div>
+                                <div class="form-item"><input type="checkbox" id="cuadrantanopsia" onchange="updateDashboard()"><label for="cuadrantanopsia">Cuadrantanopsia</label></div>
+                                <div class="form-item"><input type="checkbox" id="escotoma-central" onchange="updateDashboard()"><label for="escotoma-central">Escotoma central</label></div>
+                                <div class="form-item"><input type="checkbox" id="escotoma-paracentral" onchange="updateDashboard()"><label for="escotoma-paracentral">Escotoma paracentral</label></div>
+                                <div class="form-item"><input type="checkbox" id="defecto-altitudinal" onchange="updateDashboard()"><label for="defecto-altitudinal">Defecto altitudinal</label></div>
+                                <div class="form-item"><input type="checkbox" id="constriccion-concentrica" onchange="updateDashboard()"><label for="constriccion-concentrica">Constricción concéntrica</label></div>
+                            </div>
+                        </div>
+                         <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-palette"></i> Visión de Colores</h4>
+                            <div class="form-grid">
+                                <div class="form-item"><label>Test de Ishihara (OD):</label><input type="checkbox" id="ishihara-od-normal" onchange="handleMutuallyExclusive('ishihara-od-normal', 'ishihara-od-alterado', this)"><label for="ishihara-od-normal">Normal</label><input type="checkbox" id="ishihara-od-alterado" onchange="handleMutuallyExclusive('ishihara-od-normal', 'ishihara-od-alterado', this)"><label for="ishihara-od-alterado">Alterado</label><input type="text" class="input-field" id="ishihara-od-score" placeholder="Puntuación" onchange="updateDashboard()"></div>
+                                <div class="form-item"><label>Test de Ishihara (OI):</label><input type="checkbox" id="ishihara-oi-normal" onchange="handleMutuallyExclusive('ishihara-oi-normal', 'ishihara-oi-alterado', this)"><label for="ishihara-oi-normal">Normal</label><input type="checkbox" id="ishihara-oi-alterado" onchange="handleMutuallyExclusive('ishihara-oi-normal', 'ishihara-oi-alterado', this)"><label for="ishihara-oi-alterado">Alterado</label><input type="text" class="input-field" id="ishihara-oi-score" placeholder="Puntuación" onchange="updateDashboard()"></div>
+                                <div class="form-item"><input type="radio" name="tipo-discromatopsia" id="protanopia" onchange="updateDashboard()"><label for="protanopia">Protanopia (rojo)</label></div>
+                                <div class="form-item"><input type="radio" name="tipo-discromatopsia" id="deuteranopia" onchange="updateDashboard()"><label for="deuteranopia">Deuteranopia (verde)</label></div>
+                                <div class="form-item"><input type="radio" name="tipo-discromatopsia" id="tritanopia" onchange="updateDashboard()"><label for="tritanopia">Tritanopia (azul)</label></div>
+                                <div class="form-item"><input type="radio" name="tipo-discromatopsia" id="acromatopsia" onchange="updateDashboard()"><label for="acromatopsia">Acromatopsia</label></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Examen Pupilar -->
+                <div class="section-container" id="pupil-exam-section">
+                    <div class="section-header-main" onclick="this.classList.toggle('expanded')">
+                        <h3 class="section-title-main"><i class="fas fa-dot-circle"></i> Examen Pupilar</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-lightbulb"></i> Tamaño y Forma Pupilar</h4>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <h5 class="font-semibold mb-2 text-center">Ojo Derecho</h5>
+                                    <div class="form-grid">
+                                        <div class="form-item"><label for="pupila-od-luz">Tamaño (luz):</label><input type="number" class="input-field" id="pupila-od-luz" min="1" max="8" step="0.5" onchange="updateDashboard()"><span>mm</span></div>
+                                        <div class="form-item"><label for="pupila-od-oscuridad">Tamaño (oscuridad):</label><input type="number" class="input-field" id="pupila-od-oscuridad" min="1" max="8" step="0.5" onchange="updateDashboard()"><span>mm</span></div>
+                                        <div class="form-item"><input type="radio" name="forma-od" id="forma-od-redonda" onchange="updateDashboard()"><label for="forma-od-redonda">Redonda</label></div>
+                                        <div class="form-item"><input type="radio" name="forma-od" id="forma-od-irregular" onchange="updateDashboard()"><label for="forma-od-irregular">Irregular</label></div>
+                                        <div class="form-item"><input type="radio" name="forma-od" id="forma-od-ovalada" onchange="updateDashboard()"><label for="forma-od-ovalada">Ovalada</label></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h5 class="font-semibold mb-2 text-center">Ojo Izquierdo</h5>
+                                    <div class="form-grid">
+                                        <div class="form-item"><label for="pupila-oi-luz">Tamaño (luz):</label><input type="number" class="input-field" id="pupila-oi-luz" min="1" max="8" step="0.5" onchange="updateDashboard()"><span>mm</span></div>
+                                        <div class="form-item"><label for="pupila-oi-oscuridad">Tamaño (oscuridad):</label><input type="number" class="input-field" id="pupila-oi-oscuridad" min="1" max="8" step="0.5" onchange="updateDashboard()"><span>mm</span></div>
+                                        <div class="form-item"><input type="radio" name="forma-oi" id="forma-oi-redonda" onchange="updateDashboard()"><label for="forma-oi-redonda">Redonda</label></div>
+                                        <div class="form-item"><input type="radio" name="forma-oi" id="forma-oi-irregular" onchange="updateDashboard()"><label for="forma-oi-irregular">Irregular</label></div>
+                                        <div class="form-item"><input type="radio" name="forma-oi" id="forma-oi-ovalada" onchange="updateDashboard()"><label for="forma-oi-ovalada">Ovalada</label></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-exchange-alt"></i> Reflejos Pupilares</h4>
+                             <div class="form-grid">
+                                <div class="form-item"><label>Reflejo fotomotor directo OD:</label><input type="checkbox" id="fotomotor-directo-od-pos" onchange="handleMutuallyExclusive('fotomotor-directo-od-pos', 'fotomotor-directo-od-neg', this)"><label for="fotomotor-directo-od-pos">Presente</label><input type="checkbox" id="fotomotor-directo-od-neg" onchange="handleMutuallyExclusive('fotomotor-directo-od-pos', 'fotomotor-directo-od-neg', this)"><label for="fotomotor-directo-od-neg">Ausente</label></div>
+                                <div class="form-item"><label>Reflejo fotomotor directo OI:</label><input type="checkbox" id="fotomotor-directo-oi-pos" onchange="handleMutuallyExclusive('fotomotor-directo-oi-pos', 'fotomotor-directo-oi-neg', this)"><label for="fotomotor-directo-oi-pos">Presente</label><input type="checkbox" id="fotomotor-directo-oi-neg" onchange="handleMutuallyExclusive('fotomotor-directo-oi-pos', 'fotomotor-directo-oi-neg', this)"><label for="fotomotor-directo-oi-neg">Ausente</label></div>
+                                <div class="form-item"><label>Reflejo consensual OD → OI:</label><input type="checkbox" id="consensual-od-oi-pos" onchange="handleMutuallyExclusive('consensual-od-oi-pos', 'consensual-od-oi-neg', this)"><label for="consensual-od-oi-pos">Presente</label><input type="checkbox" id="consensual-od-oi-neg" onchange="handleMutuallyExclusive('consensual-od-oi-pos', 'consensual-od-oi-neg', this)"><label for="consensual-od-oi-neg">Ausente</label></div>
+                                <div class="form-item"><label>Reflejo consensual OI → OD:</label><input type="checkbox" id="consensual-oi-od-pos" onchange="handleMutuallyExclusive('consensual-oi-od-pos', 'consensual-oi-od-neg', this)"><label for="consensual-oi-od-pos">Presente</label><input type="checkbox" id="consensual-oi-od-neg" onchange="handleMutuallyExclusive('consensual-oi-od-pos', 'consensual-oi-od-neg', this)"><label for="consensual-oi-od-neg">Ausente</label></div>
+                                <div class="form-item"><label>Test de Marcus Gunn (DPAR):</label><input type="checkbox" id="marcus-gunn-neg" onchange="handleMutuallyExclusive('marcus-gunn-neg', 'marcus-gunn-pos', this)"><label for="marcus-gunn-neg">Negativo</label><input type="checkbox" id="marcus-gunn-pos" onchange="handleMutuallyExclusive('marcus-gunn-neg', 'marcus-gunn-pos', this)"><label for="marcus-gunn-pos">Positivo</label><select id="marcus-gunn-ojo" onchange="updateDashboard()"><option value="">¿Ojo?</option><option value="OD">OD</option><option value="OI">OI</option></select></div>
+                                <div class="form-item"><label>Reflejo de acomodación:</label><input type="checkbox" id="acomodacion-normal" onchange="handleMutuallyExclusive('acomodacion-normal', 'acomodacion-alterado', this)"><label for="acomodacion-normal">Normal</label><input type="checkbox" id="acomodacion-alterado" onchange="handleMutuallyExclusive('acomodacion-normal', 'acomodacion-alterado', this)"><label for="acomodacion-alterado">Alterado</label></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. Examen Externo -->
+                <div class="section-container" id="external-exam-section">
+                    <div class="section-header-main" onclick="this.classList.toggle('expanded')">
+                        <h3 class="section-title-main"><i class="fas fa-eye"></i> Examen Externo del Ojo</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-layer-group"></i> Estructuras Externas</h4>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <!-- Ojo Derecho -->
+                                <div>
+                                    <h5 class="font-semibold mb-2 text-center">Ojo Derecho</h5>
+                                    <div class="form-grid">
+                                        <div class="form-item col-span-full font-medium">Párpados</div>
+                                        <div class="form-item"><input type="checkbox" id="parpado-sup-od-normal" onchange="updateDashboard()"><label for="parpado-sup-od-normal">Sup. Normal</label></div>
+                                        <div class="form-item"><input type="checkbox" id="ptosis-od" onchange="updateDashboard()"><label for="ptosis-od">Ptosis</label></div>
+                                        <div class="form-item"><input type="checkbox" id="parpado-inf-od-normal" onchange="updateDashboard()"><label for="parpado-inf-od-normal">Inf. Normal</label></div>
+                                        <div class="form-item"><input type="checkbox" id="ectropion-od" onchange="updateDashboard()"><label for="ectropion-od">Ectropión</label></div>
+                                        <div class="form-item"><input type="checkbox" id="entropion-od" onchange="updateDashboard()"><label for="entropion-od">Entropión</label></div>
+                                        <div class="form-item col-span-full font-medium">Aparato Lagrimal</div>
+                                        <div class="form-item"><input type="checkbox" id="glandula-lagrimal-od-normal" onchange="updateDashboard()"><label for="glandula-lagrimal-od-normal">Normal</label></div>
+                                        <div class="form-item"><input type="checkbox" id="dacrioadenitis-od" onchange="updateDashboard()"><label for="dacrioadenitis-od">Dacrioadenitis</label></div>
+                                        <div class="form-item"><input type="checkbox" id="epifora-od" onchange="updateDashboard()"><label for="epifora-od">Epífora</label></div>
+                                        <div class="form-item col-span-full font-medium">Conjuntiva y Esclera</div>
+                                        <div class="form-item"><input type="checkbox" id="conjuntiva-bulbar-od-normal" onchange="updateDashboard()"><label for="conjuntiva-bulbar-od-normal">Normal</label></div>
+                                        <div class="form-item"><input type="checkbox" id="hiperemia-conjuntival-od" onchange="updateDashboard()"><label for="hiperemia-conjuntival-od">Hiperemia</label></div>
+                                        <div class="form-item"><input type="checkbox" id="hemorragia-subconjuntival-od" onchange="updateDashboard()"><label for="hemorragia-subconjuntival-od">Hemorragia</label></div>
+                                        <div class="form-item"><input type="checkbox" id="escleritis-od" onchange="updateDashboard()"><label for="escleritis-od">Escleritis</label></div>
+                                    </div>
+                                </div>
+                                <!-- Ojo Izquierdo -->
+                                <div>
+                                    <h5 class="font-semibold mb-2 text-center">Ojo Izquierdo</h5>
+                                    <div class="form-grid">
+                                        <div class="form-item col-span-full font-medium">Párpados</div>
+                                        <div class="form-item"><input type="checkbox" id="parpado-sup-oi-normal" onchange="updateDashboard()"><label for="parpado-sup-oi-normal">Sup. Normal</label></div>
+                                        <div class="form-item"><input type="checkbox" id="ptosis-oi" onchange="updateDashboard()"><label for="ptosis-oi">Ptosis</label></div>
+                                        <div class="form-item"><input type="checkbox" id="parpado-inf-oi-normal" onchange="updateDashboard()"><label for="parpado-inf-oi-normal">Inf. Normal</label></div>
+                                        <div class="form-item"><input type="checkbox" id="ectropion-oi" onchange="updateDashboard()"><label for="ectropion-oi">Ectropión</label></div>
+                                        <div class="form-item"><input type="checkbox" id="entropion-oi" onchange="updateDashboard()"><label for="entropion-oi">Entropión</label></div>
+                                        <div class="form-item col-span-full font-medium">Aparato Lagrimal</div>
+                                        <div class="form-item"><input type="checkbox" id="glandula-lagrimal-oi-normal" onchange="updateDashboard()"><label for="glandula-lagrimal-oi-normal">Normal</label></div>
+                                        <div class="form-item"><input type="checkbox" id="dacrioadenitis-oi" onchange="updateDashboard()"><label for="dacrioadenitis-oi">Dacrioadenitis</label></div>
+                                        <div class="form-item"><input type="checkbox" id="epifora-oi" onchange="updateDashboard()"><label for="epifora-oi">Epífora</label></div>
+                                        <div class="form-item col-span-full font-medium">Conjuntiva y Esclera</div>
+                                        <div class="form-item"><input type="checkbox" id="conjuntiva-bulbar-oi-normal" onchange="updateDashboard()"><label for="conjuntiva-bulbar-oi-normal">Normal</label></div>
+                                        <div class="form-item"><input type="checkbox" id="hiperemia-conjuntival-oi" onchange="updateDashboard()"><label for="hiperemia-conjuntival-oi">Hiperemia</label></div>
+                                        <div class="form-item"><input type="checkbox" id="hemorragia-subconjuntival-oi" onchange="updateDashboard()"><label for="hemorragia-subconjuntival-oi">Hemorragia</label></div>
+                                        <div class="form-item"><input type="checkbox" id="escleritis-oi" onchange="updateDashboard()"><label for="escleritis-oi">Escleritis</label></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. Motilidad Ocular -->
+                <div class="section-container" id="motility-exam-section">
+                    <div class="section-header-main" onclick="this.classList.toggle('expanded')">
+                        <h3 class="section-title-main"><i class="fas fa-arrows-alt"></i> Examen de Motilidad Ocular</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="sub-section-card">
+                             <h4 class="sub-section-title"><i class="fas fa-crosshairs"></i> Movimientos Oculares y Alineación</h4>
+                             <div class="form-grid">
+                                <div class="form-item"><input type="checkbox" id="duccion-od-normal" onchange="updateDashboard()"><label for="duccion-od-normal">Ducciones OD normales</label></div>
+                                <div class="form-item"><input type="checkbox" id="duccion-oi-normal" onchange="updateDashboard()"><label for="duccion-oi-normal">Ducciones OI normales</label></div>
+                                <div class="form-item"><input type="checkbox" id="versiones-normales" onchange="updateDashboard()"><label for="versiones-normales">Versiones normales</label></div>
+                                <div class="form-item"><input type="checkbox" id="limitacion-abduccion-od" onchange="updateDashboard()"><label for="limitacion-abduccion-od">Limitación abducción OD</label></div>
+                                <div class="form-item"><input type="checkbox" id="limitacion-abduccion-oi" onchange="updateDashboard()"><label for="limitacion-abduccion-oi">Limitación abducción OI</label></div>
+                                <div class="form-item"><label for="cover-test">Cover Test:</label><select id="cover-test" onchange="updateDashboard()"><option value="">Seleccionar</option><option value="ortoforia">Ortoforia</option><option value="esoforia">Esoforia</option><option value="exoforia">Exoforia</option><option value="hiperforia">Hiperforia</option><option value="esotropia">Esotropía</option><option value="exotropia">Exotropía</option><option value="hipertropia">Hipertropía</option></select></div>
+                                <div class="form-item"><input type="checkbox" id="nistagmo-ausente" onchange="handleMutuallyExclusive('nistagmo-ausente', 'nistagmo-presente', this)"><label for="nistagmo-ausente">Nistagmo Ausente</label></div>
+                                <div class="form-item"><input type="checkbox" id="nistagmo-presente" onchange="handleMutuallyExclusive('nistagmo-ausente', 'nistagmo-presente', this)"><label for="nistagmo-presente">Nistagmo Presente</label></div>
+                                <div class="form-item"><label for="direccion-nistagmo">Dirección:</label><select id="direccion-nistagmo" onchange="updateDashboard()"><option value="">Seleccionar</option><option value="horizontal">Horizontal</option><option value="vertical">Vertical</option><option value="rotatorio">Rotatorio</option></select></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. Segmento Anterior -->
+                <div class="section-container" id="anterior-segment-section">
+                    <div class="section-header-main" onclick="this.classList.toggle('expanded')">
+                        <h3 class="section-title-main"><i class="fas fa-microscope"></i> Examen del Segmento Anterior</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="sub-section-card">
+                             <h4 class="sub-section-title"><i class="fas fa-layer-group"></i> Córnea, Cámara Anterior, Iris y Cristalino</h4>
+                             <div class="grid md:grid-cols-2 gap-6">
+                                <!-- Ojo Derecho -->
+                                <div>
+                                    <h5 class="font-semibold mb-2 text-center">Ojo Derecho</h5>
+                                    <div class="form-grid">
+                                        <div class="form-item col-span-full font-medium">Córnea</div>
+                                        <div class="form-item"><input type="checkbox" id="cornea-od-transparente" onchange="updateDashboard()"><label for="cornea-od-transparente">Transparente</label></div>
+                                        <div class="form-item"><input type="checkbox" id="cornea-od-edema" onchange="updateDashboard()"><label for="cornea-od-edema">Edema</label></div>
+                                        <div class="form-item"><input type="checkbox" id="cornea-od-ulcera" onchange="updateDashboard()"><label for="cornea-od-ulcera">Úlcera</label></div>
+                                        <div class="form-item"><label>Fluoresceína:</label><input type="checkbox" id="fluoresceina-od-pos" onchange="handleMutuallyExclusive('fluoresceina-od-pos', 'fluoresceina-od-neg', this)"><label for="fluoresceina-od-pos">+</label><input type="checkbox" id="fluoresceina-od-neg" onchange="handleMutuallyExclusive('fluoresceina-od-pos', 'fluoresceina-od-neg', this)"><label for="fluoresceina-od-neg">-</label></div>
+                                        <div class="form-item col-span-full font-medium">Cámara Anterior e Iris</div>
+                                        <div class="form-item"><input type="checkbox" id="camara-anterior-od-normal" onchange="updateDashboard()"><label for="camara-anterior-od-normal">Normal</label></div>
+                                        <div class="form-item"><input type="checkbox" id="hipopion-od" onchange="updateDashboard()"><label for="hipopion-od">Hipopión</label></div>
+                                        <div class="form-item"><input type="checkbox" id="hifema-od" onchange="updateDashboard()"><label for="hifema-od">Hifema</label></div>
+                                        <div class="form-item col-span-full font-medium">Cristalino</div>
+                                        <div class="form-item"><input type="checkbox" id="cristalino-od-transparente" onchange="updateDashboard()"><label for="cristalino-od-transparente">Transparente</label></div>
+                                        <div class="form-item"><input type="checkbox" id="catarata-nuclear-od" onchange="updateDashboard()"><label for="catarata-nuclear-od">Catarata Nuclear</label></div>
+                                        <div class="form-item"><input type="checkbox" id="pseudofaco-od" onchange="updateDashboard()"><label for="pseudofaco-od">Pseudofaco (LIO)</label></div>
+                                    </div>
+                                </div>
+                                <!-- Ojo Izquierdo -->
+                                <div>
+                                    <h5 class="font-semibold mb-2 text-center">Ojo Izquierdo</h5>
+                                    <div class="form-grid">
+                                        <div class="form-item col-span-full font-medium">Córnea</div>
+                                        <div class="form-item"><input type="checkbox" id="cornea-oi-transparente" onchange="updateDashboard()"><label for="cornea-oi-transparente">Transparente</label></div>
+                                        <div class="form-item"><input type="checkbox" id="cornea-oi-edema" onchange="updateDashboard()"><label for="cornea-oi-edema">Edema</label></div>
+                                        <div class="form-item"><input type="checkbox" id="cornea-oi-ulcera" onchange="updateDashboard()"><label for="cornea-oi-ulcera">Úlcera</label></div>
+                                        <div class="form-item"><label>Fluoresceína:</label><input type="checkbox" id="fluoresceina-oi-pos" onchange="handleMutuallyExclusive('fluoresceina-oi-pos', 'fluoresceina-oi-neg', this)"><label for="fluoresceina-oi-pos">+</label><input type="checkbox" id="fluoresceina-oi-neg" onchange="handleMutuallyExclusive('fluoresceina-oi-pos', 'fluoresceina-oi-neg', this)"><label for="fluoresceina-oi-neg">-</label></div>
+                                        <div class="form-item col-span-full font-medium">Cámara Anterior e Iris</div>
+                                        <div class="form-item"><input type="checkbox" id="camara-anterior-oi-normal" onchange="updateDashboard()"><label for="camara-anterior-oi-normal">Normal</label></div>
+                                        <div class="form-item"><input type="checkbox" id="hipopion-oi" onchange="updateDashboard()"><label for="hipopion-oi">Hipopión</label></div>
+                                        <div class="form-item"><input type="checkbox" id="hifema-oi" onchange="updateDashboard()"><label for="hifema-oi">Hifema</label></div>
+                                        <div class="form-item col-span-full font-medium">Cristalino</div>
+                                        <div class="form-item"><input type="checkbox" id="cristalino-oi-transparente" onchange="updateDashboard()"><label for="cristalino-oi-transparente">Transparente</label></div>
+                                        <div class="form-item"><input type="checkbox" id="catarata-nuclear-oi" onchange="updateDashboard()"><label for="catarata-nuclear-oi">Catarata Nuclear</label></div>
+                                        <div class="form-item"><input type="checkbox" id="pseudofaco-oi" onchange="updateDashboard()"><label for="pseudofaco-oi">Pseudofaco (LIO)</label></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7. Presión Intraocular -->
+                <div class="section-container" id="pressure-exam-section">
+                    <div class="section-header-main" onclick="this.classList.toggle('expanded')">
+                        <h3 class="section-title-main"><i class="fas fa-hand-holding-medical"></i> Presión Intraocular y Glaucoma</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-tachometer-alt"></i> Tonometría</h4>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="form-grid">
+                                    <div class="form-item"><label for="pio-od">PIO OD:</label><input type="number" class="input-field" id="pio-od" min="5" max="50" step="1" onchange="evaluatePIO()"><span>mmHg</span></div>
+                                    <div class="form-item"><label for="hora-pio-od">Hora:</label><input type="time" class="input-field" id="hora-pio-od" onchange="updateDashboard()"></div>
+                                </div>
+                                <div class="form-grid">
+                                    <div class="form-item"><label for="pio-oi">PIO OI:</label><input type="number" class="input-field" id="pio-oi" min="5" max="50" step="1" onchange="evaluatePIO()"><span>mmHg</span></div>
+                                    <div class="form-item"><label for="hora-pio-oi">Hora:</label><input type="time" class="input-field" id="hora-pio-oi" onchange="updateDashboard()"></div>
+                                </div>
+                            </div>
+                             <div class="mt-4">
+                                <span class="font-semibold">Interpretación:</span>
+                                <span id="interpretacion-pio-od">OD: --</span>, 
+                                <span id="interpretacion-pio-oi">OI: --</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 8. Fundoscopía -->
+                <div class="section-container" id="fundoscopy-section">
+                    <div class="section-header-main" onclick="this.classList.toggle('expanded')">
+                        <h3 class="section-title-main"><i class="fas fa-eye-slash"></i> Fundoscopía y Segmento Posterior</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                         <div class="sub-section-card">
+                             <h4 class="sub-section-title"><i class="fas fa-compact-disc"></i> Disco Óptico, Mácula, Retina y Vítreo</h4>
+                             <div class="grid md:grid-cols-2 gap-6">
+                                <!-- Ojo Derecho -->
+                                <div>
+                                    <h5 class="font-semibold mb-2 text-center">Ojo Derecho</h5>
+                                    <div class="form-grid">
+                                        <div class="form-item col-span-full font-medium">Disco Óptico</div>
+                                        <div class="form-item"><input type="checkbox" id="disco-od-normal" onchange="updateDashboard()"><label for="disco-od-normal">Normal</label></div>
+                                        <div class="form-item"><input type="checkbox" id="papiledema-od" onchange="updateDashboard()"><label for="papiledema-od">Papiledema</label></div>
+                                        <div class="form-item"><label for="cup-disc-od">Copa/Disco:</label><input type="number" class="input-field" id="cup-disc-od" min="0" max="1" step="0.1" onchange="evaluateCupDisc('od')"></div>
+                                        <div class="form-item col-span-full font-medium">Mácula</div>
+                                        <div class="form-item"><input type="checkbox" id="macula-od-normal" onchange="updateDashboard()"><label for="macula-od-normal">Normal</label></div>
+                                        <div class="form-item"><input type="checkbox" id="drusas-od" onchange="updateDashboard()"><label for="drusas-od">Drusas</label></div>
+                                        <div class="form-item"><input type="checkbox" id="edema-macular-od" onchange="updateDashboard()"><label for="edema-macular-od">Edema Macular</label></div>
+                                        <div class="form-item col-span-full font-medium">Retina y Vítreo</div>
+                                        <div class="form-item"><input type="checkbox" id="vasos-od-normales" onchange="updateDashboard()"><label for="vasos-od-normales">Vasos Normales</label></div>
+                                        <div class="form-item"><input type="checkbox" id="hemorragias-retinianas-od" onchange="updateDashboard()"><label for="hemorragias-retinianas-od">Hemorragias</label></div>
+                                        <div class="form-item"><input type="checkbox" id="desprendimiento-retina-od" onchange="updateDashboard()"><label for="desprendimiento-retina-od">Desprendimiento</label></div>
+                                        <div class="form-item"><input type="checkbox" id="vitreo-od-transparente" onchange="updateDashboard()"><label for="vitreo-od-transparente">Vítreo Transparente</label></div>
+                                    </div>
+                                </div>
+                                <!-- Ojo Izquierdo -->
+                                <div>
+                                    <h5 class="font-semibold mb-2 text-center">Ojo Izquierdo</h5>
+                                    <div class="form-grid">
+                                        <div class="form-item col-span-full font-medium">Disco Óptico</div>
+                                        <div class="form-item"><input type="checkbox" id="disco-oi-normal" onchange="updateDashboard()"><label for="disco-oi-normal">Normal</label></div>
+                                        <div class="form-item"><input type="checkbox" id="papiledema-oi" onchange="updateDashboard()"><label for="papiledema-oi">Papiledema</label></div>
+                                        <div class="form-item"><label for="cup-disc-oi">Copa/Disco:</label><input type="number" class="input-field" id="cup-disc-oi" min="0" max="1" step="0.1" onchange="evaluateCupDisc('oi')"></div>
+                                        <div class="form-item col-span-full font-medium">Mácula</div>
+                                        <div class="form-item"><input type="checkbox" id="macula-oi-normal" onchange="updateDashboard()"><label for="macula-oi-normal">Normal</label></div>
+                                        <div class="form-item"><input type="checkbox" id="drusas-oi" onchange="updateDashboard()"><label for="drusas-oi">Drusas</label></div>
+                                        <div class="form-item"><input type="checkbox" id="edema-macular-oi" onchange="updateDashboard()"><label for="edema-macular-oi">Edema Macular</label></div>
+                                        <div class="form-item col-span-full font-medium">Retina y Vítreo</div>
+                                        <div class="form-item"><input type="checkbox" id="vasos-oi-normales" onchange="updateDashboard()"><label for="vasos-oi-normales">Vasos Normales</label></div>
+                                        <div class="form-item"><input type="checkbox" id="hemorragias-retinianas-oi" onchange="updateDashboard()"><label for="hemorragias-retinianas-oi">Hemorragias</label></div>
+                                        <div class="form-item"><input type="checkbox" id="desprendimiento-retina-oi" onchange="updateDashboard()"><label for="desprendimiento-retina-oi">Desprendimiento</label></div>
+                                        <div class="form-item"><input type="checkbox" id="vitreo-oi-transparente" onchange="updateDashboard()"><label for="vitreo-oi-transparente">Vítreo Transparente</label></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 9. Escalas -->
+                <div class="section-container scale-container" id="scales-section">
+                    <div class="section-header-main" onclick="this.classList.toggle('expanded')">
+                        <h3 class="section-title-main"><i class="fas fa-balance-scale"></i> Escalas de Evaluación y Severidad</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title">Clasificación de Retinopatía Diabética (ETDRS)</h4>
+                            <div class="form-grid">
+                                <div class="form-item"><input type="radio" name="retinopatia-diabetica" id="rd-sin" onchange="updateDashboard()"><label for="rd-sin">Sin RD</label></div>
+                                <div class="form-item"><input type="radio" name="retinopatia-diabetica" id="rd-leve" onchange="updateDashboard()"><label for="rd-leve">RDNP Leve</label></div>
+                                <div class="form-item"><input type="radio" name="retinopatia-diabetica" id="rd-moderada" onchange="updateDashboard()"><label for="rd-moderada">RDNP Moderada</label></div>
+                                <div class="form-item"><input type="radio" name="retinopatia-diabetica" id="rd-severa" onchange="updateDashboard()"><label for="rd-severa">RDNP Severa</label></div>
+                                <div class="form-item"><input type="radio" name="retinopatia-diabetica" id="rd-proliferativa" onchange="updateDashboard()"><label for="rd-proliferativa">RDP</label></div>
+                            </div>
+                        </div>
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title">Clasificación de Retinopatía Hipertensiva (KWB)</h4>
+                             <div class="form-grid">
+                                <div class="form-item"><input type="radio" name="retinopatia-hipertensiva" id="rh-grado0" onchange="updateDashboard()"><label for="rh-grado0">Grado 0</label></div>
+                                <div class="form-item"><input type="radio" name="retinopatia-hipertensiva" id="rh-grado1" onchange="updateDashboard()"><label for="rh-grado1">Grado I</label></div>
+                                <div class="form-item"><input type="radio" name="retinopatia-hipertensiva" id="rh-grado2" onchange="updateDashboard()"><label for="rh-grado2">Grado II</label></div>
+                                <div class="form-item"><input type="radio" name="retinopatia-hipertensiva" id="rh-grado3" onchange="updateDashboard()"><label for="rh-grado3">Grado III</label></div>
+                                <div class="form-item"><input type="radio" name="retinopatia-hipertensiva" id="rh-grado4" onchange="updateDashboard()"><label for="rh-grado4">Grado IV</label></div>
+                            </div>
+                        </div>
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title">Evaluación de Discapacidad Visual (OMS)</h4>
+                            <div class="form-grid">
+                                <div class="form-item"><label for="mejor-ojo-av">Mejor AV corregida:</label><input type="text" class="input-field" id="mejor-ojo-av" placeholder="20/20" onchange="calculateVisualDisability()"></div>
+                                <div class="form-item"><span class="font-semibold">Clasificación OMS:</span><span id="clasificacion-oms">--</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- STICKY PANEL -->
+        <div class="sticky-report-panel" id="stickyReportPanel">
+            <div class="sticky-header">
+                <span><i class="fas fa-file-medical-alt"></i> Informe en Tiempo Real</span>
+                <div class="sticky-controls">
+                    <button onclick="copyStickyToClipboard()"><i class="fas fa-copy"></i></button>
+                    <button onclick="document.getElementById('stickyReportPanel').classList.remove('active')"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+            <pre class="sticky-content" id="stickyContent">
+El informe se generará aquí a medida que completes los campos...
+            </pre>
+        </div>
+    </div>
+
+    <!-- THEME TOGGLE -->
+    <button class="theme-toggle" onclick="toggleTheme()" title="Cambiar tema">
+        <i class="fas fa-moon" id="theme-icon"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>

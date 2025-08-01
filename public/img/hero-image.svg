@@ -1,0 +1,33 @@
+<svg width="550" height="450" viewBox="0 0 550 450" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_101_2)">
+<rect x="50" y="50" width="450" height="350" rx="20" fill="#E0F2F1"/>
+<path d="M100 150 H 450" stroke="#B2DFDB" stroke-width="2"/>
+<path d="M100 200 H 450" stroke="#B2DFDB" stroke-width="2"/>
+<path d="M100 250 H 450" stroke="#B2DFDB" stroke-width="2"/>
+<path d="M100 300 H 450" stroke="#B2DFDB" stroke-width="2"/>
+<path d="M100 350 H 450" stroke="#B2DFDB" stroke-width="2"/>
+
+<rect x="80" y="80" width="390" height="50" rx="10" fill="white"/>
+<circle cx="110" cy="105" r="10" fill="#4DB6AC"/>
+<rect x="140" y="95" width="150" height="20" rx="5" fill="#80CBC4"/>
+
+<rect x="120" y="180" width="150" height="150" rx="10" fill="#4DB6AC"/>
+<path d="M195 220 V 270 M 170 245 H 220" stroke="white" stroke-width="10" stroke-linecap="round"/>
+
+<rect x="300" y="180" width="130" height="80" rx="10" fill="white"/>
+<path d="M320 200 L 340 220 L 370 190" stroke="#26A69A" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+<rect x="300" y="280" width="130" height="50" rx="10" fill="white"/>
+<circle cx="325" cy="305" r="8" fill="#F06292"/>
+<rect x="345" y="298" width="60" height="14" rx="4" fill="#F48FB1"/>
+
+<g transform="translate(50, 380)">
+  <path d="M0 20 C 100 -20, 150 40, 250 10 S 350 -10, 450 20" stroke="#26A69A" stroke-width="4" fill="none"/>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_101_2">
+<rect width="550" height="450" fill="white"/>
+</clipPath>
+</defs>
+</svg>

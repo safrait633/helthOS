@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen Reumatológico - Sistema HealthOS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- SIDEBAR -->
+        <aside class="sidebar" id="sidebar" style="overflow-y: auto; height: 100vh;">
+            <div class="sidebar-header" onclick="window.location.href='../../index.html'" style="cursor: pointer;">
+                <i class="fas fa-heartbeat logo"></i>
+                <h1 class="app-title">HealthOS</h1>
+            </div>
+            <nav class="nav-list">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-th-large nav-icon"></i>
+                        <span class="nav-text">Panel de control</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-stomach nav-icon"></i>
+                        <span class="nav-text">Gastroenterología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-eye nav-icon"></i>
+                        <span class="nav-text">Oftalmología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link active" id="specialty-nav-link" onclick="toggleRheumaSubMenu(event)">
+                        <i class="fas fa-bone nav-icon"></i> <!-- Icono para Reumatología -->
+                        <span class="nav-text">Reumatología</span>
+                    </a>
+                    <div class="sub-menu" id="specialty-sub-menu">
+                        <!-- Generar automáticamente según secciones del examen original -->
+                        <div class="sub-menu-item"><a href="#section-anamnesis" onclick="scrollToSection('anamnesis')">Anamnesis y Quejas</a></div>
+                        <div class="sub-menu-item"><a href="#section-joint-examination" onclick="scrollToSection('joint-examination')">Examen Articular</a></div>
+                        <div class="sub-menu-item"><a href="#section-disease-activity" onclick="scrollToSection('disease-activity')">Actividad Enfermedad</a></div>
+                        <div class="sub-menu-item"><a href="#section-special-tests" onclick="scrollToSection('special-tests')">Pruebas Especiales</a></div>
+                        <div class="sub-menu-item"><a href="#section-diagnostic-criteria" onclick="scrollToSection('diagnostic-criteria')">Criterios Diagnósticos</a></div>
+                    </div>
+                </li>
+                <!-- Resto de especialidades (ejemplos) -->
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-heartbeat nav-icon"></i>
+                        <span class="nav-text">Cardiología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-brain nav-icon"></i>
+                        <span class="nav-text">Neurología</span>
+                    </a>
+                </li>
+            </nav>
+            <button class="btn btn-secondary mt-auto hidden md:flex items-center justify-center" onclick="toggleSidebar()">
+                <i class="fas fa-chevron-left" id="sidebar-toggle-icon"></i>
+            </button>
+        </aside>
+
+        <!-- CONTENT AREA -->
+        <div class="content-area" id="contentArea">
+            <!-- TOP BAR -->
+            <div class="top-bar" id="topBar">
+                <div class="flex items-center gap-4">
+                    <button class="btn btn-secondary md:hidden" onclick="toggleSidebar()">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div style="display: flex; align-items: center;">
+                    <img src="../../img/15.svg" alt="" class="h-10 w-10" style="margin-right: 10px;">
+                    <h2 class="page-title">Reumatología</h2>
+                </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button class="btn btn-primary" onclick="toggleStickyPanel()">
+                        <i class="fas fa-file-medical-alt"></i> <span class="hidden md:inline">Informe</span>
+                    </button>
+                    <div class="user-profile">
+                        <div class="user-avatar">JP</div>
+                        <span class="user-name">Dr. Juan Pérez</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MAIN CONTENT -->
+            <main class="main-content" id="mainContent">
+                <!-- DASHBOARD WIDGET -->
+                <div class="dashboard-widget" id="dashboard-summary">
+                    <div class="section-title-main">
+                        <i class="fas fa-chart-bar"></i> Dashboard del Examen Reumatológico
+                    </div>
+                    <div class="dashboard-grid">
+                        <!-- Métricas generales -->
+                        <div class="dashboard-item">
+                            <i class="fas fa-user-md"></i>
+                            <div class="label">Progreso del Examen</div>
+                            <div class="value" id="exam-progress">0%</div>
+                        </div>
+                        <div class="dashboard-item">
+                            <i class="fas fa-clipboard-list"></i>
+                            <div class="label">Secciones Completadas</div>
+                            <div class="value" id="sections-completed">0/5</div>
+                        </div>
+                        <div class="dashboard-item" id="alerts-item">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <div class="label">Alertas Críticas</div>
+                            <div class="value" id="alert-count">0</div>
+                        </div>
+                        <div class="dashboard-item" id="warnings-item">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <div class="label">Avisos</div>
+                            <div class="value" id="warning-count">0</div>
+                        </div>
+                        <div class="dashboard-item" id="findings-item">
+                            <i class="fas fa-search"></i>
+                            <div class="label">Hallazgos</div>
+                            <div class="value" id="findings-count">0</div>
+                        </div>
+                        <!-- Métricas específicas de la especialidad (migradas del original) -->
+                        <div class="dashboard-item" id="disease-activity-item">
+                            <i class="fas fa-chart-line"></i>
+                            <div class="label">Actividad Enf.</div>
+                            <div class="value" id="disease-activity-status">Pendiente</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECCIONES DEL EXAMEN (MIGRAR TODAS LAS SECCIONES MÉDICAS PRESERVANDO CONTENIDO) -->
+                <!-- Anamnesis y Quejas -->
+                <div class="section-container" id="section-anamnesis">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-user-edit"></i> Anamnesis y Quejas Principales</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-clipboard-list"></i> Quejas Reumatológicas Principales</h4>
+                            <div class="form-grid">
+                                <div class="form-item"><input type="checkbox" id="dolor-articular"><label for="dolor-articular">Dolor articular</label></div>
+                                <div class="form-item"><input type="checkbox" id="rigidez-matutina"><label for="rigidez-matutina">Rigidez matutina</label></div>
+                                <div class="form-item"><input type="checkbox" id="inflamacion-articular"><label for="inflamacion-articular">Inflamación articular</label></div>
+                                <div class="form-item"><input type="checkbox" id="limitacion-funcional"><label for="limitacion-funcional">Limitación funcional</label></div>
+                                <div class="form-item"><input type="checkbox" id="fatiga"><label for="fatiga">Fatiga</label></div>
+                                <div class="form-item"><input type="checkbox" id="dolor-muscular"><label for="dolor-muscular">Dolor muscular</label></div>
+                                <div class="form-item"><input type="checkbox" id="debilidad-muscular"><label for="debilidad-muscular">Debilidad muscular</label></div>
+                                <div class="form-item"><input type="checkbox" id="dolor-lumbar"><label for="dolor-lumbar">Dolor lumbar</label></div>
+                                <div class="form-item"><input type="checkbox" id="deformidades"><label for="deformidades">Deformidades articulares</label></div>
+                                <div class="form-item"><input type="checkbox" id="fenomeno-raynaud"><label for="fenomeno-raynaud">Fenómeno de Raynaud</label></div>
+                                <div class="form-item"><input type="checkbox" id="sequedad-ocular"><label for="sequedad-ocular">Sequedad ocular/bucal</label></div>
+                                <div class="form-item"><input type="checkbox" id="rash-cutaneo"><label for="rash-cutaneo">Rash cutáneo</label></div>
+                                <div class="form-item"><input type="checkbox" id="sin-quejas-reuma" onchange="handleNoComplaints()"><label for="sin-quejas-reuma">Sin quejas</label></div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-hand-holding-heart"></i> Características del Dolor Articular</h4>
+                            <div class="pain-assessment">
+                                <h4>Intensidad del Dolor (EVA)</h4>
+                                <div class="measurement">
+                                    <label>Dolor general:</label>
+                                    <input type="range" id="dolor-general-intensidad" min="0" max="10" value="0" oninput="updateDolorValue('general', this.value)">
+                                    <span id="dolor-general-value">0</span><span>/10</span>
+                                </div>
+                                <div class="measurement">
+                                    <label>Dolor en reposo:</label>
+                                    <input type="range" id="dolor-reposo-intensidad" min="0" max="10" value="0" oninput="updateDolorValue('reposo', this.value)">
+                                    <span id="dolor-reposo-value">0</span><span>/10</span>
+                                </div>
+                                <div class="measurement">
+                                    <label>Dolor al movimiento:</label>
+                                    <input type="range" id="dolor-movimiento-intensidad" min="0" max="10" value="0" oninput="updateDolorValue('movimiento', this.value)">
+                                    <span id="dolor-movimiento-value">0</span><span>/10</span>
+                                </div>
+                            </div>
+                            
+                            <div class="exam-section">
+                                <h4>Características del Dolor</h4>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="radio" name="tipo-dolor-articular" id="dolor-mecánico"><label for="dolor-mecánico">Mecánico (mejora reposo)</label></div>
+                                    <div class="form-item"><input type="radio" name="tipo-dolor-articular" id="dolor-inflamatorio"><label for="dolor-inflamatorio">Inflamatorio (empeora reposo)</label></div>
+                                    <div class="form-item"><input type="radio" name="tipo-dolor-articular" id="dolor-mixto"><label for="dolor-mixto">Mixto</label></div>
+                                </div>
+                            </div>
+
+                            <div class="exam-section">
+                                <h4>Patrón de Afectación</h4>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="radio" name="patron-afectacion" id="monoarticular"><label for="monoarticular">Monoarticular</label></div>
+                                    <div class="form-item"><input type="radio" name="patron-afectacion" id="oligoarticular"><label for="oligoarticular">Oligoarticular (2-4 articulaciones)</label></div>
+                                    <div class="form-item"><input type="radio" name="patron-afectacion" id="poliarticular"><label for="poliarticular">Poliarticular (&gt;4 articulaciones)</label></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-clock"></i> Rigidez Matutina</h4>
+                            <div class="stiffness-assessment">
+                                <h4>Duración de la Rigidez</h4>
+                                <div class="measurement">
+                                    <label>Duración (minutos):</label>
+                                    <input type="number" class="input-field" id="rigidez-duracion" min="0" max="600" onchange="evaluateStiffness()">
+                                    <span>min</span>
+                                </div>
+                                <div class="score-item">
+                                    <span>Interpretación:</span>
+                                    <span class="score-value" id="interpretacion-rigidez">--</span>
+                                </div>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="rigidez-mejora-movimiento"><label for="rigidez-mejora-movimiento">Mejora con el movimiento</label></div>
+                                    <div class="form-item"><input type="checkbox" id="rigidez-generalizada"><label for="rigidez-generalizada">Rigidez generalizada</label></div>
+                                    <div class="form-item"><input type="checkbox" id="rigidez-localizada"><label for="rigidez-localizada">Rigidez localizada</label></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-thermometer-half"></i> Síntomas Sistémicos</h4>
+                            <div class="systemic-symptoms">
+                                <h4>Manifestaciones Extraarticulares</h4>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="fiebre"><label for="fiebre">Fiebre</label></div>
+                                    <div class="form-item"><input type="checkbox" id="perdida-peso"><label for="perdida-peso">Pérdida de peso</label></div>
+                                    <div class="form-item"><input type="checkbox" id="fatiga-sistemica"><label for="fatiga-sistemica">Fatiga sistémica</label></div>
+                                    <div class="form-item"><input type="checkbox" id="sudoracion-nocturna"><label for="sudoracion-nocturna">Sudoración nocturna</label></div>
+                                    <div class="form-item"><input type="checkbox" id="nodulos-subcutaneos"><label for="nodulos-subcutaneos">Nódulos subcutáneos</label></div>
+                                    <div class="form-item"><input type="checkbox" id="ulceras-orales"><label for="ulceras-orales">Úlceras orales</label></div>
+                                    <div class="form-item"><input type="checkbox" id="alopecia"><label for="alopecia">Alopecia</label></div>
+                                    <div class="form-item"><input type="checkbox" id="fotosensibilidad"><label for="fotosensibilidad">Fotosensibilidad</label></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-history"></i> Antecedentes Relevantes</h4>
+                            <div class="exam-section">
+                                <h4>Historia Familiar</h4>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="familia-artritis-reumatoide"><label for="familia-artritis-reumatoide">Artritis reumatoide</label></div>
+                                    <div class="form-item"><input type="checkbox" id="familia-lupus"><label for="familia-lupus">Lupus eritematoso sistémico</label></div>
+                                    <div class="form-item"><input type="checkbox" id="familia-espondiloartritis"><label for="familia-espondiloartritis">Espondiloartritis</label></div>
+                                    <div class="form-item"><input type="checkbox" id="familia-psoriasis"><label for="familia-psoriasis">Psoriasis</label></div>
+                                    <div class="form-item"><input type="checkbox" id="familia-enfermedad-inflamatoria"><label for="familia-enfermedad-inflamatoria">Enfermedad inflamatoria intestinal</label></div>
+                                </div>
+                            </div>
+                            <div class="exam-section">
+                                <h4>Factores Desencadenantes</h4>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="infeccion-previa"><label for="infeccion-previa">Infección previa</label></div>
+                                    <div class="form-item"><input type="checkbox" id="trauma-articular"><label for="trauma-articular">Trauma articular</label></div>
+                                    <div class="form-item"><input type="checkbox" id="stress-emocional"><label for="stress-emocional">Estrés emocional</label></div>
+                                    <div class="form-item"><input type="checkbox" id="exposicion-frio"><label for="exposicion-frio">Exposición al frío</label></div>
+                                    <div class="form-item"><input type="checkbox" id="cambios-hormonales"><label for="cambios-hormonales">Cambios hormonales</label></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Examen Articular Sistemático -->
+                <div class="section-container" id="section-joint-examination">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-bone"></i> Examen Articular Sistemático</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="legend">
+                            <div class="legend-item">
+                                <div class="legend-color joint-color"></div>
+                                <span>Examen Articular</span>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-hand"></i> Manos y Muñecas</h4>
+                            <div class="bilateral-container">
+                                <div class="side-container">
+                                    <div class="side-header">Mano Derecha</div>
+                                    <div class="joint-map">
+                                        <div class="joint-group">
+                                            <h5>Articulaciones IFP</h5>
+                                            <div class="joint-item">
+                                                <span>2° dedo</span>
+                                                <div class="joint-checkboxes">
+                                                    <label><input type="checkbox" id="ifp2-der-dolor">D</label>
+                                                    <label><input type="checkbox" id="ifp2-der-tumefaccion">T</label>
+                                                    <label><input type="checkbox" id="ifp2-der-limitacion">L</label>
+                                                </div>
+                                            </div>
+                                            <div class="joint-item">
+                                                <span>3° dedo</span>
+                                                <div class="joint-checkboxes">
+                                                    <label><input type="checkbox" id="ifp3-der-dolor">D</label>
+                                                    <label><input type="checkbox" id="ifp3-der-tumefaccion">T</label>
+                                                    <label><input type="checkbox" id="ifp3-der-limitacion">L</label>
+                                                </div>
+                                            </div>
+                                            <div class="joint-item">
+                                                <span>4° dedo</span>
+                                                <div class="joint-checkboxes">
+                                                    <label><input type="checkbox" id="ifp4-der-dolor">D</label>
+                                                    <label><input type="checkbox" id="ifp4-der-tumefaccion">T</label>
+                                                    <label><input type="checkbox" id="ifp4-der-limitacion">L</label>
+                                                </div>
+                                            </div>
+                                            <div class="joint-item">
+                                                <span>5° dedo</span>
+                                                <div class="joint-checkboxes">
+                                                    <label><input type="checkbox" id="ifp5-der-dolor">D</label>
+                                                    <label><input type="checkbox" id="ifp5-der-tumefaccion">T</label>
+                                                    <label><input type="checkbox" id="ifp5-der-limitacion">L</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="joint-group">
+                                            <h5>Articulaciones MCF</h5>
+                                            <div class="joint-item">
+                                                <span>1° dedo</span>
+                                                <div class="joint-checkboxes">
+                                                    <label><input type="checkbox" id="mcf1-der-dolor">D</label>
+                                                    <label><input type="checkbox" id="mcf1-der-tumefaccion">T</label>
+                                                    <label><input type="checkbox" id="mcf1-der-limitacion">L</label>
+                                                </div>
+                                            </div>
+                                            <div class="joint-item">
+                                                <span>2° dedo</span>
+                                                <div class="joint-checkboxes">
+                                                    <label><input type="checkbox" id="mcf2-der-dolor">D</label>
+                                                    <label><input type="checkbox" id="mcf2-der-tumefaccion">T</label>
+                                                    <label><input type="checkbox" id="mcf2-der-limitacion">L</label>
+                                                </div>
+                                            </div>
+                                            <div class="joint-item">
+                                                <span>3° dedo</span>
+                                                <div class="joint-checkboxes">
+                                                    <label><input type="checkbox" id="mcf3-der-dolor">D</label>
+                                                    <label><input type="checkbox" id="mcf3-der-tumefaccion">T</label>
+                                                    <label><input type="checkbox" id="mcf3-der-limitacion">L</label>
+                                                </div>
+                                            </div>
+                                            <div class="joint-item">
+                                                <span>4° dedo</span>
+                                                <div class="joint-checkboxes">
+                                                    <label><input type="checkbox" id="mcf4-der-dolor">D</label>
+                                                    <label><input type="checkbox" id="mcf4-der-tumefaccion">T</label>
+                                                    <label><input type="checkbox" id="mcf4-der-limitacion">L</label>
+                                                </div>
+                                            </div>
+                                            <div class="joint-item">
+                                                <span>5° dedo</span>
+                                                <div class="joint-checkboxes">
+                                                    <label><input type="checkbox" id="mcf5-der-dolor">D</label>
+                                                    <label><input type="checkbox" id="mcf5-der-tumefaccion">T</label>
+                                                    <label><input type="checkbox" id="mcf5-der-limitacion">L</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="joint-group">
+                                            <h5>Muñeca</h5>
+                                            <div class="joint-item">
+                                                <span>Radiocarpiana</span>
+                                                <div class="joint-checkboxes">
+                                                    <label><input type="checkbox" id="muneca-der-dolor">D</label>
+                                                    <label><input type="checkbox" id="muneca-der-tumefaccion">T</label>
+                                                    <label><input type="checkbox" id="muneca-der-limitacion">L</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="side-container">
+                                    <div class="side-header">Mano Izquierda</div>
+                                    <div class="joint-map">
+                                        <div class="joint-group">
+                                            <h5>Articulaciones IFP</h5>
+                                            <div class="joint-item">
+                                                <span>2° dedo</span>
+                                                <div class="joint-checkboxes">
+                                                    <label><input type="checkbox" id="ifp2-izq-dolor">D</label>
+                                                    <label><input type="checkbox" id="ifp2-izq-tumefaccion">T</label>
+                                                    <label><input type="checkbox" id="ifp2-izq-limitacion">L</label>
+                                                </div>
+                                            </div>
+                                            <div class="joint-item">
+                                                <span>3° dedo</span>
+                                                <div class="joint-checkboxes">
+                                                    <label><input type="checkbox" id="ifp3-izq-dolor">D</label>
+                                                    <label><input type="checkbox" id="ifp3-izq-tumefaccion">T</label>
+                                                    <label><input type="checkbox" id="ifp3-izq-limitacion">L</label>
+                                                </div>
+                                            </div>
+                                            <div class="joint-item">
+                                                <span>4° dedo</span>
+                                                <div class="joint-checkboxes">
+                                                    <label><input type="checkbox" id="ifp4-izq-dolor">D</label>
+                                                    <label><input type="checkbox" id="ifp4-izq-tumefaccion">T</label>
+                                                    <label><input type="checkbox" id="ifp4-izq-limitacion">L</label>
+                                                </div>
+                                            </div>
+                                            <div class="joint-item">
+                                                <span>5° dedo</span>
+                                                <div class="joint-checkboxes">
+                                                    <label><input type="checkbox" id="ifp5-izq-dolor">D</label>
+                                                    <label><input type="checkbox" id="ifp5-izq-tumefaccion">T</label>
+                                                    <label><input type="checkbox" id="ifp5-izq-limitacion">L</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="joint-group">
+                                            <h5>Articulaciones MCF</h5>
+                                            <div class="joint-item">
+                                                <span>1° dedo</span>
+                                                <div class="joint-checkboxes">
+                                                    <label><input type="checkbox" id="mcf1-izq-dolor">D</label>
+                                                    <label><input type="checkbox" id="mcf1-izq-tumefaccion">T</label>
+                                                    <label><input type="checkbox" id="mcf1-izq-limitacion">L</label>
+                                                </div>
+                                            </div>
+                                            <div class="joint-item">
+                                                <span>2° dedo</span>
+                                                <div class="joint-checkboxes">
+                                                    <label><input type="checkbox" id="mcf2-izq-dolor">D</label>
+                                                    <label><input type="checkbox" id="mcf2-izq-tumefaccion">T</label>
+                                                    <label><input type="checkbox" id="mcf2-izq-limitacion">L</label>
+                                                </div>
+                                            </div>
+                                            <div class="joint-item">
+                                                <span>3° dedo</span>
+                                                <div class="joint-checkboxes">
+                                                    <label><input type="checkbox" id="mcf3-izq-dolor">D</label>
+                                                    <label><input type="checkbox" id="mcf3-izq-tumefaccion">T</label>
+                                                    <label><input type="checkbox" id="mcf3-izq-limitacion">L</label>
+                                                </div>
+                                            </div>
+                                            <div class="joint-item">
+                                                <span>4° dedo</span>
+                                                <div class="joint-checkboxes">
+                                                    <label><input type="checkbox" id="mcf4-izq-dolor">D</label>
+                                                    <label><input type="checkbox" id="mcf4-izq-tumefaccion">T</label>
+                                                    <label><input type="checkbox" id="mcf4-izq-limitacion">L</label>
+                                                </div>
+                                            </div>
+                                            <div class="joint-item">
+                                                <span>5° dedo</span>
+                                                <div class="joint-checkboxes">
+                                                    <label><input type="checkbox" id="mcf5-izq-dolor">D</label>
+                                                    <label><input type="checkbox" id="mcf5-izq-tumefaccion">T</label>
+                                                    <label><input type="checkbox" id="mcf5-izq-limitacion">L</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="joint-group">
+                                            <h5>Muñeca</h5>
+                                            <div class="joint-item">
+                                                <span>Radiocarpiana</span>
+                                                <div class="joint-checkboxes">
+                                                    <label><input type="checkbox" id="muneca-izq-dolor">D</label>
+                                                    <label><input type="checkbox" id="muneca-izq-tumefaccion">T</label>
+                                                    <label><input type="checkbox" id="muneca-izq-limitacion">L</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="exam-section">
+                                <div style="font-size: 10px; color: #7f8c8d; margin-top: 10px;">
+                                    D = Dolor, T = Tumefacción, L = Limitación del movimiento
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title">Articulaciones Grandes</h4>
+                            <div class="bilateral-container">
+                                <div class="side-container">
+                                    <div class="side-header">Lado Derecho</div>
+                                    <div class="joint-map">
+                                        <div class="joint-group">
+                                            <h5>Hombro</h5>
+                                            <div class="joint-item">
+                                                <span>Glenohumeral</span>
+                                                <div class="joint-checkboxes">
+                                                    <label><input type="checkbox" id="hombro-der-dolor">D</label>
+                                                    <label><input type="checkbox" id="hombro-der-tumefaccion">T</label>
+                                                    <label><input type="checkbox" id="hombro-der-limitacion">L</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="joint-group">
+                                            <h5>Codo</h5>
+                                            <div class="joint-item">
+                                                <span>Humeroulnar</span>
+                                                <div class="joint-checkboxes">
+                                                    <label><input type="checkbox" id="codo-der-dolor">D</label>
+                                                    <label><input type="checkbox" id="codo-der-tumefaccion">T</label>
+                                                    <label><input type="checkbox" id="codo-der-limitacion">L</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="joint-group">
+                                            <h5>Cadera</h5>
+                                            <div class="joint-item">
+                                                <span>Coxofemoral</span>
+                                                <div class="joint-checkboxes">
+                                                    <label><input type="checkbox" id="cadera-der-dolor">D</label>
+                                                    <label><input type="checkbox" id="cadera-der-tumefaccion">T</label>
+                                                    <label><input type="checkbox" id="cadera-der-limitacion">L</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="joint-group">
+                                            <h5>Rodilla</h5>
+                                            <div class="joint-item">
+                                                <span>Tibiofemoral</span>
+                                                <div class="joint-checkboxes">
+                                                    <label><input type="checkbox" id="rodilla-der-dolor">D</label>
+                                                    <label><input type="checkbox" id="rodilla-der-tumefaccion">T</label>
+                                                    <label><input type="checkbox" id="rodilla-der-limitacion">L</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="joint-group">
+                                            <h5>Tobillo</h5>
+                                            <div class="joint-item">
+                                                <span>Tibiotalar</span>
+                                                <div class="joint-checkboxes">
+                                                    <label><input type="checkbox" id="tobillo-der-dolor">D</label>
+                                                    <label><input type="checkbox" id="tobillo-der-tumefaccion">T</label>
+                                                    <label><input type="checkbox" id="tobillo-der-limitacion">L</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="side-container">
+                                    <div class="side-header">Lado Izquierdo</div>
+                                    <div class="joint-map">
+                                        <div class="joint-group">
+                                            <h5>Hombro</h5>
+                                            <div class="joint-item">
+                                                <span>Glenohumeral</span>
+                                                <div class="joint-checkboxes">
+                                                    <label><input type="checkbox" id="hombro-izq-dolor">D</label>
+                                                    <label><input type="checkbox" id="hombro-izq-tumefaccion">T</label>
+                                                    <label><input type="checkbox" id="hombro-izq-limitacion">L</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="joint-group">
+                                            <h5>Codo</h5>
+                                            <div class="joint-item">
+                                                <span>Humeroulnar</span>
+                                                <div class="joint-checkboxes">
+                                                    <label><input type="checkbox" id="codo-izq-dolor">D</label>
+                                                    <label><input type="checkbox" id="codo-izq-tumefaccion">T</label>
+                                                    <label><input type="checkbox" id="codo-izq-limitacion">L</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="joint-group">
+                                            <h5>Cadera</h5>
+                                            <div class="joint-item">
+                                                <span>Coxofemoral</span>
+                                                <div class="joint-checkboxes">
+                                                    <label><input type="checkbox" id="cadera-izq-dolor">D</label>
+                                                    <label><input type="checkbox" id="cadera-izq-tumefaccion">T</label>
+                                                    <label><input type="checkbox" id="cadera-izq-limitacion">L</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="joint-group">
+                                            <h5>Rodilla</h5>
+                                            <div class="joint-item">
+                                                <span>Tibiofemoral</span>
+                                                <div class="joint-checkboxes">
+                                                    <label><input type="checkbox" id="rodilla-izq-dolor">D</label>
+                                                    <label><input type="checkbox" id="rodilla-izq-tumefaccion">T</label>
+                                                    <label><input type="checkbox" id="rodilla-izq-limitacion">L</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="joint-group">
+                                            <h5>Tobillo</h5>
+                                            <div class="joint-item">
+                                                <span>Tibiotalar</span>
+                                                <div class="joint-checkboxes">
+                                                    <label><input type="checkbox" id="tobillo-izq-dolor">D</label>
+                                                    <label><input type="checkbox" id="tobillo-izq-tumefaccion">T</label>
+                                                    <label><input type="checkbox" id="tobillo-izq-limitacion">L</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title">Columna Vertebral</h4>
+                            <div class="exam-section">
+                                <h4>Segmentos Espinales</h4>
+                                <div class="joint-map">
+                                    <div class="joint-group">
+                                        <h5>Cervical</h5>
+                                        <div class="joint-item">
+                                            <span>Occipito-atloidea</span>
+                                            <div class="joint-checkboxes">
+                                                <label><input type="checkbox" id="cervical-alto-dolor">D</label>
+                                                <label><input type="checkbox" id="cervical-alto-limitacion">L</label>
+                                            </div>
+                                        </div>
+                                        <div class="joint-item">
+                                            <span>C2-C7</span>
+                                            <div class="joint-checkboxes">
+                                                <label><input type="checkbox" id="cervical-bajo-dolor">D</label>
+                                                <label><input type="checkbox" id="cervical-bajo-limitacion">L</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="joint-group">
+                                        <h5>Torácica</h5>
+                                        <div class="joint-item">
+                                            <span>T1-T12</span>
+                                            <div class="joint-checkboxes">
+                                                <label><input type="checkbox" id="toracica-dolor">D</label>
+                                                <label><input type="checkbox" id="toracica-limitacion">L</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="joint-group">
+                                        <h5>Lumbar</h5>
+                                        <div class="joint-item">
+                                            <span>L1-L5</span>
+                                            <div class="joint-checkboxes">
+                                                <label><input type="checkbox" id="lumbar-dolor">D</label>
+                                                <label><input type="checkbox" id="lumbar-limitacion">L</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="joint-group">
+                                        <h5>Sacroilíacas</h5>
+                                        <div class="joint-item">
+                                            <span>Bilateral</span>
+                                            <div class="joint-checkboxes">
+                                                <label><input type="checkbox" id="sacroiliacas-dolor">D</label>
+                                                <label><input type="checkbox" id="sacroiliacas-limitacion">L</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Escalas de Actividad de Enfermedad -->
+                <div class="section-container" id="section-disease-activity">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-chart-line"></i> Escalas de Actividad de Enfermedad</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title">Escala DAS28 (Disease Activity Score)</h4>
+                            <div class="score-calculation">
+                                <h4>Componentes del DAS28</h4>
+                                <div class="measurement">
+                                    <label>Articulaciones dolorosas (0-28):</label>
+                                    <input type="number" class="input-field" id="das28-tender" min="0" max="28" onchange="calculateDAS28()">
+                                </div>
+                                <div class="measurement">
+                                    <label>Articulaciones tumefactas (0-28):</label>
+                                    <input type="number" class="input-field" id="das28-swollen" min="0" max="28" onchange="calculateDAS28()">
+                                </div>
+                                <div class="measurement">
+                                    <label>VHS (mm/h):</label>
+                                    <input type="number" class="input-field" id="das28-esr" min="0" max="200" onchange="calculateDAS28()">
+                                </div>
+                                <div class="measurement">
+                                    <label>EVA actividad global (0-100):</label>
+                                    <input type="number" class="input-field" id="das28-vas" min="0" max="100" onchange="calculateDAS28()">
+                                </div>
+                                <div class="score-item">
+                                    <span>DAS28 Score:</span>
+                                    <span class="score-value" id="das28-score">--</span>
+                                </div>
+                                <div class="score-item">
+                                    <span>Interpretación:</span>
+                                    <span class="score-value" id="das28-interpretation">--</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title">HAQ (Health Assessment Questionnaire)</h4>
+                            <div class="score-calculation">
+                                <h4>Capacidad Funcional</h4>
+                                <div class="severity-section">
+                                    <h4>Dificultad para realizar actividades (0=sin dificultad, 3=imposible)</h4>
+                                    <div class="measurement">
+                                        <label>Vestirse y asearse:</label>
+                                        <select id="haq-dressing" onchange="calculateHAQ()">
+                                            <option value="">Seleccionar</option>
+                                            <option value="0">Sin dificultad (0)</option>
+                                            <option value="1">Alguna dificultad (1)</option>
+                                            <option value="2">Mucha dificultad (2)</option>
+                                            <option value="3">Imposible (3)</option>
+                                        </select>
+                                    </div>
+                                    <div class="measurement">
+                                        <label>Levantarse:</label>
+                                        <select id="haq-arising" onchange="calculateHAQ()">
+                                            <option value="">Seleccionar</option>
+                                            <option value="0">Sin dificultad (0)</option>
+                                            <option value="1">Alguna dificultad (1)</option>
+                                            <option value="2">Mucha dificultad (2)</option>
+                                            <option value="3">Imposible (3)</option>
+                                        </select>
+                                    </div>
+                                    <div class="measurement">
+                                        <label>Comer:</label>
+                                        <select id="haq-eating" onchange="calculateHAQ()">
+                                            <option value="">Seleccionar</option>
+                                            <option value="0">Sin dificultad (0)</option>
+                                            <option value="1">Alguna dificultad (1)</option>
+                                            <option value="2">Mucha dificultad (2)</option>
+                                            <option value="3">Imposible (3)</option>
+                                        </select>
+                                    </div>
+                                    <div class="measurement">
+                                        <label>Caminar:</label>
+                                        <select id="haq-walking" onchange="calculateHAQ()">
+                                            <option value="">Seleccionar</option>
+                                            <option value="0">Sin dificultad (0)</option>
+                                            <option value="1">Alguna dificultad (1)</option>
+                                            <option value="2">Mucha dificultad (2)</option>
+                                            <option value="3">Imposible (3)</option>
+                                        </select>
+                                    </div>
+                                    <div class="measurement">
+                                        <label>Higiene:</label>
+                                        <select id="haq-hygiene" onchange="calculateHAQ()">
+                                            <option value="">Seleccionar</option>
+                                            <option value="0">Sin dificultad (0)</option>
+                                            <option value="1">Alguna dificultad (1)</option>
+                                            <option value="2">Mucha dificultad (2)</option>
+                                            <option value="3">Imposible (3)</option>
+                                        </select>
+                                    </div>
+                                    <div class="measurement">
+                                        <label>Alcanzar objetos:</label>
+                                        <select id="haq-reach" onchange="calculateHAQ()">
+                                            <option value="">Seleccionar</option>
+                                            <option value="0">Sin dificultad (0)</option>
+                                            <option value="1">Alguna dificultad (1)</option>
+                                            <option value="2">Mucha dificultad (2)</option>
+                                            <option value="3">Imposible (3)</option>
+                                        </select>
+                                    </div>
+                                    <div class="measurement">
+                                        <label>Agarrar objetos:</label>
+                                        <select id="haq-grip" onchange="calculateHAQ()">
+                                            <option value="">Seleccionar</option>
+                                            <option value="0">Sin dificultad (0)</option>
+                                            <option value="1">Alguna dificultad (1)</option>
+                                            <option value="2">Mucha dificultad (2)</option>
+                                            <option value="3">Imposible (3)</option>
+                                        </select>
+                                    </div>
+                                    <div class="measurement">
+                                        <label>Actividades comunes:</label>
+                                        <select id="haq-activities" onchange="calculateHAQ()">
+                                            <option value="">Seleccionar</option>
+                                            <option value="0">Sin dificultad (0)</option>
+                                            <option value="1">Alguna dificultad (1)</option>
+                                            <option value="2">Mucha dificultad (2)</option>
+                                            <option value="3">Imposible (3)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="score-item">
+                                    <span>HAQ Score:</span>
+                                    <span class="score-value" id="haq-score">--</span>
+                                </div>
+                                <div class="score-item">
+                                    <span>Interpretación:</span>
+                                    <span class="score-value" id="haq-interpretation">--</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title">Puntos Gatillo de Fibromialgia</h4>
+                            <div class="tender-points">
+                                <h4>Puntos de Dolor a la Palpación (18 puntos)</h4>
+                                <div class="points-grid">
+                                    <div class="point-side">
+                                        <h6>Lado Derecho</h6>
+                                        <div class="tender-point"><input type="checkbox" id="occipital-der"><label for="occipital-der">Occipital</label></div>
+                                        <div class="tender-point"><input type="checkbox" id="cervical-bajo-der"><label for="cervical-bajo-der">Cervical bajo</label></div>
+                                        <div class="tender-point"><input type="checkbox" id="trapecio-der"><label for="trapecio-der">Trapecio</label></div>
+                                        <div class="tender-point"><input type="checkbox" id="supraespinoso-der"><label for="supraespinoso-der">Supraespinoso</label></div>
+                                        <div class="tender-point"><input type="checkbox" id="segunda-costilla-der"><label for="segunda-costilla-der">Segunda costilla</label></div>
+                                        <div class="tender-point"><input type="checkbox" id="epicondilo-lateral-der"><label for="epicondilo-lateral-der">Epicóndilo lateral</label></div>
+                                        <div class="tender-point"><input type="checkbox" id="gluteo-der"><label for="gluteo-der">Glúteo</label></div>
+                                        <div class="tender-point"><input type="checkbox" id="trocanter-mayor-der"><label for="trocanter-mayor-der">Trocánter mayor</label></div>
+                                        <div class="tender-point"><input type="checkbox" id="rodilla-der-fibro"><label for="rodilla-der-fibro">Rodilla (medial)</label></div>
+                                    </div>
+                                    <div class="point-side">
+                                        <h6>Lado Izquierdo</h6>
+                                        <div class="tender-point"><input type="checkbox" id="occipital-izq"><label for="occipital-izq">Occipital</label></div>
+                                        <div class="tender-point"><input type="checkbox" id="cervical-bajo-izq"><label for="cervical-bajo-izq">Cervical bajo</label></div>
+                                        <div class="tender-point"><input type="checkbox" id="trapecio-izq"><label for="trapecio-izq">Trapecio</label></div>
+                                        <div class="tender-point"><input type="checkbox" id="supraespinoso-izq"><label for="supraespinoso-izq">Supraespinoso</label></div>
+                                        <div class="tender-point"><input type="checkbox" id="segunda-costilla-izq"><label for="segunda-costilla-izq">Segunda costilla</label></div>
+                                        <div class="tender-point"><input type="checkbox" id="epicondilo-lateral-izq"><label for="epicondilo-lateral-izq">Epicóndilo lateral</label></div>
+                                        <div class="tender-point"><input type="checkbox" id="gluteo-izq"><label for="gluteo-izq">Glúteo</label></div>
+                                        <div class="tender-point"><input type="checkbox" id="trocanter-mayor-izq"><label for="trocanter-mayor-izq">Trocánter mayor</label></div>
+                                        <div class="tender-point"><input type="checkbox" id="rodilla-izq-fibro"><label for="rodilla-izq-fibro">Rodilla (medial)</label></div>
+                                    </div>
+                                </div>
+                                <div class="score-item">
+                                    <span>Puntos positivos:</span>
+                                    <span class="score-value" id="tender-points-count">0</span>
+                                    <span>/18</span>
+                                </div>
+                                <div class="score-item">
+                                    <span>Interpretación:</span>
+                                    <span class="score-value" id="tender-points-interpretation">--</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pruebas Especiales -->
+                <div class="section-container" id="section-special-tests">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-vials"></i> Pruebas Especiales y Maniobras</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title">Pruebas de Sacroilíacas</h4>
+                            <div class="test-results">
+                                <div class="test-item">
+                                    <label>Maniobra de FABERE (Patrick)</label>
+                                    <div class="test-controls">
+                                        <div class="test-checkbox"><input type="checkbox" id="fabere-pos" onchange="handleMutuallyExclusive('fabere-pos', 'fabere-neg', this)"><span class="positive">Positiva</span></div>
+                                        <div class="test-checkbox"><input type="checkbox" id="fabere-neg" onchange="handleMutuallyExclusive('fabere-pos', 'fabere-neg', this)"><span class="negative">Negativa</span></div>
+                                    </div>
+                                </div>
+                                <div class="test-item">
+                                    <label>Maniobra de Gaenslen</label>
+                                    <div class="test-controls">
+                                        <div class="test-checkbox"><input type="checkbox" id="gaenslen-pos" onchange="handleMutuallyExclusive('gaenslen-pos', 'gaenslen-neg', this)"><span class="positive">Positiva</span></div>
+                                        <div class="test-checkbox"><input type="checkbox" id="gaenslen-neg" onchange="handleMutuallyExclusive('gaenslen-pos', 'gaenslen-neg', this)"><span class="negative">Negativa</span></div>
+                                    </div>
+                                </div>
+                                <div class="test-item">
+                                    <label>Prueba de compresión sacroilíaca</label>
+                                    <div class="test-controls">
+                                        <div class="test-checkbox"><input type="checkbox" id="compresion-si-pos" onchange="handleMutuallyExclusive('compresion-si-pos', 'compresion-si-neg', this)"><span class="positive">Positiva</span></div>
+                                        <div class="test-checkbox"><input type="checkbox" id="compresion-si-neg" onchange="handleMutuallyExclusive('compresion-si-pos', 'compresion-si-neg', this)"><span class="negative">Negativa</span></div>
+                                    </div>
+                                </div>
+                                <div class="test-item">
+                                    <label>Prueba de distracción sacroilíaca</label>
+                                    <div class="test-controls">
+                                        <div class="test-checkbox"><input type="checkbox" id="distraccion-si-pos" onchange="handleMutuallyExclusive('distraccion-si-pos', 'distraccion-si-neg', this)"><span class="positive">Positiva</span></div>
+                                        <div class="test-checkbox"><input type="checkbox" id="distraccion-si-neg" onchange="handleMutuallyExclusive('distraccion-si-pos', 'distraccion-si-neg', this)"><span class="negative">Negativa</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title">Pruebas de Flexibilidad Espinal</h4>
+                            <div class="test-results">
+                                <div class="test-item">
+                                    <label>Prueba de Schober</label>
+                                    <div class="test-controls">
+                                        <input type="number" id="schober-inicial" placeholder="Inicial" class="input-field" style="width: 50px;">
+                                        <span>cm →</span>
+                                        <input type="number" id="schober-final" placeholder="Final" class="input-field" style="width: 50px;">
+                                        <span id="schober-resultado" style="font-weight: bold; min-width: 50px;"></span>
+                                    </div>
+                                </div>
+                                <div class="test-item">
+                                    <label>Expansión torácica</label>
+                                    <div class="test-controls">
+                                        <input type="number" id="expansion-toracica" placeholder="cm" class="input-field" style="width: 50px;">
+                                        <span>cm (normal &gt;5 cm)</span>
+                                    </div>
+                                </div>
+                                <div class="test-item">
+                                    <label>Distancia occipucio-pared</label>
+                                    <div class="test-controls">
+                                        <input type="number" id="occipucio-pared" placeholder="cm" class="input-field" style="width: 50px;">
+                                        <span>cm (normal &lt;5 cm)</span>
+                                    </div>
+                                </div>
+                                <div class="test-item">
+                                    <label>Flexión lateral lumbar</label>
+                                    <div class="test-controls">
+                                        <input type="number" id="flexion-lateral" placeholder="cm" class="input-field" style="width: 50px;">
+                                        <span>cm (normal &gt;10 cm)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title">Pruebas de Inflamación</h4>
+                            <div class="test-results">
+                                <div class="test-item">
+                                    <label>Signo de Tinel (síndrome túnel carpiano)</label>
+                                    <div class="test-controls">
+                                        <div class="test-checkbox"><input type="checkbox" id="tinel-der-pos" onchange="handleMutuallyExclusive('tinel-der-pos', 'tinel-der-neg', this)"><span class="positive">Derecho +</span></div>
+                                        <div class="test-checkbox"><input type="checkbox" id="tinel-der-neg" onchange="handleMutuallyExclusive('tinel-der-pos', 'tinel-der-neg', this)"><span class="negative">Derecho -</span></div>
+                                        <div class="test-checkbox"><input type="checkbox" id="tinel-izq-pos" onchange="handleMutuallyExclusive('tinel-izq-pos', 'tinel-izq-neg', this)"><span class="positive">Izquierdo +</span></div>
+                                        <div class="test-checkbox"><input type="checkbox" id="tinel-izq-neg" onchange="handleMutuallyExclusive('tinel-izq-pos', 'tinel-izq-neg', this)"><span class="negative">Izquierdo -</span></div>
+                                    </div>
+                                </div>
+                                <div class="test-item">
+                                    <label>Signo de Phalen (síndrome túnel carpiano)</label>
+                                    <div class="test-controls">
+                                        <div class="test-checkbox"><input type="checkbox" id="phalen-der-pos" onchange="handleMutuallyExclusive('phalen-der-pos', 'phalen-der-neg', this)"><span class="positive">Derecho +</span></div>
+                                        <div class="test-checkbox"><input type="checkbox" id="phalen-der-neg" onchange="handleMutuallyExclusive('phalen-der-pos', 'phalen-der-neg', this)"><span class="negative">Derecho -</span></div>
+                                        <div class="test-checkbox"><input type="checkbox" id="phalen-izq-pos" onchange="handleMutuallyExclusive('phalen-izq-pos', 'phalen-izq-neg', this)"><span class="positive">Izquierdo +</span></div>
+                                        <div class="test-checkbox"><input type="checkbox" id="phalen-izq-neg" onchange="handleMutuallyExclusive('phalen-izq-pos', 'phalen-izq-neg', this)"><span class="negative">Izquierdo -</span></div>
+                                    </div>
+                                </div>
+                                <div class="test-item">
+                                    <label>Prueba de McMurray (meniscos)</label>
+                                    <div class="test-controls">
+                                        <div class="test-checkbox"><input type="checkbox" id="mcmurray-der-pos" onchange="handleMutuallyExclusive('mcmurray-der-pos', 'mcmurray-der-neg', this)"><span class="positive">Derecho +</span></div>
+                                        <div class="test-checkbox"><input type="checkbox" id="mcmurray-der-neg" onchange="handleMutuallyExclusive('mcmurray-der-pos', 'mcmurray-der-neg', this)"><span class="negative">Derecho -</span></div>
+                                        <div class="test-checkbox"><input type="checkbox" id="mcmurray-izq-pos" onchange="handleMutuallyExclusive('mcmurray-izq-pos', 'mcmurray-izq-neg', this)"><span class="positive">Izquierdo +</span></div>
+                                        <div class="test-checkbox"><input type="checkbox" id="mcmurray-izq-neg" onchange="handleMutuallyExclusive('mcmurray-izq-pos', 'mcmurray-izq-neg', this)"><span class="negative">Izquierdo -</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Criterios Diagnósticos -->
+                <div class="section-container" id="section-diagnostic-criteria">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-syringe"></i> Criterios Diagnósticos</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title">Criterios ACR/EULAR 2010 para Artritis Reumatoide</h4>
+                            <div class="score-calculation">
+                                <h4>Sistema de Puntuación (total ≥6 confirma AR)</h4>
+                                <div class="exam-section">
+                                    <h4>A. Afectación articular</h4>
+                                    <div class="severity-grid">
+                                        <div class="severity-item"><input type="radio" name="ar-articulaciones" id="ar-1-art" value="0"><label for="ar-1-art">1 articulación grande (0 puntos)</label></div>
+                                        <div class="severity-item"><input type="radio" name="ar-articulaciones" id="ar-2-10-art-grandes" value="1"><label for="ar-2-10-art-grandes">2-10 articulaciones grandes (1 punto)</label></div>
+                                        <div class="severity-item"><input type="radio" name="ar-articulaciones" id="ar-1-3-art-pequenas" value="2"><label for="ar-1-3-art-pequenas">1-3 articulaciones pequeñas (2 puntos)</label></div>
+                                        <div class="severity-item"><input type="radio" name="ar-articulaciones" id="ar-4-10-art-pequenas" value="3"><label for="ar-4-10-art-pequenas">4-10 articulaciones pequeñas (3 puntos)</label></div>
+                                        <div class="severity-item"><input type="radio" name="ar-articulaciones" id="ar-mas-10-art" value="5"><label for="ar-mas-10-art">&gt;10 articulaciones (5 puntos)</label></div>
+                                    </div>
+                                </div>
+                                <div class="exam-section">
+                                    <h4>B. Serología</h4>
+                                    <div class="severity-grid">
+                                        <div class="severity-item"><input type="radio" name="ar-serologia" id="ar-rf-neg-acpa-neg" value="0"><label for="ar-rf-neg-acpa-neg">RF negativo y ACPA negativo (0 puntos)</label></div>
+                                        <div class="severity-item"><input type="radio" name="ar-serologia" id="ar-rf-bajo-acpa-bajo" value="2"><label for="ar-rf-bajo-acpa-bajo">RF bajo positivo o ACPA bajo positivo (2 puntos)</label></div>
+                                        <div class="severity-item"><input type="radio" name="ar-serologia" id="ar-rf-alto-acpa-alto" value="3"><label for="ar-rf-alto-acpa-alto">RF alto positivo o ACPA alto positivo (3 puntos)</label></div>
+                                    </div>
+                                </div>
+                                <div class="exam-section">
+                                    <h4>C. Reactantes de fase aguda</h4>
+                                    <div class="severity-grid">
+                                        <div class="severity-item"><input type="radio" name="ar-reactantes" id="ar-pcr-normal-vhs-normal" value="0"><label for="ar-pcr-normal-vhs-normal">PCR normal y VHS normal (0 puntos)</label></div>
+                                        <div class="severity-item"><input type="radio" name="ar-reactantes" id="ar-pcr-alta-vhs-alta" value="1"><label for="ar-pcr-alta-vhs-alta">PCR anormal o VHS anormal (1 punto)</label></div>
+                                    </div>
+                                </div>
+                                <div class="exam-section">
+                                    <h4>D. Duración de síntomas</h4>
+                                    <div class="severity-grid">
+                                        <div class="severity-item"><input type="radio" name="ar-duracion" id="ar-menos-6-sem" value="0"><label for="ar-menos-6-sem">&lt;6 semanas (0 puntos)</label></div>
+                                        <div class="severity-item"><input type="radio" name="ar-duracion" id="ar-mas-6-sem" value="1"><label for="ar-mas-6-sem">≥6 semanas (1 punto)</label></div>
+                                    </div>
+                                </div>
+                                <div class="score-item">
+                                    <span>Puntuación total ACR/EULAR:</span>
+                                    <span class="score-value" id="ar-score">0</span>
+                                    <span>/10 puntos</span>
+                                </div>
+                                <div class="score-item">
+                                    <span>Interpretación:</span>
+                                    <span class="score-value" id="ar-interpretation">--</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title">Criterios de Fibromialgia ACR 2016</h4>
+                            <div class="score-calculation">
+                                <h4>Criterios Modificados 2016</h4>
+                                <div class="exam-section">
+                                    <h4>A. Índice de Dolor Generalizado (WPI)</h4>
+                                    <div class="measurement">
+                                        <label>Número de áreas con dolor (0-19):</label>
+                                        <input type="number" class="input-field" id="fibro-wpi" min="0" max="19" onchange="calculateFibromyalgia()">
+                                    </div>
+                                </div>
+                                <div class="exam-section">
+                                    <h4>B. Escala de Severidad de Síntomas (SSS)</h4>
+                                    <div class="measurement">
+                                        <label>Fatiga (0-3):</label>
+                                        <select id="fibro-fatiga" onchange="calculateFibromyalgia()">
+                                            <option value="">Seleccionar</option>
+                                            <option value="0">Sin problema (0)</option>
+                                            <option value="1">Problema leve (1)</option>
+                                            <option value="2">Problema moderado (2)</option>
+                                            <option value="3">Problema severo (3)</option>
+                                        </select>
+                                    </div>
+                                    <div class="measurement">
+                                        <label>Sueño no reparador (0-3):</label>
+                                        <select id="fibro-sueno" onchange="calculateFibromyalgia()">
+                                            <option value="">Seleccionar</option>
+                                            <option value="0">Sin problema (0)</option>
+                                            <option value="1">Problema leve (1)</option>
+                                            <option value="2">Problema moderado (2)</option>
+                                            <option value="3">Problema severo (3)</option>
+                                        </select>
+                                    </div>
+                                    <div class="measurement">
+                                        <label>Síntomas cognitivos (0-3):</label>
+                                        <select id="fibro-cognitivo" onchange="calculateFibromyalgia()">
+                                            <option value="">Seleccionar</option>
+                                            <option value="0">Sin problema (0)</option>
+                                            <option value="1">Problema leve (1)</option>
+                                            <option value="2">Problema moderado (2)</option>
+                                            <option value="3">Problema severo (3)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="exam-section">
+                                    <h4>C. Síntomas somáticos (0-3)</h4>
+                                    <div class="form-grid">
+                                        <div class="form-item"><input type="checkbox" id="fibro-cefalea"><label for="fibro-cefalea">Cefalea</label></div>
+                                        <div class="form-item"><input type="checkbox" id="fibro-dolor-abdominal"><label for="fibro-dolor-abdominal">Dolor abdominal</label></div>
+                                        <div class="form-item"><input type="checkbox" id="fibro-depresion"><label for="fibro-depresion">Depresión</label></div>
+                                    </div>
+                                    <div class="measurement">
+                                        <label>Número de síntomas somáticos:</label>
+                                        <span id="fibro-somaticos-count">0</span>
+                                    </div>
+                                </div>
+                                <div class="score-item">
+                                    <span>WPI Score:</span>
+                                    <span class="score-value" id="fibro-wpi-score">0</span>
+                                </div>
+                                <div class="score-item">
+                                    <span>SSS Score:</span>
+                                    <span class="score-value" id="fibro-sss-score">0</span>
+                                </div>
+                                <div class="score-item">
+                                    <span>Cumple criterios:</span>
+                                    <span class="score-value" id="fibro-diagnosis">--</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- CONCLUSIÓN -->
+                <div class="section-container">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main">
+                            <i class="fas fa-file-alt"></i> Conclusión del Examen Reumatológico
+                        </h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="sub-section-card">
+                            <div id="conclusion-text" class="conclusion-text">
+                                Seleccione los parámetros del examen para generar la conclusión...
+                            </div>
+                        </div>
+                        <div class="flex justify-center gap-4 mt-8">
+                            <button class="btn btn-primary" onclick="generateConclusion()">Generar Conclusión</button>
+                            <button class="btn btn-primary" onclick="printConclusion()">Imprimir Conclusión</button>
+                            <button class="btn btn-secondary" onclick="clearForm()">Limpiar Formulario</button>
+                            <button class="btn btn-secondary" onclick="expandAllSections()">Expandir Todo</button>
+                            <button class="btn btn-secondary" onclick="collapseAllSections()">Contraer Todo</button>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- STICKY REPORT PANEL -->
+        <div class="sticky-report-panel" id="stickyReportPanel">
+            <div class="sticky-header">
+                <span><i class="fas fa-file-medical-alt"></i> Informe Reumatológico en Tiempo Real</span>
+                <div class="sticky-controls">
+                    <button onclick="copyStickyToClipboard()" title="Copiar informe"><i class="fas fa-copy"></i></button>
+                    <button onclick="printStickyConclusion()" title="Imprimir informe"><i class="fas fa-print"></i></button>
+                    <button onclick="generateStickyConclusion()" title="Actualizar informe"><i class="fas fa-sync-alt"></i></button>
+                    <button onclick="toggleStickyPanel()" title="Cerrar panel"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+            <pre class="sticky-content" id="reportContent">
+El informe se generará aquí a medida que completes los campos del examen...
+            </pre>
+            <div class="update-indicator" id="updateIndicator">
+                <div class="spinner"></div>
+                <span>Actualizando informe...</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notificación de copia -->
+    <div class="copy-notification" id="copyNotification">
+        <i class="fas fa-check-circle"></i>
+        <span>¡Informe copiado al portapapeles!</span>
+    </div>
+
+    <!-- Theme toggle button -->
+    <button class="theme-toggle" onclick="toggleTheme()">
+        <i class="fas fa-moon" id="theme-icon"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>

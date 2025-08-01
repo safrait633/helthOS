@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedPro Portal - Sistema Integral de Exámenes Médicos</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Definición de variables CSS para colores y gradientes */
+        :root {
+            --primary-color: #4A90E2; /* Azul profesional */
+            --secondary-color: #50E3C2; /* Verde menta vibrante */
+            --accent-color: #FFC107; /* Amarillo brillante */
+            --bg-light: #F8F9FA; /* Fondo muy claro */
+            --card-bg-light: #FFFFFF; /* Fondo de tarjeta blanco puro */
+            --text-dark: #34495E; /* Texto oscuro principal */
+            --text-medium: #607D8B; /* Texto secundario */
+            --border-light: #E0E6ED; /* Borde suave */
+
+            /* Colores para modo oscuro */
+            --bg-dark: #1F2937; /* Fondo oscuro */
+            --card-bg-dark: #2D3748; /* Fondo de tarjeta oscuro */
+            --text-light: #E2E8F0; /* Texto claro principal */
+            --border-dark: #4A5568; /* Borde oscuro */
+        }
+
+        /* Tema Oscuro */
+        [data-theme="dark"] {
+            --primary-color: #7B68EE; /* Púrpura suave */
+            --secondary-color: #00BCD4; /* Cian */
+            --accent-color: #FFD54F; /* Amarillo más suave */
+            --bg-light: var(--bg-dark);
+            --card-bg-light: var(--card-bg-dark);
+            --text-dark: var(--text-light);
+            --text-medium: #A0AEC0;
+            --border-light: var(--border-dark);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Contenedor principal para el diseño de la aplicación */
+        .app-container {
+            display: flex;
+            flex-grow: 1;
+        }
+
+        /* Sidebar de navegación */
+        .sidebar {
+            width: 250px;
+            background-color: var(--card-bg-light);
+            border-right: 1px solid var(--border-light);
+            padding: 24px;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+        }
+        [data-theme="dark"] .sidebar {
+            background-color: var(--card-bg-dark);
+            border-color: var(--border-dark);
+        }
+
+        .sidebar.collapsed {
+            width: 80px;
+        }
+
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 32px;
+            justify-content: center;
+        }
+
+        .sidebar-header .logo {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            transition: transform 0.3s ease;
+        }
+        .sidebar-header .logo:hover {
+            transform: scale(1.1);
+        }
+
+        .sidebar-header .app-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-left: 12px;
+            color: var(--text-dark);
+            white-space: nowrap;
+            overflow: hidden;
+            transition: opacity 0.3s ease;
+        }
+        [data-theme="dark"] .sidebar-header .app-title {
+            color: var(--text-light);
+        }
+        .sidebar.collapsed .app-title {
+            opacity: 0;
+            width: 0;
+            margin-left: 0;
+        }
+
+        .nav-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+        }
+
+        .nav-item {
+            margin-bottom: 8px;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            border-radius: 10px;
+            color: var(--text-medium);
+            font-weight: 500;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+        [data-theme="dark"] .nav-link {
+            color: #A0AEC0;
+        }
+
+        .nav-link:hover {
+            background-color: rgba(74, 144, 226, 0.1);
+            color: var(--primary-color);
+            transform: translateX(5px);
+        }
+        [data-theme="dark"] .nav-link:hover {
+            background-color: rgba(123, 104, 238, 0.1);
+            color: var(--primary-color);
+        }
+
+        .nav-link.active {
+            background-color: var(--primary-color);
+            color: white;
+            box-shadow: 0 4px 10px rgba(74, 144, 226, 0.3);
+        }
+        [data-theme="dark"] .nav-link.active {
+            background-color: var(--primary-color);
+            box-shadow: 0 4px 10px rgba(123, 104, 238, 0.3);
+        }
+
+        .nav-icon {
+            font-size: 1.25rem;
+            margin-right: 16px;
+            width: 24px; /* Fixed width for alignment */
+            text-align: center;
+        }
+        .sidebar.collapsed .nav-icon {
+            margin-right: 0;
+        }
+
+        .nav-text {
+            white-space: nowrap;
+            overflow: hidden;
+            transition: opacity 0.3s ease;
+        }
+        .sidebar.collapsed .nav-text {
+            opacity: 0;
+            width: 0;
+        }
+
+        /* Main content area */
+        .main-content {
+            flex-grow: 1;
+            padding: 32px;
+            overflow-y: auto;
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+        }
+
+        .page-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+        [data-theme="dark"] .page-title {
+            color: var(--text-light);
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .user-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 1.2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .user-name {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+        [data-theme="dark"] .user-name {
+            color: var(--text-light);
+        }
+
+        /* Grid de tarjetas de especialidad/módulo */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background-color: var(--card-bg-light);
+            border-radius: 15px;
+            padding: 24px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-light);
+            display: flex;
+            flex-direction: column;
+        }
+        [data-theme="dark"] .card {
+            background-color: var(--card-bg-dark);
+            border-color: var(--border-dark);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-right: 12px;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+        [data-theme="dark"] .card-title {
+            color: var(--text-light);
+        }
+
+        .card-content {
+            font-size: 0.95rem;
+            color: var(--text-medium);
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 10px rgba(74, 144, 226, 0.2);
+        }
+        .btn-primary:hover {
+            background-color: #3A7BD5;
+            box-shadow: 0 6px 15px rgba(74, 144, 226, 0.3);
+        }
+        [data-theme="dark"] .btn-primary {
+            background-color: var(--primary-color);
+            box-shadow: 0 4px 10px rgba(123, 104, 238, 0.2);
+        }
+        [data-theme="dark"] .btn-primary:hover {
+            background-color: #6A5ACD;
+            box-shadow: 0 6px 15px rgba(123, 104, 238, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            border: 1px solid var(--border-light);
+        }
+        .btn-secondary:hover {
+            background-color: var(--border-light);
+        }
+        [data-theme="dark"] .btn-secondary {
+            background-color: var(--card-bg-dark);
+            color: var(--text-light);
+            border-color: var(--border-dark);
+        }
+        [data-theme="dark"] .btn-secondary:hover {
+            background-color: #3A475C;
+        }
+
+        /* Theme toggle button */
+        .theme-toggle {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+        [data-theme="dark"] .theme-toggle {
+            background-color: var(--primary-color);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 80px;
+                padding: 16px;
+            }
+            .sidebar.collapsed {
+                width: 0; /* Hide completely on small screens when collapsed */
+                overflow: hidden;
+            }
+            .sidebar-header .app-title {
+                display: none;
+            }
+            .nav-link {
+                justify-content: center;
+                padding: 12px 0;
+            }
+            .nav-icon {
+                margin-right: 0;
+            }
+            .nav-text {
+                display: none;
+            }
+
+            .main-content {
+                padding: 20px;
+            }
+
+            .top-bar {
+                flex-direction: column;
+                align-items: flex-start;
+                margin-bottom: 24px;
+            }
+            .page-title {
+                margin-bottom: 16px;
+                font-size: 1.75rem;
+            }
+            .user-profile {
+                width: 100%;
+                justify-content: flex-end;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .theme-toggle {
+                bottom: 16px;
+                right: 16px;
+                width: 50px;
+                height: 50px;
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar de Navegación -->
+        <aside class="sidebar" id="sidebar" style="overflow-y: auto; height: 100vh;">
+            <div class="sidebar-header">
+                <i class="fas fa-heartbeat logo"></i>
+                <h1 class="app-title">HealthOS</h1>
+            </div>
+            <nav class="nav-list">
+                <li class="nav-item">
+                    <a href="#" class="nav-link active">
+                        <i class="fas fa-th-large nav-icon"></i>
+                        <span class="nav-text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="specialties/gastroenterology/index.html" class="nav-link">
+                        <i class="fas fa-stomach nav-icon"></i>
+                        <span class="nav-text">Gastroenterología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="specialties/ophthalmology/index.html" class="nav-link">
+                        <i class="fas fa-eye nav-icon"></i>
+                        <span class="nav-text">Oftalmología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="specialties/psychiatry/index.html" class="nav-link">
+                        <i class="fas fa-brain nav-icon"></i>
+                        <span class="nav-text">Psiquiatría</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="specialties/cardiology/index.html" class="nav-link">
+                        <i class="fas fa-heartbeat nav-icon"></i>
+                        <span class="nav-text">Cardiología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="specialties/dermatology/index.html" class="nav-link">
+                        <i class="fas fa-allergies nav-icon"></i>
+                        <span class="nav-text">Dermatología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="specialties/endocrinology/index.html" class="nav-link">
+                        <i class="fas fa-pills nav-icon"></i>
+                        <span class="nav-text">Endocrinología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="specialties/geriatrics/index.html" class="nav-link">
+                        <i class="fas fa-users nav-icon"></i>
+                        <span class="nav-text">Geriatría</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="specialties/hematology/index.html" class="nav-link">
+                        <i class="fas fa-tint nav-icon"></i>
+                        <span class="nav-text">Hematología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="specialties/infectious_diseases/index.html" class="nav-link">
+                        <i class="fas fa-virus nav-icon"></i>
+                        <span class="nav-text">Infectología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="specialties/musculoskeletal/index.html" class="nav-link">
+                        <i class="fas fa-bone nav-icon"></i>
+                        <span class="nav-text">Musculoesquelético</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="specialties/otolaryngology/index.html" class="nav-link">
+                        <i class="fas fa-ear-listen nav-icon"></i>
+                        <span class="nav-text">Otorrinolaringología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="specialties/pneumology/index.html" class="nav-link">
+                        <i class="fas fa-lungs nav-icon"></i>
+                        <span class="nav-text">Neumología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="specialties/neurology/index.html" class="nav-link">
+                        <i class="fas fa-brain nav-icon"></i>
+                        <span class="nav-text">Neurología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="specialties/urology/index.html" class="nav-link">
+                        <i class="fas fa-toilet nav-icon"></i>
+                        <span class="nav-text">Urología</span>
+                    </a>
+                </li>
+            </nav>
+            <!-- Toggle para colapsar/expandir sidebar en pantallas grandes -->
+            <button class="btn btn-secondary mt-auto hidden md:flex items-center justify-center" onclick="toggleSidebar()" style="margin-top: auto;">
+                <i class="fas fa-chevron-left" id="sidebar-toggle-icon"></i>
+            </button>
+        </aside>
+
+        <!-- Contenido Principal -->
+        <main class="main-content">
+           <div class="top-bar">
+                <h2 class="page-title">Dashboard General</h2>
+                <div class="user-profile">
+                    <div class="user-avatar">GG</div>
+                    <span class="user-name">Dr. Georgiy Gumanets</span>
+                </div>
+            </div>
+
+            <div class="card-grid">
+                <!-- Tarjeta de Gastroenterología -->
+                <a href="specialties/gastroenterology/index.html" class="card" style="text-decoration: none; color: inherit;">
+                    <div class="card-header">
+                        <img src="img/5.svg" alt="Gastroenterología" class="h-10 w-10 card-icon" style="opacity: 0.8; filter: hue-rotate(200deg) saturate(2) brightness(0.7);">
+                        <h3 class="card-title">Gastroenterología</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>Evaluación integral del sistema digestivo con escalas de severidad, calidad de vida y protocolos endoscópicos especializados.</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-primary">Nueva Consulta</button>
+                    </div>
+                </a>
+
+                <!-- Tarjeta de Cardiología -->
+                <a href="specialties/cardiology/index.html" class="card" style="text-decoration: none; color: inherit;">
+                    <div class="card-header">
+                        <img src="img/1.svg" alt="Cardiología" class="h-10 w-10 card-icon" style="opacity: 0.8;">
+                        <h3 class="card-title">Cardiología</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>Evaluación completa del sistema cardiovascular con algoritmos de diagnóstico, escalas de riesgo cardiovascular y protocolos de seguimiento.</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-primary">Nueva Consulta</button>
+                    </div>
+                </a>
+
+                <!-- Tarjeta de Neurología -->
+                <a href="#" class="card" style="text-decoration: none; color: inherit;">
+                    <div class="card-header">
+                        <img src="img/7.svg" alt="Neurología" class="h-10 w-10 card-icon" style="opacity: 0.8;">
+                        <h3 class="card-title">Neurología</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>Evaluación neurológica completa: estado mental, pares craneales, sistema motor, sensitivo y escalas funcionales neurológicas validadas.</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-primary">En desarrollo</button>
+                    </div>
+                </a>
+
+                <!-- Tarjeta de Neumología -->
+                <a href="specialties/pneumology/index.html" class="card" style="text-decoration: none; color: inherit;">
+                    <div class="card-header">
+                        <img src="img/4.svg" alt="Neumología" class="h-10 w-10 card-icon" style="opacity: 0.8;">
+                        <h3 class="card-title">Neumología</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>Algoritmos especializados para la evaluación del sistema respiratorio, incluyendo espirometría, gasometría y escalas funcionales pulmonares.</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-primary">Nueva Consulta</button>
+                    </div>
+                </a>
+
+                <!-- Tarjeta de Endocrinología -->
+                <a href="specialties/endocrinology/index.html" class="card" style="text-decoration: none; color: inherit;">
+                    <div class="card-header">
+                        <img src="img/8.svg" alt="Endocrinología" class="h-10 w-10 card-icon" style="opacity: 0.8;">
+                        <h3 class="card-title">Endocrinología</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>Algoritmos para evaluación hormonal, metabolismo, antropometría y salud reproductiva con escalas endocrinológicas validadas.</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-primary">Nueva Consulta</button>
+                    </div>
+                </a>
+
+                <!-- Tarjeta de Hematología -->
+                <a href="specialties/hematology/index.html" class="card" style="text-decoration: none; color: inherit;">
+                    <div class="card-header">
+                        <img src="img/2.svg" alt="Hematología" class="h-10 w-10 card-icon" style="opacity: 0.8;">
+                        <h3 class="card-title">Hematología</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>Evaluación especializada del sistema hematológico, coagulopatías, anemias y escalas de riesgo hemorrágico y trombótico.</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-primary">Nueva Consulta</button>
+                    </div>
+                </a>
+
+                <!-- Tarjeta de Oftalmología -->
+                <a href="specialties/ophthalmology/index.html" class="card" style="text-decoration: none; color: inherit;">
+                    <div class="card-header">
+                        <img src="img/9.svg" alt="Oftalmología" class="h-10 w-10 card-icon" style="opacity: 0.8;">
+                        <h3 class="card-title">Oftalmología</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>Algoritmos oftalmológicos: agudeza visual, presión intraocular, fundoscopía y escalas de calidad visual y funcionalidad ocular.</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-primary">Nueva Consulta</button>
+                    </div>
+                </a>
+
+                <!-- Tarjeta de Otorrinolaringología -->
+                <a href="specialties/otolaryngology/index.html" class="card" style="text-decoration: none; color: inherit;">
+                    <div class="card-header">
+                        <img src="img/10.svg" alt="Otorrinolaringología" class="h-10 w-10 card-icon" style="opacity: 0.8;">
+                        <h3 class="card-title">Otorrinolaringología</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>Evaluación ORL completa: audiometría, rinoscopia, laringoscopia, pruebas vestibulares y escalas funcionales especializadas.</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-primary">Nueva Consulta</button>
+                    </div>
+                </a>
+
+                <!-- Tarjeta de Reumatología -->
+                <a href="specialties/rheumatology/index.html" class="card" style="text-decoration: none; color: inherit;">
+                    <div class="card-header">
+                        <img src="img/11.svg" alt="Reumatología" class="h-10 w-10 card-icon" style="opacity: 0.8;">
+                        <h3 class="card-title">Reumatología</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>Evaluación reumatológica: articulaciones, músculos, columna vertebral con escalas DAS28, HAQ, BASDAI y criterios diagnósticos.</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-primary">Nueva Consulta</button>
+                    </div>
+                </a>
+
+                <!-- Tarjeta de Dermatología -->
+                <a href="specialties/dermatology/index.html" class="card" style="text-decoration: none; color: inherit;">
+                    <div class="card-header">
+                        <img src="img/6.svg" alt="Dermatología" class="h-10 w-10 card-icon" style="opacity: 0.8;">
+                        <h3 class="card-title">Dermatología</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>Evaluación dermatológica: lesiones primarias/secundarias, distribución, anexos y escalas PASI, SCORAD, DLQI especializadas.</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-primary">Nueva Consulta</button>
+                    </div>
+                </a>
+
+                <!-- Tarjeta de Traumatología -->
+                <a href="specialties/musculoskeletal/index.html" class="card" style="text-decoration: none; color: inherit;">
+                    <div class="card-header">
+                        <img src="img/12.svg" alt="Traumatología" class="h-10 w-10 card-icon" style="opacity: 0.8;">
+                        <h3 class="card-title">Traumatología</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>Algoritmo musculoesquelético completo: anamnesis estructurada, ROM, fuerza muscular (MRC) y evaluación neurológica especializada.</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-primary">Nueva Consulta</button>
+                    </div>
+                </a>
+
+                <!-- Tarjeta de Urología -->
+                <a href="specialties/urology/index.html" class="card" style="text-decoration: none; color: inherit;">
+                    <div class="card-header">
+                        <img src="img/14.svg" alt="Urología" class="h-10 w-10 card-icon" style="opacity: 0.8;">
+                        <h3 class="card-title">Urología</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>Evaluación urológica: quejas miccionales, examen genital, prostático y escalas IPSS, ICIQ, IIEF validadas internacionalmente.</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-primary">Nueva Consulta</button>
+                    </div>
+                </a>
+
+                <!-- Tarjeta de Psiquiatría -->
+                <a href="specialties/psychiatry/index.html" class="card" style="text-decoration: none; color: inherit;">
+                    <div class="card-header">
+                        <img src="img/16.svg" alt="Psiquiatría" class="h-10 w-10 card-icon" style="opacity: 0.8;">
+                        <h3 class="card-title">Psiquiatría</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>Evaluación psiquiátrica completa: estado mental, escalas de depresión, ansiedad, psicosis y criterios diagnósticos DSM-5.</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-primary">Nueva Consulta</button>
+                    </div>
+                </a>
+
+                <!-- Tarjeta de Enfermedades Infecciosas -->
+                <a href="specialties/infectious_diseases/index.html" class="card" style="text-decoration: none; color: inherit;">
+                    <div class="card-header">
+                        <img src="img/13.svg" alt="Enfermedades Infecciosas" class="h-10 w-10 card-icon" style="opacity: 0.8;">
+                        <h3 class="card-title">Enfermedades Infecciosas</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>Evaluación integral de enfermedades infecciosas: identificación de focos, escalas de severidad y protocolos antimicrobianos.</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-primary">Nueva Consulta</button>
+                    </div>
+                </a>
+
+                <!-- Tarjeta de Geriatría -->
+                <a href="specialties/geriatrics/index.html" class="card" style="text-decoration: none; color: inherit;">
+                    <div class="card-header">
+                        <img src="img/15.svg" alt="Geriatría" class="h-10 w-10 card-icon" style="opacity: 0.8;">
+                        <h3 class="card-title">Geriatría</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>Evaluación geriátrica integral: funcionalidad, cognición, estado nutricional, riesgo de caídas y escalas geriátricas validadas.</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-primary">Nueva Consulta</button>
+                    </div>
+                </a>
+            </div>
+        </main>
+    </div>
+
+    <!-- Botón de Tema Oscuro/Claro -->
+    <button class="theme-toggle" onclick="toggleTheme()" title="Cambiar tema">
+        <i class="fas fa-moon" id="theme-icon"></i>
+    </button>
+
+    <script>
+        // Función para alternar el tema (claro/oscuro)
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-icon');
+            if (body.hasAttribute('data-theme')) {
+                body.removeAttribute('data-theme');
+                themeIcon.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeIcon.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Función para alternar el sidebar (colapsar/expandir)
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const toggleIcon = document.getElementById('sidebar-toggle-icon');
+            sidebar.classList.toggle('collapsed');
+            if (sidebar.classList.contains('collapsed')) {
+                toggleIcon.className = 'fas fa-chevron-right';
+            } else {
+                toggleIcon.className = 'fas fa-chevron-left';
+            }
+        }
+
+        // Inicialización al cargar el DOM
+        document.addEventListener('DOMContentLoaded', () => {
+            // Cargar el tema guardado por el usuario
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.setAttribute('data-theme', 'dark');
+                document.getElementById('theme-icon').className = 'fas fa-sun';
+            }
+
+            // Ocultar el botón de toggle del sidebar en pantallas pequeñas por defecto
+            const sidebarToggleButton = document.querySelector('.sidebar button.btn-secondary');
+            if (window.innerWidth <= 768) {
+                sidebarToggleButton.classList.add('hidden');
+                document.getElementById('sidebar').classList.add('collapsed'); // Colapsar por defecto en móvil
+            } else {
+                sidebarToggleButton.classList.remove('hidden');
+            }
+
+            // Ajustar el sidebar al redimensionar la ventana
+            window.addEventListener('resize', () => {
+                if (window.innerWidth <= 768) {
+                    sidebarToggleButton.classList.add('hidden');
+                    document.getElementById('sidebar').classList.add('collapsed');
+                } else {
+                    sidebarToggleButton.classList.remove('hidden');
+                    document.getElementById('sidebar').classList.remove('collapsed'); // Expandir en desktop
+                }
+            });
+        });
+    </script>
+</body>
+</html>

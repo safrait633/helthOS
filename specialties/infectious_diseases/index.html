@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen Infectología - Sistema HealthOS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar" id="sidebar" style="overflow-y: auto; height: 100vh;">
+            <div class="sidebar-header" onclick="window.location.href='../../index.html'" style="cursor: pointer;">
+                <i class="fas fa-heartbeat logo"></i>
+                <h1 class="app-title">HealthOS</h1>
+            </div>
+            <nav class="nav-list">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-th-large nav-icon"></i>
+                        <span class="nav-text">Panel de control</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../cardiology/index.html" class="nav-link">
+                        <i class="fas fa-heartbeat nav-icon"></i>
+                        <span class="nav-text">Cardiología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../gastroenterology/index.html" class="nav-link">
+                        <i class="fas fa-stomach nav-icon"></i>
+                        <span class="nav-text">Gastroenterología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../dermatology/index.html" class="nav-link">
+                        <i class="fas fa-allergies nav-icon"></i>
+                        <span class="nav-text">Dermatología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../endocrinology/index.html" class="nav-link">
+                        <i class="fas fa-flask nav-icon"></i>
+                        <span class="nav-text">Endocrinología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../geriatrics/index.html" class="nav-link">
+                        <i class="fas fa-user-friends nav-icon"></i>
+                        <span class="nav-text">Geriatría</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../hematology/index.html" class="nav-link">
+                        <i class="fas fa-tint nav-icon"></i>
+                        <span class="nav-text">Hematología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link active" id="specialty-nav-link" onclick="toggleSpecialtySubMenu(event)">
+                        <i class="fas fa-virus nav-icon"></i>
+                        <span class="nav-text">Infectología</span>
+                    </a>
+                    <ul class="sub-menu" id="specialty-sub-menu">
+                        <li class="sub-menu-item"><a href="#section-anamnesis" onclick="scrollToSection('anamnesis')">Anamnesis Infecciosa</a></li>
+                        <li class="sub-menu-item"><a href="#section-physical-exam" onclick="scrollToSection('physical-exam')">Examen Físico</a></li>
+                        <li class="sub-menu-item"><a href="#section-fever-evaluation" onclick="scrollToSection('fever-evaluation')">Evaluación Febril</a></li>
+                        <li class="sub-menu-item"><a href="#section-sepsis-evaluation" onclick="scrollToSection('sepsis-evaluation')">Evaluación Sepsis</a></li>
+                        <li class="sub-menu-item"><a href="#section-risk-scales" onclick="scrollToSection('risk-scales')">Escalas de Riesgo</a></li>
+                        <li class="sub-menu-item"><a href="#section-source-evaluation" onclick="scrollToSection('source-evaluation')">Foco Infeccioso</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="../musculoskeletal/index.html" class="nav-link">
+                        <i class="fas fa-bone nav-icon"></i>
+                        <span class="nav-text">Musculoesquelético</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../ophthalmology/index.html" class="nav-link">
+                        <i class="fas fa-eye nav-icon"></i>
+                        <span class="nav-text">Oftalmología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../otolaryngology/index.html" class="nav-link">
+                        <i class="fas fa-ear-listen nav-icon"></i>
+                        <span class="nav-text">Otorrinolaringología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../pneumology/index.html" class="nav-link">
+                        <i class="fas fa-lungs nav-icon"></i>
+                        <span class="nav-text">Neumología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../psychiatry/index.html" class="nav-link">
+                        <i class="fas fa-brain nav-icon"></i>
+                        <span class="nav-text">Psiquiatría</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../rheumatology/index.html" class="nav-link">
+                        <i class="fas fa-joint nav-icon"></i>
+                        <span class="nav-text">Reumatología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../urology/index.html" class="nav-link">
+                        <i class="fas fa-user-md nav-icon"></i>
+                        <span class="nav-text">Urología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-notes-medical nav-icon"></i>
+                        <span class="nav-text">Registros</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-cog nav-icon"></i>
+                        <span class="nav-text">Configuración</span>
+                    </a>
+                </li>
+            </nav>
+            <button class="btn btn-secondary mt-auto hidden md:flex items-center justify-center" onclick="toggleSidebar()">
+                <i class="fas fa-chevron-left" id="sidebar-toggle-icon"></i>
+            </button>
+        </aside>
+
+        <div class="content-area" id="contentArea">
+            <div class="top-bar" id="topBar">
+                <div class="flex items-center gap-4">
+                    <button class="btn btn-secondary md:hidden" onclick="toggleSidebar()">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="flex items-center gap-4">
+                        <img src="../../img/13.svg" alt="Infectología" class="h-10 w-10">
+                        <h2 class="page-title">Infectología</h2>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button class="btn btn-primary hidden md:inline-flex" onclick="expandAllSections()">
+                        <i class="fas fa-expand-alt"></i> <span class="hidden lg:inline">Expandir Todo</span>
+                    </button>
+                    <button class="btn btn-primary hidden md:inline-flex" onclick="collapseAllSections()">
+                        <i class="fas fa-compress-alt"></i> <span class="hidden lg:inline">Contraer Todo</span>
+                    </button>
+                    <button class="btn btn-secondary" onclick="clearForm()">
+                        <i class="fas fa-eraser"></i> <span class="hidden md:inline">Limpiar</span>
+                    </button>
+                    <button class="btn btn-primary" onclick="toggleStickyPanel()">
+                        <i class="fas fa-file-medical-alt"></i> <span class="hidden md:inline">Informe</span>
+                    </button>
+                    <div class="user-profile">
+                        <div class="user-avatar">JP</div>
+                        <span class="user-name">Dr. Juan Pérez</span>
+                    </div>
+                </div>
+            </div>
+
+            <main class="main-content" id="mainContent">
+                <div class="section-container dashboard-widget" id="dashboard-summary">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-chart-bar"></i> Dashboard del Examen Infectológico</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main expanded">
+                        <div class="dashboard-grid form-grid">
+                            <div class="dashboard-item sub-section-card">
+                                <i class="fas fa-user-md"></i>
+                                <div class="label">Progreso del Examen</div>
+                                <div class="value" id="exam-progress">0%</div>
+                            </div>
+                            <div class="dashboard-item sub-section-card">
+                                <i class="fas fa-clipboard-list"></i>
+                                <div class="label">Secciones Completadas</div>
+                                <div class="value" id="sections-completed">0/6</div>
+                            </div>
+                            <div class="dashboard-item sub-section-card" id="alerts-item">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <div class="label">Alertas Críticas</div>
+                                <div class="value" id="alert-count">0</div>
+                            </div>
+                            <div class="dashboard-item sub-section-card" id="warnings-item">
+                                <i class="fas fa-exclamation-circle"></i>
+                                <div class="label">Avisos</div>
+                                <div class="value" id="warning-count">0</div>
+                            </div>
+                            <div class="dashboard-item sub-section-card" id="findings-item">
+                                <i class="fas fa-search"></i>
+                                <div class="label">Hallazgos</div>
+                                <div class="value" id="findings-count">0</div>
+                            </div>
+                            <div class="dashboard-item sub-section-card" id="sepsis-status-item">
+                                <i class="fas fa-heartbeat"></i>
+                                <div class="label">Sepsis/SIRS</div>
+                                <div class="value" id="sepsis-status">Normal</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-container" id="section-anamnesis">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-user-edit"></i> Anamnesis y Síntomas Infecciosos</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main" id="anamnesis-content">
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-thermometer-half"></i> Síndrome Febril</h4>
+                            <div class="sub-section-card">
+                                <h4 class="sub-section-title">Características de la Fiebre</h4>
+                                <div class="form-item measurement">
+                                    <label for="temperatura-maxima">Temperatura máxima:</label>
+                                    <input type="number" class="w-24" id="temperatura-maxima" min="35" max="45" step="0.1" oninput="evaluateFever()">
+                                    <span>°C</span>
+                                </div>
+                                <div class="form-item measurement">
+                                    <label for="duracion-fiebre">Duración de la fiebre:</label>
+                                    <input type="number" class="w-24" id="duracion-fiebre" min="0" max="365" oninput="evaluateFever()">
+                                    <span>días</span>
+                                </div>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="fiebre-continua" onchange="updateDashboard()"><label for="fiebre-continua">Fiebre continua</label></div>
+                                    <div class="form-item"><input type="checkbox" id="fiebre-intermitente" onchange="updateDashboard()"><label for="fiebre-intermitente">Fiebre intermitente</label></div>
+                                    <div class="form-item"><input type="checkbox" id="fiebre-remitente" onchange="updateDashboard()"><label for="fiebre-remitente">Fiebre remitente</label></div>
+                                    <div class="form-item"><input type="checkbox" id="escalofrios" onchange="updateDashboard()"><label for="escalofrios">Escalofríos</label></div>
+                                    <div class="form-item"><input type="checkbox" id="sudoracion" onchange="updateDashboard()"><label for="sudoracion">Sudoración profusa</label></div>
+                                    <div class="form-item"><input type="checkbox" id="sin-fiebre" onchange="handleNoFever()"><label for="sin-fiebre">Sin fiebre</label></div>
+                                </div>
+                                <div class="score-item">
+                                    <span>Clasificación febril:</span>
+                                    <span class="score-value" id="fever-classification">--</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-lungs"></i> Síntomas Respiratorios</h4>
+                            <div class="form-grid">
+                                <div class="form-item"><input type="checkbox" id="tos-seca" onchange="updateDashboard()"><label for="tos-seca">Tos seca</label></div>
+                                <div class="form-item"><input type="checkbox" id="tos-productiva" onchange="updateDashboard()"><label for="tos-productiva">Tos productiva</label></div>
+                                <div class="form-item"><input type="checkbox" id="expectoracion-purulenta" onchange="updateDashboard()"><label for="expectoracion-purulenta">Expectoración purulenta</label></div>
+                                <div class="form-item"><input type="checkbox" id="hemoptisis" onchange="updateDashboard()"><label for="hemoptisis">Hemoptisis</label></div>
+                                <div class="form-item"><input type="checkbox" id="disnea" onchange="updateDashboard()"><label for="disnea">Disnea</label></div>
+                                <div class="form-item"><input type="checkbox" id="dolor-toracico" onchange="updateDashboard()"><label for="dolor-toracico">Dolor torácico</label></div>
+                                <div class="form-item"><input type="checkbox" id="dolor-pleuritico" onchange="updateDashboard()"><label for="dolor-pleuritico">Dolor pleurítico</label></div>
+                                <div class="form-item"><input type="checkbox" id="odinofagia" onchange="updateDashboard()"><label for="odinofagia">Odinofagia</label></div>
+                                <div class="form-item"><input type="checkbox" id="rinorrea" onchange="updateDashboard()"><label for="rinorrea">Rinorrea</label></div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-stomach"></i> Síntomas Gastrointestinales</h4>
+                            <div class="form-grid">
+                                <div class="form-item"><input type="checkbox" id="nauseas" onchange="updateDashboard()"><label for="nauseas">Náuseas</label></div>
+                                <div class="form-item"><input type="checkbox" id="vomitos" onchange="updateDashboard()"><label for="vomitos">Vómitos</label></div>
+                                <div class="form-item"><input type="checkbox" id="diarrea" onchange="updateDashboard()"><label for="diarrea">Diarrea</label></div>
+                                <div class="form-item"><input type="checkbox" id="diarrea-sanguinolenta" onchange="updateDashboard()"><label for="diarrea-sanguinolenta">Diarrea sanguinolenta</label></div>
+                                <div class="form-item"><input type="checkbox" id="dolor-abdominal" onchange="updateDashboard()"><label for="dolor-abdominal">Dolor abdominal</label></div>
+                                <div class="form-item"><input type="checkbox" id="distension-abdominal" onchange="updateDashboard()"><label for="distension-abdominal">Distensión abdominal</label></div>
+                                <div class="form-item"><input type="checkbox" id="tenesmo" onchange="updateDashboard()"><label for="tenesmo">Tenesmo</label></div>
+                                <div class="form-item"><input type="checkbox" id="ictericia" onchange="updateDashboard()"><label for="ictericia">Ictericia</label></div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-brain"></i> Síntomas Neurológicos</h4>
+                            <div class="form-grid">
+                                <div class="form-item"><input type="checkbox" id="cefalea" onchange="updateDashboard()"><label for="cefalea">Cefalea</label></div>
+                                <div class="form-item"><input type="checkbox" id="cefalea-intensa" onchange="updateDashboard()"><label for="cefalea-intensa">Cefalea intensa</label></div>
+                                <div class="form-item"><input type="checkbox" id="fotofobia" onchange="updateDashboard()"><label for="fotofobia">Fotofobia</label></div>
+                                <div class="form-item"><input type="checkbox" id="rigidez-nuca" onchange="updateDashboard()"><label for="rigidez-nuca">Rigidez de nuca</label></div>
+                                <div class="form-item"><input type="checkbox" id="confusion" onchange="updateDashboard()"><label for="confusion">Confusión</label></div>
+                                <div class="form-item"><input type="checkbox" id="alteracion-conciencia" onchange="updateDashboard()"><label for="alteracion-conciencia">Alteración de la conciencia</label></div>
+                                <div class="form-item"><input type="checkbox" id="convulsiones" onchange="updateDashboard()"><label for="convulsiones">Convulsiones</label></div>
+                                <div class="form-item"><input type="checkbox" id="deficit-focal" onchange="updateDashboard()"><label for="deficit-focal">Déficit neurológico focal</label></div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-tint"></i> Síntomas Genitourinarios</h4>
+                            <div class="form-grid">
+                                <div class="form-item"><input type="checkbox" id="disuria" onchange="updateDashboard()"><label for="disuria">Disuria</label></div>
+                                <div class="form-item"><input type="checkbox" id="poliaquiuria" onchange="updateDashboard()"><label for="poliaquiuria">Poliaquiuria</label></div>
+                                <div class="form-item"><input type="checkbox" id="urgencia-miccional" onchange="updateDashboard()"><label for="urgencia-miccional">Urgencia miccional</label></div>
+                                <div class="form-item"><input type="checkbox" id="hematuria" onchange="updateDashboard()"><label for="hematuria">Hematuria</label></div>
+                                <div class="form-item"><input type="checkbox" id="dolor-lumbar" onchange="updateDashboard()"><label for="dolor-lumbar">Dolor lumbar</label></div>
+                                <div class="form-item"><input type="checkbox" id="dolor-suprapubico" onchange="updateDashboard()"><label for="dolor-suprapubico">Dolor suprapúbico</label></div>
+                                <div class="form-item"><input type="checkbox" id="secrecion-uretral" onchange="updateDashboard()"><label for="secrecion-uretral">Secreción uretral</label></div>
+                                <div class="form-item"><input type="checkbox" id="dolor-pelvico" onchange="updateDashboard()"><label for="dolor-pelvico">Dolor pélvico</label></div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-hand-paper"></i> Síntomas Cutáneos</h4>
+                            <div class="form-grid">
+                                <div class="form-item"><input type="checkbox" id="exantema" onchange="updateDashboard()"><label for="exantema">Exantema</label></div>
+                                <div class="form-item"><input type="checkbox" id="petequias" onchange="updateDashboard()"><label for="petequias">Petequias</label></div>
+                                <div class="form-item"><input type="checkbox" id="purpura" onchange="updateDashboard()"><label for="purpura">Púrpura</label></div>
+                                <div class="form-item"><input type="checkbox" id="celulitis" onchange="updateDashboard()"><label for="celulitis">Celulitis</label></div>
+                                <div class="form-item"><input type="checkbox" id="abscesos" onchange="updateDashboard()"><label for="abscesos">Abscesos</label></div>
+                                <div class="form-item"><input type="checkbox" id="ulceras-cutaneas" onchange="updateDashboard()"><label for="ulceras-cutaneas">Úlceras cutáneas</label></div>
+                                <div class="form-item"><input type="checkbox" id="lesiones-vesiculares" onchange="updateDashboard()"><label for="lesiones-vesiculares">Lesiones vesiculares</label></div>
+                                <div class="form-item"><input type="checkbox" id="adenopatias-cutaneas" onchange="updateDashboard()"><label for="adenopatias-cutaneas">Adenopatías regionales</label></div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-globe-americas"></i> Factores Epidemiológicos</h4>
+                            <div class="sub-section-card">
+                                <h4 class="sub-section-title">Viajes y Exposiciones</h4>
+                                <div class="form-item measurement">
+                                    <label for="viajes-recientes">Viajes recientes (últimos 30 días):</label>
+                                    <input type="text" class="w-full" id="viajes-recientes" oninput="updateDashboard()">
+                                </div>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="zona-endemica" onchange="updateDashboard()"><label for="zona-endemica">Zona endémica tropical</label></div>
+                                    <div class="form-item"><input type="checkbox" id="contacto-animales" onchange="updateDashboard()"><label for="contacto-animales">Contacto con animales</label></div>
+                                    <div class="form-item"><input type="checkbox" id="agua-contaminada" onchange="updateDashboard()"><label for="agua-contaminada">Ingesta agua no tratada</label></div>
+                                    <div class="form-item"><input type="checkbox" id="alimentos-riesgo" onchange="updateDashboard()"><label for="alimentos-riesgo">Alimentos de riesgo</label></div>
+                                    <div class="form-item"><input type="checkbox" id="actividad-sexual-riesgo" onchange="updateDashboard()"><label for="actividad-sexual-riesgo">Actividad sexual de riesgo</label></div>
+                                    <div class="form-item"><input type="checkbox" id="picaduras-insectos" onchange="updateDashboard()"><label for="picaduras-insectos">Picaduras de insectos</label></div>
+                                    <div class="form-item"><input type="checkbox" id="contacto-enfermos" onchange="updateDashboard()"><label for="contacto-enfermos">Contacto con enfermos</label></div>
+                                    <div class="form-item"><input type="checkbox" id="brote-comunitario" onchange="updateDashboard()"><label for="brote-comunitario">Brote comunitario</label></div>
+                                </div>
+                            </div>
+                            <div class="sub-section-card">
+                                <h4 class="sub-section-title">Estado Inmunológico</h4>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="inmunocompetente" onchange="updateDashboard()"><label for="inmunocompetente">Inmunocompetente</label></div>
+                                    <div class="form-item"><input type="checkbox" id="vih-positivo" onchange="updateDashboard()"><label for="vih-positivo">VIH positivo</label></div>
+                                    <div class="form-item"><input type="checkbox" id="diabetes-mellitus" onchange="updateDashboard()"><label for="diabetes-mellitus">Diabetes mellitus</label></div>
+                                    <div class="form-item"><input type="checkbox" id="inmunosupresion-farmacologica" onchange="updateDashboard()"><label for="inmunosupresion-farmacologica">Inmunosupresión farmacológica</label></div>
+                                    <div class="form-item"><input type="checkbox" id="neoplasia-activa" onchange="updateDashboard()"><label for="neoplasia-activa">Neoplasia activa</label></div>
+                                    <div class="form-item"><input type="checkbox" id="transplante-organos" onchange="updateDashboard()"><label for="transplante-organos">Transplante de órganos</label></div>
+                                    <div class="form-item"><input type="checkbox" id="esplenectomia" onchange="updateDashboard()"><label for="esplenectomia">Esplenectomía</label></div>
+                                    <div class="form-item"><input type="checkbox" id="cirrosis-hepatica" onchange="updateDashboard()"><label for="cirrosis-hepatica">Cirrosis hepática</label></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section-container" id="section-physical-exam">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-stethoscope"></i> Examen Físico Infectológico</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main" id="physical-exam-content">
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-thermometer-half"></i> Signos Vitales</h4>
+                            <div class="sub-section-card">
+                                <h4 class="sub-section-title">Mediciones Básicas</h4>
+                                <div class="form-item measurement">
+                                    <label for="temperatura-actual">Temperatura:</label>
+                                    <input type="number" class="w-24" id="temperatura-actual" min="35" max="45" step="0.1" oninput="evaluateVitalSigns()">
+                                    <span>°C</span>
+                                </div>
+                                <div class="form-item measurement">
+                                    <label for="pas">Presión arterial sistólica:</label>
+                                    <input type="number" class="w-24" id="pas" min="50" max="250" oninput="evaluateVitalSigns()">
+                                    <span>mmHg</span>
+                                </div>
+                                <div class="form-item measurement">
+                                    <label for="pad">Presión arterial diastólica:</label>
+                                    <input type="number" class="w-24" id="pad" min="30" max="150" oninput="evaluateVitalSigns()">
+                                    <span>mmHg</span>
+                                </div>
+                                <div class="form-item measurement">
+                                    <label for="frecuencia-cardiaca">Frecuencia cardíaca:</label>
+                                    <input type="number" class="w-24" id="frecuencia-cardiaca" min="40" max="200" oninput="evaluateVitalSigns()">
+                                    <span>lpm</span>
+                                </div>
+                                <div class="form-item measurement">
+                                    <label for="frecuencia-respiratoria">Frecuencia respiratoria:</label>
+                                    <input type="number" class="w-24" id="frecuencia-respiratoria" min="8" max="50" oninput="evaluateVitalSigns()">
+                                    <span>rpm</span>
+                                </div>
+                                <div class="form-item measurement">
+                                    <label for="saturacion-o2">Saturación O2:</label>
+                                    <input type="number" class="w-24" id="saturacion-o2" min="70" max="100" oninput="evaluateVitalSigns()">
+                                    <span>%</span>
+                                </div>
+                                <div class="score-item">
+                                    <span>Estado hemodinámico:</span>
+                                    <span class="score-value" id="hemodynamic-status">--</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-eye"></i> Inspección General</h4>
+                            <div class="sub-section-card">
+                                <h4 class="sub-section-title">Estado General</h4>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="buen-estado-general" onchange="updateDashboard()"><label for="buen-estado-general">Buen estado general</label></div>
+                                    <div class="form-item"><input type="checkbox" id="regular-estado-general" onchange="updateDashboard()"><label for="regular-estado-general">Regular estado general</label></div>
+                                    <div class="form-item"><input type="checkbox" id="mal-estado-general" onchange="updateDashboard()"><label for="mal-estado-general">Mal estado general</label></div>
+                                    <div class="form-item"><input type="checkbox" id="aspecto-toxico" onchange="updateDashboard()"><label for="aspecto-toxico">Aspecto tóxico</label></div>
+                                    <div class="form-item"><input type="checkbox" id="palidez" onchange="updateDashboard()"><label for="palidez">Palidez</label></div>
+                                    <div class="form-item"><input type="checkbox" id="cianosis" onchange="updateDashboard()"><label for="cianosis">Cianosis</label></div>
+                                    <div class="form-item"><input type="checkbox" id="ictericia-fisica" onchange="updateDashboard()"><label for="ictericia-fisica">Ictericia</label></div>
+                                    <div class="form-item"><input type="checkbox" id="deshidratacion" onchange="updateDashboard()"><label for="deshidratacion">Deshidratación</label></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-lungs"></i> Examen Respiratorio</h4>
+                            <div class="bilateral-container form-grid">
+                                <div class="side-container sub-section-card">
+                                    <div class="side-header">Hemitórax Derecho</div>
+                                    <div class="form-grid">
+                                        <div class="form-item"><input type="checkbox" id="mvr-normal-der" onchange="updateDashboard()"><label for="mvr-normal-der">MV normal</label></div>
+                                        <div class="form-item"><input type="checkbox" id="mvr-disminuido-der" onchange="updateDashboard()"><label for="mvr-disminuido-der">MV disminuido</label></div>
+                                        <div class="form-item"><input type="checkbox" id="crepitantes-der" onchange="updateDashboard()"><label for="crepitantes-der">Crepitantes</label></div>
+                                        <div class="form-item"><input type="checkbox" id="roncus-der" onchange="updateDashboard()"><label for="roncus-der">Roncus</label></div>
+                                        <div class="form-item"><input type="checkbox" id="sibilancias-der" onchange="updateDashboard()"><label for="sibilancias-der">Sibilancias</label></div>
+                                        <div class="form-item"><input type="checkbox" id="roce-pleural-der" onchange="updateDashboard()"><label for="roce-pleural-der">Roce pleural</label></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="side-container sub-section-card">
+                                    <div class="side-header">Hemitórax Izquierdo</div>
+                                    <div class="form-grid">
+                                        <div class="form-item"><input type="checkbox" id="mvr-normal-izq" onchange="updateDashboard()"><label for="mvr-normal-izq">MV normal</label></div>
+                                        <div class="form-item"><input type="checkbox" id="mvr-disminuido-izq" onchange="updateDashboard()"><label for="mvr-disminuido-izq">MV disminuido</label></div>
+                                        <div class="form-item"><input type="checkbox" id="crepitantes-izq" onchange="updateDashboard()"><label for="crepitantes-izq">Crepitantes</label></div>
+                                        <div class="form-item"><input type="checkbox" id="roncus-izq" onchange="updateDashboard()"><label for="roncus-izq">Roncus</label></div>
+                                        <div class="form-item"><input type="checkbox" id="sibilancias-izq" onchange="updateDashboard()"><label for="sibilancias-izq">Sibilancias</label></div>
+                                        <div class="form-item"><input type="checkbox" id="roce-pleural-izq" onchange="updateDashboard()"><label for="roce-pleural-izq">Roce pleural</label></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-heartbeat"></i> Examen Cardiovascular</h4>
+                            <div class="sub-section-card">
+                                <h4 class="sub-section-title">Auscultación Cardíaca</h4>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="ruidos-cardiacos-normales" onchange="updateDashboard()"><label for="ruidos-cardiacos-normales">Ruidos cardíacos normales</label></div>
+                                    <div class="form-item"><input type="checkbox" id="taquicardia" onchange="updateDashboard()"><label for="taquicardia">Taquicardia</label></div>
+                                    <div class="form-item"><input type="checkbox" id="bradicardia" onchange="updateDashboard()"><label for="bradicardia">Bradicardia</label></div>
+                                    <div class="form-item"><input type="checkbox" id="soplo-cardiaco" onchange="updateDashboard()"><label for="soplo-cardiaco">Soplo cardíaco</label></div>
+                                    <div class="form-item"><input type="checkbox" id="galope" onchange="updateDashboard()"><label for="galope">Galope</label></div>
+                                    <div class="form-item"><input type="checkbox" id="roce-pericardico" onchange="updateDashboard()"><label for="roce-pericardico">Roce pericárdico</label></div>
+                                    <div class="form-item"><input type="checkbox" id="edema-mmii" onchange="updateDashboard()"><label for="edema-mmii">Edema MMII</label></div>
+                                    <div class="form-item"><input type="checkbox" id="ingurgitacion-yugular" onchange="updateDashboard()"><label for="ingurgitacion-yugular">Ingurgitación yugular</label></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-stomach"></i> Examen Abdominal</h4>
+                            <div class="sub-section-card">
+                                <h4 class="sub-section-title">Abdomen</h4>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="abdomen-normal" onchange="updateDashboard()"><label for="abdomen-normal">Abdomen normal</label></div>
+                                    <div class="form-item"><input type="checkbox" id="abdomen-distendido" onchange="updateDashboard()"><label for="abdomen-distendido">Distensión abdominal</label></div>
+                                    <div class="form-item"><input type="checkbox" id="dolor-abdominal-palpacion" onchange="updateDashboard()"><label for="dolor-abdominal-palpacion">Dolor a la palpación</label></div>
+                                    <div class="form-item"><input type="checkbox" id="defensa-abdominal" onchange="updateDashboard()"><label for="defensa-abdominal">Defensa abdominal</label></div>
+                                    <div class="form-item"><input type="checkbox" id="rebote-positivo" onchange="updateDashboard()"><label for="rebote-positivo">Rebote positivo</label></div>
+                                    <div class="form-item"><input type="checkbox" id="hepatomegalia" onchange="updateDashboard()"><label for="hepatomegalia">Hepatomegalia</label></div>
+                                    <div class="form-item"><input type="checkbox" id="esplenomegalia" onchange="updateDashboard()"><label for="esplenomegalia">Esplenomegalia</label></div>
+                                    <div class="form-item"><input type="checkbox" id="ascitis" onchange="updateDashboard()"><label for="ascitis">Ascitis</label></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-brain"></i> Examen Neurológico</h4>
+                            <div class="sub-section-card">
+                                <h4 class="sub-section-title">Estado Mental y Signos Meníngeos</h4>
+                                <div class="form-item measurement">
+                                    <label for="glasgow">Escala de Glasgow:</label>
+                                    <input type="number" class="w-24" id="glasgow" min="3" max="15" oninput="evaluateGlasgow()">
+                                    <span>/15</span>
+                                </div>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="conciencia-normal" onchange="updateDashboard()"><label for="conciencia-normal">Conciencia normal</label></div>
+                                    <div class="form-item"><input type="checkbox" id="desorientacion" onchange="updateDashboard()"><label for="desorientacion">Desorientación</label></div>
+                                    <div class="form-item"><input type="checkbox" id="somnolencia" onchange="updateDashboard()"><label for="somnolencia">Somnolencia</label></div>
+                                    <div class="form-item"><input type="checkbox" id="estupor" onchange="updateDashboard()"><label for="estupor">Estupor</label></div>
+                                    <div class="form-item"><input type="checkbox" id="kernig-positivo" onchange="updateDashboard()"><label for="kernig-positivo">Signo de Kernig +</label></div>
+                                    <div class="form-item"><input type="checkbox" id="brudzinski-positivo" onchange="updateDashboard()"><label for="brudzinski-positivo">Signo de Brudzinski +</label></div>
+                                    <div class="form-item"><input type="checkbox" id="rigidez-nuca-fisica" onchange="updateDashboard()"><label for="rigidez-nuca-fisica">Rigidez de nuca</label></div>
+                                    <div class="form-item"><input type="checkbox" id="fotofobia-fisica" onchange="updateDashboard()"><label for="fotofobia-fisica">Fotofobia</label></div>
+                                </div>
+                                <div class="score-item">
+                                    <span>Interpretación Glasgow:</span>
+                                    <span class="score-value" id="glasgow-interpretation">--</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-hand-paper"></i> Examen de Piel y Faneras</h4>
+                            <div class="sub-section-card">
+                                <h4 class="sub-section-title">Lesiones Cutáneas</h4>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="piel-normal" onchange="updateDashboard()"><label for="piel-normal">Piel sin lesiones</label></div>
+                                    <div class="form-item"><input type="checkbox" id="exantema-maculopapular" onchange="updateDashboard()"><label for="exantema-maculopapular">Exantema maculopapular</label></div>
+                                    <div class="form-item"><input type="checkbox" id="exantema-vesicular" onchange="updateDashboard()"><label for="exantema-vesicular">Exantema vesicular</label></div>
+                                    <div class="form-item"><input type="checkbox" id="petequias-fisica" onchange="updateDashboard()"><label for="petequias-fisica">Petequias</label></div>
+                                    <div class="form-item"><input type="checkbox" id="purpura-fisica" onchange="updateDashboard()"><label for="purpura-fisica">Púrpura</label></div>
+                                    <div class="form-item"><input type="checkbox" id="equimosis" onchange="updateDashboard()"><label for="equimosis">Equimosis</label></div>
+                                    <div class="form-item"><input type="checkbox" id="celulitis-fisica" onchange="updateDashboard()"><label for="celulitis-fisica">Celulitis</label></div>
+                                    <div class="form-item"><input type="checkbox" id="abscesos-fisica" onchange="updateDashboard()"><label for="abscesos-fisica">Abscesos</label></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-circle-notch"></i> Adenopatías</h4>
+                            <div class="sub-section-card">
+                                <h4 class="sub-section-title">Territorios Ganglionares</h4>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="adenopatias-ausentes" onchange="updateDashboard()"><label for="adenopatias-ausentes">Adenopatías ausentes</label></div>
+                                    <div class="form-item"><input type="checkbox" id="adenopatias-cervicales" onchange="updateDashboard()"><label for="adenopatias-cervicales">Adenopatías cervicales</label></div>
+                                    <div class="form-item"><input type="checkbox" id="adenopatias-supraclaviculares" onchange="updateDashboard()"><label for="adenopatias-supraclaviculares">Adenopatías supraclaviculares</label></div>
+                                    <div class="form-item"><input type="checkbox" id="adenopatias-axilares" onchange="updateDashboard()"><label for="adenopatias-axilares">Adenopatías axilares</label></div>
+                                    <div class="form-item"><input type="checkbox" id="adenopatias-inguinales" onchange="updateDashboard()"><label for="adenopatias-inguinales">Adenopatías inguinales</label></div>
+                                    <div class="form-item"><input type="checkbox" id="adenopatias-generalizadas" onchange="updateDashboard()"><label for="adenopatias-generalizadas">Adenopatías generalizadas</label></div>
+                                    <div class="form-item"><input type="checkbox" id="adenopatias-dolorosas" onchange="updateDashboard()"><label for="adenopatias-dolorosas">Adenopatías dolorosas</label></div>
+                                    <div class="form-item"><input type="checkbox" id="adenopatias-adheridas" onchange="updateDashboard()"><label for="adenopatias-adheridas">Adenopatías adheridas</label></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-container" id="section-fever-evaluation">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-thermometer-three-quarters"></i> Evaluación del Síndrome Febril</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main" id="fever-evaluation-content">
+                        <div class="sub-section-card fever-assessment">
+                            <h4 class="sub-section-title"><i class="fas fa-thermometer-half"></i> Características del Patrón Febril</h4>
+                            <div class="form-item measurement">
+                                <label for="temp-presentacion">Temperatura de presentación:</label>
+                                <input type="number" class="w-24" id="temp-presentacion" min="35" max="45" step="0.1" oninput="evaluateFeverPattern()">
+                                <span>°C</span>
+                            </div>
+                            <div class="sub-section-card">
+                                <h4 class="sub-section-title">Tipo de Fiebre</h4>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="radio" name="tipo-fiebre" id="febricula" value="febricula" onchange="evaluateFeverPattern()"><label for="febricula">Febrícula (37.2-37.9°C)</label></div>
+                                    <div class="form-item"><input type="radio" name="tipo-fiebre" id="fiebre-moderada" value="moderada" onchange="evaluateFeverPattern()"><label for="fiebre-moderada">Fiebre moderada (38-38.9°C)</label></div>
+                                    <div class="form-item"><input type="radio" name="tipo-fiebre" id="fiebre-alta" value="alta" onchange="evaluateFeverPattern()"><label for="fiebre-alta">Fiebre alta (39-40°C)</label></div>
+                                    <div class="form-item"><input type="radio" name="tipo-fiebre" id="hipertermia" value="hipertermia" onchange="evaluateFeverPattern()"><label for="hipertermia">Hipertermia (>40°C)</label></div>
+                                </div>
+                            </div>
+                            <div class="sub-section-card">
+                                <h4 class="sub-section-title">Duración de la Fiebre</h4>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="radio" name="duracion-fiebre-radio" id="fiebre-aguda" value="aguda" onchange="evaluateFeverPattern()"><label for="fiebre-aguda">Fiebre aguda (&lt;14 días)</label></div>
+                                    <div class="form-item"><input type="radio" name="duracion-fiebre-radio" id="fiebre-subaguda" value="subaguda" onchange="evaluateFeverPattern()"><label for="fiebre-subaguda">Fiebre subaguda (14-28 días)</label></div>
+                                    <div class="form-item"><input type="radio" name="duracion-fiebre-radio" id="fiebre-cronica" value="cronica" onchange="evaluateFeverPattern()"><label for="fiebre-cronica">Fiebre crónica (>28 días)</label></div>
+                                    <div class="form-item"><input type="radio" name="duracion-fiebre-radio" id="fuo" value="fuo" onchange="evaluateFeverPattern()"><label for="fuo">Fiebre de origen desconocido</label></div>
+                                </div>
+                            </div>
+                            <div class="score-item">
+                                <span>Clasificación del síndrome febril:</span>
+                                <span class="score-value" id="fever-syndrome-classification">--</span>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-search"></i> Evaluación del Foco Infeccioso</h4>
+                            <div class="sub-section-card">
+                                <h4 class="sub-section-title">Foco Respiratorio</h4>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="neumonia-probable" onchange="updateDashboard()"><label for="neumonia-probable">Neumonía probable</label></div>
+                                    <div class="form-item"><input type="checkbox" id="bronquitis" onchange="updateDashboard()"><label for="bronquitis">Bronquitis</label></div>
+                                    <div class="form-item"><input type="checkbox" id="faringitis" onchange="updateDashboard()"><label for="faringitis">Faringitis</label></div>
+                                    <div class="form-item"><input type="checkbox" id="sinusitis" onchange="updateDashboard()"><label for="sinusitis">Sinusitis</label></div>
+                                    <div class="form-item"><input type="checkbox" id="otitis" onchange="updateDashboard()"><label for="otitis">Otitis</label></div>
+                                </div>
+                            </div>
+                            <div class="sub-section-card">
+                                <h4 class="sub-section-title">Foco Urinario</h4>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="itu-baja" onchange="updateDashboard()"><label for="itu-baja">ITU baja/cistitis</label></div>
+                                    <div class="form-item"><input type="checkbox" id="pielonefritis" onchange="updateDashboard()"><label for="pielonefritis">Pielonefritis</label></div>
+                                    <div class="form-item"><input type="checkbox" id="uretritis" onchange="updateDashboard()"><label for="uretritis">Uretritis</label></div>
+                                    <div class="form-item"><input type="checkbox" id="prostatitis" onchange="updateDashboard()"><label for="prostatitis">Prostatitis</label></div>
+                                </div>
+                            </div>
+                            <div class="sub-section-card">
+                                <h4 class="sub-section-title">Foco Gastrointestinal</h4>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="gastroenteritis" onchange="updateDashboard()"><label for="gastroenteritis">Gastroenteritis</label></div>
+                                    <div class="form-item"><input type="checkbox" id="colitis" onchange="updateDashboard()"><label for="colitis">Colitis</label></div>
+                                    <div class="form-item"><input type="checkbox" id="apendicitis" onchange="updateDashboard()"><label for="apendicitis">Apendicitis</label></div>
+                                    <div class="form-item"><input type="checkbox" id="colangitis" onchange="updateDashboard()"><label for="colangitis">Colangitis</label></div>
+                                    <div class="form-item"><input type="checkbox" id="absceso-abdominal" onchange="updateDashboard()"><label for="absceso-abdominal">Absceso abdominal</label></div>
+                                </div>
+                            </div>
+                            <div class="sub-section-card">
+                                <h4 class="sub-section-title">Foco Neurológico</h4>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="meningitis-probable" onchange="updateDashboard()"><label for="meningitis-probable">Meningitis probable</label></div>
+                                    <div class="form-item"><input type="checkbox" id="encefalitis" onchange="updateDashboard()"><label for="encefalitis">Encefalitis</label></div>
+                                    <div class="form-item"><input type="checkbox" id="absceso-cerebral" onchange="updateDashboard()"><label for="absceso-cerebral">Absceso cerebral</label></div>
+                                </div>
+                            </div>
+                            <div class="sub-section-card">
+                                <h4 class="sub-section-title">Foco Cutáneo</h4>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="celulitis-foco" onchange="updateDashboard()"><label for="celulitis-foco">Celulitis</label></div>
+                                    <div class="form-item"><input type="checkbox" id="erisipela" onchange="updateDashboard()"><label for="erisipela">Erisipela</label></div>
+                                    <div class="form-item"><input type="checkbox" id="absceso-cutaneo" onchange="updateDashboard()"><label for="absceso-cutaneo">Absceso cutáneo</label></div>
+                                    <div class="form-item"><input type="checkbox" id="impetigo" onchange="updateDashboard()"><label for="impetigo">Impétigo</label></div>
+                                </div>
+                            </div>
+                            <div class="sub-section-card">
+                                <h4 class="sub-section-title">Otros Focos</h4>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="endocarditis-probable" onchange="updateDashboard()"><label for="endocarditis-probable">Endocarditis probable</label></div>
+                                    <div class="form-item"><input type="checkbox" id="artritis-septica" onchange="updateDashboard()"><label for="artritis-septica">Artritis séptica</label></div>
+                                    <div class="form-item"><input type="checkbox" id="osteomielitis" onchange="updateDashboard()"><label for="osteomielitis">Osteomielitis</label></div>
+                                    <div class="form-item"><input type="checkbox" id="foco-desconocido" onchange="updateDashboard()"><label for="foco-desconocido">Foco desconocido</label></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-container" id="section-sepsis-evaluation">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-heartbeat"></i> Evaluación de Sepsis y SIRS</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main" id="sepsis-evaluation-content">
+                        <div class="sub-section-card sepsis-assessment">
+                            <h4 class="sub-section-title"><i class="fas fa-exclamation-triangle"></i> Criterios qSOFA</h4>
+                            <div class="test-item form-item">
+                                <label>Frecuencia respiratoria ≥22 rpm</label>
+                                <div class="test-controls">
+                                    <div class="test-checkbox form-item"><input type="checkbox" id="qsofa-fr" onchange="calculateQSOFA()"><span class="positive">Presente</span></div>
+                                </div>
+                            </div>
+                            <div class="test-item form-item">
+                                <label>Alteración del estado mental</label>
+                                <div class="test-controls">
+                                    <div class="test-checkbox form-item"><input type="checkbox" id="qsofa-mental" onchange="calculateQSOFA()"><span class="positive">Presente</span></div>
+                                </div>
+                            </div>
+                            <div class="test-item form-item">
+                                <label>Presión arterial sistólica ≤100 mmHg</label>
+                                <div class="test-controls">
+                                    <div class="test-checkbox form-item"><input type="checkbox" id="qsofa-pas" onchange="calculateQSOFA()"><span class="positive">Presente</span></div>
+                                </div>
+                            </div>
+                            <div class="score-item">
+                                <span>Puntuación qSOFA:</span>
+                                <span class="score-value" id="qsofa-score">0</span>
+                                <span>/3 puntos</span>
+                            </div>
+                            <div class="score-item">
+                                <span>Riesgo de mortalidad:</span>
+                                <span class="score-value" id="qsofa-risk">--</span>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-thermometer-empty"></i> Criterios SIRS</h4>
+                            <div class="sub-section-card">
+                                <h4 class="sub-section-title">Síndrome de Respuesta Inflamatoria Sistémica</h4>
+                                <div class="test-item form-item">
+                                    <label>Temperatura >38°C o &lt;36°C</label>
+                                    <div class="test-controls">
+                                        <div class="test-checkbox form-item"><input type="checkbox" id="sirs-temp" onchange="calculateSIRS()"><span class="positive">Presente</span></div>
+                                    </div>
+                                </div>
+                                <div class="test-item form-item">
+                                    <label>Frecuencia cardíaca >90 lpm</label>
+                                    <div class="test-controls">
+                                        <div class="test-checkbox form-item"><input type="checkbox" id="sirs-fc" onchange="calculateSIRS()"><span class="positive">Presente</span></div>
+                                    </div>
+                                </div>
+                                <div class="test-item form-item">
+                                    <label>Frecuencia respiratoria >20 rpm o PaCO2 &lt;32 mmHg</label>
+                                    <div class="test-controls">
+                                        <div class="test-checkbox form-item"><input type="checkbox" id="sirs-fr" onchange="calculateSIRS()"><span class="positive">Presente</span></div>
+                                    </div>
+                                </div>
+                                <div class="test-item form-item">
+                                    <label>Leucocitos >12,000 o &lt;4,000 o >10% cayados</label>
+                                    <div class="test-controls">
+                                        <div class="test-checkbox form-item"><input type="checkbox" id="sirs-leuco" onchange="calculateSIRS()"><span class="positive">Presente</span></div>
+                                    </div>
+                                </div>
+                                <div class="score-item">
+                                    <span>Criterios SIRS cumplidos:</span>
+                                    <span class="score-value" id="sirs-criterios">0</span>
+                                    <span>/4</span>
+                                </div>
+                                <div class="score-item">
+                                    <span>Diagnóstico SIRS:</span>
+                                    <span class="score-value" id="sirs-diagnosis">--</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-exclamation-circle"></i> Criterios de Sepsis Severa y Shock Séptico</h4>
+                            <div class="sub-section-card">
+                                <h4 class="sub-section-title">Disfunción Orgánica</h4>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="hipotension-refractaria" onchange="updateDashboard()"><label for="hipotension-refractaria">Hipotensión refractaria</label></div>
+                                    <div class="form-item"><input type="checkbox" id="oliguria" onchange="updateDashboard()"><label for="oliguria">Oliguria (&lt;0.5 mL/kg/h)</label></div>
+                                    <div class="form-item"><input type="checkbox" id="lactato-elevado" onchange="updateDashboard()"><label for="lactato-elevado">Lactato elevado (>2 mmol/L)</label></div>
+                                    <div class="form-item"><input type="checkbox" id="bilirrubina-elevada" onchange="updateDashboard()"><label for="bilirrubina-elevada">Bilirrubina >2 mg/dL</label></div>
+                                    <div class="form-item"><input type="checkbox" id="plaquetopenia" onchange="updateDashboard()"><label for="plaquetopenia">Plaquetopenia (&lt;100,000)</label></div>
+                                    <div class="form-item"><input type="checkbox" id="coagulopatia" onchange="updateDashboard()"><label for="coagulopatia">Coagulopatía (INR >1.5)</label></div>
+                                    <div class="form-item"><input type="checkbox" id="hipoxemia" onchange="updateDashboard()"><label for="hipoxemia">Hipoxemia (PaO2/FiO2 &lt;300)</label></div>
+                                    <div class="form-item"><input type="checkbox" id="acidosis-metabolica" onchange="updateDashboard()"><label for="acidosis-metabolica">Acidosis metabólica</label></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-container" id="section-risk-scales">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-calculator"></i> Escalas de Riesgo Infectológicas</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main" id="risk-scales-content">
+                        <div class="sub-section-card score-calculation">
+                            <h4 class="sub-section-title"><i class="fas fa-lungs"></i> CURB-65 - Neumonía</h4>
+                            <div class="test-item form-item">
+                                <label>Confusión mental</label>
+                                <div class="test-controls">
+                                    <div class="test-checkbox form-item"><input type="checkbox" id="curb-confusion" onchange="calculateCURB65()"><span class="positive">Presente (1 punto)</span></div>
+                                </div>
+                            </div>
+                            <div class="test-item form-item">
+                                <label>Urea >7 mmol/L (20 mg/dL)</label>
+                                <div class="test-controls">
+                                    <div class="test-checkbox form-item"><input type="checkbox" id="curb-urea" onchange="calculateCURB65()"><span class="positive">Presente (1 punto)</span></div>
+                                </div>
+                            </div>
+                            <div class="test-item form-item">
+                                <label>Frecuencia respiratoria ≥30 rpm</label>
+                                <div class="test-controls">
+                                    <div class="test-checkbox form-item"><input type="checkbox" id="curb-respiratoria" onchange="calculateCURB65()"><span class="positive">Presente (1 punto)</span></div>
+                                </div>
+                            </div>
+                            <div class="test-item form-item">
+                                <label>Presión arterial sistólica &lt;90 o diastólica ≤60 mmHg</label>
+                                <div class="test-controls">
+                                    <div class="test-checkbox form-item"><input type="checkbox" id="curb-presion" onchange="calculateCURB65()"><span class="positive">Presente (1 punto)</span></div>
+                                </div>
+                            </div>
+                            <div class="test-item form-item">
+                                <label>Edad ≥65 años</label>
+                                <div class="test-controls">
+                                    <div class="test-checkbox form-item"><input type="checkbox" id="curb-edad" onchange="calculateCURB65()"><span class="positive">Presente (1 punto)</span></div>
+                                </div>
+                            </div>
+                            <div class="score-item">
+                                <span>Puntuación CURB-65:</span>
+                                <span class="score-value" id="curb65-score">0</span>
+                                <span>/5 puntos</span>
+                            </div>
+                            <div class="score-item">
+                                <span>Riesgo de mortalidad:</span>
+                                <span class="score-value" id="curb65-risk">--</span>
+                            </div>
+                            <div class="score-item">
+                                <span>Recomendación:</span>
+                                <span class="score-value" id="curb65-recommendation">--</span>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card score-calculation">
+                            <h4 class="sub-section-title"><i class="fas fa-flask"></i> Escala PSI/PORT - Neumonía</h4>
+                            <div class="sub-section-card">
+                                <h4 class="sub-section-title">Pneumonia Severity Index (Simplificado)</h4>
+                                <div class="sub-section-card">
+                                    <h4 class="sub-section-title">Factores Demográficos</h4>
+                                    <div class="form-item measurement">
+                                        <label for="psi-edad">Edad (años):</label>
+                                        <input type="number" class="w-24" id="psi-edad" min="0" max="120" oninput="calculatePSI()">
+                                        <span>años</span>
+                                    </div>
+                                    <div class="test-item form-item">
+                                        <label>Sexo masculino</label>
+                                        <div class="test-controls">
+                                            <div class="test-checkbox form-item"><input type="checkbox" id="psi-masculino" onchange="calculatePSI()"><span class="positive">Presente</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="sub-section-card">
+                                    <h4 class="sub-section-title">Comorbilidades (10 puntos c/u)</h4>
+                                    <div class="form-grid">
+                                        <div class="form-item"><input type="checkbox" id="psi-neoplasia" onchange="calculatePSI()"><label for="psi-neoplasia">Neoplasia</label></div>
+                                        <div class="form-item"><input type="checkbox" id="psi-hepatopatia" onchange="calculatePSI()"><label for="psi-hepatopatia">Hepatopatía</label></div>
+                                        <div class="form-item"><input type="checkbox" id="psi-icc" onchange="calculatePSI()"><label for="psi-icc">Insuf. cardíaca congestiva</label></div>
+                                        <div class="form-item"><input type="checkbox" id="psi-enfermedad-cerebrovascular" onchange="calculatePSI()"><label for="psi-enfermedad-cerebrovascular">Enfermedad cerebrovascular</label></div>
+                                        <div class="form-item"><input type="checkbox" id="psi-nefropatia" onchange="calculatePSI()"><label for="psi-nefropatia">Nefropatía</label></div>
+                                    </div>
+                                </div>
+                                <div class="score-item">
+                                    <span>Puntuación PSI estimada:</span>
+                                    <span class="score-value" id="psi-score">0</span>
+                                    <span>puntos</span>
+                                </div>
+                                <div class="score-item">
+                                    <span>Clase de riesgo:</span>
+                                    <span class="score-value" id="psi-class">--</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card score-calculation">
+                            <h4 class="sub-section-title"><i class="fas fa-tint"></i> Escala de Riesgo ITU</h4>
+                            <div class="sub-section-card">
+                                <h4 class="sub-section-title">Factores de Riesgo para ITU Complicada</h4>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="itu-embarazo" onchange="calculateITURisk()"><label for="itu-embarazo">Embarazo</label></div>
+                                    <div class="form-item"><input type="checkbox" id="itu-diabetes" onchange="calculateITURisk()"><label for="itu-diabetes">Diabetes mellitus</label></div>
+                                    <div class="form-item"><input type="checkbox" id="itu-inmunosupresion" onchange="calculateITURisk()"><label for="itu-inmunosupresion">Inmunosupresión</label></div>
+                                    <div class="form-item"><input type="checkbox" id="itu-uropatia" onchange="calculateITURisk()"><label for="itu-uropatia">Uropatía obstructiva</label></div>
+                                    <div class="form-item"><input type="checkbox" id="itu-cateter" onchange="calculateITURisk()"><label for="itu-cateter">Catéter urinario</label></div>
+                                    <div class="form-item"><input type="checkbox" id="itu-instrumentacion" onchange="calculateITURisk()"><label for="itu-instrumentacion">Instrumentación reciente</label></div>
+                                    <div class="form-item"><input type="checkbox" id="itu-masculino" onchange="calculateITURisk()"><label for="itu-masculino">Sexo masculino</label></div>
+                                    <div class="form-item"><input type="checkbox" id="itu-anciano" onchange="calculateITURisk()"><label for="itu-anciano">Edad >65 años</label></div>
+                                </div>
+                                <div class="score-item">
+                                    <span>Factores de riesgo:</span>
+                                    <span class="score-value" id="itu-risk-count">0</span>
+                                </div>
+                                <div class="score-item">
+                                    <span>Clasificación:</span>
+                                    <span class="score-value" id="itu-classification">--</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-container" id="section-source-evaluation">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-search-location"></i> Evaluación Específica del Foco Infeccioso</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main" id="source-evaluation-content">
+                        <div class="sub-section-card infection-source">
+                            <h4 class="sub-section-title"><i class="fas fa-lungs"></i> Evaluación Respiratoria Específica</h4>
+                            <div class="sub-section-card">
+                                <h4 class="sub-section-title">Neumonía Adquirida en la Comunidad</h4>
+                                <div class="sub-section-card">
+                                    <h4 class="sub-section-title">Criterios Clínicos</h4>
+                                    <div class="form-grid">
+                                        <div class="form-item"><input type="checkbox" id="neumonia-tos" onchange="updateDashboard()"><label for="neumonia-tos">Tos productiva</label></div>
+                                        <div class="form-item"><input type="checkbox" id="neumonia-disnea" onchange="updateDashboard()"><label for="neumonia-disnea">Disnea</label></div>
+                                        <div class="form-item"><input type="checkbox" id="neumonia-dolor" onchange="updateDashboard()"><label for="neumonia-dolor">Dolor torácico pleurítico</label></div>
+                                        <div class="form-item"><input type="checkbox" id="neumonia-crepitantes" onchange="updateDashboard()"><label for="neumonia-crepitantes">Crepitantes focales</label></div>
+                                        <div class="form-item"><input type="checkbox" id="neumonia-matidez" onchange="updateDashboard()"><label for="neumonia-matidez">Matidez a la percusión</label></div>
+                                        <div class="form-item"><input type="checkbox" id="neumonia-mvr-disminuido" onchange="updateDashboard()"><label for="neumonia-mvr-disminuido">MV disminuido</label></div>
+                                    </div>
+                                </div>
+                                <div class="sub-section-card">
+                                    <h4 class="sub-section-title">Clasificación de Severidad</h4>
+                                    <div class="form-grid">
+                                        <div class="form-item"><input type="radio" name="neumonia-severidad" id="neumonia-leve" value="leve" onchange="updateDashboard()"><label for="neumonia-leve">Neumonía leve (ambulatoria)</label></div>
+                                        <div class="form-item"><input type="radio" name="neumonia-severidad" id="neumonia-moderada" value="moderada" onchange="updateDashboard()"><label for="neumonia-moderada">Neumonía moderada (hospitalaria)</label></div>
+                                        <div class="form-item"><input type="radio" name="neumonia-severidad" id="neumonia-severa" value="severa" onchange="updateDashboard()"><label for="neumonia-severa">Neumonía severa (UCI)</label></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-tint"></i> Evaluación Urinaria Específica</h4>
+                            <div class="sub-section-card">
+                                <h4 class="sub-section-title">Infección del Tracto Urinario</h4>
+                                <div class="bilateral-container form-grid">
+                                    <div class="side-container sub-section-card">
+                                        <div class="side-header">ITU Baja</div>
+                                        <div class="form-grid">
+                                            <div class="form-item"><input type="checkbox" id="cistitis-disuria" onchange="updateDashboard()"><label for="cistitis-disuria">Disuria</label></div>
+                                            <div class="form-item"><input type="checkbox" id="cistitis-poliaquiuria" onchange="updateDashboard()"><label for="cistitis-poliaquiuria">Poliaquiuria</label></div>
+                                            <div class="form-item"><input type="checkbox" id="cistitis-urgencia" onchange="updateDashboard()"><label for="cistitis-urgencia">Urgencia miccional</label></div>
+                                            <div class="form-item"><input type="checkbox" id="cistitis-suprapubico" onchange="updateDashboard()"><label for="cistitis-suprapubico">Dolor suprapúbico</label></div>
+                                            <div class="form-item"><input type="checkbox" id="cistitis-sin-fiebre" onchange="updateDashboard()"><label for="cistitis-sin-fiebre">Sin fiebre/mínima</label></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="side-container sub-section-card">
+                                        <div class="side-header">ITU Alta (Pielonefritis)</div>
+                                        <div class="form-grid">
+                                            <div class="form-item"><input type="checkbox" id="pielonefritis-fiebre" onchange="updateDashboard()"><label for="pielonefritis-fiebre">Fiebre >38°C</label></div>
+                                            <div class="form-item"><input type="checkbox" id="pielonefritis-escalofrios" onchange="updateDashboard()"><label for="pielonefritis-escalofrios">Escalofríos</label></div>
+                                            <div class="form-item"><input type="checkbox" id="pielonefritis-lumbar" onchange="updateDashboard()"><label for="pielonefritis-lumbar">Dolor lumbar</label></div>
+                                            <div class="form-item"><input type="checkbox" id="pielonefritis-puño-percusion" onchange="updateDashboard()"><label for="pielonefritis-puño-percusion">Puño-percusión +</label></div>
+                                            <div class="form-item"><input type="checkbox" id="pielonefritis-nauseas" onchange="updateDashboard()"><label for="pielonefritis-nauseas">Náuseas/vómitos</label></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-stomach"></i> Evaluación Gastrointestinal Específica</h4>
+                            <div class="sub-section-card">
+                                <h4 class="sub-section-title">Gastroenteritis Infecciosa</h4>
+                                <div class="form-item measurement">
+                                    <label for="deposiciones-dia">Número de deposiciones/día:</label>
+                                    <input type="number" class="w-24" id="deposiciones-dia" min="0" max="30" oninput="evaluateGastroenteritis()">
+                                    <span>deposiciones</span>
+                                </div>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="gastro-acuosa" onchange="evaluateGastroenteritis()"><label for="gastro-acuosa">Diarrea acuosa</label></div>
+                                    <div class="form-item"><input type="checkbox" id="gastro-sanguinolenta" onchange="evaluateGastroenteritis()"><label for="gastro-sanguinolenta">Diarrea sanguinolenta</label></div>
+                                    <div class="form-item"><input type="checkbox" id="gastro-moco" onchange="evaluateGastroenteritis()"><label for="gastro-moco">Diarrea con moco</label></div>
+                                    <div class="form-item"><input type="checkbox" id="gastro-vomitos" onchange="evaluateGastroenteritis()"><label for="gastro-vomitos">Vómitos</label></div>
+                                    <div class="form-item"><input type="checkbox" id="gastro-dolor-colico" onchange="evaluateGastroenteritis()"><label for="gastro-dolor-colico">Dolor cólico</label></div>
+                                    <div class="form-item"><input type="checkbox" id="gastro-deshidratacion" onchange="evaluateGastroenteritis()"><label for="gastro-deshidratacion">Deshidratación</label></div>
+                                </div>
+                                <div class="score-item">
+                                    <span>Severidad de gastroenteritis:</span>
+                                    <span class="score-value" id="gastroenteritis-severity">--</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-brain"></i> Evaluación Neurológica Específica</h4>
+                            <div class="sub-section-card">
+                                <h4 class="sub-section-title">Sospecha de Meningitis</h4>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="meningitis-triada" onchange="updateDashboard()"><label for="meningitis-triada">Tríada clásica completa</label></div>
+                                    <div class="form-item"><input type="checkbox" id="meningitis-cefalea-intensa" onchange="updateDashboard()"><label for="meningitis-cefalea-intensa">Cefalea intensa</label></div>
+                                    <div class="form-item"><input type="checkbox" id="meningitis-fotofobia" onchange="updateDashboard()"><label for="meningitis-fotofobia">Fotofobia</label></div>
+                                    <div class="form-item"><input type="checkbox" id="meningitis-rigidez" onchange="updateDashboard()"><label for="meningitis-rigidez">Rigidez de nuca</label></div>
+                                    <div class="form-item"><input type="checkbox" id="meningitis-kernig" onchange="updateDashboard()"><label for="meningitis-kernig">Signo de Kernig +</label></div>
+                                    <div class="form-item"><input type="checkbox" id="meningitis-brudzinski" onchange="updateDashboard()"><label for="meningitis-brudzinski">Signo de Brudzinski +</label></div>
+                                    <div class="form-item"><input type="checkbox" id="meningitis-petequias" onchange="updateDashboard()"><label for="meningitis-petequias">Exantema petequial</label></div>
+                                    <div class="form-item"><input type="checkbox" id="meningitis-confusion" onchange="updateDashboard()"><label for="meningitis-confusion">Confusión/AEM</label></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-hand-paper"></i> Evaluación Cutánea Específica</h4>
+                            <div class="sub-section-card">
+                                <h4 class="sub-section-title">Infecciones de Piel y Tejidos Blandos</h4>
+                                <div class="bilateral-container form-grid">
+                                    <div class="side-container sub-section-card">
+                                        <div class="side-header">Celulitis</div>
+                                        <div class="form-grid">
+                                            <div class="form-item"><input type="checkbox" id="celulitis-eritema" onchange="updateDashboard()"><label for="celulitis-eritema">Eritema</label></div>
+                                            <div class="form-item"><input type="checkbox" id="celulitis-edema" onchange="updateDashboard()"><label for="celulitis-edema">Edema</label></div>
+                                            <div class="form-item"><input type="checkbox" id="celulitis-calor" onchange="updateDashboard()"><label for="celulitis-calor">Calor local</label></div>
+                                            <div class="form-item"><input type="checkbox" id="celulitis-dolor" onchange="updateDashboard()"><label for="celulitis-dolor">Dolor</label></div>
+                                            <div class="form-item"><input type="checkbox" id="celulitis-bordes-difusos" onchange="updateDashboard()"><label for="celulitis-bordes-difusos">Bordes difusos</label></div>
+                                            <div class="form-item"><input type="checkbox" id="celulitis-adenopatias" onchange="updateDashboard()"><label for="celulitis-adenopatias">Adenopatías</label></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="side-container sub-section-card">
+                                        <div class="side-header">Erisipela</div>
+                                        <div class="form-grid">
+                                            <div class="form-item"><input type="checkbox" id="erisipela-placa-eritematosa" onchange="updateDashboard()"><label for="erisipela-placa-eritematosa">Placa eritematosa</label></div>
+                                            <div class="form-item"><input type="checkbox" id="erisipela-bordes-elevados" onchange="updateDashboard()"><label for="erisipela-bordes-elevados">Bordes elevados</label></div>
+                                            <div class="form-item"><input type="checkbox" id="erisipela-superficie-lisa" onchange="updateDashboard()"><label for="erisipela-superficie-lisa">Superficie lisa</label></div>
+                                            <div class="form-item"><input type="checkbox" id="erisipela-caliente" onchange="updateDashboard()"><label for="erisipela-caliente">Muy caliente</label></div>
+                                            <div class="form-item"><input type="checkbox" id="erisipela-dolorosa" onchange="updateDashboard()"><label for="erisipela-dolorosa">Muy dolorosa</label></div>
+                                            <div class="form-item"><input type="checkbox" id="erisipela-vesiculas" onchange="updateDashboard()"><label for="erisipela-vesiculas">Vesículas/bulas</label></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    
+                <div class="section-container">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main">
+                            <i class="fas fa-file-alt"></i> Conclusión del Examen Infectológico
+                        </h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="sub-section-card">
+                            <div id="conclusion-text" class="conclusion-text">
+                                Seleccione los parámetros del examen para generar la conclusión infectológica...
+                            </div>
+                        </div>
+                        <div class="flex justify-center gap-4 mt-8">
+                            <button class="btn btn-primary" onclick="generateConclusion()">
+                                <i class="fas fa-file-medical"></i> Generar Conclusión
+                            </button>
+                            <button class="btn btn-primary" onclick="copyConclusionToClipboard()">
+                                <i class="fas fa-copy"></i> Copiar Texto
+                            </button>
+                            <button class="btn btn-primary" onclick="printConclusion()">
+                                <i class="fas fa-print"></i> Imprimir Conclusión
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <div class="sticky-report-panel" id="stickyReportPanel">
+            <div class="sticky-header">
+                <span><i class="fas fa-file-medical-alt"></i> Informe Infectología en Tiempo Real</span>
+                <div class="sticky-controls">
+                    <button onclick="copyReportToClipboard()" title="Copiar informe"><i class="fas fa-copy"></i></button>
+                    <button onclick="printReport()" title="Imprimir informe"><i class="fas fa-print"></i></button>
+                    <button onclick="updateReport()" title="Actualizar informe"><i class="fas fa-sync-alt"></i></button>
+                </div>
+            </div>
+            <pre class="sticky-content" id="reportContent">
+El informe se generará aquí a medida que completes los campos del examen...
+            </pre>
+            <div class="update-indicator" id="updateIndicator">
+                <div class="spinner"></div>
+                <span>Actualizando informe...</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="copy-notification" id="copyNotification">
+        <i class="fas fa-check-circle"></i>
+        <span>¡Informe copiado al portapapeles!</span>
+    </div>
+
+    <!-- Fixed Theme Toggle Button -->
+    <button class="theme-toggle" onclick="toggleTheme()" title="Cambiar tema">
+        <i class="fas fa-moon" id="theme-icon"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+/* 
+ * Specialty-specific styles template
+ * This file imports global styles and can contain specialty-specific overrides
+ * 
+ * Note: All color variables and basic styles are defined in assets/css/global.css
+ * Import this global file in your HTML before this specialty CSS file
+ */
+
+/* Import global styles (ensure this is loaded in HTML) */
+@import url('../../assets/css/global.css');
+
+/* 
+ * Specialty-specific styles can be added below
+ * Use the unified color scheme from global.css:
+ * 
+ * Main colors:
+ * --app-primary-blue: Main blue color for active elements
+ * --app-secondary-blue: Secondary blue for additional elements
+ * --specialty-main-color: Blue-purple main color
+ * --specialty-highlight-color: Purple for accents
+ * --specialty-accent-color: Red for important accents
+ * 
+ * Status colors:
+ * --normal-color: Green for normal state
+ * --warning-color: Orange for warnings
+ * --alert-color: Red for alerts
+ * --info-color: Blue for information
+ */
+
+/* Example: Specialty-specific class */
+.specialty-custom {
+    /* Add custom styles here if needed */
+}

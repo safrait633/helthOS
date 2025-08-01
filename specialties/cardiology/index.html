@@ -1,0 +1,1798 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardiología - Sistema de Evaluación</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Main navigation sidebar -->
+        <aside class="sidebar" id="sidebar" style="overflow-y: auto; height: 100vh;">
+            <div class="sidebar-header" onclick="window.location.href='../../index.html'" style="cursor: pointer;">
+                <i class="fas fa-heartbeat logo"></i>
+                <h1 class="app-title">HealthOS</h1>
+            </div>
+            <nav class="nav-list">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-th-large nav-icon"></i>
+                        <span class="nav-text">Panel de control</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link active" id="cardio-nav-link" onclick="toggleCardioSubMenu(event)">
+                        <i class="fas fa-heartbeat nav-icon"></i>
+                        <span class="nav-text">Cardiología</span>
+                    </a>
+                    <!-- Submenu for Cardiology sections -->
+                    <ul class="sub-menu" id="cardio-sub-menu">
+                        <li class="sub-menu-item"><a href="#quejas" onclick="scrollToSection('quejas')">Quejas</a></li>
+                        <li class="sub-menu-item"><a href="#anamnesis" onclick="scrollToSection('anamnesis')">Anamnesis</a></li>
+                        <li class="sub-menu-item"><a href="#signos-vitales" onclick="scrollToSection('signos-vitales')">Signos Vitales</a></li>
+                        <li class="sub-menu-item"><a href="#examen-fisico" onclick="scrollToSection('examen-fisico')">Examen Físico</a></li>
+                        <li class="sub-menu-item"><a href="#auscultacion" onclick="scrollToSection('auscultacion')">Auscultación</a></li>
+                        <li class="sub-menu-item"><a href="#circulacion-periferica" onclick="scrollToSection('circulacion-periferica')">Circulación Periférica</a></li>
+                        <li class="sub-menu-item"><a href="#vascular-periferico" onclick="scrollToSection('vascular-periferico')">Vascular Periférico</a></li>
+                        <li class="sub-menu-item"><a href="#electrocardiograma" onclick="scrollToSection('electrocardiograma')">Electrocardiograma</a></li>
+                        <li class="sub-menu-item"><a href="#escalas-riesgo" onclick="scrollToSection('escalas-riesgo')">Escalas de Riesgo</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="../gastroenterology/index.html" class="nav-link">
+                        <i class="fas fa-stomach nav-icon"></i>
+                        <span class="nav-text">Gastroenterología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../dermatology/index.html" class="nav-link">
+                        <i class="fas fa-allergies nav-icon"></i>
+                        <span class="nav-text">Dermatología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../endocrinology/index.html" class="nav-link">
+                        <i class="fas fa-prescription-bottle-alt nav-icon"></i>
+                        <span class="nav-text">Endocrinología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../geriatrics/index.html" class="nav-link">
+                        <i class="fas fa-user-friends nav-icon"></i>
+                        <span class="nav-text">Geriatría</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../hematology/index.html" class="nav-link">
+                        <i class="fas fa-tint nav-icon"></i>
+                        <span class="nav-text">Hematología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../infectious_diseases/index.html" class="nav-link">
+                        <i class="fas fa-microscope nav-icon"></i>
+                        <span class="nav-text">Enfermedades Infecciosas</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../musculoskeletal/index.html" class="nav-link">
+                        <i class="fas fa-bone nav-icon"></i>
+                        <span class="nav-text">Musculoesquelético</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../ophthalmology/index.html" class="nav-link">
+                        <i class="fas fa-eye nav-icon"></i>
+                        <span class="nav-text">Oftalmología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../otolaryngology/index.html" class="nav-link">
+                        <i class="fas fa-ear-listen nav-icon"></i>
+                        <span class="nav-text">Otorrinolaringología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../pneumology/index.html" class="nav-link">
+                        <i class="fas fa-lungs nav-icon"></i>
+                        <span class="nav-text">Neumología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../psychiatry/index.html" class="nav-link">
+                        <i class="fas fa-brain nav-icon"></i>
+                        <span class="nav-text">Psiquiatría</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../rheumatology/index.html" class="nav-link">
+                        <i class="fas fa-joint nav-icon"></i>
+                        <span class="nav-text">Reumatología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../urology/index.html" class="nav-link">
+                        <i class="fas fa-user-md nav-icon"></i>
+                        <span class="nav-text">Urología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-notes-medical nav-icon"></i>
+                        <span class="nav-text">Registros</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-cog nav-icon"></i>
+                        <span class="nav-text">Configuración</span>
+                    </a>
+                </li>
+            </nav>
+            <!-- Toggle button to collapse/expand sidebar on large screens -->
+            <button class="btn btn-secondary mt-auto hidden md:flex items-center justify-center" onclick="toggleSidebar()">
+                <i class="fas fa-chevron-left" id="sidebar-toggle-icon"></i>
+            </button>
+        </aside>
+
+        <!-- Content area container (main-content and top-bar) -->
+        <div class="content-area" id="contentArea">
+            <!-- Fixed top bar -->
+            <div class="top-bar" id="topBar">
+                <div class="flex items-center gap-4">
+                    <!-- Button for main sidebar on mobile -->
+                    <button class="btn btn-secondary md:hidden" onclick="toggleSidebar()">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="flex items-center gap-4">
+                        <img src="../../img/1.svg" alt="Cardiología" class="h-10 w-10">
+                        <h2 class="page-title">Cardiología</h2>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <!-- Button for real-time report panel -->
+                    <button class="btn btn-primary" onclick="toggleStickyPanel()">
+                        <i class="fas fa-file-medical-alt"></i> <span class="hidden md:inline">Informe</span>
+                    </button>
+                    <div class="user-profile">
+                        <div class="user-avatar">JP</div>
+                        <span class="user-name">Dr. Juan Pérez</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main content area for specialty page -->
+            <main class="main-content" id="mainContent">
+                <!-- Specialty Dashboard / Overview Section -->
+                <div class="section-container" id="overview">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-chart-bar"></i> Resumen de la especialidad</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main expanded">
+                        <div class="specialty-dashboard">
+                            <div class="dashboard-item">
+                                <i class="fas fa-user-md"></i>
+                                <div>Progreso del examen</div>
+                                <div class="value" id="exam-progress">0%</div>
+                            </div>
+                            <div class="dashboard-item">
+                                <i class="fas fa-clipboard-list"></i>
+                                <div>Secciones completadas</div>
+                                <div class="value" id="sections-completed">0/8</div>
+                            </div>
+                            <div class="dashboard-item dashboard-alert" id="alerts-item">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <div>Alertas</div>
+                                <div class="value" id="alert-count">0</div>
+                            </div>
+                            <div class="dashboard-item dashboard-warning" id="warnings-item">
+                                <i class="fas fa-exclamation-circle"></i>
+                                <div>Avisos</div>
+                                <div class="value" id="warning-count">0</div>
+                            </div>
+                            <div class="dashboard-item dashboard-normal" id="findings-item">
+                                <i class="fas fa-search"></i>
+                                <div>Hallazgos</div>
+                                <div class="value" id="findings-count">0</div>
+                            </div>
+                            <div class="dashboard-item" id="vitals-status-item">
+                                <i class="fas fa-heartbeat"></i>
+                                <div>Signos Vitales</div>
+                                <div class="value" id="vitals-status">Pendiente</div>
+                            </div>
+                        </div>
+                        <div class="flex justify-center gap-4 mt-8">
+                            <button class="btn btn-primary" onclick="generateConclusion()">
+                                <i class="fas fa-file-medical"></i> Generar Informe
+                            </button>
+                            <button class="btn btn-secondary" onclick="clearForm()">
+                                <i class="fas fa-eraser"></i> Limpiar Formulario
+                            </button>
+                            <button class="btn btn-secondary" onclick="expandAllSections()">
+                                <i class="fas fa-expand-alt"></i> Expandir Todo
+                            </button>
+                            <button class="btn btn-secondary" onclick="collapseAllSections()">
+                                <i class="fas fa-compress-alt"></i> Contraer Todo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section: Quejas Principales -->
+                <div class="section-container" id="quejas">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-exclamation-triangle"></i> Quejas Principales</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-heart"></i> Quejas Cardiovasculares</h4>
+                            <div class="form-grid">
+                                <div class="form-item">
+                                    <input type="checkbox" id="sin-quejas" onchange="handleNoComplaints()">
+                                    <label for="sin-quejas">Sin quejas</label>
+                                </div>
+                                <div class="form-item">
+                                    <input type="checkbox" id="dolor-toracico" onchange="handleChestPainToggle()">
+                                    <label for="dolor-toracico">Dolor torácico</label>
+                                </div>
+                                <div class="form-item">
+                                    <input type="checkbox" id="disnea" onchange="handleDyspneaToggle()">
+                                    <label for="disnea">Disnea</label>
+                                </div>
+                                <div class="form-item">
+                                    <input type="checkbox" id="palpitaciones">
+                                    <label for="palpitaciones">Palpitaciones</label>
+                                </div>
+                                <div class="form-item">
+                                    <input type="checkbox" id="sincope">
+                                    <label for="sincope">Síncope</label>
+                                </div>
+                                <div class="form-item">
+                                    <input type="checkbox" id="presincope">
+                                    <label for="presincope">Presíncope</label>
+                                </div>
+                                <div class="form-item">
+                                    <input type="checkbox" id="edema">
+                                    <label for="edema">Edema</label>
+                                </div>
+                                <div class="form-item">
+                                    <input type="checkbox" id="fatiga">
+                                    <label for="fatiga">Fatiga</label>
+                                </div>
+                                <div class="form-item">
+                                    <input type="checkbox" id="ortopnea">
+                                    <label for="ortopnea">Ortopnea</label>
+                                </div>
+                                <div class="form-item">
+                                    <input type="checkbox" id="disnea-paroxistica">
+                                    <label for="disnea-paroxistica">Disnea paroxística nocturna</label>
+                                </div>
+                                <div class="form-item">
+                                    <input type="checkbox" id="claudicacion">
+                                    <label for="claudicacion">Claudicación intermitente</label>
+                                </div>
+                                <div class="form-item">
+                                    <input type="checkbox" id="cianosis">
+                                    <label for="cianosis">Cianosis</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Dynamic Section: Detailed Chest Pain Evaluation -->
+                        <div class="sub-section-card dynamic-section" id="chest-pain-details">
+                            <h4 class="sub-section-title"><i class="fas fa-heart-broken"></i> Evaluación Detallada del Dolor Torácico</h4>
+                            <div class="mb-4">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Intensidad y Características</h5>
+                                <div class="measurement">
+                                    <label>Intensidad del dolor (EVA):</label>
+                                    <div class="flex items-center gap-2 w-full">
+                                        <input type="range" id="dolor-intensidad" min="0" max="10" value="0" oninput="updateDolorValue()" class="flex-grow">
+                                        <span class="text-cardio-alert font-bold" id="dolor-value">0</span><span>/10</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Características del dolor:</label>
+                                    <div class="form-grid">
+                                        <div class="form-item">
+                                            <input type="radio" name="dolor-tipo" id="dolor-opresivo" onchange="evaluateChestPain()">
+                                            <label for="dolor-opresivo">Opresivo <span class="tooltip-trigger" data-tooltip="Sensación de peso o apretón">ⓘ</span></label>
+                                        </div>
+                                        <div class="form-item">
+                                            <input type="radio" name="dolor-tipo" id="dolor-punzante" onchange="evaluateChestPain()">
+                                            <label for="dolor-punzante">Punzante</label>
+                                        </div>
+                                        <div class="form-item">
+                                            <input type="radio" name="dolor-tipo" id="dolor-urente" onchange="evaluateChestPain()">
+                                            <label for="dolor-urente">Urente</label>
+                                        </div>
+                                        <div class="form-item">
+                                            <input type="radio" name="dolor-tipo" id="dolor-pesadez" onchange="evaluateChestPain()">
+                                            <label for="dolor-pesadez">Pesadez</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Irradiación del dolor:</label>
+                                    <div class="form-grid">
+                                        <div class="form-item">
+                                            <input type="checkbox" id="irradiacion-brazo-izq" onchange="evaluateChestPain()">
+                                            <label for="irradiacion-brazo-izq">Brazo izquierdo</label>
+                                        </div>
+                                        <div class="form-item">
+                                            <input type="checkbox" id="irradiacion-mandibula" onchange="evaluateChestPain()">
+                                            <label for="irradiacion-mandibula">Mandíbula</label>
+                                        </div>
+                                        <div class="form-item">
+                                            <input type="checkbox" id="irradiacion-espalda" onchange="evaluateChestPain()">
+                                            <label for="irradiacion-espalda">Espalda</label>
+                                        </div>
+                                        <div class="form-item">
+                                            <input type="checkbox" id="irradiacion-cuello" onchange="evaluateChestPain()">
+                                            <label for="irradiacion-cuello">Cuello</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Duración del episodio:</label>
+                                    <select id="dolor-duracion" onchange="evaluateChestPain()">
+                                        <option value="">Seleccione...</option>
+                                        <option value="segundos">Segundos</option>
+                                        <option value="minutos">Minutos (2-10)</option>
+                                        <option value="prolongado">Prolongado (>20 min)</option>
+                                        <option value="persistente">Persistente (horas)</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Factores desencadenantes:</label>
+                                    <div class="form-grid">
+                                        <div class="form-item">
+                                            <input type="checkbox" id="dolor-ejercicio" onchange="evaluateChestPain()">
+                                            <label for="dolor-ejercicio">Ejercicio</label>
+                                        </div>
+                                        <div class="form-item">
+                                            <input type="checkbox" id="dolor-emociones" onchange="evaluateChestPain()">
+                                            <label for="dolor-emociones">Emociones</label>
+                                        </div>
+                                        <div class="form-item">
+                                            <input type="checkbox" id="dolor-frio" onchange="evaluateChestPain()">
+                                            <label for="dolor-frio">Frío</label>
+                                        </div>
+                                        <div class="form-item">
+                                            <input type="checkbox" id="dolor-reposo" onchange="evaluateChestPain()">
+                                            <label for="dolor-reposo">En reposo</label>
+                                        </div>
+                                        <div class="form-item">
+                                            <input type="checkbox" id="dolor-movimientos" onchange="evaluateChestPain()">
+                                            <label for="dolor-movimientos">Movimientos respiratorios</label>
+                                        </div>
+                                        <div class="form-item">
+                                            <input type="checkbox" id="dolor-palpacion" onchange="evaluateChestPain()">
+                                            <label for="dolor-palpacion">Palpación torácica</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Factores que alivian:</label>
+                                    <div class="form-grid">
+                                        <div class="form-item">
+                                            <input type="checkbox" id="alivio-reposo" onchange="evaluateChestPain()">
+                                            <label for="alivio-reposo">Reposo</label>
+                                        </div>
+                                        <div class="form-item">
+                                            <input type="checkbox" id="alivio-nitroglicerina" onchange="evaluateChestPain()">
+                                            <label for="alivio-nitroglicerina">Nitroglicerina</label>
+                                        </div>
+                                        <div class="form-item">
+                                            <input type="checkbox" id="alivio-antiacidos" onchange="evaluateChestPain()">
+                                            <label for="alivio-antiacidos">Antiácidos</label>
+                                        </div>
+                                        <div class="form-item">
+                                            <input type="checkbox" id="alivio-posicion" onchange="evaluateChestPain()">
+                                            <label for="alivio-posicion">Cambio de posición</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="score-item">
+                                    <span>Probabilidad de origen coronario:</span>
+                                    <span class="score-value" id="probabilidad-coronaria">--</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Dynamic Section: Detailed Dyspnea Evaluation -->
+                        <div class="sub-section-card dynamic-section" id="dyspnea-details">
+                            <h4 class="sub-section-title"><i class="fas fa-lungs"></i> Evaluación Detallada de la Disnea</h4>
+                            <div class="mb-4">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Evaluación Funcional (NYHA)</h5>
+                                <div class="form-group">
+                                    <label>Tolerancia al ejercicio físico:</label>
+                                    <select id="ejercicio-tolerancia" onchange="evaluateNYHA()">
+                                        <option value="">Seleccione...</option>
+                                        <option value="1">NYHA I - Sin limitación de la actividad física habitual</option>
+                                        <option value="2">NYHA II - Ligera limitación de la actividad física habitual</option>
+                                        <option value="3">NYHA III - Marcada limitación de la actividad física</option>
+                                        <option value="4">NYHA IV - Incapacidad para cualquier actividad física sin molestias</option>
+                                    </select>
+                                </div>
+                                <div class="score-item">
+                                    <span>Clase funcional NYHA:</span>
+                                    <span class="score-value" id="nyha-class">--</span>
+                                </div>
+                                <div class="measurement mt-4">
+                                    <label>Intensidad de disnea (EVA):</label>
+                                    <div class="flex items-center gap-2 w-full">
+                                        <input type="range" id="disnea-intensidad" min="0" max="10" value="0" oninput="updateDisneaValue()" class="flex-grow">
+                                        <span class="text-cardio-alert font-bold" id="disnea-value">0</span><span>/10</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Tipo de disnea:</label>
+                                    <select id="disnea-tipo" onchange="updateDashboard(); generateConclusion()">
+                                        <option value="">Seleccione...</option>
+                                        <option value="esfuerzo">De esfuerzo</option>
+                                        <option value="reposo">De reposo</option>
+                                        <option value="ortopnea">Ortopnea</option>
+                                        <option value="paroxistica">Paroxística nocturna</option>
+                                        <option value="platopnea">Platopnea</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Síntomas asociados:</label>
+                                    <div class="form-grid">
+                                        <div class="form-item">
+                                            <input type="checkbox" id="disnea-tos" onchange="updateDashboard(); generateConclusion()">
+                                            <label for="disnea-tos">Tos</label>
+                                        </div>
+                                        <div class="form-item">
+                                            <input type="checkbox" id="disnea-esputo" onchange="updateDashboard(); generateConclusion()">
+                                            <label for="disnea-esputo">Esputo</label>
+                                        </div>
+                                        <div class="form-item">
+                                            <input type="checkbox" id="disnea-hemoptisis" onchange="updateDashboard(); generateConclusion()">
+                                            <label for="disnea-hemoptisis">Hemoptisis</label>
+                                        </div>
+                                        <div class="form-item">
+                                            <input type="checkbox" id="disnea-sibilancias" onchange="updateDashboard(); generateConclusion()">
+                                            <label for="disnea-sibilancias">Sibilancias</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section: Anamnesis -->
+                <div class="section-container" id="anamnesis">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-stethoscope"></i> Anamnesis</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-pills"></i> Medicación Cardiovascular Actual</h4>
+                            <div class="form-group">
+                                <label>Medicamentos cardiovasculares actuales:</label>
+                                <textarea id="medicacion-actual" rows="4" onchange="updateDashboard(); generateConclusion()"
+                                    placeholder="Ejemplo: Enalapril 10mg BID, Metoprolol 50mg BID, Aspirina 100mg/día, Atorvastatina 20mg/día..."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-history"></i> Antecedentes Cardiovasculares</h4>
+                            <div class="form-group">
+                                <label>Antecedentes Cardiovasculares:</label>
+                                <div class="form-grid">
+                                    <div class="form-item">
+                                        <input type="checkbox" id="hipertension" onchange="updateDashboard(); generateConclusion()">
+                                        <label for="hipertension">Hipertensión arterial</label>
+                                    </div>
+                                    <div class="form-item">
+                                        <input type="checkbox" id="diabetes" onchange="updateDashboard(); generateConclusion()">
+                                        <label for="diabetes">Diabetes mellitus</label>
+                                    </div>
+                                    <div class="form-item">
+                                        <input type="checkbox" id="dislipidemia" onchange="updateDashboard(); generateConclusion()">
+                                        <label for="dislipidemia">Dislipidemia</label>
+                                    </div>
+                                    <div class="form-item">
+                                        <input type="checkbox" id="tabaquismo" onchange="updateDashboard(); generateConclusion()">
+                                        <label for="tabaquismo">Tabaquismo</label>
+                                    </div>
+                                    <div class="form-item">
+                                        <input type="checkbox" id="iam-previo" onchange="updateDashboard(); generateConclusion()">
+                                        <label for="iam-previo">IAM previo</label>
+                                    </div>
+                                    <div class="form-item">
+                                        <input type="checkbox" id="icc-previa" onchange="updateDashboard(); generateConclusion()">
+                                        <label for="icc-previa">Insuficiencia cardíaca</label>
+                                    </div>
+                                    <div class="form-item">
+                                        <input type="checkbox" id="fibrilacion-auricular" onchange="updateDashboard(); generateConclusion()">
+                                        <label for="fibrilacion-auricular">Fibrilación auricular</label>
+                                    </div>
+                                    <div class="form-item">
+                                        <input type="checkbox" id="cirugia-cardiaca" onchange="updateDashboard(); generateConclusion()">
+                                        <label for="cirugia-cardiaca">Cirugía cardíaca</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Section: Signos Vitales y Parámetros Hemodinámicos -->
+                <div class="section-container" id="signos-vitales">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-heartbeat"></i> Signos Vitales y Parámetros Hemodinámicos</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-thermometer-three-quarters"></i> Signos Vitales Principales</h4>
+                            <div class="form-grid">
+                                <div class="form-item">
+                                    <label>Presión Arterial (brazo derecho):</label>
+                                    <div class="flex items-center gap-2 w-full">
+                                        <input type="number" id="pas-derecho" class="input-field" min="60" max="250" placeholder="120" onchange="evaluateBloodPressure()">
+                                        <span>/</span>
+                                        <input type="number" id="pad-derecho" class="input-field" min="30" max="150" placeholder="80" onchange="evaluateBloodPressure()">
+                                        <span>mmHg</span>
+                                        <span class="vital-indicator" id="pa-indicator"></span>
+                                    </div>
+                                </div>
+                                <div class="form-item">
+                                    <label>Presión Arterial (brazo izquierdo):</label>
+                                    <div class="flex items-center gap-2 w-full">
+                                        <input type="number" id="pas-izquierdo" class="input-field" min="60" max="250" placeholder="120" onchange="evaluateBloodPressure()">
+                                        <span>/</span>
+                                        <input type="number" id="pad-izquierdo" class="input-field" min="30" max="150" placeholder="80" onchange="evaluateBloodPressure()">
+                                        <span>mmHg</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="sub-section-card dynamic-section" id="pa-assessment">
+                                <!-- PA assessment will be dynamically added here -->
+                            </div>
+                            
+                            <div class="form-grid mt-4">
+                                <div class="form-item">
+                                    <label>Frecuencia Cardíaca:</label>
+                                    <div class="flex items-center gap-2 w-full">
+                                        <input type="number" id="frecuencia-cardiaca" class="input-field" min="30" max="220" onchange="evaluateHeartRate()" placeholder="70">
+                                        <span>lpm</span>
+                                        <span class="vital-indicator" id="fc-indicator"></span>
+                                    </div>
+                                </div>
+                                <div class="form-item">
+                                    <label>Frecuencia Respiratoria:</label>
+                                    <div class="flex items-center gap-2 w-full">
+                                        <input type="number" id="frecuencia-respiratoria" class="input-field" min="8" max="40" placeholder="16" onchange="updateDashboard(); generateConclusion()">
+                                        <span>rpm</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-grid mt-4">
+                                <div class="form-item">
+                                    <label>Saturación de Oxígeno:</label>
+                                    <div class="flex items-center gap-2 w-full">
+                                        <input type="number" id="saturacion-oxigeno" class="input-field" min="70" max="100" placeholder="98" onchange="evaluateSaturation()">
+                                        <span>%</span>
+                                        <span class="vital-indicator" id="spo2-indicator"></span>
+                                    </div>
+                                </div>
+                                <div class="form-item">
+                                    <label>Temperatura:</label>
+                                    <div class="flex items-center gap-2 w-full">
+                                        <input type="number" id="temperatura" class="input-field" min="35" max="42" step="0.1" placeholder="36.5" onchange="updateDashboard(); generateConclusion()">
+                                        <span>°C</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-wave-square"></i> Características del Pulso</h4>
+                            <div class="form-group">
+                                <label>Características del pulso:</label>
+                                <select id="pulso-caracter" onchange="handlePulseCharacter()">
+                                    <option value="">Seleccione...</option>
+                                    <option value="ritmico-normal">Rítmico, de buen llenado</option>
+                                    <option value="ritmico-debil">Rítmico, de llenado débil</option>
+                                    <option value="ritmico-lleno">Rítmico, lleno</option>
+                                    <option value="arritmico">Arrítmico</option>
+                                    <option value="no-palpable">No palpable</option>
+                                </select>
+                            </div>
+                            
+                            <div class="sub-section-card dynamic-section" id="pulso-detalles">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Detalles del Pulso</h5>
+                                <div class="form-group">
+                                    <label>Tipo de arritmia:</label>
+                                    <select id="arritmia-tipo" onchange="updateDashboard(); generateConclusion()">
+                                        <option value="">Seleccione...</option>
+                                        <option value="extrasistoles">Extrasístoles</option>
+                                        <option value="fibrilacion-auricular">Fibrilación auricular</option>
+                                        <option value="flutter-auricular">Flutter auricular</option>
+                                        <option value="ritmo-irregular">Ritmo irregular</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="measurement">
+                                    <label>Déficit de pulso:</label>
+                                    <input type="number" id="deficit-pulso" class="input-field" min="0" max="100" onchange="updateDashboard(); generateConclusion()">
+                                    <span>lpm</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Section: Examen Físico Cardiovascular -->
+                <div class="section-container" id="examen-fisico">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-user-md"></i> Examen Físico Cardiovascular</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-eye"></i> Inspección General</h4>
+                            <div class="form-group">
+                                <label>Aspecto General:</label>
+                                <div class="form-grid">
+                                    <div class="form-item">
+                                        <input type="checkbox" id="aspecto-normal" onchange="updateDashboard(); generateConclusion()">
+                                        <label for="aspecto-normal">Aspecto general normal</label>
+                                    </div>
+                                    <div class="form-item">
+                                        <input type="checkbox" id="palidez" onchange="updateDashboard(); generateConclusion()">
+                                        <label for="palidez">Palidez</label>
+                                    </div>
+                                    <div class="form-item">
+                                        <input type="checkbox" id="cianosis-central" onchange="updateDashboard(); generateConclusion()">
+                                        <label for="cianosis-central">Cianosis central</label>
+                                    </div>
+                                    <div class="form-item">
+                                        <input type="checkbox" id="cianosis-periferica" onchange="updateDashboard(); generateConclusion()">
+                                        <label for="cianosis-periferica">Cianosis periférica</label>
+                                    </div>
+                                    <div class="form-item">
+                                        <input type="checkbox" id="diaforesis" onchange="updateDashboard(); generateConclusion()">
+                                        <label for="diaforesis">Diaforesis</label>
+                                    </div>
+                                    <div class="form-item">
+                                        <input type="checkbox" id="ingurgitacion-yugular" onchange="updateDashboard(); generateConclusion()">
+                                        <label for="ingurgitacion-yugular">Ingurgitación yugular</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Inspección de la región cardíaca:</label>
+                                <select id="inspeccion-cardiaca" onchange="handleInspeccionCardiaca()">
+                                    <option value="">Seleccione...</option>
+                                    <option value="normal">No se observan cambios patológicos</option>
+                                    <option value="latido-apical-visible">Latido apical visible</option>
+                                    <option value="deformidad-toracica">Deformidad del tórax en región cardíaca</option>
+                                    <option value="giba-cardiaca">Giba cardíaca</option>
+                                    <option value="pulsacion-patologica">Pulsación patológica visible</option>
+                                </select>
+                            </div>
+                            
+                            <div class="sub-section-card dynamic-section" id="inspeccion-detalles">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Descripción de Cambios</h5>
+                                <div class="form-group">
+                                    <label>Descripción de los cambios:</label>
+                                    <textarea id="inspeccion-descripcion" rows="3" onchange="updateDashboard(); generateConclusion()" placeholder="Describa la localización, carácter e intensidad de los cambios observados..."></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-hand-paper"></i> Palpación Cardíaca</h4>
+                            <div class="form-group">
+                                <label>Palpación del latido apical:</label>
+                                <select id="latido-apical" onchange="handleLatidoApical()">
+                                    <option value="">Seleccione...</option>
+                                    <option value="normal">V EIC en línea medioclavicular izquierda</option>
+                                    <option value="desplazado-izquierda">Desplazado a la izquierda</option>
+                                    <option value="desplazado-abajo">Desplazado hacia abajo</option>
+                                    <option value="desplazado-izquierda-abajo">Desplazado a la izquierda y abajo</option>
+                                    <option value="debilitado">Debilitado</option>
+                                    <option value="aumentado">Aumentado</option>
+                                    <option value="no-palpable">No palpable</option>
+                                </select>
+                            </div>
+                            
+                            <div class="sub-section-card dynamic-section" id="latido-detalles">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Detalles del Latido Apical</h5>
+                                <div class="measurement">
+                                    <label>Localización específica:</label>
+                                    <input type="text" id="latido-localizacion" class="input-field w-full" placeholder="ej: VI espacio intercostal, fuera de línea medioclavicular" onchange="updateDashboard(); generateConclusion()">
+                                </div>
+                                <div class="form-group">
+                                    <label>Características del latido:</label>
+                                    <div class="form-grid">
+                                        <div class="form-item">
+                                            <input type="checkbox" id="latido-difuso" onchange="updateDashboard(); generateConclusion()">
+                                            <label for="latido-difuso">Difuso</label>
+                                        </div>
+                                        <div class="form-item">
+                                            <input type="checkbox" id="latido-fuerte" onchange="updateDashboard(); generateConclusion()">
+                                            <label for="latido-fuerte">Fuerte</label>
+                                        </div>
+                                        <div class="form-item">
+                                            <input type="checkbox" id="latido-prolongado" onchange="updateDashboard(); generateConclusion()">
+                                            <label for="latido-prolongado">Prolongado</label>
+                                        </div>
+                                        <div class="form-item">
+                                            <input type="checkbox" id="latido-sostenido" onchange="updateDashboard(); generateConclusion()">
+                                            <label for="latido-sostenido">Sostenido</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-hand-fist"></i> Percusión Cardíaca</h4>
+                            <div class="form-group">
+                                <label>Percusión de límites cardíacos:</label>
+                                <select id="limites-cardiacos" onchange="handleLimitesCardiacos()">
+                                    <option value="">Seleccione...</option>
+                                    <option value="normales">Dentro de límites normales</option>
+                                    <option value="agrandados-izquierda">Agrandados a la izquierda</option>
+                                    <option value="agrandados-derecha">Agrandados a la derecha</option>
+                                    <option value="agrandados-superior">Agrandados hacia arriba</option>
+                                    <option value="agrandados-todas">Agrandados en todas las direcciones</option>
+                                </select>
+                            </div>
+                            
+                            <div class="sub-section-card dynamic-section" id="limites-detalles">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Detalles de Límites Cardíacos</h5>
+                                <div class="form-grid">
+                                    <div class="measurement">
+                                        <label>Límite derecho:</label>
+                                        <input type="text" id="limite-derecho" class="input-field w-full" placeholder="ej: IV EIC, borde derecho esternal" onchange="updateDashboard(); generateConclusion()">
+                                    </div>
+                                    <div class="measurement">
+                                        <label>Límite izquierdo:</label>
+                                        <input type="text" id="limite-izquierdo" class="input-field w-full" placeholder="ej: V EIC, 2 cm fuera de línea medioclavicular" onchange="updateDashboard(); generateConclusion()">
+                                    </div>
+                                    <div class="measurement">
+                                        <label>Límite superior:</label>
+                                        <input type="text" id="limite-superior" class="input-field w-full" placeholder="ej: III espacio intercostal" onchange="updateDashboard(); generateConclusion()">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-hand-pointer"></i> Otros Hallazgos Palpatorios</h4>
+                            <div class="form-grid">
+                                <div class="form-item">
+                                    <input type="checkbox" id="fremito-sistolico" onchange="updateDashboard(); generateConclusion()">
+                                    <label for="fremito-sistolico">Frémito sistólico</label>
+                                </div>
+                                <div class="form-item">
+                                    <input type="checkbox" id="fremito-diastolico" onchange="updateDashboard(); generateConclusion()">
+                                    <label for="fremito-diastolico">Frémito diastólico</label>
+                                </div>
+                                <div class="form-item">
+                                    <input type="checkbox" id="levantamiento-paraesternal" onchange="updateDashboard(); generateConclusion()">
+                                    <label for="levantamiento-paraesternal">Levantamiento paraesternal</label>
+                                </div>
+                                <div class="form-item">
+                                    <input type="checkbox" id="p2-palpable" onchange="updateDashboard(); generateConclusion()">
+                                    <label for="p2-palpable">P2 palpable</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Section: Auscultación Cardíaca -->
+                <div class="section-container" id="auscultacion">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-stethoscope"></i> Auscultación Cardíaca</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="form-grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                            <div class="sub-section-card">
+                                <h4 class="sub-section-title">Foco Aórtico (2° EIC derecho)</h4>
+                                <div class="form-item">
+                                    <label>R1</label>
+                                    <select id="r1-aortico" class="w-full" onchange="updateDashboard(); generateConclusion()">
+                                        <option value="">-</option>
+                                        <option value="abolido">Abolido</option>
+                                        <option value="hipofonico">Hipofonético</option>
+                                        <option value="normal">Normal</option>
+                                        <option value="hiperfonico">Hiperfonético</option>
+                                    </select>
+                                </div>
+                                <div class="form-item mt-2">
+                                    <label>R2</label>
+                                    <select id="r2-aortico" class="w-full" onchange="updateDashboard(); generateConclusion()">
+                                        <option value="">-</option>
+                                        <option value="abolido">Abolido</option>
+                                        <option value="hipofonico">Hipofonético</option>
+                                        <option value="normal">Normal</option>
+                                        <option value="hiperfonico">Hiperfonético</option>
+                                    </select>
+                                </div>
+                                <div class="form-item mt-2">
+                                    <input type="checkbox" id="soplo-sist-aortico" onchange="handleMurmurToggle('aortico', 'sist')">
+                                    <label for="soplo-sist-aortico">Soplo sistólico</label>
+                                    <select id="soplo-sist-aortico-grado" class="w-24" disabled onchange="updateDashboard(); generateConclusion()">
+                                        <option value="">-</option>
+                                        <option value="1">I/VI</option>
+                                        <option value="2">II/VI</option>
+                                        <option value="3">III/VI</option>
+                                        <option value="4">IV/VI</option>
+                                        <option value="5">V/VI</option>
+                                        <option value="6">VI/VI</option>
+                                    </select>
+                                </div>
+                                <div class="form-item mt-2">
+                                    <input type="checkbox" id="soplo-diast-aortico" onchange="handleMurmurToggle('aortico', 'diast')">
+                                    <label for="soplo-diast-aortico">Soplo diastólico</label>
+                                    <select id="soplo-diast-aortico-grado" class="w-24" disabled onchange="updateDashboard(); generateConclusion()">
+                                        <option value="">-</option>
+                                        <option value="1">I/VI</option>
+                                        <option value="2">II/VI</option>
+                                        <option value="3">III/VI</option>
+                                        <option value="4">IV/VI</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="sub-section-card">
+                                <h4 class="sub-section-title">Foco Pulmonar (2° EIC izquierdo)</h4>
+                                <div class="form-item">
+                                    <label>R1</label>
+                                    <select id="r1-pulmonar" class="w-full" onchange="updateDashboard(); generateConclusion()">
+                                        <option value="">-</option>
+                                        <option value="abolido">Abolido</option>
+                                        <option value="hipofonico">Hipofonético</option>
+                                        <option value="normal">Normal</option>
+                                        <option value="hiperfonico">Hiperfonético</option>
+                                    </select>
+                                </div>
+                                <div class="form-item mt-2">
+                                    <label>R2</label>
+                                    <select id="r2-pulmonar" class="w-full" onchange="updateDashboard(); generateConclusion()">
+                                        <option value="">-</option>
+                                        <option value="abolido">Abolido</option>
+                                        <option value="hipofonico">Hipofonético</option>
+                                        <option value="normal">Normal</option>
+                                        <option value="hiperfonico">Hiperfonético</option>
+                                    </select>
+                                </div>
+                                <div class="form-item mt-2">
+                                    <input type="checkbox" id="desdoblamiento-r2" onchange="updateDashboard(); generateConclusion()">
+                                    <label for="desdoblamiento-r2">Desdoblamiento R2</label>
+                                </div>
+                                <div class="form-item mt-2">
+                                    <input type="checkbox" id="soplo-sist-pulmonar" onchange="handleMurmurToggle('pulmonar', 'sist')">
+                                    <label for="soplo-sist-pulmonar">Soplo sistólico</label>
+                                    <select id="soplo-sist-pulmonar-grado" class="w-24" disabled onchange="updateDashboard(); generateConclusion()">
+                                        <option value="">-</option>
+                                        <option value="1">I/VI</option>
+                                        <option value="2">II/VI</option>
+                                        <option value="3">III/VI</option>
+                                        <option value="4">IV/VI</option>
+                                        <option value="5">V/VI</option>
+                                        <option value="6">VI/VI</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="sub-section-card">
+                                <h4 class="sub-section-title">Foco Tricúspide (4° EIC izquierdo)</h4>
+                                <div class="form-item">
+                                    <label>R1</label>
+                                    <select id="r1-tricuspide" class="w-full" onchange="updateDashboard(); generateConclusion()">
+                                        <option value="">-</option>
+                                        <option value="abolido">Abolido</option>
+                                        <option value="hipofonico">Hipofonético</option>
+                                        <option value="normal">Normal</option>
+                                        <option value="hiperfonico">Hiperfonético</option>
+                                    </select>
+                                </div>
+                                <div class="form-item mt-2">
+                                    <label>R2</label>
+                                    <select id="r2-tricuspide" class="w-full" onchange="updateDashboard(); generateConclusion()">
+                                        <option value="">-</option>
+                                        <option value="abolido">Abolido</option>
+                                        <option value="hipofonico">Hipofonético</option>
+                                        <option value="normal">Normal</option>
+                                        <option value="hiperfonico">Hiperfonético</option>
+                                    </select>
+                                </div>
+                                <div class="form-item mt-2">
+                                    <input type="checkbox" id="soplo-sist-tricuspide" onchange="handleMurmurToggle('tricuspide', 'sist')">
+                                    <label for="soplo-sist-tricuspide">Soplo sistólico</label>
+                                    <select id="soplo-sist-tricuspide-grado" class="w-24" disabled onchange="updateDashboard(); generateConclusion()">
+                                        <option value="">-</option>
+                                        <option value="1">I/VI</option>
+                                        <option value="2">II/VI</option>
+                                        <option value="3">III/VI</option>
+                                        <option value="4">IV/VI</option>
+                                        <option value="5">V/VI</option>
+                                        <option value="6">VI/VI</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="sub-section-card">
+                                <h4 class="sub-section-title">Foco Mitral (5° EIC izquierdo)</h4>
+                                <div class="form-item">
+                                    <label>R1</label>
+                                    <select id="r1-mitral" class="w-full" onchange="updateDashboard(); generateConclusion()">
+                                        <option value="">-</option>
+                                        <option value="abolido">Abolido</option>
+                                        <option value="hipofonico">Hipofonético</option>
+                                        <option value="normal">Normal</option>
+                                        <option value="hiperfonico">Hiperfonético</option>
+                                    </select>
+                                </div>
+                                <div class="form-item mt-2">
+                                    <label>R2</label>
+                                    <select id="r2-mitral" class="w-full" onchange="updateDashboard(); generateConclusion()">
+                                        <option value="">-</option>
+                                        <option value="abolido">Abolido</option>
+                                        <option value="hipofonico">Hipofonético</option>
+                                        <option value="normal">Normal</option>
+                                        <option value="hiperfonico">Hiperfonético</option>
+                                    </select>
+                                </div>
+                                <div class="form-item mt-2">
+                                    <input type="checkbox" id="soplo-sist-mitral" onchange="handleMurmurToggle('mitral', 'sist')">
+                                    <label for="soplo-sist-mitral">Soplo sistólico</label>
+                                    <select id="soplo-sist-mitral-grado" class="w-24" disabled onchange="updateDashboard(); generateConclusion()">
+                                        <option value="">-</option>
+                                        <option value="1">I/VI</option>
+                                        <option value="2">II/VI</option>
+                                        <option value="3">III/VI</option>
+                                        <option value="4">IV/VI</option>
+                                        <option value="5">V/VI</option>
+                                        <option value="6">VI/VI</option>
+                                    </select>
+                                </div>
+                                <div class="form-item mt-2">
+                                    <input type="checkbox" id="soplo-diast-mitral" onchange="handleMurmurToggle('mitral', 'diast')">
+                                    <label for="soplo-diast-mitral">Soplo diastólico</label>
+                                    <select id="soplo-diast-mitral-grado" class="w-24" disabled onchange="updateDashboard(); generateConclusion()">
+                                        <option value="">-</option>
+                                        <option value="1">I/VI</option>
+                                        <option value="2">II/VI</option>
+                                        <option value="3">III/VI</option>
+                                        <option value="4">IV/VI</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Dynamic Section: Murmur Details -->
+                        <div class="sub-section-card dynamic-section" id="murmur-details">
+                            <h4 class="sub-section-title"><i class="fas fa-wave-square"></i> Características Detalladas de Soplos</h4>
+                            <div class="form-group">
+                                <label>Irradiación del soplo:</label>
+                                <div class="form-grid">
+                                    <div class="form-item">
+                                        <input type="checkbox" id="irradiacion-axila" onchange="updateDashboard(); generateConclusion()">
+                                        <label for="irradiacion-axila">Hacia axila</label>
+                                    </div>
+                                    <div class="form-item">
+                                        <input type="checkbox" id="irradiacion-cuello-soplo" onchange="updateDashboard(); generateConclusion()">
+                                        <label for="irradiacion-cuello-soplo">Hacia cuello</label>
+                                    </div>
+                                    <div class="form-item">
+                                        <input type="checkbox" id="irradiacion-espalda-soplo" onchange="updateDashboard(); generateConclusion()">
+                                        <label for="irradiacion-espalda-soplo">Hacia espalda</label>
+                                    </div>
+                                    <div class="form-item">
+                                        <input type="checkbox" id="irradiacion-punta" onchange="updateDashboard(); generateConclusion()">
+                                        <label for="irradiacion-punta">Hacia punta</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-grid">
+                                <div class="form-item">
+                                    <label>Relación con respiración:</label>
+                                    <select id="soplo-respiracion" onchange="updateDashboard(); generateConclusion()">
+                                        <option value="">Seleccione...</option>
+                                        <option value="aumenta-inspiracion">Aumenta con inspiración</option>
+                                        <option value="disminuye-inspiracion">Disminuye con inspiración</option>
+                                        <option value="no-cambia">No cambia con respiración</option>
+                                    </select>
+                                </div>
+                                <div class="form-item">
+                                    <label>Relación con maniobras:</label>
+                                    <select id="soplo-maniobras" onchange="updateDashboard(); generateConclusion()">
+                                        <option value="">Seleccione...</option>
+                                        <option value="aumenta-valsalva">Aumenta con Valsalva</option>
+                                        <option value="disminuye-valsalva">Disminuye con Valsalva</option>
+                                        <option value="aumenta-handgrip">Aumenta con handgrip</option>
+                                        <option value="disminuye-handgrip">Disminuye con handgrip</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group mt-4">
+                                <label>Descripción adicional del soplo:</label>
+                                <textarea id="soplo-descripcion-detallada" rows="3" onchange="updateDashboard(); generateConclusion()"
+                                    placeholder="Describe tono, timbre, forma del soplo (crescendo, decrescendo, holosistólico, etc.)..."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-headphones"></i> Otros Hallazgos Auscultatorios</h4>
+                            <div class="form-grid">
+                                <div class="form-item">
+                                    <input type="checkbox" id="r3-galope" onchange="updateDashboard(); generateConclusion()">
+                                    <label for="r3-galope">R3 (galope ventricular)</label>
+                                </div>
+                                <div class="form-item">
+                                    <input type="checkbox" id="r4-galope" onchange="updateDashboard(); generateConclusion()">
+                                    <label for="r4-galope">R4 (galope auricular)</label>
+                                </div>
+                                <div class="form-item">
+                                    <input type="checkbox" id="click-sistolico" onchange="updateDashboard(); generateConclusion()">
+                                    <label for="click-sistolico">Click sistólico</label>
+                                </div>
+                                <div class="form-item">
+                                    <input type="checkbox" id="chasquido-apertura" onchange="updateDashboard(); generateConclusion()">
+                                    <label for="chasquido-apertura">Chasquido de apertura</label>
+                                </div>
+                                <div class="form-item">
+                                    <input type="checkbox" id="roce-pericardico" onchange="updateDashboard(); generateConclusion()">
+                                    <label for="roce-pericardico">Roce pericárdico</label>
+                                </div>
+                                <div class="form-item">
+                                    <input type="checkbox" id="arritmia-auscultacion" onchange="updateDashboard(); generateConclusion()">
+                                    <label for="arritmia-auscultacion">Arritmia auscultada</label>
+                                </div>
+                            </div>
+                            <div class="form-group mt-4">
+                                <label>Características detalladas de soplos (global):</label>
+                                <textarea id="soplos-descripcion" rows="4" onchange="updateDashboard(); generateConclusion()" placeholder="Describa localización, irradiación, intensidad, relación con respiración y maniobras..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Section: Circulación Periférica y Edemas -->
+                <div class="section-container" id="circulacion-periferica">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-wave-square"></i> Circulación Periférica y Edemas</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-water"></i> Edemas</h4>
+                            <div class="form-group">
+                                <label>Presencia de edemas:</label>
+                                <select id="edemas-presencia" onchange="handleEdemas()">
+                                    <option value="">Seleccione...</option>
+                                    <option value="sin-edemas">Sin edemas</option>
+                                    <option value="edemas-perifericos">Edemas periféricos</option>
+                                    <option value="edema-pulmonar">Signos de edema pulmonar</option>
+                                    <option value="anasarca">Anasarca</option>
+                                    <option value="ascitis">Ascitis</option>
+                                </select>
+                            </div>
+                            
+                            <div class="sub-section-card dynamic-section" id="edemas-detalles">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Detalles de Edemas</h5>
+                                <div class="form-group">
+                                    <label>Localización e intensidad de edemas:</label>
+                                    <div class="form-grid grid-cols-2 sm:grid-cols-3 gap-3">
+                                        <div class="form-item flex-col items-start">
+                                            <label for="edema-pies">Pies:</label>
+                                            <select id="edema-pies" class="w-full" onchange="updateDashboard(); generateConclusion()">
+                                                <option value="0">0</option>
+                                                <option value="1">+</option>
+                                                <option value="2">++</option>
+                                                <option value="3">+++</option>
+                                                <option value="4">++++</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-item flex-col items-start">
+                                            <label for="edema-piernas">Piernas:</label>
+                                            <select id="edema-piernas" class="w-full" onchange="updateDashboard(); generateConclusion()">
+                                                <option value="0">0</option>
+                                                <option value="1">+</option>
+                                                <option value="2">++</option>
+                                                <option value="3">+++</option>
+                                                <option value="4">++++</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-item flex-col items-start">
+                                            <label for="edema-muslos">Muslos:</label>
+                                            <select id="edema-muslos" class="w-full" onchange="updateDashboard(); generateConclusion()">
+                                                <option value="0">0</option>
+                                                <option value="1">+</option>
+                                                <option value="2">++</option>
+                                                <option value="3">+++</option>
+                                                <option value="4">++++</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-item flex-col items-start">
+                                            <label for="edema-sacro">Región sacra:</label>
+                                            <select id="edema-sacro" class="w-full" onchange="updateDashboard(); generateConclusion()">
+                                                <option value="0">0</option>
+                                                <option value="1">+</option>
+                                                <option value="2">++</option>
+                                                <option value="3">+++</option>
+                                                <option value="4">++++</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-item flex-col items-start">
+                                            <label for="edema-parpados">Párpados:</label>
+                                            <select id="edema-parpados" class="w-full" onchange="updateDashboard(); generateConclusion()">
+                                                <option value="0">0</option>
+                                                <option value="1">+</option>
+                                                <option value="2">++</option>
+                                                <option value="3">+++</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-item flex-col items-start">
+                                            <label for="edema-abdomen">Abdomen:</label>
+                                            <select id="edema-abdomen" class="w-full" onchange="updateDashboard(); generateConclusion()">
+                                                <option value="0">0</option>
+                                                <option value="1">+</option>
+                                                <option value="2">++</option>
+                                                <option value="3">+++</option>
+                                                <option value="4">++++</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label>Características de los edemas:</label>
+                                    <div class="form-grid">
+                                        <div class="form-item">
+                                            <input type="checkbox" id="edema-simetrico" onchange="updateDashboard(); generateConclusion()">
+                                            <label for="edema-simetrico">Simétricos</label>
+                                        </div>
+                                        <div class="form-item">
+                                            <input type="checkbox" id="edema-fovea" onchange="updateDashboard(); generateConclusion()">
+                                            <label for="edema-fovea">Deja fóvea</label>
+                                        </div>
+                                        <div class="form-item">
+                                            <input type="checkbox" id="edema-frio" onchange="updateDashboard(); generateConclusion()">
+                                            <label for="edema-frio">Frío al tacto</label>
+                                        </div>
+                                        <div class="form-item">
+                                            <input type="checkbox" id="edema-caliente" onchange="updateDashboard(); generateConclusion()">
+                                            <label for="edema-caliente">Caliente al tacto</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-hand-holding-water"></i> Venas y Piel</h4>
+                            <div class="form-group">
+                                <label>Estado de las venas:</label>
+                                <select id="venas-estado" onchange="handleVenas()">
+                                    <option value="">Seleccione...</option>
+                                    <option value="normales">No dilatadas</option>
+                                    <option value="varices">Varicosamente dilatadas</option>
+                                    <option value="ingurgitacion-yugular">Ingurgitación yugular</option>
+                                    <option value="reflujo-hepatoyugular">Reflujo hepatoyugular positivo</option>
+                                </select>
+                            </div>
+                            
+                            <div class="sub-section-card dynamic-section" id="venas-detalles">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Detalles de Venas</h5>
+                                <div class="form-group">
+                                    <label>Descripción de cambios venosos:</label>
+                                    <textarea id="venas-descripcion" rows="3" onchange="updateDashboard(); generateConclusion()" placeholder="Describa localización, grado, presencia de complicaciones..."></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Color de la piel:</label>
+                                <select id="color-piel" onchange="updateDashboard(); generateConclusion()">
+                                    <option value="">Seleccione...</option>
+                                    <option value="normal">Normal</option>
+                                    <option value="palido">Pálido</option>
+                                    <option value="cianotico">Cianótico</option>
+                                    <option value="acrocianosis">Acrocianosis</option>
+                                    <option value="marmoreo">Piel marmórea</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Section: Examen Vascular Periférico -->
+                <div class="section-container" id="vascular-periferico">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-heart-pulse"></i> Examen Vascular Periférico</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="form-grid md:grid-cols-2 gap-4">
+                            <div class="sub-section-card">
+                                <h4 class="sub-section-title">Lado Derecho</h4>
+                                <div class="mb-4">
+                                    <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Miembros Superiores</h5>
+                                    <div class="form-item">
+                                        <span>Radial</span>
+                                        <div class="flex items-center gap-2">
+                                            <input type="radio" name="radial-der" id="radial-der-0" value="0" onchange="updateDashboard(); generateConclusion()"><label for="radial-der-0">0</label>
+                                            <input type="radio" name="radial-der" id="radial-der-1" value="1" onchange="updateDashboard(); generateConclusion()"><label for="radial-der-1">1+</label>
+                                            <input type="radio" name="radial-der" id="radial-der-2" value="2" onchange="updateDashboard(); generateConclusion()"><label for="radial-der-2">2+</label>
+                                            <input type="radio" name="radial-der" id="radial-der-3" value="3" onchange="updateDashboard(); generateConclusion()"><label for="radial-der-3">3+</label>
+                                            <input type="radio" name="radial-der" id="radial-der-4" value="4" onchange="updateDashboard(); generateConclusion()"><label for="radial-der-4">4+</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-item">
+                                        <span>Cubital</span>
+                                        <div class="flex items-center gap-2">
+                                            <input type="radio" name="cubital-der" id="cubital-der-0" value="0" onchange="updateDashboard(); generateConclusion()"><label for="cubital-der-0">0</label>
+                                            <input type="radio" name="cubital-der" id="cubital-der-1" value="1" onchange="updateDashboard(); generateConclusion()"><label for="cubital-der-1">1+</label>
+                                            <input type="radio" name="cubital-der" id="cubital-der-2" value="2" onchange="updateDashboard(); generateConclusion()"><label for="cubital-der-2">2+</label>
+                                            <input type="radio" name="cubital-der" id="cubital-der-3" value="3" onchange="updateDashboard(); generateConclusion()"><label for="cubital-der-3">3+</label>
+                                            <input type="radio" name="cubital-der" id="cubital-der-4" value="4" onchange="updateDashboard(); generateConclusion()"><label for="cubital-der-4">4+</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-item">
+                                        <span>Braquial</span>
+                                        <div class="flex items-center gap-2">
+                                            <input type="radio" name="braquial-der" id="braquial-der-0" value="0" onchange="updateDashboard(); generateConclusion()"><label for="braquial-der-0">0</label>
+                                            <input type="radio" name="braquial-der" id="braquial-der-1" value="1" onchange="updateDashboard(); generateConclusion()"><label for="braquial-der-1">1+</label>
+                                            <input type="radio" name="braquial-der" id="braquial-der-2" value="2" onchange="updateDashboard(); generateConclusion()"><label for="braquial-der-2">2+</label>
+                                            <input type="radio" name="braquial-der" id="braquial-der-3" value="3" onchange="updateDashboard(); generateConclusion()"><label for="braquial-der-3">3+</label>
+                                            <input type="radio" name="braquial-der" id="braquial-der-4" value="4" onchange="updateDashboard(); generateConclusion()"><label for="braquial-der-4">4+</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Miembros Inferiores</h5>
+                                    <div class="form-item">
+                                        <span>Femoral</span>
+                                        <div class="flex items-center gap-2">
+                                            <input type="radio" name="femoral-der" id="femoral-der-0" value="0" onchange="updateDashboard(); generateConclusion()"><label for="femoral-der-0">0</label>
+                                            <input type="radio" name="femoral-der" id="femoral-der-1" value="1" onchange="updateDashboard(); generateConclusion()"><label for="femoral-der-1">1+</label>
+                                            <input type="radio" name="femoral-der" id="femoral-der-2" value="2" onchange="updateDashboard(); generateConclusion()"><label for="femoral-der-2">2+</label>
+                                            <input type="radio" name="femoral-der" id="femoral-der-3" value="3" onchange="updateDashboard(); generateConclusion()"><label for="femoral-der-3">3+</label>
+                                            <input type="radio" name="femoral-der" id="femoral-der-4" value="4" onchange="updateDashboard(); generateConclusion()"><label for="femoral-der-4">4+</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-item">
+                                        <span>Poplíteo</span>
+                                        <div class="flex items-center gap-2">
+                                            <input type="radio" name="popliteo-der" id="popliteo-der-0" value="0" onchange="updateDashboard(); generateConclusion()"><label for="popliteo-der-0">0</label>
+                                            <input type="radio" name="popliteo-der" id="popliteo-der-1" value="1" onchange="updateDashboard(); generateConclusion()"><label for="popliteo-der-1">1+</label>
+                                            <input type="radio" name="popliteo-der" id="popliteo-der-2" value="2" onchange="updateDashboard(); generateConclusion()"><label for="popliteo-der-2">2+</label>
+                                            <input type="radio" name="popliteo-der" id="popliteo-der-3" value="3" onchange="updateDashboard(); generateConclusion()"><label for="popliteo-der-3">3+</label>
+                                            <input type="radio" name="popliteo-der" id="popliteo-der-4" value="4" onchange="updateDashboard(); generateConclusion()"><label for="popliteo-der-4">4+</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-item">
+                                        <span>Tibial posterior</span>
+                                        <div class="flex items-center gap-2">
+                                            <input type="radio" name="tibial-post-der" id="tibial-post-der-0" value="0" onchange="updateDashboard(); generateConclusion()"><label for="tibial-post-der-0">0</label>
+                                            <input type="radio" name="tibial-post-der" id="tibial-post-der-1" value="1" onchange="updateDashboard(); generateConclusion()"><label for="tibial-post-der-1">1+</label>
+                                            <input type="radio" name="tibial-post-der" id="tibial-post-der-2" value="2" onchange="updateDashboard(); generateConclusion()"><label for="tibial-post-der-2">2+</label>
+                                            <input type="radio" name="tibial-post-der" id="tibial-post-der-3" value="3" onchange="updateDashboard(); generateConclusion()"><label for="tibial-post-der-3">3+</label>
+                                            <input type="radio" name="tibial-post-der" id="tibial-post-der-4" value="4" onchange="updateDashboard(); generateConclusion()"><label for="tibial-post-der-4">4+</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-item">
+                                        <span>Pedio</span>
+                                        <div class="flex items-center gap-2">
+                                            <input type="radio" name="pedio-der" id="pedio-der-0" value="0" onchange="updateDashboard(); generateConclusion()"><label for="pedio-der-0">0</label>
+                                            <input type="radio" name="pedio-der" id="pedio-der-1" value="1" onchange="updateDashboard(); generateConclusion()"><label for="pedio-der-1">1+</label>
+                                            <input type="radio" name="pedio-der" id="pedio-der-2" value="2" onchange="updateDashboard(); generateConclusion()"><label for="pedio-der-2">2+</label>
+                                            <input type="radio" name="pedio-der" id="pedio-der-3" value="3" onchange="updateDashboard(); generateConclusion()"><label for="pedio-der-3">3+</label>
+                                            <input type="radio" name="pedio-der" id="pedio-der-4" value="4" onchange="updateDashboard(); generateConclusion()"><label for="pedio-der-4">4+</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="sub-section-card">
+                                <h4 class="sub-section-title">Lado Izquierdo</h4>
+                                <div class="mb-4">
+                                    <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Miembros Superiores</h5>
+                                    <div class="form-item">
+                                        <span>Radial</span>
+                                        <div class="flex items-center gap-2">
+                                            <input type="radio" name="radial-izq" id="radial-izq-0" value="0" onchange="updateDashboard(); generateConclusion()"><label for="radial-izq-0">0</label>
+                                            <input type="radio" name="radial-izq" id="radial-izq-1" value="1" onchange="updateDashboard(); generateConclusion()"><label for="radial-izq-1">1+</label>
+                                            <input type="radio" name="radial-izq" id="radial-izq-2" value="2" onchange="updateDashboard(); generateConclusion()"><label for="radial-izq-2">2+</label>
+                                            <input type="radio" name="radial-izq" id="radial-izq-3" value="3" onchange="updateDashboard(); generateConclusion()"><label for="radial-izq-3">3+</label>
+                                            <input type="radio" name="radial-izq" id="radial-izq-4" value="4" onchange="updateDashboard(); generateConclusion()"><label for="radial-izq-4">4+</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-item">
+                                        <span>Cubital</span>
+                                        <div class="flex items-center gap-2">
+                                            <input type="radio" name="cubital-izq" id="cubital-izq-0" value="0" onchange="updateDashboard(); generateConclusion()"><label for="cubital-izq-0">0</label>
+                                            <input type="radio" name="cubital-izq" id="cubital-izq-1" value="1" onchange="updateDashboard(); generateConclusion()"><label for="cubital-izq-1">1+</label>
+                                            <input type="radio" name="cubital-izq" id="cubital-izq-2" value="2" onchange="updateDashboard(); generateConclusion()"><label for="cubital-izq-2">2+</label>
+                                            <input type="radio" name="cubital-izq" id="cubital-izq-3" value="3" onchange="updateDashboard(); generateConclusion()"><label for="cubital-izq-3">3+</label>
+                                            <input type="radio" name="cubital-izq" id="cubital-izq-4" value="4" onchange="updateDashboard(); generateConclusion()"><label for="cubital-izq-4">4+</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-item">
+                                        <span>Braquial</span>
+                                        <div class="flex items-center gap-2">
+                                            <input type="radio" name="braquial-izq" id="braquial-izq-0" value="0" onchange="updateDashboard(); generateConclusion()"><label for="braquial-izq-0">0</label>
+                                            <input type="radio" name="braquial-izq" id="braquial-izq-1" value="1" onchange="updateDashboard(); generateConclusion()"><label for="braquial-izq-1">1+</label>
+                                            <input type="radio" name="braquial-izq" id="braquial-izq-2" value="2" onchange="updateDashboard(); generateConclusion()"><label for="braquial-izq-2">2+</label>
+                                            <input type="radio" name="braquial-izq" id="braquial-izq-3" value="3" onchange="updateDashboard(); generateConclusion()"><label for="braquial-izq-3">3+</label>
+                                            <input type="radio" name="braquial-izq" id="braquial-izq-4" value="4" onchange="updateDashboard(); generateConclusion()"><label for="braquial-izq-4">4+</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Miembros Inferiores</h5>
+                                    <div class="form-item">
+                                        <span>Femoral</span>
+                                        <div class="flex items-center gap-2">
+                                            <input type="radio" name="femoral-izq" id="femoral-izq-0" value="0" onchange="updateDashboard(); generateConclusion()"><label for="femoral-izq-0">0</label>
+                                            <input type="radio" name="femoral-izq" id="femoral-izq-1" value="1" onchange="updateDashboard(); generateConclusion()"><label for="femoral-izq-1">1+</label>
+                                            <input type="radio" name="femoral-izq" id="femoral-izq-2" value="2" onchange="updateDashboard(); generateConclusion()"><label for="femoral-izq-2">2+</label>
+                                            <input type="radio" name="femoral-izq" id="femoral-izq-3" value="3" onchange="updateDashboard(); generateConclusion()"><label for="femoral-izq-3">3+</label>
+                                            <input type="radio" name="femoral-izq" id="femoral-izq-4" value="4" onchange="updateDashboard(); generateConclusion()"><label for="femoral-izq-4">4+</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-item">
+                                        <span>Poplíteo</span>
+                                        <div class="flex items-center gap-2">
+                                            <input type="radio" name="popliteo-izq" id="popliteo-izq-0" value="0" onchange="updateDashboard(); generateConclusion()"><label for="popliteo-izq-0">0</label>
+                                            <input type="radio" name="popliteo-izq" id="popliteo-izq-1" value="1" onchange="updateDashboard(); generateConclusion()"><label for="popliteo-izq-1">1+</label>
+                                            <input type="radio" name="popliteo-izq" id="popliteo-izq-2" value="2" onchange="updateDashboard(); generateConclusion()"><label for="popliteo-izq-2">2+</label>
+                                            <input type="radio" name="popliteo-izq" id="popliteo-izq-3" value="3" onchange="updateDashboard(); generateConclusion()"><label for="popliteo-izq-3">3+</label>
+                                            <input type="radio" name="popliteo-izq" id="popliteo-izq-4" value="4" onchange="updateDashboard(); generateConclusion()"><label for="popliteo-izq-4">4+</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-item">
+                                        <span>Tibial posterior</span>
+                                        <div class="flex items-center gap-2">
+                                            <input type="radio" name="tibial-post-izq" id="tibial-post-izq-0" value="0" onchange="updateDashboard(); generateConclusion()"><label for="tibial-post-izq-0">0</label>
+                                            <input type="radio" name="tibial-post-izq" id="tibial-post-izq-1" value="1" onchange="updateDashboard(); generateConclusion()"><label for="tibial-post-izq-1">1+</label>
+                                            <input type="radio" name="tibial-post-izq" id="tibial-post-izq-2" value="2" onchange="updateDashboard(); generateConclusion()"><label for="tibial-post-izq-2">2+</label>
+                                            <input type="radio" name="tibial-post-izq" id="tibial-post-izq-3" value="3" onchange="updateDashboard(); generateConclusion()"><label for="tibial-post-izq-3">3+</label>
+                                            <input type="radio" name="tibial-post-izq" id="tibial-post-izq-4" value="4" onchange="updateDashboard(); generateConclusion()"><label for="tibial-post-izq-4">4+</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-item">
+                                        <span>Pedio</span>
+                                        <div class="flex items-center gap-2">
+                                            <input type="radio" name="pedio-izq" id="pedio-izq-0" value="0" onchange="updateDashboard(); generateConclusion()"><label for="pedio-izq-0">0</label>
+                                            <input type="radio" name="pedio-izq" id="pedio-izq-1" value="1" onchange="updateDashboard(); generateConclusion()"><label for="pedio-izq-1">1+</label>
+                                            <input type="radio" name="pedio-izq" id="pedio-izq-2" value="2" onchange="updateDashboard(); generateConclusion()"><label for="pedio-izq-2">2+</label>
+                                            <input type="radio" name="pedio-izq" id="pedio-izq-3" value="3" onchange="updateDashboard(); generateConclusion()"><label for="pedio-izq-3">3+</label>
+                                            <input type="radio" name="pedio-izq" id="pedio-izq-4" value="4" onchange="updateDashboard(); generateConclusion()"><label for="pedio-izq-4">4+</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="legend text-center mt-4">
+                            <span>Escala: 0 = Ausente, 1+ = Débil, 2+ = Normal, 3+ = Aumentado, 4+ = Saltón</span>
+                        </div>
+
+                        <div class="sub-section-card mt-4">
+                            <h4 class="sub-section-title"><i class="fas fa-ruler-horizontal"></i> Índice Tobillo-Brazo (ITB)</h4>
+                            <div class="form-grid">
+                                <div class="measurement">
+                                    <label>PA sistólica brazo derecho:</label>
+                                    <input type="number" id="pa-brazo-der" class="input-field" min="70" max="250" onchange="calculateITB()">
+                                    <span>mmHg</span>
+                                </div>
+                                <div class="measurement">
+                                    <label>PA sistólica brazo izquierdo:</label>
+                                    <input type="number" id="pa-brazo-izq" class="input-field" min="70" max="250" onchange="calculateITB()">
+                                    <span>mmHg</span>
+                                </div>
+                            </div>
+                            <div class="form-grid mt-4">
+                                <div class="measurement">
+                                    <label>PA sistólica tobillo derecho:</label>
+                                    <input type="number" id="pa-tobillo-der" class="input-field" min="50" max="250" onchange="calculateITB()">
+                                    <span>mmHg</span>
+                                </div>
+                                <div class="measurement">
+                                    <label>PA sistólica tobillo izquierdo:</label>
+                                    <input type="number" id="pa-tobillo-izq" class="input-field" min="50" max="250" onchange="calculateITB()">
+                                    <span>mmHg</span>
+                                </div>
+                            </div>
+                            <div class="score-item mt-4">
+                                <span>ITB derecho:</span>
+                                <span class="score-value" id="itb-derecho">--</span>
+                            </div>
+                            <div class="score-item">
+                                <span>ITB izquierdo:</span>
+                                <span class="score-value" id="itb-izquierdo">--</span>
+                            </div>
+                            <div class="score-item">
+                                <span>Interpretación:</span>
+                                <span class="score-value" id="itb-interpretacion">--</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section: Electrocardiograma -->
+                <div class="section-container" id="electrocardiograma">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-heartbeat"></i> Electrocardiograma</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-chart-line"></i> Ritmo y Frecuencia</h4>
+                            <div class="form-grid">
+                                <div class="form-item">
+                                    <label>Ritmo:</label>
+                                    <select id="ecg-ritmo" onchange="handleECGRitmo()">
+                                        <option value="">Seleccione...</option>
+                                        <option value="sinusal">Ritmo sinusal</option>
+                                        <option value="fibrilacion-auricular">Fibrilación auricular</option>
+                                        <option value="flutter-auricular">Flutter auricular</option>
+                                        <option value="taquicardia-supraventricular">Taquicardia supraventricular</option>
+                                        <option value="taquicardia-ventricular">Taquicardia ventricular</option>
+                                        <option value="marcapasos">Ritmo de marcapasos</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-item">
+                                    <label>Frecuencia cardíaca (ECG):</label>
+                                    <div class="measurement w-full">
+                                        <input type="number" id="ecg-frecuencia" class="input-field" min="20" max="300" onchange="updateDashboard(); generateConclusion()">
+                                        <span>lpm</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="sub-section-card dynamic-section" id="ecg-ritmo-detalles">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Detalles del Ritmo</h5>
+                                <div class="form-group">
+                                    <label>Regularidad del ritmo:</label>
+                                    <select id="ecg-regularidad" onchange="updateDashboard(); generateConclusion()">
+                                        <option value="">Seleccione...</option>
+                                        <option value="regular">Regular</option>
+                                        <option value="irregular">Irregular</option>
+                                        <option value="regularmente-irregular">Regularmente irregular</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-bezier-curve"></i> Conducción e Intervalos</h4>
+                            <div class="form-group">
+                                <label>Conducción:</label>
+                                <select id="ecg-conduccion" onchange="handleECGConduccion()">
+                                    <option value="">Seleccione...</option>
+                                    <option value="normal">Normal</option>
+                                    <option value="bloqueo-av-1">Bloqueo AV de 1er grado</option>
+                                    <option value="bloqueo-av-2">Bloqueo AV de 2do grado</option>
+                                    <option value="bloqueo-av-3">Bloqueo AV de 3er grado</option>
+                                    <option value="bloqueo-rama-izquierda">Bloqueo rama izquierda</option>
+                                    <option value="bloqueo-rama-derecha">Bloqueo rama derecha</option>
+                                    <option value="hemibloqueo-anterior">Hemibloqueo anterior izquierdo</option>
+                                    <option value="hemibloqueo-posterior">Hemibloqueo posterior izquierdo</option>
+                                </select>
+                            </div>
+                            
+                            <div class="sub-section-card dynamic-section" id="ecg-conduccion-detalles">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Medidas de Intervalos</h5>
+                                <div class="form-grid">
+                                    <div class="measurement">
+                                        <label>Intervalo PR (ms):</label>
+                                        <input type="number" id="intervalo-pr" class="input-field" min="80" max="400" onchange="updateDashboard(); generateConclusion()">
+                                    </div>
+                                    <div class="measurement">
+                                        <label>Ancho QRS (ms):</label>
+                                        <input type="number" id="ancho-qrs" class="input-field" min="60" max="200" onchange="updateDashboard(); generateConclusion()">
+                                    </div>
+                                    <div class="measurement">
+                                        <label>Intervalo QT (ms):</label>
+                                        <input type="number" id="intervalo-qt" class="input-field" min="300" max="600" onchange="updateDashboard(); generateConclusion()">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-expand"></i> Hipertrofia y Cambios Isquémicos</h4>
+                            <div class="form-group">
+                                <label>Signos de hipertrofia:</label>
+                                <div class="form-grid">
+                                    <div class="form-item">
+                                        <input type="checkbox" id="hipertrofia-vi" onchange="updateDashboard(); generateConclusion()">
+                                        <label for="hipertrofia-vi">Hipertrofia ventricular izquierda</label>
+                                    </div>
+                                    <div class="form-item">
+                                        <input type="checkbox" id="hipertrofia-vd" onchange="updateDashboard(); generateConclusion()">
+                                        <label for="hipertrofia-vd">Hipertrofia ventricular derecha</label>
+                                    </div>
+                                    <div class="form-item">
+                                        <input type="checkbox" id="hipertrofia-ai" onchange="updateDashboard(); generateConclusion()">
+                                        <label for="hipertrofia-ai">Hipertrofia auricular izquierda</label>
+                                    </div>
+                                    <div class="form-item">
+                                        <input type="checkbox" id="hipertrofia-ad" onchange="updateDashboard(); generateConclusion()">
+                                        <label for="hipertrofia-ad">Hipertrofia auricular derecha</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Cambios isquémicos:</label>
+                                <select id="cambios-isquemicos" onchange="handleCambiosIsquemicos()">
+                                    <option value="">Seleccione...</option>
+                                    <option value="ausentes">Ausentes</option>
+                                    <option value="elevacion-st">Elevación del segmento ST</option>
+                                    <option value="depresion-st">Depresión del segmento ST</option>
+                                    <option value="inversion-t">Inversión de la onda T</option>
+                                    <option value="ondas-q-patologicas">Ondas Q patológicas</option>
+                                    <option value="mala-progresion-r">Mala progresión de R</option>
+                                </select>
+                            </div>
+                            
+                            <div class="sub-section-card dynamic-section" id="cambios-isquemicos-detalles">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Localización de Cambios Isquémicos</h5>
+                                <div class="form-grid">
+                                    <div class="form-item">
+                                        <input type="checkbox" id="pared-anterior" onchange="updateDashboard(); generateConclusion()">
+                                        <label for="pared-anterior">Pared anterior</label>
+                                    </div>
+                                    <div class="form-item">
+                                        <input type="checkbox" id="pared-inferior" onchange="updateDashboard(); generateConclusion()">
+                                        <label for="pared-inferior">Pared inferior</label>
+                                    </div>
+                                    <div class="form-item">
+                                        <input type="checkbox" id="pared-lateral" onchange="updateDashboard(); generateConclusion()">
+                                        <label for="pared-lateral">Pared lateral</label>
+                                    </div>
+                                    <div class="form-item">
+                                        <input type="checkbox" id="pared-posterior" onchange="updateDashboard(); generateConclusion()">
+                                        <label for="pared-posterior">Pared posterior</label>
+                                    </div>
+                                    <div class="form-item">
+                                        <input type="checkbox" id="septo" onchange="updateDashboard(); generateConclusion()">
+                                        <label for="septo">Septo</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section: Escalas de Riesgo Cardiovascular -->
+                <div class="section-container" id="escalas-riesgo">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-calculator"></i> Escalas de Riesgo Cardiovascular</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-heart-crack"></i> Escala CHA₂DS₂-VASc (Fibrilación Auricular)</h4>
+                            <div class="form-grid">
+                                <div class="form-item">
+                                    <input type="checkbox" id="chads-icc" onchange="calculateCHADS()">
+                                    <label for="chads-icc">Insuficiencia cardíaca (1 punto)</label>
+                                </div>
+                                <div class="form-item">
+                                    <input type="checkbox" id="chads-hta" onchange="calculateCHADS()">
+                                    <label for="chads-hta">Hipertensión (1 punto)</label>
+                                </div>
+                                <div class="form-item">
+                                    <input type="checkbox" id="chads-edad-75" onchange="calculateCHADS()">
+                                    <label for="chads-edad-75">Edad ≥75 años (2 puntos)</label>
+                                </div>
+                                <div class="form-item">
+                                    <input type="checkbox" id="chads-diabetes" onchange="calculateCHADS()">
+                                    <label for="chads-diabetes">Diabetes mellitus (1 punto)</label>
+                                </div>
+                                <div class="form-item">
+                                    <input type="checkbox" id="chads-stroke" onchange="calculateCHADS()">
+                                    <label for="chads-stroke">ACV/AIT previo (2 puntos)</label>
+                                </div>
+                                <div class="form-item">
+                                    <input type="checkbox" id="chads-vascular" onchange="calculateCHADS()">
+                                    <label for="chads-vascular">Enfermedad vascular (1 punto)</label>
+                                </div>
+                                <div class="form-item">
+                                    <input type="checkbox" id="chads-edad-65" onchange="calculateCHADS()">
+                                    <label for="chads-edad-65">Edad 65-74 años (1 punto)</label>
+                                </div>
+                                <div class="form-item">
+                                    <input type="checkbox" id="chads-sexo" onchange="calculateCHADS()">
+                                    <label for="chads-sexo">Sexo femenino (1 punto)</label>
+                                </div>
+                            </div>
+                            <div class="score-item mt-4">
+                                <span>Puntuación CHA₂DS₂-VASc:</span>
+                                <span class="score-value" id="chads-score">0</span>
+                                <span>/9 puntos</span>
+                            </div>
+                            <div class="score-item">
+                                <span>Recomendación:</span>
+                                <span class="score-value" id="chads-recomendacion">--</span>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-droplet"></i> Escala HAS-BLED (Riesgo Hemorrágico)</h4>
+                            <div class="form-grid">
+                                <div class="form-item">
+                                    <input type="checkbox" id="hasbled-hta" onchange="calculateHASBLED()">
+                                    <label for="hasbled-hta">Hipertensión no controlada (1 punto)</label>
+                                </div>
+                                <div class="form-item">
+                                    <input type="checkbox" id="hasbled-renal" onchange="calculateHASBLED()">
+                                    <label for="hasbled-renal">Función renal anormal (1 punto)</label>
+                                </div>
+                                <div class="form-item">
+                                    <input type="checkbox" id="hasbled-hepatica" onchange="calculateHASBLED()">
+                                    <label for="hasbled-hepatica">Función hepática anormal (1 punto)</label>
+                                </div>
+                                <div class="form-item">
+                                    <input type="checkbox" id="hasbled-stroke" onchange="calculateHASBLED()">
+                                    <label for="hasbled-stroke">ACV previo (1 punto)</label>
+                                </div>
+                                <div class="form-item">
+                                    <input type="checkbox" id="hasbled-sangrado" onchange="calculateHASBLED()">
+                                    <label for="hasbled-sangrado">Antecedente de sangrado (1 punto)</label>
+                                </div>
+                                <div class="form-item">
+                                    <input type="checkbox" id="hasbled-inr" onchange="calculateHASBLED()">
+                                    <label for="hasbled-inr">INR lábil (1 punto)</label>
+                                </div>
+                                <div class="form-item">
+                                    <input type="checkbox" id="hasbled-edad" onchange="calculateHASBLED()">
+                                    <label for="hasbled-edad">Edad >65 años (1 punto)</label>
+                                </div>
+                                <div class="form-item">
+                                    <input type="checkbox" id="hasbled-medicamentos" onchange="calculateHASBLED()">
+                                    <label for="hasbled-medicamentos">Medicamentos/alcohol (1 punto)</label>
+                                </div>
+                            </div>
+                            <div class="score-item mt-4">
+                                <span>Puntuación HAS-BLED:</span>
+                                <span class="score-value" id="hasbled-score">0</span>
+                                <span>/9 puntos</span>
+                            </div>
+                            <div class="score-item">
+                                <span>Riesgo hemorrágico:</span>
+                                <span class="score-value" id="hasbled-riesgo">--</span>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-exclamation-triangle"></i> Escala TIMI (Síndrome Coronario Agudo)</h4>
+                            <div class="form-grid">
+                                <div class="form-item">
+                                    <input type="checkbox" id="timi-edad" onchange="calculateTIMI()">
+                                    <label for="timi-edad">Edad ≥65 años (1 punto)</label>
+                                </div>
+                                <div class="form-item">
+                                    <input type="checkbox" id="timi-factores" onchange="calculateTIMI()">
+                                    <label for="timi-factores">≥3 factores de riesgo (1 punto)</label>
+                                </div>
+                                <div class="form-item">
+                                    <input type="checkbox" id="timi-estenosis" onchange="calculateTIMI()">
+                                    <label for="timi-estenosis">Estenosis coronaria ≥50% (1 punto)</label>
+                                </div>
+                                <div class="form-item">
+                                    <input type="checkbox" id="timi-st" onchange="calculateTIMI()">
+                                    <label for="timi-st">Desviación del ST (1 punto)</label>
+                                </div>
+                                <div class="form-item">
+                                    <input type="checkbox" id="timi-angina" onchange="calculateTIMI()">
+                                    <label for="timi-angina">≥2 episodios anginosos/24h (1 punto)</label>
+                                </div>
+                                <div class="form-item">
+                                    <input type="checkbox" id="timi-aspirina" onchange="calculateTIMI()">
+                                    <label for="timi-aspirina">Uso de aspirina/7 días (1 punto)</label>
+                                </div>
+                                <div class="form-item">
+                                    <input type="checkbox" id="timi-marcadores" onchange="calculateTIMI()">
+                                    <label for="timi-marcadores">Marcadores elevados (1 punto)</label>
+                                </div>
+                            </div>
+                            <div class="score-item mt-4">
+                                <span>Puntuación TIMI:</span>
+                                <span class="score-value" id="timi-score">0</span>
+                                <span>/7 puntos</span>
+                            </div>
+                            <div class="score-item">
+                                <span>Riesgo a 14 días:</span>
+                                <span class="score-value" id="timi-riesgo">--</span>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-walking"></i> Test de Marcha de 6 Minutos</h4>
+                            <div class="measurement">
+                                <label>Distancia recorrida:</label>
+                                <input type="number" id="marcha-6min" class="input-field" min="0" max="800" onchange="evaluate6MWT()">
+                                <span>metros</span>
+                            </div>
+                            <div class="measurement">
+                                <label>Disnea post-ejercicio (Borg):</label>
+                                <select id="borg-disnea" onchange="evaluate6MWT()">
+                                    <option value="">Seleccionar</option>
+                                    <option value="0">0 - Sin disnea</option>
+                                    <option value="1">1 - Muy leve</option>
+                                    <option value="2">2 - Leve</option>
+                                    <option value="3">3 - Moderada</option>
+                                    <option value="4">4 - Algo severa</option>
+                                    <option value="5">5 - Severa</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7 - Muy severa</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9 - Muy muy severa</option>
+                                    <option value="10">10 - Máxima</option>
+                                </select>
+                            </div>
+                            <div class="score-item mt-4">
+                                <span>Capacidad funcional:</span>
+                                <span class="score-value" id="capacidad-funcional">--</span>
+                            </div>
+                            <div class="score-item">
+                                <span>Porcentaje predicho:</span>
+                                <span class="score-value" id="porcentaje-predicho">--</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- Fixed report panel (right) -->
+        <div class="sticky-report-panel" id="stickyReportPanel">
+            <div class="sticky-header">
+                <span><i class="fas fa-file-medical-alt"></i> Informe Cardiovascular en Tiempo Real</span>
+                <div class="sticky-controls">
+                    <button onclick="copyStickyToClipboard()"><i class="fas fa-copy"></i></button>
+                    <button onclick="toggleStickyPanel()"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+            <pre class="sticky-content" id="reportContent">
+El informe se generará aquí a medida que completes los campos.
+            </pre>
+        </div>
+    </div>
+
+    <!-- Copy notification -->
+    <div class="copy-notification fixed bottom-8 right-8 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg opacity-0 transition-opacity duration-300" id="copyNotification">
+        <i class="fas fa-check-circle mr-2"></i>
+        <span>¡Informe copiado al portapapeles!</span>
+    </div>
+
+    <!-- Theme toggle button -->
+    <button class="theme-toggle" onclick="toggleTheme()">
+        <i class="fas fa-moon" id="theme-icon"></i>
+    </button>
+
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

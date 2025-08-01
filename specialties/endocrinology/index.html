@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Endocrinología - Sistema de Evaluación</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Main navigation sidebar -->
+        <aside class="sidebar" id="sidebar" style="overflow-y: auto; height: 100vh;">
+            <div class="sidebar-header" onclick="window.location.href='../../index.html'" style="cursor: pointer;">
+                <i class="fas fa-heartbeat logo"></i>
+                <h1 class="app-title">HealthOS</h1>
+            </div>
+            <nav class="nav-list">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-th-large nav-icon"></i>
+                        <span class="nav-text">Panel de control</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link active" id="endo-nav-link" onclick="toggleEndoSubMenu(event)">
+                        <i class="fas fa-flask nav-icon"></i>
+                        <span class="nav-text">Endocrinología</span>
+                    </a>
+                    <!-- Submenu for Endocrinology sections -->
+                    <ul class="sub-menu" id="endo-sub-menu">
+                        <li class="sub-menu-item"><a href="#gender-selection" onclick="scrollToSection('gender-selection')">Género</a></li>
+                        <li class="sub-menu-item"><a href="#anamnesis" onclick="scrollToSection('anamnesis')">Anamnesis</a></li>
+                        <li class="sub-menu-item"><a href="#physical-exam" onclick="scrollToSection('physical-exam')">Examen Físico</a></li>
+                        <li class="sub-menu-item"><a href="#thyroid-exam" onclick="scrollToSection('thyroid-exam')">Examen Tiroideo</a></li>
+                        <li class="sub-menu-item"><a href="#metabolic-evaluation" onclick="scrollToSection('metabolic-evaluation')">Evaluación Metabólica</a></li>
+                        <li class="sub-menu-item"><a href="#risk-scales" onclick="scrollToSection('risk-scales')">Escalas de Riesgo</a></li>
+                        <li class="sub-menu-item"><a href="#reproductive-evaluation" onclick="scrollToSection('reproductive-evaluation')">Evaluación Reproductiva</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="../cardiology/index.html" class="nav-link">
+                        <i class="fas fa-heartbeat nav-icon"></i>
+                        <span class="nav-text">Cardiología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../gastroenterology/index.html" class="nav-link">
+                        <i class="fas fa-stomach nav-icon"></i>
+                        <span class="nav-text">Gastroenterología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../dermatology/index.html" class="nav-link">
+                        <i class="fas fa-allergies nav-icon"></i>
+                        <span class="nav-text">Dermatología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../geriatrics/index.html" class="nav-link">
+                        <i class="fas fa-user-friends nav-icon"></i>
+                        <span class="nav-text">Geriatría</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../hematology/index.html" class="nav-link">
+                        <i class="fas fa-tint nav-icon"></i>
+                        <span class="nav-text">Hematología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../infectious_diseases/index.html" class="nav-link">
+                        <i class="fas fa-microscope nav-icon"></i>
+                        <span class="nav-text">Enfermedades Infecciosas</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../musculoskeletal/index.html" class="nav-link">
+                        <i class="fas fa-bone nav-icon"></i>
+                        <span class="nav-text">Musculoesquelético</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../ophthalmology/index.html" class="nav-link">
+                        <i class="fas fa-eye nav-icon"></i>
+                        <span class="nav-text">Oftalmología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../otolaryngology/index.html" class="nav-link">
+                        <i class="fas fa-ear-listen nav-icon"></i>
+                        <span class="nav-text">Otorrinolaringología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../pneumology/index.html" class="nav-link">
+                        <i class="fas fa-lungs nav-icon"></i>
+                        <span class="nav-text">Neumología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../psychiatry/index.html" class="nav-link">
+                        <i class="fas fa-brain nav-icon"></i>
+                        <span class="nav-text">Psiquiatría</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../rheumatology/index.html" class="nav-link">
+                        <i class="fas fa-joint nav-icon"></i>
+                        <span class="nav-text">Reumatología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../urology/index.html" class="nav-link">
+                        <i class="fas fa-user-md nav-icon"></i>
+                        <span class="nav-text">Urología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-notes-medical nav-icon"></i>
+                        <span class="nav-text">Registros</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-cog nav-icon"></i>
+                        <span class="nav-text">Configuración</span>
+                    </a>
+                </li>
+            </nav>
+            <!-- Toggle button to collapse/expand sidebar on large screens -->
+            <button class="btn btn-secondary mt-auto hidden md:flex items-center justify-center" onclick="toggleSidebar()">
+                <i class="fas fa-chevron-left" id="sidebar-toggle-icon"></i>
+            </button>
+        </aside>
+
+        <!-- Content area container (main-content and top-bar) -->
+        <div class="content-area" id="contentArea">
+            <!-- Fixed top bar -->
+            <div class="top-bar" id="topBar">
+                <div class="flex items-center gap-4">
+                    <!-- Button for main sidebar on mobile -->
+                    <button class="btn btn-secondary md:hidden" onclick="toggleSidebar()">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="flex items-center gap-4">
+                        <img src="../../img/8.svg" alt="Endocrinología" class="h-10 w-10">
+                        <h2 class="page-title">Endocrinología</h2>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <!-- Button for real-time report panel -->
+                    <button class="btn btn-primary" onclick="toggleStickyPanel()">
+                        <i class="fas fa-file-medical-alt"></i> <span class="hidden md:inline">Informe</span>
+                    </button>
+                    <div class="user-profile">
+
+                        <div class="user-avatar">JP</div>
+                        <span class="user-name">Dr. Juan Pérez</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main content area for specialty page -->
+            <main class="main-content" id="mainContent">
+                <!-- Specialty Dashboard / Overview Section -->
+                <div class="section-container" id="overview">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-chart-bar"></i> Resumen de la especialidad</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main expanded">
+                        <div class="dashboard-grid">
+                            <div class="dashboard-item dashboard-normal">
+                                <i class="fas fa-user-md"></i>
+                                <div>Progreso del examen</div>
+                                <div class="value" id="exam-progress">0%</div>
+                            </div>
+                            <div class="dashboard-item dashboard-normal">
+                                <i class="fas fa-clipboard-list"></i>
+                                <div>Secciones completadas</div>
+                                <div class="value" id="sections-completed">0/7</div>
+                            </div>
+                            <div class="dashboard-item dashboard-alert" id="alerts-item">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <div>Alertas</div>
+                                <div class="value" id="alert-count">0</div>
+                            </div>
+                            <div class="dashboard-item dashboard-warning" id="warnings-item">
+                                <i class="fas fa-exclamation-circle"></i>
+                                <div>Avisos</div>
+                                <div class="value" id="warning-count">0</div>
+                            </div>
+                            <div class="dashboard-item dashboard-normal" id="findings-item">
+                                <i class="fas fa-search"></i>
+                                <div>Hallazgos</div>
+                                <div class="value" id="findings-count">0</div>
+                            </div>
+                            <div class="dashboard-item dashboard-normal" id="metabolic-status-item">
+                                <i class="fas fa-chart-line"></i>
+                                <div>Estado Metabólico</div>
+                                <div class="value" id="metabolic-status">Pendiente</div>
+                            </div>
+                        </div>
+                        <div class="flex justify-center gap-4 mt-8">
+                            <button class="btn btn-primary" onclick="generateConclusion()">
+                                <i class="fas fa-file-medical"></i> Generar Informe
+                            </button>
+                            <button class="btn btn-secondary" onclick="clearForm()">
+                                <i class="fas fa-eraser"></i> Limpiar Formulario
+                            </button>
+                            <button class="btn btn-secondary" onclick="expandAllSections()">
+                                <i class="fas fa-expand-alt"></i> Expandir Todo
+                            </button>
+                            <button class="btn btn-secondary" onclick="collapseAllSections()">
+                                <i class="fas fa-compress-alt"></i> Contraer Todo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sección: Selección de Género -->
+                <div class="section-container" id="gender-selection">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-venus-mars"></i> Selección de Género</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-user"></i> Género del Paciente</h4>
+                            <div class="form-grid">
+                                <div class="form-item">
+                                    <input type="radio" name="gender" id="gender-male" value="male" onchange="handleGenderSelection()">
+                                    <label for="gender-male">Masculino</label>
+                                </div>
+                                <div class="form-item">
+                                    <input type="radio" name="gender" id="gender-female" value="female" onchange="handleGenderSelection()">
+                                    <label for="gender-female">Femenino</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sección: Anamnesis y Quejas -->
+                <div class="section-container" id="anamnesis">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-user-edit"></i> Anamnesis y Quejas Principales</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-clipboard-list"></i> Quejas Endocrinológicas Principales</h4>
+                            <div class="checkbox-grid">
+                                <div class="form-item"><input type="checkbox" id="fatiga-astenia" onchange="updateDashboard()"><label for="fatiga-astenia">Fatiga/Astenia</label></div>
+                                <div class="form-item"><input type="checkbox" id="cambios-peso" onchange="updateDashboard()"><label for="cambios-peso">Cambios de peso</label></div>
+                                <div class="form-item"><input type="checkbox" id="polidipsia" onchange="updateDashboard()"><label for="polidipsia">Polidipsia</label></div>
+                                <div class="form-item"><input type="checkbox" id="poliuria" onchange="updateDashboard()"><label for="poliuria">Poliuria</label></div>
+                                <div class="form-item"><input type="checkbox" id="polifagia" onchange="updateDashboard()"><label for="polifagia">Polifagia</label></div>
+                                <div class="form-item"><input type="checkbox" id="intolerancia-calor" onchange="updateDashboard()"><label for="intolerancia-calor">Intolerancia al calor</label></div>
+                                <div class="form-item"><input type="checkbox" id="intolerancia-frio" onchange="updateDashboard()"><label for="intolerancia-frio">Intolerancia al frío</label></div>
+                                <div class="form-item"><input type="checkbox" id="palpitaciones" onchange="updateDashboard()"><label for="palpitaciones">Palpitaciones</label></div>
+                                <div class="form-item"><input type="checkbox" id="nerviosismo" onchange="updateDashboard()"><label for="nerviosismo">Nerviosismo/Ansiedad</label></div>
+                                <div class="form-item"><input type="checkbox" id="irregularidades-menstruales" onchange="updateDashboard()"><label for="irregularidades-menstruales">Irregularidades menstruales</label></div>
+                                <div class="form-item"><input type="checkbox" id="disfuncion-erectil" onchange="updateDashboard()"><label for="disfuncion-erectil">Disfunción eréctil</label></div>
+                                <div class="form-item"><input type="checkbox" id="galactorrea" onchange="updateDashboard()"><label for="galactorrea">Galactorrea</label></div>
+                                <div class="form-item"><input type="checkbox" id="hirsutismo" onchange="updateDashboard()"><label for="hirsutismo">Hirsutismo</label></div>
+                                <div class="form-item"><input type="checkbox" id="alopecia" onchange="updateDashboard()"><label for="alopecia">Alopecia</label></div>
+                                <div class="form-item"><input type="checkbox" id="cambios-voz" onchange="updateDashboard()"><label for="cambios-voz">Cambios en la voz</label></div>
+                                <div class="form-item"><input type="checkbox" id="dolor-oseo" onchange="updateDashboard()"><label for="dolor-oseo">Dolor óseo</label></div>
+                                <div class="form-item"><input type="checkbox" id="fracturas-fragalidad" onchange="updateDashboard()"><label for="fracturas-fragalidad">Fracturas de fragilidad</label></div>
+                                <div class="form-item"><input type="checkbox" id="cefalea" onchange="updateDashboard()"><label for="cefalea">Cefalea</label></div>
+                                <div class="form-item"><input type="checkbox" id="alteraciones-vision" onchange="updateDashboard()"><label for="alteraciones-vision">Alteraciones visuales</label></div>
+                                <div class="form-item"><input type="checkbox" id="sin-quejas-endo" onchange="handleNoComplaints()"><label for="sin-quejas-endo">Sin quejas</label></div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-search"></i> Caracterización de Síntomas</h4>
+                            <div class="mb-4">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Cambios de Peso</h5>
+                                <div class="measurement">
+                                    <label>Pérdida de peso (kg):</label>
+                                    <input type="number" class="input-field" id="perdida-peso" min="0" max="50" step="0.5" onchange="evaluateWeightChange()">
+                                    <span>kg en</span>
+                                    <input type="number" class="input-field" id="tiempo-perdida" min="1" max="24" style="width: 70px;" onchange="evaluateWeightChange()">
+                                    <span>meses</span>
+                                </div>
+                                <div class="measurement">
+                                    <label>Ganancia de peso (kg):</label>
+                                    <input type="number" class="input-field" id="ganancia-peso" min="0" max="50" step="0.5" onchange="evaluateWeightChange()">
+                                    <span>kg en</span>
+                                    <input type="number" class="input-field" id="tiempo-ganancia" min="1" max="24" style="width: 70px;" onchange="evaluateWeightChange()">
+                                    <span>meses</span>
+                                </div>
+                                <div class="score-item">
+                                    <span>Interpretación cambio peso:</span>
+                                    <span class="score-value" id="interpretacion-peso">--</span>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Síntomas Poliúricos</h5>
+                                <div class="measurement">
+                                    <label>Volumen urinario (L/día):</label>
+                                    <input type="number" class="input-field" id="volumen-urinario" min="0" max="10" step="0.5" onchange="evaluatePolyuria()">
+                                    <span>L/día</span>
+                                </div>
+                                <div class="measurement">
+                                    <label>Frecuencia urinaria/día:</label>
+                                    <input type="number" class="input-field" id="frecuencia-urinaria" min="0" max="30" onchange="evaluatePolyuria()">
+                                    <span>veces</span>
+                                </div>
+                                <div class="measurement">
+                                    <label>Nicturia (veces/noche):</label>
+                                    <input type="number" class="input-field" id="nicturia" min="0" max="10" onchange="evaluatePolyuria()">
+                                    <span>veces</span>
+                                </div>
+                                <div class="score-item">
+                                    <span>Interpretación poliuria:</span>
+                                    <span class="score-value" id="interpretacion-poliuria">--</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-history"></i> Antecedentes Endocrinológicos</h4>
+                            <div class="mb-4">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Historia Personal</h5>
+                                <div class="checkbox-grid">
+                                    <div class="form-item"><input type="checkbox" id="diabetes-previa" onchange="updateDashboard()"><label for="diabetes-previa">Diabetes mellitus</label></div>
+                                    <div class="form-item"><input type="checkbox" id="hipertension-arterial" onchange="updateDashboard()"><label for="hipertension-arterial">Hipertensión arterial</label></div>
+                                    <div class="form-item"><input type="checkbox" id="dislipidemia" onchange="updateDashboard()"><label for="dislipidemia">Dislipidemia</label></div>
+                                    <div class="form-item"><input type="checkbox" id="enfermedad-tiroidea" onchange="updateDashboard()"><label for="enfermedad-tiroidea">Enfermedad tiroidea</label></div>
+                                    <div class="form-item"><input type="checkbox" id="osteoporosis" onchange="updateDashboard()"><label for="osteoporosis">Osteoporosis</label></div>
+                                    <div class="form-item"><input type="checkbox" id="sindrome-ovarico-poliquistico" onchange="updateDashboard()"><label for="sindrome-ovarico-poliquistico">Síndrome ovario poliquístico</label></div>
+                                    <div class="form-item"><input type="checkbox" id="infertilidad" onchange="updateDashboard()"><label for="infertilidad">Infertilidad</label></div>
+                                    <div class="form-item"><input type="checkbox" id="radioterapia-cuello" onchange="updateDashboard()"><label for="radioterapia-cuello">Radioterapia cuello/cabeza</label></div>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Historia Familiar</h5>
+                                <div class="checkbox-grid">
+                                    <div class="form-item"><input type="checkbox" id="familia-diabetes" onchange="updateDashboard()"><label for="familia-diabetes">Diabetes mellitus</label></div>
+                                    <div class="form-item"><input type="checkbox" id="familia-tiroides" onchange="updateDashboard()"><label for="familia-tiroides">Enfermedad tiroidea</label></div>
+                                    <div class="form-item"><input type="checkbox" id="familia-osteoporosis" onchange="updateDashboard()"><label for="familia-osteoporosis">Osteoporosis</label></div>
+                                    <div class="form-item"><input type="checkbox" id="familia-cancer-endocrino" onchange="updateDashboard()"><label for="familia-cancer-endocrino">Cáncer endocrino</label></div>
+                                    <div class="form-item"><input type="checkbox" id="familia-sindrome-metabolico" onchange="updateDashboard()"><label for="familia-sindrome-metabolico">Síndrome metabólico</label></div>
+                                </div>
+                            </div>
+                            <div>
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Medicamentos</h5>
+                                <div class="checkbox-grid">
+                                    <div class="form-item"><input type="checkbox" id="medicamento-levotiroxina" onchange="updateDashboard()"><label for="medicamento-levotiroxina">Levotiroxina</label></div>
+                                    <div class="form-item"><input type="checkbox" id="medicamento-metformina" onchange="updateDashboard()"><label for="medicamento-metformina">Metformina</label></div>
+                                    <div class="form-item"><input type="checkbox" id="medicamento-insulina" onchange="updateDashboard()"><label for="medicamento-insulina">Insulina</label></div>
+                                    <div class="form-item"><input type="checkbox" id="medicamento-corticoides" onchange="updateDashboard()"><label for="medicamento-corticoides">Corticoides</label></div>
+                                    <div class="form-item"><input type="checkbox" id="medicamento-anticonceptivos" onchange="updateDashboard()"><label for="medicamento-anticonceptivos">Anticonceptivos orales</label></div>
+                                    <div class="form-item"><input type="checkbox" id="medicamento-estatinas" onchange="updateDashboard()"><label for="medicamento-estatinas">Estatinas</label></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sección: Examen Físico General -->
+                <div class="section-container" id="physical-exam">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-user"></i> Examen Físico General y Antropometría</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-ruler-combined"></i> Signos Vitales y Antropometría</h4>
+                            <div class="mb-4">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Medidas Antropométricas</h5>
+                                <div class="measurement">
+                                    <label>Peso actual (kg):</label>
+                                    <input type="number" class="input-field" id="peso-actual" min="30" max="200" step="0.1" onchange="calculateBMI()">
+                                    <span>kg</span>
+                                </div>
+                                <div class="measurement">
+                                    <label>Talla (cm):</label>
+                                    <input type="number" class="input-field" id="talla" min="120" max="220" onchange="calculateBMI()">
+                                    <span>cm</span>
+                                </div>
+                                <div class="measurement">
+                                    <label>Circunferencia cintura:</label>
+                                    <input type="number" class="input-field" id="circunferencia-cintura" min="50" max="200" onchange="evaluateWaistCircumference(); calculateMetabolicSyndrome();">
+                                    <span>cm</span>
+                                </div>
+                                <div class="measurement">
+                                    <label>Circunferencia cadera:</label>
+                                    <input type="number" class="input-field" id="circunferencia-cadera" min="50" max="200" onchange="calculateWHR()">
+                                    <span>cm</span>
+                                </div>
+                                <div class="score-item">
+                                    <span>IMC:</span>
+                                    <span class="score-value" id="imc-value">--</span>
+                                    <span>kg/m²</span>
+                                </div>
+                                <div class="score-item">
+                                    <span>Clasificación IMC:</span>
+                                    <span class="score-value" id="imc-classification">--</span>
+                                </div>
+                                <div class="score-item">
+                                    <span>Índice cintura/cadera:</span>
+                                    <span class="score-value" id="whr-value">--</span>
+                                </div>
+                                <div class="score-item">
+                                    <span>Riesgo por cintura:</span>
+                                    <span class="score-value" id="waist-risk">--</span>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Signos Vitales</h5>
+                                <div class="measurement">
+                                    <label>Presión arterial sistólica:</label>
+                                    <input type="number" class="input-field" id="pas" min="70" max="250" onchange="evaluateBloodPressure(); calculateMetabolicSyndrome();">
+                                    <span>mmHg</span>
+                                </div>
+                                <div class="measurement">
+                                    <label>Presión arterial diastólica:</label>
+                                    <input type="number" class="input-field" id="pad" min="40" max="150" onchange="evaluateBloodPressure()">
+                                    <span>mmHg</span>
+                                </div>
+                                <div class="measurement">
+                                    <label>Frecuencia cardíaca:</label>
+                                    <input type="number" class="input-field" id="frecuencia-cardiaca" min="40" max="200" onchange="evaluateHeartRate()">
+                                    <span>lpm</span>
+                                </div>
+                                <div class="measurement">
+                                    <label>Temperatura:</label>
+                                    <input type="number" class="input-field" id="temperatura" min="35" max="42" step="0.1" onchange="updateDashboard()">
+                                    <span>°C</span>
+                                </div>
+                                <div class="score-item">
+                                    <span>Clasificación PA:</span>
+                                    <span class="score-value" id="bp-classification">--</span>
+                                </div>
+                                <div class="score-item">
+                                    <span>Clasificación FC:</span>
+                                    <span class="score-value" id="hr-classification">--</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-eye"></i> Inspección General</h4>
+                            <div class="mb-4">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Habitus y Distribución Corporal</h5>
+                                <div class="checkbox-grid">
+                                    <div class="form-item"><input type="checkbox" id="habitus-normal" onchange="updateDashboard()"><label for="habitus-normal">Habitus normal</label></div>
+                                    <div class="form-item"><input type="checkbox" id="obesidad-central" onchange="updateDashboard()"><label for="obesidad-central">Obesidad central</label></div>
+                                    <div class="form-item"><input type="checkbox" id="obesidad-periferica" onchange="updateDashboard()"><label for="obesidad-periferica">Obesidad periférica</label></div>
+                                    <div class="form-item"><input type="checkbox" id="lipodistrofia" onchange="updateDashboard()"><label for="lipodistrofia">Lipodistrofia</label></div>
+                                    <div class="form-item"><input type="checkbox" id="giba-buffalo" onchange="updateDashboard()"><label for="giba-buffalo">Giba de búfalo</label></div>
+                                    <div class="form-item"><input type="checkbox" id="cara-luna" onchange="updateDashboard()"><label for="cara-luna">Cara de luna llena</label></div>
+                                    <div class="form-item"><input type="checkbox" id="estrias-purpuras" onchange="updateDashboard()"><label for="estrias-purpuras">Estrías púrpuras</label></div>
+                                    <div class="form-item"><input type="checkbox" id="acantosis-nigricans" onchange="updateDashboard()"><label for="acantosis-nigricans">Acantosis nigricans</label></div>
+                                </div>
+                            </div>
+                            <div>
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Características Secundarias Sexuales</h5>
+                                <div class="checkbox-grid">
+                                    <div class="form-item"><input type="checkbox" id="desarrollo-normal" onchange="updateDashboard()"><label for="desarrollo-normal">Desarrollo sexual normal</label></div>
+                                    <div class="form-item"><input type="checkbox" id="hirsutismo-facial" onchange="updateDashboard()"><label for="hirsutismo-facial">Hirsutismo facial</label></div>
+                                    <div class="form-item"><input type="checkbox" id="hirsutismo-corporal" onchange="updateDashboard()"><label for="hirsutismo-corporal">Hirsutismo corporal</label></div>
+                                    <div class="form-item"><input type="checkbox" id="ginecomastia" onchange="updateDashboard()"><label for="ginecomastia">Ginecomastia</label></div>
+                                    <div class="form-item"><input type="checkbox" id="galactorrea-fisica" onchange="updateDashboard()"><label for="galactorrea-fisica">Galactorrea</label></div>
+                                    <div class="form-item"><input type="checkbox" id="alopecia-androgenica" onchange="updateDashboard()"><label for="alopecia-androgenica">Alopecia androgénica</label></div>
+                                    <div class="form-item"><input type="checkbox" id="virilizacion" onchange="updateDashboard()"><label for="virilizacion">Signos de virilización</label></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sección: Examen Tiroideo -->
+                <div class="section-container" id="thyroid-exam">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-thyroid"></i> Examen Tiroideo</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-neck"></i> Inspección del Cuello</h4>
+                            <div class="checkbox-grid">
+                                <div class="form-item"><input type="checkbox" id="cuello-normal" onchange="updateDashboard()"><label for="cuello-normal">Cuello de aspecto normal</label></div>
+                                <div class="form-item"><input type="checkbox" id="aumento-volumen-tiroideo" onchange="updateDashboard()"><label for="aumento-volumen-tiroideo">Aumento de volumen tiroideo</label></div>
+                                <div class="form-item"><input type="checkbox" id="asimetria-tiroidea" onchange="updateDashboard()"><label for="asimetria-tiroidea">Asimetría tiroidea</label></div>
+                                <div class="form-item"><input type="checkbox" id="masa-cervical" onchange="updateDashboard()"><label for="masa-cervical">Masa cervical</label></div>
+                                <div class="form-item"><input type="checkbox" id="adenopatias-cervicales" onchange="updateDashboard()"><label for="adenopatias-cervicales">Adenopatías cervicales</label></div>
+                                <div class="form-item"><input type="checkbox" id="cicatrices-cuello" onchange="updateDashboard()"><label for="cicatrices-cuello">Cicatrices en cuello</label></div>
+                            </div>
+                            <div class="measurement">
+                                <label>Grado de bocio (OMS):</label>
+                                <select id="grado-bocio" onchange="evaluateGoiter()">
+                                    <option value="">Seleccionar</option>
+                                    <option value="0">Grado 0 (No palpable/visible)</option>
+                                    <option value="1a">Grado 1a (Palpable, no visible)</option>
+                                    <option value="1b">Grado 1b (Palpable, visible cuello extendido)</option>
+                                    <option value="2">Grado 2 (Visible cuello posición normal)</option>
+                                    <option value="3">Grado 3 (Visible a distancia)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-hand-paper"></i> Palpación Tiroidea</h4>
+                            <div class="bilateral-container">
+                                <div class="side-container">
+                                    <div class="side-header">Lóbulo Derecho</div>
+                                    <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Características</h5>
+                                    <div class="checkbox-grid">
+                                        <div class="form-item"><input type="checkbox" id="lobulo-der-normal" onchange="updateDashboard()"><label for="lobulo-der-normal">Normal</label></div>
+                                        <div class="form-item"><input type="checkbox" id="lobulo-der-aumentado" onchange="updateDashboard()"><label for="lobulo-der-aumentado">Aumentado</label></div>
+                                        <div class="form-item"><input type="checkbox" id="lobulo-der-nodular" onchange="updateDashboard()"><label for="lobulo-der-nodular">Nodular</label></div>
+                                        <div class="form-item"><input type="checkbox" id="lobulo-der-duro" onchange="updateDashboard()"><label for="lobulo-der-duro">Consistencia dura</label></div>
+                                        <div class="form-item"><input type="checkbox" id="lobulo-der-doloroso" onchange="updateDashboard()"><label for="lobulo-der-doloroso">Doloroso</label></div>
+                                    </div>
+                                    <div class="mt-4">
+                                        <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Nódulos</h5>
+                                        <div class="nodule-item">
+                                            <span>Nódulo 1:</span>
+                                            <div class="nodule-size">
+                                                <input type="number" id="nodulo-der-1-size" min="0" max="10" step="0.1" onchange="updateDashboard()">
+                                                <span>cm</span>
+                                                <input type="checkbox" id="nodulo-der-1-mobile" onchange="updateDashboard()">
+                                                <label for="nodulo-der-1-mobile">Móvil</label>
+                                            </div>
+                                        </div>
+                                        <div class="nodule-item">
+                                            <span>Nódulo 2:</span>
+                                            <div class="nodule-size">
+                                                <input type="number" id="nodulo-der-2-size" min="0" max="10" step="0.1" onchange="updateDashboard()">
+                                                <span>cm</span>
+                                                <input type="checkbox" id="nodulo-der-2-mobile" onchange="updateDashboard()">
+                                                <label for="nodulo-der-2-mobile">Móvil</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="side-container">
+                                    <div class="side-header">Lóbulo Izquierdo</div>
+                                    <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Características</h5>
+                                    <div class="checkbox-grid">
+                                        <div class="form-item"><input type="checkbox" id="lobulo-izq-normal" onchange="updateDashboard()"><label for="lobulo-izq-normal">Normal</label></div>
+                                        <div class="form-item"><input type="checkbox" id="lobulo-izq-aumentado" onchange="updateDashboard()"><label for="lobulo-izq-aumentado">Aumentado</label></div>
+                                        <div class="form-item"><input type="checkbox" id="lobulo-izq-nodular" onchange="updateDashboard()"><label for="lobulo-izq-nodular">Nodular</label></div>
+                                        <div class="form-item"><input type="checkbox" id="lobulo-izq-duro" onchange="updateDashboard()"><label for="lobulo-izq-duro">Consistencia dura</label></div>
+                                        <div class="form-item"><input type="checkbox" id="lobulo-izq-doloroso" onchange="updateDashboard()"><label for="lobulo-izq-doloroso">Doloroso</label></div>
+                                    </div>
+                                    <div class="mt-4">
+                                        <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Nódulos</h5>
+                                        <div class="nodule-item">
+                                            <span>Nódulo 1:</span>
+                                            <div class="nodule-size">
+                                                <input type="number" id="nodulo-izq-1-size" min="0" max="10" step="0.1" onchange="updateDashboard()">
+                                                <span>cm</span>
+                                                <input type="checkbox" id="nodulo-izq-1-mobile" onchange="updateDashboard()">
+                                                <label for="nodulo-izq-1-mobile">Móvil</label>
+                                            </div>
+                                        </div>
+                                        <div class="nodule-item">
+                                            <span>Nódulo 2:</span>
+                                            <div class="nodule-size">
+                                                <input type="number" id="nodulo-izq-2-size" min="0" max="10" step="0.1" onchange="updateDashboard()">
+                                                <span>cm</span>
+                                                <input type="checkbox" id="nodulo-izq-2-mobile" onchange="updateDashboard()">
+                                                <label for="nodulo-izq-2-mobile">Móvil</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="sub-section-card mt-4">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Istmo Tiroideo</h5>
+                                <div class="checkbox-grid">
+                                    <div class="form-item"><input type="checkbox" id="istmo-normal" onchange="updateDashboard()"><label for="istmo-normal">Normal</label></div>
+                                    <div class="form-item"><input type="checkbox" id="istmo-aumentado" onchange="updateDashboard()"><label for="istmo-aumentado">Aumentado</label></div>
+                                    <div class="form-item"><input type="checkbox" id="istmo-nodular" onchange="updateDashboard()"><label for="istmo-nodular">Nodular</label></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-thermometer-half"></i> Signos de Disfunción Tiroidea</h4>
+                            <div class="bilateral-container">
+                                <div class="side-container">
+                                    <div class="side-header">Signos de Hipertiroidismo</div>
+                                    <div class="checkbox-grid">
+                                        <div class="form-item"><input type="checkbox" id="temblor-fino" onchange="updateDashboard()"><label for="temblor-fino">Temblor fino</label></div>
+                                        <div class="form-item"><input type="checkbox" id="piel-caliente-humeda" onchange="updateDashboard()"><label for="piel-caliente-humeda">Piel caliente y húmeda</label></div>
+                                        <div class="form-item"><input type="checkbox" id="hiperreflexia" onchange="updateDashboard()"><label for="hiperreflexia">Hiperreflexia</label></div>
+                                        <div class="form-item"><input type="checkbox" id="exoftalmos" onchange="updateDashboard()"><label for="exoftalmos">Exoftalmos</label></div>
+                                        <div class="form-item"><input type="checkbox" id="retraccion-palpebral" onchange="updateDashboard()"><label for="retraccion-palpebral">Retracción palpebral</label></div>
+                                        <div class="form-item"><input type="checkbox" id="signo-graefe" onchange="updateDashboard()"><label for="signo-graefe">Signo de Graefe</label></div>
+                                        <div class="form-item"><input type="checkbox" id="mixedema-pretibial" onchange="updateDashboard()"><label for="mixedema-pretibial">Mixedema pretibial</label></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="side-container">
+                                    <div class="side-header">Signos de Hipotiroidismo</div>
+                                    <div class="checkbox-grid">
+                                        <div class="form-item"><input type="checkbox" id="bradicinesia" onchange="updateDashboard()"><label for="bradicinesia">Bradicinesia</label></div>
+                                        <div class="form-item"><input type="checkbox" id="piel-seca-fria" onchange="updateDashboard()"><label for="piel-seca-fria">Piel seca y fría</label></div>
+                                        <div class="form-item"><input type="checkbox" id="hiporreflexia" onchange="updateDashboard()"><label for="hiporreflexia">Hiporreflexia</label></div>
+                                        <div class="form-item"><input type="checkbox" id="edema-facial" onchange="updateDashboard()"><label for="edema-facial">Edema facial</label></div>
+                                        <div class="form-item"><input type="checkbox" id="cabello-quebradizo" onchange="updateDashboard()"><label for="cabello-quebradizo">Cabello quebradizo</label></div>
+                                        <div class="form-item"><input type="checkbox" id="macroglosia" onchange="updateDashboard()"><label for="macroglosia">Macroglosia</label></div>
+                                        <div class="form-item"><input type="checkbox" id="relajacion-aquiliana-retardada" onchange="updateDashboard()"><label for="relajacion-aquiliana-retardada">Relajación aquiliana retardada</label></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sección: Evaluación Metabólica -->
+                <div class="section-container" id="metabolic-evaluation">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-tint"></i> Evaluación Metabólica y Diabetes</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-flask"></i> Evaluación Glucémica</h4>
+                            <div class="mb-4">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Valores de Glucemia</h5>
+                                <div class="measurement">
+                                    <label>Glucemia en ayunas:</label>
+                                    <input type="number" class="input-field" id="glucemia-ayunas" min="50" max="500" onchange="evaluateGlucose(); calculateDiabetesCriteria();">
+                                    <span>mg/dL</span>
+                                </div>
+                                <div class="measurement">
+                                    <label>Glucemia postprandial (2h):</label>
+                                    <input type="number" class="input-field" id="glucemia-postprandial" min="50" max="500" onchange="evaluateGlucose()">
+                                    <span>mg/dL</span>
+                                </div>
+                                <div class="measurement">
+                                    <label>HbA1c (%):</label>
+                                    <input type="number" class="input-field" id="hba1c" min="3" max="20" step="0.1" onchange="evaluateHbA1c(); calculateDiabetesCriteria();">
+                                    <span>%</span>
+                                </div>
+                                <div class="score-item">
+                                    <span>Clasificación glucemia ayunas:</span>
+                                    <span class="score-value" id="clasificacion-glucemia">--</span>
+                                </div>
+                                <div class="score-item">
+                                    <span>Clasificación HbA1c:</span>
+                                    <span class="score-value" id="clasificacion-hba1c">--</span>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Signos de Descompensación Diabética</h5>
+                                <div class="checkbox-grid">
+                                    <div class="form-item"><input type="checkbox" id="deshidratacion" onchange="updateDashboard()"><label for="deshidratacion">Deshidratación</label></div>
+                                    <div class="form-item"><input type="checkbox" id="aliento-cetonico" onchange="updateDashboard()"><label for="aliento-cetonico">Aliento cetónico</label></div>
+                                    <div class="form-item"><input type="checkbox" id="respiracion-kussmaul" onchange="updateDashboard()"><label for="respiracion-kussmaul">Respiración de Kussmaul</label></div>
+                                    <div class="form-item"><input type="checkbox" id="alteracion-conciencia" onchange="updateDashboard()"><label for="alteracion-conciencia">Alteración de conciencia</label></div>
+                                    <div class="form-item"><input type="checkbox" id="nauseas-vomitos" onchange="updateDashboard()"><label for="nauseas-vomitos">Náuseas/vómitos</label></div>
+                                    <div class="form-item"><input type="checkbox" id="dolor-abdominal" onchange="updateDashboard()"><label for="dolor-abdominal">Dolor abdominal</label></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-shoe-prints"></i> Complicaciones Diabéticas - Examen de Pies</h4>
+                            <div class="bilateral-container">
+                                <div class="side-container">
+                                    <div class="side-header">Pie Derecho</div>
+                                    <div class="checkbox-grid">
+                                        <div class="form-item"><input type="checkbox" id="pie-der-normal" onchange="updateDashboard()"><label for="pie-der-normal">Aspecto normal</label></div>
+                                        <div class="form-item"><input type="checkbox" id="pie-der-callos" onchange="updateDashboard()"><label for="pie-der-callos">Callos/callosidades</label></div>
+                                        <div class="form-item"><input type="checkbox" id="pie-der-ulceras" onchange="updateDashboard()"><label for="pie-der-ulceras">Úlceras</label></div>
+                                        <div class="form-item"><input type="checkbox" id="pie-der-deformidades" onchange="updateDashboard()"><label for="pie-der-deformidades">Deformidades</label></div>
+                                        <div class="form-item"><input type="checkbox" id="pie-der-piel-seca" onchange="updateDashboard()"><label for="pie-der-piel-seca">Piel seca</label></div>
+                                        <div class="form-item"><input type="checkbox" id="pie-der-micosis" onchange="updateDashboard()"><label for="pie-der-micosis">Micosis</label></div>
+                                    </div>
+                                    <div class="mt-4">
+                                        <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Resultados de Pruebas</h5>
+                                        <div class="test-item">
+                                            <label>Sensibilidad vibratoria</label>
+                                            <div class="test-controls">
+                                                <div class="test-checkbox"><input type="checkbox" id="vibracion-der-normal" onchange="handleMutuallyExclusive('vibracion-der-normal', 'vibracion-der-alterada', this)"><span class="negative">Normal</span></div>
+                                                <div class="test-checkbox"><input type="checkbox" id="vibracion-der-alterada" onchange="handleMutuallyExclusive('vibracion-der-normal', 'vibracion-der-alterada', this)"><span class="positive">Alterada</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="test-item">
+                                            <label>Monofilamento 10g</label>
+                                            <div class="test-controls">
+                                                <div class="test-checkbox"><input type="checkbox" id="monofilamento-der-normal" onchange="handleMutuallyExclusive('monofilamento-der-normal', 'monofilamento-der-alterado', this)"><span class="negative">Normal</span></div>
+                                                <div class="test-checkbox"><input type="checkbox" id="monofilamento-der-alterado" onchange="handleMutuallyExclusive('monofilamento-der-normal', 'monofilamento-der-alterado', this)"><span class="positive">Alterado</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="test-item">
+                                            <label>Pulsos pedios</label>
+                                            <div class="test-controls">
+                                                <div class="test-checkbox"><input type="checkbox" id="pulsos-der-presentes" onchange="handleMutuallyExclusive('pulsos-der-presentes', 'pulsos-der-ausentes', this)"><span class="negative">Presentes</span></div>
+                                                <div class="test-checkbox"><input type="checkbox" id="pulsos-der-ausentes" onchange="handleMutuallyExclusive('pulsos-der-presentes', 'pulsos-der-ausentes', this)"><span class="positive">Ausentes</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="side-container">
+                                    <div class="side-header">Pie Izquierdo</div>
+                                    <div class="checkbox-grid">
+                                        <div class="form-item"><input type="checkbox" id="pie-izq-normal" onchange="updateDashboard()"><label for="pie-izq-normal">Aspecto normal</label></div>
+                                        <div class="form-item"><input type="checkbox" id="pie-izq-callos" onchange="updateDashboard()"><label for="pie-izq-callos">Callos/callosidades</label></div>
+                                        <div class="form-item"><input type="checkbox" id="pie-izq-ulceras" onchange="updateDashboard()"><label for="pie-izq-ulceras">Úlceras</label></div>
+                                        <div class="form-item"><input type="checkbox" id="pie-izq-deformidades" onchange="updateDashboard()"><label for="pie-izq-deformidades">Deformidades</label></div>
+                                        <div class="form-item"><input type="checkbox" id="pie-izq-piel-seca" onchange="updateDashboard()"><label for="pie-izq-piel-seca">Piel seca</label></div>
+                                        <div class="form-item"><input type="checkbox" id="pie-izq-micosis" onchange="updateDashboard()"><label for="pie-izq-micosis">Micosis</label></div>
+                                    </div>
+                                    <div class="mt-4">
+                                        <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Resultados de Pruebas</h5>
+                                        <div class="test-item">
+                                            <label>Sensibilidad vibratoria</label>
+                                            <div class="test-controls">
+                                                <div class="test-checkbox"><input type="checkbox" id="vibracion-izq-normal" onchange="handleMutuallyExclusive('vibracion-izq-normal', 'vibracion-izq-alterada', this)"><span class="negative">Normal</span></div>
+                                                <div class="test-checkbox"><input type="checkbox" id="vibracion-izq-alterada" onchange="handleMutuallyExclusive('vibracion-izq-normal', 'vibracion-izq-alterada', this)"><span class="positive">Alterada</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="test-item">
+                                            <label>Monofilamento 10g</label>
+                                            <div class="test-controls">
+                                                <div class="test-checkbox"><input type="checkbox" id="monofilamento-izq-normal" onchange="handleMutuallyExclusive('monofilamento-izq-normal', 'monofilamento-izq-alterado', this)"><span class="negative">Normal</span></div>
+                                                <div class="test-checkbox"><input type="checkbox" id="monofilamento-izq-alterado" onchange="handleMutuallyExclusive('monofilamento-izq-normal', 'monofilamento-izq-alterado', this)"><span class="positive">Alterado</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="test-item">
+                                            <label>Pulsos pedios</label>
+                                            <div class="test-controls">
+                                                <div class="test-checkbox"><input type="checkbox" id="pulsos-izq-presentes" onchange="handleMutuallyExclusive('pulsos-izq-presentes', 'pulsos-izq-ausentes', this)"><span class="negative">Presentes</span></div>
+                                                <div class="test-checkbox"><input type="checkbox" id="pulsos-izq-ausentes" onchange="handleMutuallyExclusive('pulsos-izq-presentes', 'pulsos-izq-ausentes', this)"><span class="positive">Ausentes</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sección: Escalas de Riesgo -->
+                <div class="section-container" id="risk-scales">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-balance-scale"></i> Escalas de Riesgo y Criterios Diagnósticos</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-calculator"></i> FINDRISK - Riesgo de Diabetes Tipo 2</h4>
+                            <div class="mb-4">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Cuestionario FINDRISK</h5>
+                                <div class="mb-3">
+                                    <h6 class="text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">Edad</h6>
+                                    <div class="severity-grid">
+                                        <div class="severity-item"><input type="radio" name="findrisk-edad" id="edad-menor-45" value="0" onchange="calculateFINDRISK()"><label for="edad-menor-45">&lt;45 años (0 puntos)</label></div>
+                                        <div class="severity-item"><input type="radio" name="findrisk-edad" id="edad-45-54" value="2" onchange="calculateFINDRISK()"><label for="edad-45-54">45-54 años (2 puntos)</label></div>
+                                        <div class="severity-item"><input type="radio" name="findrisk-edad" id="edad-55-64" value="3" onchange="calculateFINDRISK()"><label for="edad-55-64">55-64 años (3 puntos)</label></div>
+                                        <div class="severity-item"><input type="radio" name="findrisk-edad" id="edad-mayor-64" value="4" onchange="calculateFINDRISK()"><label for="edad-mayor-64">&gt;64 años (4 puntos)</label></div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <h6 class="text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">IMC</h6>
+                                    <div class="severity-grid">
+                                        <div class="severity-item"><input type="radio" name="findrisk-imc" id="imc-menor-25" value="0" onchange="calculateFINDRISK()"><label for="imc-menor-25">&lt;25 kg/m² (0 puntos)</label></div>
+                                        <div class="severity-item"><input type="radio" name="findrisk-imc" id="imc-25-30" value="1" onchange="calculateFINDRISK()"><label for="imc-25-30">25-30 kg/m² (1 punto)</label></div>
+                                        <div class="severity-item"><input type="radio" name="findrisk-imc" id="imc-mayor-30" value="3" onchange="calculateFINDRISK()"><label for="imc-mayor-30">&gt;30 kg/m² (3 puntos)</label></div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <h6 class="text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">Circunferencia de cintura</h6>
+                                    <div class="severity-grid">
+                                        <div class="severity-item"><input type="radio" name="findrisk-cintura" id="cintura-normal" value="0" onchange="calculateFINDRISK()"><label for="cintura-normal">Normal (0 puntos)</label></div>
+                                        <div class="severity-item"><input type="radio" name="findrisk-cintura" id="cintura-aumentada" value="3" onchange="calculateFINDRISK()"><label for="cintura-aumentada">Aumentada♂&gt;102/♀&gt;88 cm (3 puntos)</label></div>
+                                        <div class="severity-item"><input type="radio" name="findrisk-cintura" id="cintura-muy-aumentada" value="4" onchange="calculateFINDRISK()"><label for="cintura-muy-aumentada">Muy aumentada♂&gt;110/♀&gt;95 cm (4 puntos)</label></div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <h6 class="text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">Actividad física</h6>
+                                    <div class="severity-grid">
+                                        <div class="severity-item"><input type="radio" name="findrisk-actividad" id="actividad-si" value="0" onchange="calculateFINDRISK()"><label for="actividad-si">≥30 min/día (0 puntos)</label></div>
+                                        <div class="severity-item"><input type="radio" name="findrisk-actividad" id="actividad-no" value="2" onchange="calculateFINDRISK()"><label for="actividad-no">&lt;30 min/día (2 puntos)</label></div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <h6 class="text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">Consumo de frutas/verduras</h6>
+                                    <div class="severity-grid">
+                                        <div class="severity-item"><input type="radio" name="findrisk-dieta" id="dieta-si" value="0" onchange="calculateFINDRISK()"><label for="dieta-si">Diario (0 puntos)</label></div>
+                                        <div class="severity-item"><input type="radio" name="findrisk-dieta" id="dieta-no" value="1" onchange="calculateFINDRISK()"><label for="dieta-no">No diario (1 punto)</label></div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <h6 class="text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">Hipertensión arterial</h6>
+                                    <div class="severity-grid">
+                                        <div class="severity-item"><input type="radio" name="findrisk-hta" id="hta-no" value="0" onchange="calculateFINDRISK()"><label for="hta-no">No (0 puntos)</label></div>
+                                        <div class="severity-item"><input type="radio" name="findrisk-hta" id="hta-si" value="2" onchange="calculateFINDRISK()"><label for="hta-si">Sí (2 puntos)</label></div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <h6 class="text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">Historia de glucemia elevada</h6>
+                                    <div class="severity-grid">
+                                        <div class="severity-item"><input type="radio" name="findrisk-glucemia" id="glucemia-no" value="0" onchange="calculateFINDRISK()"><label for="glucemia-no">No (0 puntos)</label></div>
+                                        <div class="severity-item"><input type="radio" name="findrisk-glucemia" id="glucemia-si" value="5" onchange="calculateFINDRISK()"><label for="glucemia-si">Sí (5 puntos)</label></div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <h6 class="text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">Historia familiar de diabetes</h6>
+                                    <div class="severity-grid">
+                                        <div class="severity-item"><input type="radio" name="findrisk-familia" id="familia-no" value="0" onchange="calculateFINDRISK()"><label for="familia-no">No (0 puntos)</label></div>
+                                        <div class="severity-item"><input type="radio" name="findrisk-familia" id="familia-lejana" value="3" onchange="calculateFINDRISK()"><label for="familia-lejana">Familia lejana (3 puntos)</label></div>
+                                        <div class="severity-item"><input type="radio" name="findrisk-familia" id="familia-cercana" value="5" onchange="calculateFINDRISK()"><label for="familia-cercana">Padres/hermanos (5 puntos)</label></div>
+                                    </div>
+                                </div>
+                                <div class="score-item">
+                                    <span>Puntuación FINDRISK:</span>
+                                    <span class="score-value" id="findrisk-score">0</span>
+                                    <span>/25 puntos</span>
+                                </div>
+                                <div class="score-item">
+                                    <span>Riesgo a 10 años:</span>
+                                    <span class="score-value" id="findrisk-risk">--</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-heartbeat"></i> Síndrome Metabólico (Criterios IDF)</h4>
+                            <div class="mb-4">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Criterios Diagnósticos</h5>
+                                <div class="test-item">
+                                    <label>Obesidad central (Obligatorio) (♂≥90cm, ♀≥80cm)</label>
+                                    <div class="test-controls">
+                                        <div class="test-checkbox"><input type="checkbox" id="sm-cintura" onchange="calculateMetabolicSyndrome()"><span class="positive">Presente</span></div>
+                                    </div>
+                                </div>
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2 mt-4">Criterios adicionales (≥2 de los siguientes)</h5>
+                                <div class="test-item">
+                                    <label>Triglicéridos ≥150 mg/dL</label>
+                                    <div class="test-controls">
+                                        <div class="test-checkbox"><input type="checkbox" id="sm-trigliceridos" onchange="calculateMetabolicSyndrome()"><span class="positive">Presente</span></div>
+                                    </div>
+                                </div>
+                                <div class="test-item">
+                                    <label>HDL bajo (♂&lt;40, ♀&lt;50 mg/dL)</label>
+                                    <div class="test-controls">
+                                        <div class="test-checkbox"><input type="checkbox" id="sm-hdl" onchange="calculateMetabolicSyndrome()"><span class="positive">Presente</span></div>
+                                    </div>
+                                </div>
+                                <div class="test-item">
+                                    <label>Presión arterial ≥130/85 mmHg</label>
+                                    <div class="test-controls">
+                                        <div class="test-checkbox"><input type="checkbox" id="sm-presion" onchange="calculateMetabolicSyndrome()"><span class="positive">Presente</span></div>
+                                    </div>
+                                </div>
+                                <div class="test-item">
+                                    <label>Glucemia ≥100 mg/dL</label>
+                                    <div class="test-controls">
+                                        <div class="test-checkbox"><input type="checkbox" id="sm-glucemia" onchange="calculateMetabolicSyndrome()"><span class="positive">Presente</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="score-item">
+                                <span>Criterios cumplidos:</span>
+                                <span class="score-value" id="sm-criterios">0</span>
+                                <span>/5</span>
+                            </div>
+                            <div class="score-item">
+                                <span>Diagnóstico:</span>
+                                <span class="score-value" id="sm-diagnosis">--</span>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-syringe"></i> Criterios Diagnósticos de Diabetes (ADA 2024)</h4>
+                            <div class="mb-4">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Criterios para Diagnóstico</h5>
+                                <div class="test-item">
+                                    <label>Glucemia en ayunas ≥126 mg/dL</label>
+                                    <div class="test-controls">
+                                        <div class="test-checkbox"><input type="checkbox" id="diabetes-ayunas" onchange="calculateDiabetesCriteria()"><span class="positive">Presente</span></div>
+                                    </div>
+                                </div>
+                                <div class="test-item">
+                                    <label>HbA1c ≥6.5%</label>
+                                    <div class="test-controls">
+                                        <div class="test-checkbox"><input type="checkbox" id="diabetes-hba1c" onchange="calculateDiabetesCriteria()"><span class="positive">Presente</span></div>
+                                    </div>
+                                </div>
+                                <div class="test-item">
+                                    <label>Glucemia 2h post-carga ≥200 mg/dL</label>
+                                    <div class="test-controls">
+                                        <div class="test-checkbox"><input type="checkbox" id="diabetes-postcarga" onchange="calculateDiabetesCriteria()"><span class="positive">Presente</span></div>
+                                    </div>
+                                </div>
+                                <div class="test-item">
+                                    <label>Glucemia al azar ≥200 mg/dL + síntomas</label>
+                                    <div class="test-controls">
+                                        <div class="test-checkbox"><input type="checkbox" id="diabetes-random" onchange="calculateDiabetesCriteria()"><span class="positive">Presente</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="score-item">
+                                <span>Criterios cumplidos:</span>
+                                <span class="score-value" id="diabetes-criterios">0</span>
+                                <span>/4</span>
+                            </div>
+                            <div class="score-item">
+                                <span>Diagnóstico:</span>
+                                <span class="score-value" id="diabetes-diagnosis">--</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sección: Evaluación Reproductiva -->
+                <div class="section-container" id="reproductive-evaluation">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-venus-mars"></i> Evaluación Reproductiva y Hormonal</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="sub-section-card gender-specific-section" id="female-reproductive-section">
+                            <h4 class="sub-section-title"><i class="fas fa-female"></i> Historia Reproductiva Femenina</h4>
+                            <div class="mb-4">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Antecedentes Gineco-Obstétricos</h5>
+                                <div class="measurement">
+                                    <label>Edad de menarquia:</label>
+                                    <input type="number" class="input-field" id="edad-menarquia" min="8" max="18" onchange="updateDashboard()">
+                                    <span>años</span>
+                                </div>
+                                <div class="measurement">
+                                    <label>Ciclos menstruales:</label>
+                                    <input type="number" class="input-field" id="ciclos-dias" min="15" max="45" onchange="updateDashboard()">
+                                    <span>días</span>
+                                </div>
+                                <div class="checkbox-grid">
+                                    <div class="form-item"><input type="checkbox" id="ciclos-regulares" onchange="updateDashboard()"><label for="ciclos-regulares">Ciclos regulares</label></div>
+                                    <div class="form-item"><input type="checkbox" id="oligomenorrea" onchange="updateDashboard()"><label for="oligomenorrea">Oligomenorrea</label></div>
+                                    <div class="form-item"><input type="checkbox" id="amenorrea" onchange="updateDashboard()"><label for="amenorrea">Amenorrea</label></div>
+                                    <div class="form-item"><input type="checkbox" id="menorragia" onchange="updateDashboard()"><label for="menorragia">Menorragia</label></div>
+                                    <div class="form-item"><input type="checkbox" id="dismenorrea" onchange="updateDashboard()"><label for="dismenorrea">Dismenorrea</label></div>
+                                    <div class="form-item"><input type="checkbox" id="menopausia" onchange="updateDashboard()"><label for="menopausia">Menopausia</label></div>
+                                </div>
+                                <div class="measurement">
+                                    <label>Número de embarazos:</label>
+                                    <input type="number" class="input-field" id="numero-embarazos" min="0" max="20" onchange="updateDashboard()">
+                                </div>
+                                <div class="measurement">
+                                    <label>Número de partos:</label>
+                                    <input type="number" class="input-field" id="numero-partos" min="0" max="20" onchange="updateDashboard()">
+                                </div>
+                            </div>
+
+                            <div>
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Síntomas Androgénicos Femeninos</h5>
+                                <div class="checkbox-grid">
+                                    <div class="form-item"><input type="checkbox" id="acne" onchange="updateDashboard()"><label for="acne">Acné</label></div>
+                                    <div class="form-item"><input type="checkbox" id="hirsutismo-score" onchange="updateDashboard()"><label for="hirsutismo-score">Hirsutismo</label></div>
+                                    <div class="form-item"><input type="checkbox" id="alopecia-androgenica-fem" onchange="updateDashboard()"><label for="alopecia-androgenica-fem">Alopecia androgénica</label></div>
+                                    <div class="form-item"><input type="checkbox" id="voz-grave" onchange="updateDashboard()"><label for="voz-grave">Voz grave</label></div>
+                                    <div class="form-item"><input type="checkbox" id="clitoromegalia" onchange="updateDashboard()"><label for="clitoromegalia">Clitoromegalia</label></div>
+                                </div>
+                                <div class="measurement">
+                                    <label>Escala Ferriman-Gallwey:</label>
+                                    <input type="number" class="input-field" id="ferriman-gallwey" min="0" max="36" onchange="evaluateHirsutism()">
+                                    <span>/36</span>
+                                </div>
+                                <div class="score-item">
+                                    <span>Interpretación hirsutismo:</span>
+                                    <span class="score-value" id="hirsutism-interpretation">--</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card gender-specific-section" id="male-reproductive-section">
+                            <h4 class="sub-section-title"><i class="fas fa-male"></i> Evaluación Androgénica Masculina</h4>
+                            <div class="mb-4">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Síntomas de Hipogonadismo</h5>
+                                <div class="checkbox-grid">
+                                    <div class="form-item"><input type="checkbox" id="libido-disminuida" onchange="updateDashboard()"><label for="libido-disminuida">Libido disminuida</label></div>
+                                    <div class="form-item"><input type="checkbox" id="disfuncion-erectil-masc" onchange="updateDashboard()"><label for="disfuncion-erectil-masc">Disfunción eréctil</label></div>
+                                    <div class="form-item"><input type="checkbox" id="fatiga-masculina" onchange="updateDashboard()"><label for="fatiga-masculina">Fatiga</label></div>
+                                    <div class="form-item"><input type="checkbox" id="perdida-masa-muscular" onchange="updateDashboard()"><label for="perdida-masa-muscular">Pérdida de masa muscular</label></div>
+                                    <div class="form-item"><input type="checkbox" id="osteoporosis-masculina" onchange="updateDashboard()"><label for="osteoporosis-masculina">Osteoporosis</label></div>
+                                    <div class="form-item"><input type="checkbox" id="ginecomastia-masc" onchange="updateDashboard()"><label for="ginecomastia-masc">Ginecomastia</label></div>
+                                </div>
+                            </div>
+                            <div>
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Examen Genital Masculino</h5>
+                                <div class="measurement">
+                                    <label>Volumen testicular derecho:</label>
+                                    <input type="number" class="input-field" id="volumen-testicular-der" min="1" max="30" onchange="updateDashboard()">
+                                    <span>mL</span>
+                                </div>
+                                <div class="measurement">
+                                    <label>Volumen testicular izquierdo:</label>
+                                    <input type="number" class="input-field" id="volumen-testicular-izq" min="1" max="30" onchange="updateDashboard()">
+                                    <span>mL</span>
+                                </div>
+                                <div class="checkbox-grid">
+                                    <div class="form-item"><input type="checkbox" id="testiculos-normales" onchange="updateDashboard()"><label for="testiculos-normales">Testículos normales</label></div>
+                                    <div class="form-item"><input type="checkbox" id="testiculos-pequeños" onchange="updateDashboard()"><label for="testiculos-pequeños">Testículos pequeños (&lt;15 mL)</label></div>
+                                    <div class="form-item"><input type="checkbox" id="varicocele" onchange="updateDashboard()"><label for="varicocele">Varicocele</label></div>
+                                    <div class="form-item"><input type="checkbox" id="hidrocele" onchange="updateDashboard()"><label for="hidrocele">Hidrocele</label></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sección: Conclusión e Informe -->
+                <div class="section-container" id="conclusion-report">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-file-alt"></i> Conclusión e Informe</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-clipboard-check"></i> Resumen del examen</h4>
+                            <pre class="text-gray-700 dark:text-gray-300" id="conclusion-text-traditional">
+Seleccione los parámetros del examen para generar la conclusión endocrinológica...
+                            </pre>
+                        </div>
+                        <div class="flex justify-end gap-4 mt-8">
+                            <button class="btn btn-primary" onclick="generateConclusion()">
+                                <i class="fas fa-file-medical"></i> Generar Informe
+                            </button>
+                            <button class="btn btn-secondary" onclick="copyToClipboard()">
+                                <i class="fas fa-copy"></i> Copiar Texto
+                            </button>
+                            <button class="btn btn-secondary" onclick="printConclusion()">
+                                <i class="fas fa-print"></i> Imprimir Informe
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- Fixed report panel (right) -->
+        <div class="sticky-report-panel" id="stickyReportPanel">
+            <div class="sticky-header">
+                <span><i class="fas fa-file-medical-alt"></i> Informe en Tiempo Real</span>
+                <div class="sticky-controls">
+                    <button onclick="copyStickyToClipboard()"><i class="fas fa-copy"></i></button>
+                    <button onclick="toggleStickyPanel()"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+            <pre class="sticky-content" id="reportContent">
+El informe se generará aquí a medida que completes los campos.
+            </pre>
+        </div>
+    </div>
+
+    <!-- Copy notification -->
+    <div class="copy-notification fixed bottom-8 right-8 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg opacity-0 transition-opacity duration-300" id="copyNotification">
+        <i class="fas fa-check-circle mr-2"></i>
+        <span>¡Informe copiado al portapapeles!</span>
+    </div>
+
+    <!-- Theme toggle button -->
+    <button class="theme-toggle" onclick="toggleTheme()">
+        <i class="fas fa-moon" id="theme-icon"></i>
+    </button>
+
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

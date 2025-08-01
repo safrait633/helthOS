@@ -1,0 +1,1338 @@
+1<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen Otorrinolaringológico - Sistema HealthOS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar" id="sidebar" style="overflow-y: auto; height: 100vh;">
+            <div class="sidebar-header" onclick="window.location.href='../../index.html'" style="cursor: pointer;">
+                <i class="fas fa-heartbeat logo"></i>
+                <h1 class="app-title">HealthOS</h1>
+            </div>
+            <nav class="nav-list">
+                <li class="nav-item">
+                    <a href="../cardiology/index.html" class="nav-link">
+                        <i class="fas fa-heartbeat nav-icon"></i>
+                        <span class="nav-text">Cardiología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../gastroenterology/index.html" class="nav-link">
+                        <i class="fas fa-stomach nav-icon"></i>
+                        <span class="nav-text">Gastroenterología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../dermatology/index.html" class="nav-link">
+                        <i class="fas fa-allergies nav-icon"></i>
+                        <span class="nav-text">Dermatología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../endocrinology/index.html" class="nav-link">
+                        <i class="fas fa-flask nav-icon"></i>
+                        <span class="nav-text">Endocrinología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../geriatrics/index.html" class="nav-link">
+                        <i class="fas fa-user-friends nav-icon"></i>
+                        <span class="nav-text">Geriatría</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../hematology/index.html" class="nav-link">
+                        <i class="fas fa-tint nav-icon"></i>
+                        <span class="nav-text">Hematología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../infectious_diseases/index.html" class="nav-link">
+                        <i class="fas fa-microscope nav-icon"></i>
+                        <span class="nav-text">Enfermedades Infecciosas</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../musculoskeletal/index.html" class="nav-link">
+                        <i class="fas fa-bone nav-icon"></i>
+                        <span class="nav-text">Musculoesquelético</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../ophthalmology/index.html" class="nav-link">
+                        <i class="fas fa-eye nav-icon"></i>
+                        <span class="nav-text">Oftalmología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link active" id="specialty-nav-link" onclick="toggleSpecialtySubMenu(event)">
+                        <i class="fas fa-ear-listen nav-icon"></i>
+                        <span class="nav-text">Otorrinolaringología</span>
+                    </a>
+                    <ul class="sub-menu" id="specialty-sub-menu">
+                        <li class="sub-menu-item"><a href="#anamnesis" onclick="scrollToSection('anamnesis')">Anamnesis y Quejas</a></li>
+                        <li class="sub-menu-item"><a href="#ear-exam" onclick="scrollToSection('ear-exam')">Examen del Oído</a></li>
+                        <li class="sub-menu-item"><a href="#nose-exam" onclick="scrollToSection('nose-exam')">Examen de Nariz</a></li>
+                        <li class="sub-menu-item"><a href="#throat-exam" onclick="scrollToSection('throat-exam')">Examen de Garganta</a></li>
+                        <li class="sub-menu-item"><a href="#larynx-exam" onclick="scrollToSection('larynx-exam')">Examen de Laringe</a></li>
+                        <li class="sub-menu-item"><a href="#neck-exam" onclick="scrollToSection('neck-exam')">Examen del Cuello</a></li>
+                        <li class="sub-menu-item"><a href="#neuro-exam" onclick="scrollToSection('neuro-exam')">Evaluación Neurológica</a></li>
+                        <li class="sub-menu-item"><a href="#scales" onclick="scrollToSection('scales')">Escalas de Evaluación</a></li>
+                        <li class="sub-menu-item"><a href="#conclusion-section" onclick="scrollToSection('conclusion-section')">Conclusión</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="../pneumology/index.html" class="nav-link">
+                        <i class="fas fa-lungs nav-icon"></i>
+                        <span class="nav-text">Neumología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../psychiatry/index.html" class="nav-link">
+                        <i class="fas fa-brain nav-icon"></i>
+                        <span class="nav-text">Psiquiatría</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../rheumatology/index.html" class="nav-link">
+                        <i class="fas fa-joint nav-icon"></i>
+                        <span class="nav-text">Reumatología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../urology/index.html" class="nav-link">
+                        <i class="fas fa-user-md nav-icon"></i>
+                        <span class="nav-text">Urología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-notes-medical nav-icon"></i>
+                        <span class="nav-text">Registros</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-cog nav-icon"></i>
+                        <span class="nav-text">Configuración</span>
+                    </a>
+                </li>
+            </nav>
+            <button class="btn btn-secondary mt-auto hidden md:flex items-center justify-center" onclick="toggleSidebar()">
+                <i class="fas fa-chevron-left" id="sidebar-toggle-icon"></i>
+            </button>
+        </aside>
+
+        <div class="content-area" id="contentArea">
+            <div class="top-bar" id="topBar">
+                <div class="flex items-center gap-4">
+                    <button class="btn btn-secondary md:hidden" onclick="toggleSidebar()">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div style="display: flex; align-items: center;">
+                    <img src="../../img/10.svg" alt="Otorrinolaringología" class="h-10 w-10">
+                    <h2 class="page-title">Otorrinolaringología</h2>
+                </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button class="btn btn-primary" onclick="toggleStickyPanel()">
+                        <i class="fas fa-file-medical-alt"></i> <span class="hidden md:inline">Informe</span>
+                    </button>
+                    <div class="user-profile">
+                        <div class="user-avatar">JP</div>
+                        <span class="user-name">Dr. Juan Pérez</span>
+                    </div>
+                </div>
+            </div>
+
+            <main class="main-content" id="mainContent">
+                <div class="section-container dashboard-widget" id="dashboard-summary">
+                    <div class="section-title-main dashboard-title">
+                        <i class="fas fa-chart-bar"></i> Dashboard del Examen Otorrinolaringológico
+                    </div>
+                    <div class="dashboard-grid">
+                        <div class="dashboard-item">
+                            <i class="fas fa-user-md"></i>
+                            <div class="label">Progreso del Examen</div>
+                            <div class="value" id="exam-progress">0%</div>
+                        </div>
+                        <div class="dashboard-item">
+                            <i class="fas fa-clipboard-list"></i>
+                            <div class="label">Secciones Completadas</div>
+                            <div class="value" id="sections-completed">0/X</div>
+                        </div>
+                        <div class="dashboard-item" id="alerts-item">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <div class="label">Alertas Críticas</div>
+                            <div class="value" id="alert-count">0</div>
+                        </div>
+                        <div class="dashboard-item" id="warnings-item">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <div class="label">Avisos</div>
+                            <div class="value" id="warning-count">0</div>
+                        </div>
+                        <div class="dashboard-item" id="findings-item">
+                            <i class="fas fa-search"></i>
+                            <div class="label">Hallazgos</div>
+                            <div class="value" id="findings-count">0</div>
+                        </div>
+                        <div class="dashboard-item">
+                            <i class="fas fa-deaf"></i>
+                            <div class="label">PTP Promedio</div>
+                            <div class="value" id="overall-ptp">-- dB HL</div>
+                        </div>
+                        <div class="dashboard-item">
+                            <i class="fas fa-volume-up"></i>
+                            <div class="label">Calidad de Voz (GRBAS)</div>
+                            <div class="value" id="overall-grbas">N/A</div>
+                        </div>
+                        <div class="dashboard-item">
+                            <i class="fas fa-dizzy"></i>
+                            <div class="label">Discapacidad por Vértigo</div>
+                            <div class="value" id="overall-dhi">Sin discapacidad</div>
+                        </div>
+                        <div class="dashboard-item">
+                            <i class="fas fa-bed"></i>
+                            <div class="label">Somnolencia Diurna (Epworth)</div>
+                            <div class="value" id="overall-epworth">Normal</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-container" id="anamnesis">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-clipboard-list"></i> Anamnesis y Quejas Principales</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-question-circle"></i> Quejas Otorrinolaringológicas Principales</h4>
+                            <div class="form-grid">
+                                <div class="form-item"><input type="checkbox" id="otalgia" onchange="updateReport(); updateDashboard()"><label for="otalgia">Otalgia</label></div>
+                                <div class="form-item"><input type="checkbox" id="hipoacusia" onchange="updateReport(); updateDashboard()"><label for="hipoacusia">Hipoacusia</label></div>
+                                <div class="form-item"><input type="checkbox" id="acufenos" onchange="updateReport(); updateDashboard()"><label for="acufenos">Acúfenos/Tinnitus</label></div>
+                                <div class="form-item"><input type="checkbox" id="otorrea" onchange="updateReport(); updateDashboard()"><label for="otorrea">Otorrea</label></div>
+                                <div class="form-item"><input type="checkbox" id="vertigo" onchange="updateReport(); updateDashboard()"><label for="vertigo">Vértigo</label></div>
+                                <div class="form-item"><input type="checkbox" id="mareos" onchange="updateReport(); updateDashboard()"><label for="mareos">Mareos/Inestabilidad</label></div>
+                                <div class="form-item"><input type="checkbox" id="congestion-nasal" onchange="updateReport(); updateDashboard()"><label for="congestion-nasal">Congestión nasal</label></div>
+                                <div class="form-item"><input type="checkbox" id="rinorrea" onchange="updateReport(); updateDashboard()"><label for="rinorrea">Rinorrea</label></div>
+                                <div class="form-item"><input type="checkbox" id="epistaxis" onchange="updateReport(); updateDashboard()"><label for="epistaxis">Epistaxis</label></div>
+                                <div class="form-item"><input type="checkbox" id="anosmia" onchange="updateReport(); updateDashboard()"><label for="anosmia">Anosmia/Hiposmia</label></div>
+                                <div class="form-item"><input type="checkbox" id="dolor-facial" onchange="updateReport(); updateDashboard()"><label for="dolor-facial">Dolor facial</label></div>
+                                <div class="form-item"><input type="checkbox" id="cefalea" onchange="updateReport(); updateDashboard()"><label for="cefalea">Cefalea</label></div>
+                                <div class="form-item"><input type="checkbox" id="disfonia" onchange="updateReport(); updateDashboard()"><label for="disfonia">Disfonía</label></div>
+                                <div class="form-item"><input type="checkbox" id="odinfagia" onchange="updateReport(); updateDashboard()"><label for="odinofagia">Odinofagia</label></div>
+                                <div class="form-item"><input type="checkbox" id="globus-faringeo" onchange="updateReport(); updateDashboard()"><label for="globus-faringeo">Globus faríngeo</label></div>
+                                <div class="form-item"><input type="checkbox" id="tos-cronica" onchange="updateReport(); updateDashboard()"><label for="tos-cronica">Tos crónica</label></div>
+                                <div class="form-item"><input type="checkbox" id="carraspeo" onchange="updateReport(); updateDashboard()"><label for="carraspeo">Carraspeo</label></div>
+                                <div class="form-item"><input type="checkbox" id="ronquidos" onchange="updateReport(); updateDashboard()"><label for="ronquidos">Ronquidos</label></div>
+                                <div class="form-item"><input type="checkbox" id="apnea-sueno" onchange="updateReport(); updateDashboard()"><label for="apnea-sueno">Apnea del sueño</label></div>
+                                <div class="form-item"><input type="checkbox" id="adenopatias-cervicales" onchange="updateReport(); updateDashboard()"><label for="adenopatias-cervicales">Adenopatías cervicales</label></div>
+                                <div class="form-item"><input type="checkbox" id="sin-quejas-orl" onchange="handleNoComplaints(); updateReport(); updateDashboard()"><label for="sin-quejas-orl">Sin quejas</label></div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-clock"></i> Características Temporales y Desencadenantes</h4>
+                            <div class="exam-section-migrated">
+                                <h4 class="sub-header">Tiempo de Evolución</h4>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="radio" name="tiempo-evolucion-orl" id="agudo-orl" onchange="updateReport(); updateDashboard()"><label for="agudo-orl">Agudo (&lt; 4 semanas)</label></div>
+                                    <div class="form-item"><input type="radio" name="tiempo-evolucion-orl" id="subagudo-orl" onchange="updateReport(); updateDashboard()"><label for="subagudo-orl">Subagudo (4-12 semanas)</label></div>
+                                    <div class="form-item"><input type="radio" name="tiempo-evolucion-orl" id="cronico-orl" onchange="updateReport(); updateDashboard()"><label for="cronico-orl">Crónico (&gt; 12 semanas)</label></div>
+                                </div>
+                            </div>
+                            <div class="exam-section-migrated">
+                                <h4 class="sub-header">Factores Desencadenantes</h4>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="infeccion-respiratoria" onchange="updateReport(); updateDashboard()"><label for="infeccion-respiratoria">Infección respiratoria previa</label></div>
+                                    <div class="form-item"><input type="checkbox" id="cambios-presion" onchange="updateReport(); updateDashboard()"><label for="cambios-presion">Cambios de presión (vuelos/buceo)</label></div>
+                                    <div class="form-item"><input type="checkbox" id="traumatismo-craneal" onchange="updateReport(); updateDashboard()"><label for="traumatismo-craneal">Traumatismo craneal</label></div>
+                                    <div class="form-item"><input type="checkbox" id="exposicion-ruido" onchange="updateReport(); updateDashboard()"><label for="exposicion-ruido">Exposición a ruido</label></div>
+                                    <div class="form-item"><input type="checkbox" id="medicamentos-ototoxicos" onchange="updateReport(); updateDashboard()"><label for="medicamentos-ototoxicos">Medicamentos ototóxicos</label></div>
+                                    <div class="form-item"><input type="checkbox" id="alergias-estacionales" onchange="updateReport(); updateDashboard()"><label for="alergias-estacionales">Alergias estacionales</label></div>
+                                    <div class="form-item"><input type="checkbox" id="reflujo-gastroesofagico" onchange="updateReport(); updateDashboard()"><label for="reflujo-gastroesofagico">Reflujo gastroesofágico</label></div>
+                                    <div class="form-item"><input type="checkbox" id="estres-emocional-orl" onchange="updateReport(); updateDashboard()"><label for="estres-emocional-orl">Estrés emocional</label></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-search-plus"></i> Evaluación de Síntomas Específicos</h4>
+                            <div class="severity-section-migrated">
+                                <h4 class="sub-header">Intensidad del Dolor (EVA)</h4>
+                                <div class="measurement">
+                                    <label>Otalgia:</label>
+                                    <input type="range" id="otalgia-intensidad" min="0" max="10" value="0" oninput="updateOtalgiaValue(this.value); updateReport(); updateDashboard()">
+                                    <span id="otalgia-value">0</span><span>/10</span>
+                                </div>
+                                <div class="measurement">
+                                    <label>Odinofagia:</label>
+                                    <input type="range" id="odinofagia-intensidad" min="0" max="10" value="0" oninput="updateOdinofagiaValue(this.value); updateReport(); updateDashboard()">
+                                    <span id="odinofagia-value">0</span><span>/10</span>
+                                </div>
+                            </div>
+                            <div class="exam-section-migrated">
+                                <h4 class="sub-header">Características del Vértigo</h4>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="radio" name="tipo-vertigo" id="vertigo-rotatorio" onchange="updateReport(); updateDashboard()"><label for="vertigo-rotatorio">Vértigo rotatorio</label></div>
+                                    <div class="form-item"><input type="radio" name="tipo-vertigo" id="pseudovertigo" onchange="updateReport(); updateDashboard()"><label for="pseudovertigo">Pseudovértigo/Mareo</label></div>
+                                    <div class="form-item"><input type="radio" name="tipo-vertigo" id="desequilibrio" onchange="updateReport(); updateDashboard()"><label for="desequilibrio">Desequilibrio</label></div>
+                                    <div class="form-item"><input type="radio" name="tipo-vertigo" id="sensacion-desmayo" onchange="updateReport(); updateDashboard()"><label for="sensacion-desmayo">Sensación de desmayo</label></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section-container" id="ear-exam">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-ear"></i> Examen del Oído</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="legend">
+                            <div class="legend-item">
+                                <div class="legend-color ear-color"></div>
+                                <span>Examen Otológico</span>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-info-circle"></i> Inspección del Pabellón Auricular</h4>
+                            <div class="bilateral-container">
+                                <div class="side-container">
+                                    <div class="side-header">Oído Derecho</div>
+                                    <div class="exam-section-migrated">
+                                        <h4 class="sub-header">Pabellón Auricular</h4>
+                                        <div class="form-grid">
+                                            <div class="form-item"><input type="checkbox" id="pabell-der-normal" onchange="updateReport(); updateDashboard()"><label for="pabell-der-normal">Aspecto normal</label></div>
+                                            <div class="form-item"><input type="checkbox" id="pabell-der-eritema" onchange="updateReport(); updateDashboard()"><label for="pabell-der-eritema">Eritema</label></div>
+                                            <div class="form-item"><input type="checkbox" id="pabell-der-edema" onchange="updateReport(); updateDashboard()"><label for="pabell-der-edema">Edema</label></div>
+                                            <div class="form-item"><input type="checkbox" id="pabell-der-lesiones" onchange="updateReport(); updateDashboard()"><label for="pabell-der-lesiones">Lesiones cutáneas</label></div>
+                                            <div class="form-item"><input type="checkbox" id="pabell-der-deformidad" onchange="updateReport(); updateDashboard()"><label for="pabell-der-deformidad">Deformidad</label></div>
+                                            <div class="form-item"><input type="checkbox" id="pabell-der-dolor" onchange="updateReport(); updateDashboard()"><label for="pabell-der-dolor">Dolor a la manipulación</label></div>
+                                        </div>
+                                    </div>
+                                    <div class="exam-section-migrated">
+                                        <h4 class="sub-header">Conducto Auditivo Externo</h4>
+                                        <div class="form-grid">
+                                            <div class="form-item"><input type="checkbox" id="cae-der-normal" onchange="updateReport(); updateDashboard()"><label for="cae-der-normal">Aspecto normal</label></div>
+                                            <div class="form-item"><input type="checkbox" id="cae-der-estrecho" onchange="updateReport(); updateDashboard()"><label for="cae-der-estrecho">Estenosis</label></div>
+                                            <div class="form-item"><input type="checkbox" id="cae-der-eritema" onchange="updateReport(); updateDashboard()"><label for="cae-der-eritema">Eritema</label></div>
+                                            <div class="form-item"><input type="checkbox" id="cae-der-edema" onchange="updateReport(); updateDashboard()"><label for="cae-der-edema">Edema</label></div>
+                                            <div class="form-item"><input type="checkbox" id="cae-der-descamacion" onchange="updateReport(); updateDashboard()"><label for="cae-der-descamacion">Descamación</label></div>
+                                            <div class="form-item"><input type="checkbox" id="cae-der-cerumen" onchange="updateReport(); updateDashboard()"><label for="cae-der-cerumen">Cerumen</label></div>
+                                            <div class="form-item"><input type="checkbox" id="cae-der-secrecion" onchange="updateReport(); updateDashboard()"><label for="cae-der-secrecion">Secreción</label></div>
+                                            <div class="form-item"><input type="checkbox" id="cae-der-cuerpo-extrano" onchange="updateReport(); updateDashboard()"><label for="cae-der-cuerpo-extrano">Cuerpo extraño</label></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="side-container">
+                                    <div class="side-header">Oído Izquierdo</div>
+                                    <div class="exam-section-migrated">
+                                        <h4 class="sub-header">Pabellón Auricular</h4>
+                                        <div class="form-grid">
+                                            <div class="form-item"><input type="checkbox" id="pabell-izq-normal" onchange="updateReport(); updateDashboard()"><label for="pabell-izq-normal">Aspecto normal</label></div>
+                                            <div class="form-item"><input type="checkbox" id="pabell-izq-eritema" onchange="updateReport(); updateDashboard()"><label for="pabell-izq-eritema">Eritema</label></div>
+                                            <div class="form-item"><input type="checkbox" id="pabell-izq-edema" onchange="updateReport(); updateDashboard()"><label for="pabell-izq-edema">Edema</label></div>
+                                            <div class="form-item"><input type="checkbox" id="pabell-izq-lesiones" onchange="updateReport(); updateDashboard()"><label for="pabell-izq-lesiones">Lesiones cutáneas</label></div>
+                                            <div class="form-item"><input type="checkbox" id="pabell-izq-deformidad" onchange="updateReport(); updateDashboard()"><label for="pabell-izq-deformidad">Deformidad</label></div>
+                                            <div class="form-item"><input type="checkbox" id="pabell-izq-dolor" onchange="updateReport(); updateDashboard()"><label for="pabell-izq-dolor">Dolor a la manipulación</label></div>
+                                        </div>
+                                    </div>
+                                    <div class="exam-section-migrated">
+                                        <h4 class="sub-header">Conducto Auditivo Externo</h4>
+                                        <div class="form-grid">
+                                            <div class="form-item"><input type="checkbox" id="cae-izq-normal" onchange="updateReport(); updateDashboard()"><label for="cae-izq-normal">Aspecto normal</label></div>
+                                            <div class="form-item"><input type="checkbox" id="cae-izq-estrecho" onchange="updateReport(); updateDashboard()"><label for="cae-izq-estrecho">Estenosis</label></div>
+                                            <div class="form-item"><input type="checkbox" id="cae-izq-eritema" onchange="updateReport(); updateDashboard()"><label for="cae-izq-eritema">Eritema</label></div>
+                                            <div class="form-item"><input type="checkbox" id="cae-izq-edema" onchange="updateReport(); updateDashboard()"><label for="cae-izq-edema">Edema</label></div>
+                                            <div class="form-item"><input type="checkbox" id="cae-izq-descamacion" onchange="updateReport(); updateDashboard()"><label for="cae-izq-descamacion">Descamación</label></div>
+                                            <div class="form-item"><input type="checkbox" id="cae-izq-cerumen" onchange="updateReport(); updateDashboard()"><label for="cae-izq-cerumen">Cerumen</label></div>
+                                            <div class="form-item"><input type="checkbox" id="cae-izq-secrecion" onchange="updateReport(); updateDashboard()"><label for="cae-izq-secrecion">Secreción</label></div>
+                                            <div class="form-item"><input type="checkbox" id="cae-izq-cuerpo-extrano" onchange="updateReport(); updateDashboard()"><label for="cae-izq-cuerpo-extrano">Cuerpo extraño</label></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-stethoscope"></i> Otoscopía</h4>
+                            <div class="bilateral-container">
+                                <div class="side-container">
+                                    <div class="side-header">Membrana Timpánica Derecha</div>
+                                    <div class="exam-section-migrated">
+                                        <h4 class="sub-header">Características</h4>
+                                        <div class="form-grid">
+                                            <div class="form-item"><input type="checkbox" id="mt-der-normal" onchange="updateReport(); updateDashboard()"><label for="mt-der-normal">Aspecto normal</label></div>
+                                            <div class="form-item"><input type="checkbox" id="mt-der-eritema" onchange="updateReport(); updateDashboard()"><label for="mt-der-eritema">Eritematosa</label></div>
+                                            <div class="form-item"><input type="checkbox" id="mt-der-abombamiento" onchange="updateReport(); updateDashboard()"><label for="mt-der-abombamiento">Abombamiento</label></div>
+                                            <div class="form-item"><input type="checkbox" id="mt-der-retraccion" onchange="updateReport(); updateDashboard()"><label for="mt-der-retraccion">Retracción</label></div>
+                                            <div class="form-item"><input type="checkbox" id="mt-der-opaca" onchange="updateReport(); updateDashboard()"><label for="mt-der-opaca">Opaca</label></div>
+                                            <div class="form-item"><input type="checkbox" id="mt-der-perforacion" onchange="updateReport(); updateDashboard()"><label for="mt-der-perforacion">Perforación</label></div>
+                                            <div class="form-item"><input type="checkbox" id="mt-der-cicatrices" onchange="updateReport(); updateDashboard()"><label for="mt-der-cicatrices">Cicatrices/Miringoesclerosis</label></div>
+                                            <div class="form-item"><input type="checkbox" id="mt-der-nivel-liquido" onchange="updateReport(); updateDashboard()"><label for="mt-der-nivel-liquido">Nivel hidroaéreo</label></div>
+                                            <div class="form-item"><input type="checkbox" id="mt-der-burbujas" onchange="updateReport(); updateDashboard()"><label for="mt-der-burbujas">Burbujas de aire</label></div>
+                                        </div>
+                                    </div>
+                                    <div class="exam-section-migrated">
+                                        <h4 class="sub-header">Movilidad</h4>
+                                        <div class="form-grid">
+                                            <div class="form-item"><input type="checkbox" id="mt-der-movil" onchange="updateReport(); updateDashboard()"><label for="mt-der-movil">Móvil</label></div>
+                                            <div class="form-item"><input type="checkbox" id="mt-der-hipomovil" onchange="updateReport(); updateDashboard()"><label for="mt-der-hipomovil">Hipomóvil</label></div>
+                                            <div class="form-item"><input type="checkbox" id="mt-der-inmovil" onchange="updateReport(); updateDashboard()"><label for="mt-der-inmovil">Inmóvil</label></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="side-container">
+                                    <div class="side-header">Membrana Timpánica Izquierda</div>
+                                    <div class="exam-section-migrated">
+                                        <h4 class="sub-header">Características</h4>
+                                        <div class="form-grid">
+                                            <div class="form-item"><input type="checkbox" id="mt-izq-normal" onchange="updateReport(); updateDashboard()"><label for="mt-izq-normal">Aspecto normal</label></div>
+                                            <div class="form-item"><input type="checkbox" id="mt-izq-eritema" onchange="updateReport(); updateDashboard()"><label for="mt-izq-eritema">Eritematosa</label></div>
+                                            <div class="form-item"><input type="checkbox" id="mt-izq-abombamiento" onchange="updateReport(); updateDashboard()"><label for="mt-izq-abombamiento">Abombamiento</label></div>
+                                            <div class="form-item"><input type="checkbox" id="mt-izq-retraccion" onchange="updateReport(); updateDashboard()"><label for="mt-izq-retraccion">Retracción</label></div>
+                                            <div class="form-item"><input type="checkbox" id="mt-izq-opaca" onchange="updateReport(); updateDashboard()"><label for="mt-izq-opaca">Opaca</label></div>
+                                            <div class="form-item"><input type="checkbox" id="mt-izq-perforacion" onchange="updateReport(); updateDashboard()"><label for="mt-izq-perforacion">Perforación</label></div>
+                                            <div class="form-item"><input type="checkbox" id="mt-izq-cicatrices" onchange="updateReport(); updateDashboard()"><label for="mt-izq-cicatrices">Cicatrices/Miringoesclerosis</label></div>
+                                            <div class="form-item"><input type="checkbox" id="mt-izq-nivel-liquido" onchange="updateReport(); updateDashboard()"><label for="mt-izq-nivel-liquido">Nivel hidroaéreo</label></div>
+                                            <div class="form-item"><input type="checkbox" id="mt-izq-burbujas" onchange="updateReport(); updateDashboard()"><label for="mt-izq-burbujas">Burbujas de aire</label></div>
+                                        </div>
+                                    </div>
+                                    <div class="exam-section-migrated">
+                                        <h4 class="sub-header">Movilidad</h4>
+                                        <div class="form-grid">
+                                            <div class="form-item"><input type="checkbox" id="mt-izq-movil" onchange="updateReport(); updateDashboard()"><label for="mt-izq-movil">Móvil</label></div>
+                                            <div class="form-item"><input type="checkbox" id="mt-izq-hipomovil" onchange="updateReport(); updateDashboard()"><label for="mt-izq-hipomovil">Hipomóvil</label></div>
+                                            <div class="form-item"><input type="checkbox" id="mt-izq-inmovil" onchange="updateReport(); updateDashboard()"><label for="mt-izq-inmovil">Inmóvil</label></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-volume-up"></i> Evaluación Auditiva</h4>
+                            <div class="exam-section-migrated">
+                                <h4 class="sub-header">Pruebas con Diapasón</h4>
+                                <div class="test-results">
+                                    <div class="test-item">
+                                        <label>Weber (512 Hz)</label>
+                                        <div class="test-controls">
+                                            <select id="weber-result" onchange="updateReport(); updateDashboard()">
+                                                <option value="">Seleccionar</option>
+                                                <option value="centrado">Centrado</option>
+                                                <option value="lateraliza-derecha">Lateraliza a derecha</option>
+                                                <option value="lateraliza-izquierda">Lateraliza a izquierda</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="test-item">
+                                        <label>Rinne Derecho (512 Hz)</label>
+                                        <div class="test-controls">
+                                            <div class="test-checkbox"><input type="checkbox" id="rinne-der-pos" onchange="handleMutuallyExclusive('rinne-der-pos', 'rinne-der-neg', this); updateReport(); updateDashboard()"><span class="positive">+ (VA > VO)</span></div>
+                                            <div class="test-checkbox"><input type="checkbox" id="rinne-der-neg" onchange="handleMutuallyExclusive('rinne-der-pos', 'rinne-der-neg', this); updateReport(); updateDashboard()"><span class="negative">- (VO > VA)</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="test-item">
+                                        <label>Rinne Izquierdo (512 Hz)</label>
+                                        <div class="test-controls">
+                                            <div class="test-checkbox"><input type="checkbox" id="rinne-izq-pos" onchange="handleMutuallyExclusive('rinne-izq-pos', 'rinne-izq-neg', this); updateReport(); updateDashboard()"><span class="positive">+ (VA > VO)</span></div>
+                                            <div class="test-checkbox"><input type="checkbox" id="rinne-izq-neg" onchange="handleMutuallyExclusive('rinne-izq-pos', 'rinne-izq-neg', this); updateReport(); updateDashboard()"><span class="negative">- (VO > VA)</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="test-item">
+                                        <label>Schwabach Derecho</label>
+                                        <div class="test-controls">
+                                            <select id="schwabach-der" onchange="updateReport(); updateDashboard()">
+                                                <option value="">Seleccionar</option>
+                                                <option value="normal">Normal</option>
+                                                <option value="acortado">Acortado</option>
+                                                <option value="prolongado">Prolongado</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="test-item">
+                                        <label>Schwabach Izquierdo</label>
+                                        <div class="test-controls">
+                                            <select id="schwabach-izq" onchange="updateReport(); updateDashboard()">
+                                                <option value="">Seleccionar</option>
+                                                <option value="normal">Normal</option>
+                                                <option value="acortado">Acortado</option>
+                                                <option value="prolongado">Prolongado</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="audiometry-section-migrated">
+                                <h4 class="sub-header">Audiometría Tonal (Umbrales en dB HL)</h4>
+                                <div class="exam-section-migrated">
+                                    <h4 class="sub-sub-header">Oído Derecho - Vía Aérea</h4>
+                                    <div class="frequency-grid">
+                                        <div class="frequency-item">
+                                            <div class="frequency-label">250 Hz</div>
+                                            <input type="number" class="hearing-input" id="aud-der-va-250" min="0" max="120" step="5" oninput="calculatePTP(); updateReport(); updateDashboard()">
+                                        </div>
+                                        <div class="frequency-item">
+                                            <div class="frequency-label">500 Hz</div>
+                                            <input type="number" class="hearing-input" id="aud-der-va-500" min="0" max="120" step="5" oninput="calculatePTP(); updateReport(); updateDashboard()">
+                                        </div>
+                                        <div class="frequency-item">
+                                            <div class="frequency-label">1000 Hz</div>
+                                            <input type="number" class="hearing-input" id="aud-der-va-1000" min="0" max="120" step="5" oninput="calculatePTP(); updateReport(); updateDashboard()">
+                                        </div>
+                                        <div class="frequency-item">
+                                            <div class="frequency-label">2000 Hz</div>
+                                            <input type="number" class="hearing-input" id="aud-der-va-2000" min="0" max="120" step="5" oninput="calculatePTP(); updateReport(); updateDashboard()">
+                                        </div>
+                                        <div class="frequency-item">
+                                            <div class="frequency-label">4000 Hz</div>
+                                            <input type="number" class="hearing-input" id="aud-der-va-4000" min="0" max="120" step="5" oninput="calculatePTP(); updateReport(); updateDashboard()">
+                                        </div>
+                                        <div class="frequency-item">
+                                            <div class="frequency-label">8000 Hz</div>
+                                            <input type="number" class="hearing-input" id="aud-der-va-8000" min="0" max="120" step="5" oninput="calculatePTP(); updateReport(); updateDashboard()">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="exam-section-migrated">
+                                    <h4 class="sub-sub-header">Oído Izquierdo - Vía Aérea</h4>
+                                    <div class="frequency-grid">
+                                        <div class="frequency-item">
+                                            <div class="frequency-label">250 Hz</div>
+                                            <input type="number" class="hearing-input" id="aud-izq-va-250" min="0" max="120" step="5" oninput="calculatePTP(); updateReport(); updateDashboard()">
+                                        </div>
+                                        <div class="frequency-item">
+                                            <div class="frequency-label">500 Hz</div>
+                                            <input type="number" class="hearing-input" id="aud-izq-va-500" min="0" max="120" step="5" oninput="calculatePTP(); updateReport(); updateDashboard()">
+                                        </div>
+                                        <div class="frequency-item">
+                                            <div class="frequency-label">1000 Hz</div>
+                                            <input type="number" class="hearing-input" id="aud-izq-va-1000" min="0" max="120" step="5" oninput="calculatePTP(); updateReport(); updateDashboard()">
+                                        </div>
+                                        <div class="frequency-item">
+                                            <div class="frequency-label">2000 Hz</div>
+                                            <input type="number" class="hearing-input" id="aud-izq-va-2000" min="0" max="120" step="5" oninput="calculatePTP(); updateReport(); updateDashboard()">
+                                        </div>
+                                        <div class="frequency-item">
+                                            <div class="frequency-label">4000 Hz</div>
+                                            <input type="number" class="hearing-input" id="aud-izq-va-4000" min="0" max="120" step="5" oninput="calculatePTP(); updateReport(); updateDashboard()">
+                                        </div>
+                                        <div class="frequency-item">
+                                            <div class="frequency-label">8000 Hz</div>
+                                            <input type="number" class="hearing-input" id="aud-izq-va-8000" min="0" max="120" step="5" oninput="calculatePTP(); updateReport(); updateDashboard()">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="score-calculation-migrated">
+                                    <div class="score-item">
+                                        <span>Promedio Tonal Puro Derecho (500-1000-2000 Hz):</span>
+                                        <span class="score-value" id="ptp-derecho">-- dB HL</span>
+                                    </div>
+                                    <div class="score-item">
+                                        <span>Promedio Tonal Puro Izquierdo (500-1000-2000 Hz):</span>
+                                        <span class="score-value" id="ptp-izquierdo">-- dB HL</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-container" id="nose-exam">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-nose"></i> Examen de Nariz y Senos Paranasales</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="legend">
+                            <div class="legend-item">
+                                <div class="legend-color nose-color"></div>
+                                <span>Examen Nasal y Sinusal</span>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-search"></i> Inspección Externa de la Nariz</h4>
+                            <div class="exam-section-migrated">
+                                <h4 class="sub-header">Características Externas</h4>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="nariz-normal" onchange="updateReport(); updateDashboard()"><label for="nariz-normal">Aspecto normal</label></div>
+                                    <div class="form-item"><input type="checkbox" id="desviacion-nasal" onchange="updateReport(); updateDashboard()"><label for="desviacion-nasal">Desviación nasal</label></div>
+                                    <div class="form-item"><input type="checkbox" id="edema-nasal" onchange="updateReport(); updateDashboard()"><label for="edema-nasal">Edema</label></div>
+                                    <div class="form-item"><input type="checkbox" id="eritema-nasal" onchange="updateReport(); updateDashboard()"><label for="eritema-nasal">Eritema</label></div>
+                                    <div class="form-item"><input type="checkbox" id="lesiones-nasales" onchange="updateReport(); updateDashboard()"><label for="lesiones-nasales">Lesiones cutáneas</label></div>
+                                    <div class="form-item"><input type="checkbox" id="aleteo-nasal" onchange="updateReport(); updateDashboard()"><label for="aleteo-nasal">Aleteo nasal</label></div>
+                                    <div class="form-item"><input type="checkbox" id="respiracion-oral" onchange="updateReport(); updateDashboard()"><label for="respiracion-oral">Respiración oral</label></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-diagnoses"></i> Rinoscopia Anterior</h4>
+                            <div class="bilateral-container">
+                                <div class="side-container">
+                                    <div class="side-header">Fosa Nasal Derecha</div>
+                                    <div class="exam-section-migrated">
+                                        <h4 class="sub-header">Vestíbulo Nasal</h4>
+                                        <div class="form-grid">
+                                            <div class="form-item"><input type="checkbox" id="vestibulo-der-normal" onchange="updateReport(); updateDashboard()"><label for="vestibulo-der-normal">Aspecto normal</label></div>
+                                            <div class="form-item"><input type="checkbox" id="vestibulo-der-costras" onchange="updateReport(); updateDashboard()"><label for="vestibulo-der-costras">Costras</label></div>
+                                            <div class="form-item"><input type="checkbox" id="vestibulo-der-fisuras" onchange="updateReport(); updateDashboard()"><label for="vestibulo-der-fisuras">Fisuras</label></div>
+                                            <div class="form-item"><input type="checkbox" id="vestibulo-der-foliculitis" onchange="updateReport(); updateDashboard()"><label for="vestibulo-der-foliculitis">Foliculitis</label></div>
+                                        </div>
+                                    </div>
+                                    <div class="exam-section-migrated">
+                                        <h4 class="sub-header">Tabique Nasal</h4>
+                                        <div class="form-grid">
+                                            <div class="form-item"><input type="checkbox" id="tabique-der-normal" onchange="updateReport(); updateDashboard()"><label for="tabique-der-normal">Normal</label></div>
+                                            <div class="form-item"><input type="checkbox" id="tabique-der-desviado" onchange="updateReport(); updateDashboard()"><label for="tabique-der-desviado">Desviado</label></div>
+                                            <div class="form-item"><input type="checkbox" id="tabique-der-perforacion" onchange="updateReport(); updateDashboard()"><label for="tabique-der-perforacion">Perforación</label></div>
+                                            <div class="form-item"><input type="checkbox" id="tabique-der-sangrado" onchange="updateReport(); updateDashboard()"><label for="tabique-der-sangrado">Sangrado</label></div>
+                                            <div class="form-item"><input type="checkbox" id="tabique-der-costras" onchange="updateReport(); updateDashboard()"><label for="tabique-der-costras">Costras</label></div>
+                                        </div>
+                                    </div>
+                                    <div class="exam-section-migrated">
+                                        <h4 class="sub-header">Cornetes</h4>
+                                        <div class="form-grid">
+                                            <div class="form-item"><input type="checkbox" id="cornetes-der-normales" onchange="updateReport(); updateDashboard()"><label for="cornetes-der-normales">Normales</label></div>
+                                            <div class="form-item"><input type="checkbox" id="cornetes-der-hipertrofia" onchange="updateReport(); updateDashboard()"><label for="cornetes-der-hipertrofia">Hipertrofia</label></div>
+                                            <div class="form-item"><input type="checkbox" id="cornetes-der-palidez" onchange="updateReport(); updateDashboard()"><label for="cornetes-der-palidez">Pálidos</label></div>
+                                            <div class="form-item"><input type="checkbox" id="cornetes-der-congestivos" onchange="updateReport(); updateDashboard()"><label for="cornetes-der-congestivos">Congestivos</label></div>
+                                            <div class="form-item"><input type="checkbox" id="cornetes-der-polipos" onchange="updateReport(); updateDashboard()"><label for="cornetes-der-polipos">Pólipos</label></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="side-container">
+                                    <div class="side-header">Fosa Nasal Izquierda</div>
+                                    <div class="exam-section-migrated">
+                                        <h4 class="sub-header">Vestíbulo Nasal</h4>
+                                        <div class="form-grid">
+                                            <div class="form-item"><input type="checkbox" id="vestibulo-izq-normal" onchange="updateReport(); updateDashboard()"><label for="vestibulo-izq-normal">Aspecto normal</label></div>
+                                            <div class="form-item"><input type="checkbox" id="vestibulo-izq-costras" onchange="updateReport(); updateDashboard()"><label for="vestibulo-izq-costras">Costras</label></div>
+                                            <div class="form-item"><input type="checkbox" id="vestibulo-izq-fisuras" onchange="updateReport(); updateDashboard()"><label for="vestibulo-izq-fisuras">Fisuras</label></div>
+                                            <div class="form-item"><input type="checkbox" id="vestibulo-izq-foliculitis" onchange="updateReport(); updateDashboard()"><label for="vestibulo-izq-foliculitis">Foliculitis</label></div>
+                                        </div>
+                                    </div>
+                                    <div class="exam-section-migrated">
+                                        <h4 class="sub-header">Tabique Nasal</h4>
+                                        <div class="form-grid">
+                                            <div class="form-item"><input type="checkbox" id="tabique-izq-normal" onchange="updateReport(); updateDashboard()"><label for="tabique-izq-normal">Normal</label></div>
+                                            <div class="form-item"><input type="checkbox" id="tabique-izq-desviado" onchange="updateReport(); updateDashboard()"><label for="tabique-izq-desviado">Desviado</label></div>
+                                            <div class="form-item"><input type="checkbox" id="tabique-izq-perforacion" onchange="updateReport(); updateDashboard()"><label for="tabique-izq-perforacion">Perforación</label></div>
+                                            <div class="form-item"><input type="checkbox" id="tabique-izq-sangrado" onchange="updateReport(); updateDashboard()"><label for="tabique-izq-sangrado">Sangrado</label></div>
+                                            <div class="form-item"><input type="checkbox" id="tabique-izq-costras" onchange="updateReport(); updateDashboard()"><label for="tabique-izq-costras">Costras</label></div>
+                                        </div>
+                                    </div>
+                                    <div class="exam-section-migrated">
+                                        <h4 class="sub-header">Cornetes</h4>
+                                        <div class="form-grid">
+                                            <div class="form-item"><input type="checkbox" id="cornetes-izq-normales" onchange="updateReport(); updateDashboard()"><label for="cornetes-izq-normales">Normales</label></div>
+                                            <div class="form-item"><input type="checkbox" id="cornetes-izq-hipertrofia" onchange="updateReport(); updateDashboard()"><label for="cornetes-izq-hipertrofia">Hipertrofia</label></div>
+                                            <div class="form-item"><input type="checkbox" id="cornetes-izq-palidez" onchange="updateReport(); updateDashboard()"><label for="cornetes-izq-palidez">Pálidos</label></div>
+                                            <div class="form-item"><input type="checkbox" id="cornetes-izq-congestivos" onchange="updateReport(); updateDashboard()"><label for="cornetes-izq-congestivos">Congestivos</label></div>
+                                            <div class="form-item"><input type="checkbox" id="cornetes-izq-polipos" onchange="updateReport(); updateDashboard()"><label for="cornetes-izq-polipos">Pólipos</label></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="exam-section-migrated">
+                                <h4 class="sub-header">Secreciones Nasales</h4>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="sin-secreciones" onchange="updateReport(); updateDashboard()"><label for="sin-secreciones">Sin secreciones</label></div>
+                                    <div class="form-item"><input type="checkbox" id="secrecion-mucosa" onchange="updateReport(); updateDashboard()"><label for="secrecion-mucosa">Secreción mucosa</label></div>
+                                    <div class="form-item"><input type="checkbox" id="secrecion-purulenta" onchange="updateReport(); updateDashboard()"><label for="secrecion-purulenta">Secreción purulenta</label></div>
+                                    <div class="form-item"><input type="checkbox" id="secrecion-sanguinolenta" onchange="updateReport(); updateDashboard()"><label for="secrecion-sanguinolenta">Secreción sanguinolenta</label></div>
+                                    <div class="form-item"><input type="checkbox" id="secrecion-fetida" onchange="updateReport(); updateDashboard()"><label for="secrecion-fetida">Secreción fétida</label></div>
+                                    <div class="form-item"><input type="checkbox" id="secrecion-unilateral" onchange="updateReport(); updateDashboard()"><label for="secrecion-unilateral">Secreción unilateral</label></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-head-side-mask"></i> Evaluación de Senos Paranasales</h4>
+                            <div class="exam-section-migrated">
+                                <h4 class="sub-header">Palpación y Percusión</h4>
+                                <div class="test-results">
+                                    <div class="test-item">
+                                        <label>Dolor en senos frontales</label>
+                                        <div class="test-controls">
+                                            <div class="test-checkbox"><input type="checkbox" id="frontales-pos" onchange="handleMutuallyExclusive('frontales-pos', 'frontales-neg', this); updateReport(); updateDashboard()"><span class="positive">+</span></div>
+                                            <div class="test-checkbox"><input type="checkbox" id="frontales-neg" onchange="handleMutuallyExclusive('frontales-pos', 'frontales-neg', this); updateReport(); updateDashboard()"><span class="negative">-</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="test-item">
+                                        <label>Dolor en senos maxilares</label>
+                                        <div class="test-controls">
+                                            <div class="test-checkbox"><input type="checkbox" id="maxilares-pos" onchange="handleMutuallyExclusive('maxilares-pos', 'maxilares-neg', this); updateReport(); updateDashboard()"><span class="positive">+</span></div>
+                                            <div class="test-checkbox"><input type="checkbox" id="maxilares-neg" onchange="handleMutuallyExclusive('maxilares-pos', 'maxilares-neg', this); updateReport(); updateDashboard()"><span class="negative">-</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="test-item">
+                                        <label>Dolor en senos etmoidales</label>
+                                        <div class="test-controls">
+                                            <div class="test-checkbox"><input type="checkbox" id="etmoidales-pos" onchange="handleMutuallyExclusive('etmoidales-pos', 'etmoidales-neg', this); updateReport(); updateDashboard()"><span class="positive">+</span></div>
+                                            <div class="test-checkbox"><input type="checkbox" id="etmoidales-neg" onchange="handleMutuallyExclusive('etmoidales-pos', 'etmoidales-neg', this); updateReport(); updateDashboard()"><span class="negative">-</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="test-item">
+                                        <label>Transilvminación senos maxilares</label>
+                                        <div class="test-controls">
+                                            <div class="test-checkbox"><input type="checkbox" id="transil-maxilar-anormal" onchange="handleMutuallyExclusive('transil-maxilar-anormal', 'transil-maxilar-normal', this); updateReport(); updateDashboard()"><span class="positive">Anormal</span></div>
+                                            <div class="test-checkbox"><input type="checkbox" id="transil-maxilar-normal" onchange="handleMutuallyExclusive('transil-maxilar-anormal', 'transil-maxilar-normal', this); updateReport(); updateDashboard()"><span class="negative">Normal</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="exam-section-migrated">
+                                <h4 class="sub-header">Permeabilidad Nasal</h4>
+                                <div class="test-results">
+                                    <div class="test-item">
+                                        <label>Prueba del espejo nasal</label>
+                                        <div class="test-controls">
+                                            <select id="permeabilidad-nasal" onchange="updateReport(); updateDashboard()">
+                                                <option value="">Seleccionar</option>
+                                                <option value="bilateral-normal">Permeabilidad bilateral normal</option>
+                                                <option value="bilateral-disminuida">Permeabilidad bilateral disminuida</option>
+                                                <option value="unilateral-derecha">Obstrucción unilateral derecha</option>
+                                                <option value="unilateral-izquierda">Obstrucción unilateral izquierda</option>
+                                                <option value="bilateral-obstruida">Obstrucción bilateral</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-container" id="throat-exam">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-throat"></i> Examen de Garganta y Faringe</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="legend">
+                            <div class="legend-item">
+                                <div class="legend-color throat-color"></div>
+                                <span>Examen Faríngeo</span>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-tooth"></i> Orofaringe</h4>
+                            <div class="exam-section-migrated">
+                                <h4 class="sub-header">Características Generales</h4>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="orofaringe-normal" onchange="updateReport(); updateDashboard()"><label for="orofaringe-normal">Aspecto normal</label></div>
+                                    <div class="form-item"><input type="checkbox" id="mucosa-eritematosa" onchange="updateReport(); updateDashboard()"><label for="mucosa-eritematosa">Mucosa eritematosa</label></div>
+                                    <div class="form-item"><input type="checkbox" id="mucosa-edematosa" onchange="updateReport(); updateDashboard()"><label for="mucosa-edematosa">Mucosa edematosa</label></div>
+                                    <div class="form-item"><input type="checkbox" id="mucosa-granular" onchange="updateReport(); updateDashboard()"><label for="mucosa-granular">Mucosa granular</label></div>
+                                    <div class="form-item"><input type="checkbox" id="mucosa-seca" onchange="updateReport(); updateDashboard()"><label for="mucosa-seca">Mucosa seca</label></div>
+                                    <div class="form-item"><input type="checkbox" id="ulceras-faringeas" onchange="updateReport(); updateDashboard()"><label for="ulceras-faringeas">Úlceras</label></div>
+                                    <div class="form-item"><input type="checkbox" id="exudado-faringeo" onchange="updateReport(); updateDashboard()"><label for="exudado-faringeo">Exudado</label></div>
+                                    <div class="form-item"><input type="checkbox" id="pseudomembranas" onchange="updateReport(); updateDashboard()"><label for="pseudomembranas">Pseudomembranas</label></div>
+                                </div>
+                            </div>
+
+                            <div class="exam-section-migrated">
+                                <h4 class="sub-header">Amígdalas Palatinas</h4>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="amigdalas-normales" onchange="updateReport(); updateDashboard()"><label for="amigdalas-normales">Aspecto normal</label></div>
+                                    <div class="form-item"><input type="checkbox" id="amigdalas-hipertroficas" onchange="updateReport(); updateDashboard()"><label for="amigdalas-hipertroficas">Hipertróficas</label></div>
+                                    <div class="form-item"><input type="checkbox" id="amigdalas-eritematosas" onchange="updateReport(); updateDashboard()"><label for="amigdalas-eritematosas">Eritematosas</label></div>
+                                    <div class="form-item"><input type="checkbox" id="amigdalas-exudado" onchange="updateReport(); updateDashboard()"><label for="amigdalas-exudado">Con exudado</label></div>
+                                    <div class="form-item"><input type="checkbox" id="amigdalas-cripticas" onchange="updateReport(); updateDashboard()"><label for="amigdalas-cripticas">Crípticas</label></div>
+                                    <div class="form-item"><input type="checkbox" id="amigdalas-caseum" onchange="updateReport(); updateDashboard()"><label for="amigdalas-caseum">Con caseum</label></div>
+                                    <div class="form-item"><input type="checkbox" id="amigdalas-asimetricas" onchange="updateReport(); updateDashboard()"><label for="amigdalas-asimetricas">Asimétricas</label></div>
+                                    <div class="form-item"><input type="checkbox" id="amigdalas-ausentes" onchange="updateReport(); updateDashboard()"><label for="amigdalas-ausentes">Amigdalectomizadas</label></div>
+                                </div>
+                                <div class="exam-section-migrated">
+                                    <h4 class="sub-sub-header">Graduación Amigdalina (Brodsky)</h4>
+                                    <div class="severity-grid-migrated">
+                                        <div class="severity-item"><input type="radio" name="grado-amigdalas" id="amigdalas-grado0" onchange="updateReport(); updateDashboard()"><label for="amigdalas-grado0">Grado 0: Amigdalectomizadas</label></div>
+                                        <div class="severity-item"><input type="radio" name="grado-amigdalas" id="amigdalas-grado1" onchange="updateReport(); updateDashboard()"><label for="amigdalas-grado1">Grado 1: Ocultas en fosas</label></div>
+                                        <div class="severity-item"><input type="radio" name="grado-amigdalas" id="amigdalas-grado2" onchange="updateReport(); updateDashboard()"><label for="amigdalas-grado2">Grado 2: Hasta pilares</label></div>
+                                        <div class="severity-item"><input type="radio" name="grado-amigdalas" id="amigdalas-grado3" onchange="updateReport(); updateDashboard()"><label for="amigdalas-grado3">Grado 3: Más allá de pilares</label></div>
+                                        <div class="severity-item"><input type="radio" name="grado-amigdalas" id="amigdalas-grado4" onchange="updateReport(); updateDashboard()"><label for="amigdalas-grado4">Grado 4: Se tocan en línea media</label></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="exam-section-migrated">
+                                <h4 class="sub-header">Paladar Blando y Úvula</h4>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="paladar-blando-normal" onchange="updateReport(); updateDashboard()"><label for="paladar-blando-normal">Aspecto normal</label></div>
+                                    <div class="form-item"><input type="checkbox" id="paladar-blando-edematoso" onchange="updateReport(); updateDashboard()"><label for="paladar-blando-edematoso">Edematoso</label></div>
+                                    <div class="form-item"><input type="checkbox" id="paladar-blando-eritematoso" onchange="updateReport(); updateDashboard()"><label for="paladar-blando-eritematoso">Eritematoso</label></div>
+                                    <div class="form-item"><input type="checkbox" id="uvula-normal" onchange="updateReport(); updateDashboard()"><label for="uvula-normal">Úvula normal</label></div>
+                                    <div class="form-item"><input type="checkbox" id="uvula-edematosa" onchange="updateReport(); updateDashboard()"><label for="uvula-edematosa">Úvula edematosa</label></div>
+                                    <div class="form-item"><input type="checkbox" id="uvula-elongada" onchange="updateReport(); updateDashboard()"><label for="uvula-elongada">Úvula elongada</label></div>
+                                    <div class="form-item"><input type="checkbox" id="uvula-ausente" onchange="updateReport(); updateDashboard()"><label for="uvula-ausente">Úvula ausente</label></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-square-full"></i> Hipofaringe y Base de Lengua</h4>
+                            <div class="exam-section-migrated">
+                                <h4 class="sub-header">Evaluación Indirecta</h4>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="hipofaringe-normal" onchange="updateReport(); updateDashboard()"><label for="hipofaringe-normal">Aspecto normal</label></div>
+                                    <div class="form-item"><input type="checkbox" id="hipofaringe-eritema" onchange="updateReport(); updateDashboard()"><label for="hipofaringe-eritema">Eritema</label></div>
+                                    <div class="form-item"><input type="checkbox" id="hipofaringe-edema" onchange="updateReport(); updateDashboard()"><label for="hipofaringe-edema">Edema</label></div>
+                                    <div class="form-item"><input type="checkbox" id="base-lengua-normal" onchange="updateReport(); updateDashboard()"><label for="base-lengua-normal">Base de lengua normal</label></div>
+                                    <div class="form-item"><input type="checkbox" id="base-lengua-hipertrofia" onchange="updateReport(); updateDashboard()"><label for="base-lengua-hipertrofia">Hipertrofia lingual</label></div>
+                                    <div class="form-item"><input type="checkbox" id="secreciones-posteriores" onchange="updateReport(); updateDashboard()"><label for="secreciones-posteriores">Secreciones en pared posterior</label></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-container" id="larynx-exam">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-microphone-alt"></i> Examen de Laringe y Evaluación de la Voz</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-microscope"></i> Laringoscopia Indirecta</h4>
+                            <div class="exam-section-migrated">
+                                <h4 class="sub-header">Cuerdas Vocales</h4>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="cuerdas-normales" onchange="updateReport(); updateDashboard()"><label for="cuerdas-normales">Aspecto normal</label></div>
+                                    <div class="form-item"><input type="checkbox" id="cuerdas-eritematosas" onchange="updateReport(); updateDashboard()"><label for="cuerdas-eritematosas">Eritematosas</label></div>
+                                    <div class="form-item"><input type="checkbox" id="cuerdas-edematosas" onchange="updateReport(); updateDashboard()"><label for="cuerdas-edematosas">Edematosas</label></div>
+                                    <div class="form-item"><input type="checkbox" id="nodulos-vocales" onchange="updateReport(); updateDashboard()"><label for="nodulos-vocales">Nódulos</label></div>
+                                    <div class="form-item"><input type="checkbox" id="polipos-vocales" onchange="updateReport(); updateDashboard()"><label for="polipos-vocales">Pólipos</label></div>
+                                    <div class="form-item"><input type="checkbox" id="granulomas-vocales" onchange="updateReport(); updateDashboard()"><label for="granulomas-vocales">Granulomas</label></div>
+                                    <div class="form-item"><input type="checkbox" id="leucoplasia-vocal" onchange="updateReport(); updateDashboard()"><label for="leucoplasia-vocal">Leucoplasia</label></div>
+                                    <div class="form-item"><input type="checkbox" id="paresia-vocal" onchange="updateReport(); updateDashboard()"><label for="paresia-vocal">Paresia/Parálisis</label></div>
+                                </div>
+                            </div>
+
+                            <div class="exam-section-migrated">
+                                <h4 class="sub-header">Movilidad de Cuerdas Vocales</h4>
+                                <div class="bilateral-container">
+                                    <div class="side-container">
+                                        <div class="side-header">Cuerda Vocal Derecha</div>
+                                        <div class="form-grid">
+                                            <div class="form-item"><input type="radio" name="movilidad-der" id="movil-der-normal" onchange="updateReport(); updateDashboard()"><label for="movil-der-normal">Movilidad normal</label></div>
+                                            <div class="form-item"><input type="radio" name="movilidad-der" id="movil-der-reducida" onchange="updateReport(); updateDashboard()"><label for="movil-der-reducida">Movilidad reducida</label></div>
+                                            <div class="form-item"><input type="radio" name="movilidad-der" id="movil-der-fija" onchange="updateReport(); updateDashboard()"><label for="movil-der-fija">Fija</label></div>
+                                        </div>
+                                    </div>
+                                    <div class="side-container">
+                                        <div class="side-header">Cuerda Vocal Izquierda</div>
+                                        <div class="form-grid">
+                                            <div class="form-item"><input type="radio" name="movilidad-izq" id="movil-izq-normal" onchange="updateReport(); updateDashboard()"><label for="movil-izq-normal">Movilidad normal</label></div>
+                                            <div class="form-item"><input type="radio" name="movilidad-izq" id="movil-izq-reducida" onchange="updateReport(); updateDashboard()"><label for="movil-izq-reducida">Movilidad reducida</label></div>
+                                            <div class="form-item"><input type="radio" name="movilidad-izq" id="movil-izq-fija" onchange="updateReport(); updateDashboard()"><label for="movil-izq-fija">Fija</label></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="exam-section-migrated">
+                                <h4 class="sub-header">Otras Estructuras Laríngeas</h4>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="aritenoides-normales" onchange="updateReport(); updateDashboard()"><label for="aritenoides-normales">Aritenoides normales</label></div>
+                                    <div class="form-item"><input type="checkbox" id="aritenoides-eritema" onchange="updateReport(); updateDashboard()"><label for="aritenoides-eritema">Eritema aritenoides</label></div>
+                                    <div class="form-item"><input type="checkbox" id="aritenoides-edema" onchange="updateReport(); updateDashboard()"><label for="aritenoides-edema">Edema aritenoides</label></div>
+                                    <div class="form-item"><input type="checkbox" id="bandas-ventriculares-normales" onchange="updateReport(); updateDashboard()"><label for="bandas-ventriculares-normales">Bandas ventriculares normales</label></div>
+                                    <div class="form-item"><input type="checkbox" id="bandas-ventriculares-hipertrofia" onchange="updateReport(); updateDashboard()"><label for="bandas-ventriculares-hipertrofia">Hipertrofia bandas ventriculares</label></div>
+                                    <div class="form-item"><input type="checkbox" id="comisura-anterior-normal" onchange="updateReport(); updateDashboard()"><label for="comisura-anterior-normal">Comisura anterior normal</label></div>
+                                    <div class="form-item"><input type="checkbox" id="comisura-anterior-lesion" onchange="updateReport(); updateDashboard()"><label for="comisura-anterior-lesion">Lesión comisura anterior</label></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-assistive-listening-systems"></i> Evaluación de la Voz</h4>
+                            <div class="voice-assessment-migrated">
+                                <h4 class="sub-header">Análisis Perceptual de la Voz</h4>
+                                <div class="voice-scale">
+                                    <label>Ronquera (G):</label>
+                                    <input type="range" id="ronquera-grado" min="0" max="3" value="0" oninput="updateVoiceValue('ronquera', this.value); updateReport(); updateDashboard()">
+                                    <span id="ronquera-value">0</span><span>/3</span>
+                                </div>
+                                <div class="voice-scale">
+                                    <label>Rugosidad (R):</label>
+                                    <input type="range" id="rugosidad-grado" min="0" max="3" value="0" oninput="updateVoiceValue('rugosidad', this.value); updateReport(); updateDashboard()">
+                                    <span id="rugosidad-value">0</span><span>/3</span>
+                                </div>
+                                <div class="voice-scale">
+                                    <label>Soplo (B):</label>
+                                    <input type="range" id="soplo-grado" min="0" max="3" value="0" oninput="updateVoiceValue('soplo', this.value); updateReport(); updateDashboard()">
+                                    <span id="soplo-value">0</span><span>/3</span>
+                                </div>
+                                <div class="voice-scale">
+                                    <label>Astenia (A):</label>
+                                    <input type="range" id="astenia-grado" min="0" max="3" value="0" oninput="updateVoiceValue('astenia', this.value); updateReport(); updateDashboard()">
+                                    <span id="astenia-value">0</span><span>/3</span>
+                                </div>
+                                <div class="voice-scale">
+                                    <label>Tensión (S):</label>
+                                    <input type="range" id="tension-grado" min="0" max="3" value="0" oninput="updateVoiceValue('tension', this.value); updateReport(); updateDashboard()">
+                                    <span id="tension-value">0</span><span>/3</span>
+                                </div>
+                            </div>
+
+                            <div class="exam-section-migrated">
+                                <h4 class="sub-header">Características Adicionales de la Voz</h4>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="voz-normal" onchange="updateReport(); updateDashboard()"><label for="voz-normal">Voz normal</label></div>
+                                    <div class="form-item"><input type="checkbox" id="afonia" onchange="updateReport(); updateDashboard()"><label for="afonia">Afonía</label></div>
+                                    <div class="form-item"><input type="checkbox" id="voz-susurrada" onchange="updateReport(); updateDashboard()"><label for="voz-susurrada">Voz susurrada</label></div>
+                                    <div class="form-item"><input type="checkbox" id="voz-diplofonica" onchange="updateReport(); updateDashboard()"><label for="voz-diplofonica">Voz diplofónica</label></div>
+                                    <div class="form-item"><input type="checkbox" id="fatiga-vocal" onchange="updateReport(); updateDashboard()"><label for="fatiga-vocal">Fatiga vocal</label></div>
+                                    <div class="form-item"><input type="checkbox" id="variaciones-tono" onchange="updateReport(); updateDashboard()"><label for="variaciones-tono">Variaciones de tono</label></div>
+                                    <div class="form-item"><input type="checkbox" id="quiebres-vocales" onchange="updateReport(); updateDashboard()"><label for="quiebres-vocales">Quiebres vocales</label></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-container" id="neck-exam">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-neck"></i> Examen del Cuello</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="legend">
+                            <div class="legend-item">
+                                <div class="legend-color neck-color"></div>
+                                <span>Examen Cervical</span>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-hand-pointer"></i> Inspección del Cuello</h4>
+                            <div class="exam-section-migrated">
+                                <h4 class="sub-header">Características Generales</h4>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="cuello-normal" onchange="updateReport(); updateDashboard()"><label for="cuello-normal">Aspecto normal</label></div>
+                                    <div class="form-item"><input type="checkbox" id="cuello-corto" onchange="updateReport(); updateDashboard()"><label for="cuello-corto">Cuello corto</label></div>
+                                    <div class="form-item"><input type="checkbox" id="cuello-largo" onchange="updateReport(); updateDashboard()"><label for="cuello-largo">Cuello largo</label></div>
+                                    <div class="form-item"><input type="checkbox" id="masas-cervicales" onchange="updateReport(); updateDashboard()"><label for="masas-cervicales">Masas visibles</label></div>
+                                    <div class="form-item"><input type="checkbox" id="adenopatias-visibles" onchange="updateReport(); updateDashboard()"><label for="adenopatias-visibles">Adenopatías visibles</label></div>
+                                    <div class="form-item"><input type="checkbox" id="cicatrices-cervicales" onchange="updateReport(); updateDashboard()"><label for="cicatrices-cervicales">Cicatrices</label></div>
+                                    <div class="form-item"><input type="checkbox" id="deformidades-cervicales" onchange="updateReport(); updateDashboard()"><label for="deformidades-cervicales">Deformidades</label></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-compress-arrows-alt"></i> Palpación de Ganglios Linfáticos</h4>
+                            <div class="bilateral-container">
+                                <div class="side-container">
+                                    <div class="side-header">Lado Derecho</div>
+                                    <div class="exam-section-migrated">
+                                        <h4 class="sub-header">Cadenas Ganglionares</h4>
+                                        <div class="form-grid">
+                                            <div class="form-item"><input type="checkbox" id="preauriculares-der" onchange="updateReport(); updateDashboard()"><label for="preauriculares-der">Preauriculares</label></div>
+                                            <div class="form-item"><input type="checkbox" id="retroauriculares-der" onchange="updateReport(); updateDashboard()"><label for="retroauriculares-der">Retroauriculares</label></div>
+                                            <div class="form-item"><input type="checkbox" id="occipitales-der" onchange="updateReport(); updateDashboard()"><label for="occipitales-der">Occipitales</label></div>
+                                            <div class="form-item"><input type="checkbox" id="submandibulares-der" onchange="updateReport(); updateDashboard()"><label for="submandibulares-der">Submandibulares</label></div>
+                                            <div class="form-item"><input type="checkbox" id="submentonianos-der" onchange="updateReport(); updateDashboard()"><label for="submentonianos-der">Submentonianos</label></div>
+                                            <div class="form-item"><input type="checkbox" id="yugulares-superiores-der" onchange="updateReport(); updateDashboard()"><label for="yugulares-superiores-der">Yugulares superiores</label></div>
+                                            <div class="form-item"><input type="checkbox" id="yugulares-medios-der" onchange="updateReport(); updateDashboard()"><label for="yugulares-medios-der">Yugulares medios</label></div>
+                                            <div class="form-item"><input type="checkbox" id="yugulares-inferiores-der" onchange="updateReport(); updateDashboard()"><label for="yugulares-inferiores-der">Yugulares inferiores</label></div>
+                                            <div class="form-item"><input type="checkbox" id="espinales-der" onchange="updateReport(); updateDashboard()"><label for="espinales-der">Espinales</label></div>
+                                            <div class="form-item"><input type="checkbox" id="supraclaviculares-der" onchange="updateReport(); updateDashboard()"><label for="supraclaviculares-der">Supraclaviculares</label></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="side-container">
+                                    <div class="side-header">Lado Izquierdo</div>
+                                    <div class="exam-section-migrated">
+                                        <h4 class="sub-header">Cadenas Ganglionares</h4>
+                                        <div class="form-grid">
+                                            <div class="form-item"><input type="checkbox" id="preauriculares-izq" onchange="updateReport(); updateDashboard()"><label for="preauriculares-izq">Preauriculares</label></div>
+                                            <div class="form-item"><input type="checkbox" id="retroauriculares-izq" onchange="updateReport(); updateDashboard()"><label for="retroauriculares-izq">Retroauriculares</label></div>
+                                            <div class="form-item"><input type="checkbox" id="occipitales-izq" onchange="updateReport(); updateDashboard()"><label for="occipitales-izq">Occipitales</label></div>
+                                            <div class="form-item"><input type="checkbox" id="submandibulares-izq" onchange="updateReport(); updateDashboard()"><label for="submandibulares-izq">Submandibulares</label></div>
+                                            <div class="form-item"><input type="checkbox" id="submentonianos-izq" onchange="updateReport(); updateDashboard()"><label for="submentonianos-izq">Submentonianos</label></div>
+                                            <div class="form-item"><input type="checkbox" id="yugulares-superiores-izq" onchange="updateReport(); updateDashboard()"><label for="yugulares-superiores-izq">Yugulares superiores</label></div>
+                                            <div class="form-item"><input type="checkbox" id="yugulares-medios-izq" onchange="updateReport(); updateDashboard()"><label for="yugulares-medios-izq">Yugulares medios</label></div>
+                                            <div class="form-item"><input type="checkbox" id="yugulares-inferiores-izq" onchange="updateReport(); updateDashboard()"><label for="yugulares-inferiores-izq">Yugulares inferiores</label></div>
+                                            <div class="form-item"><input type="checkbox" id="espinales-izq" onchange="updateReport(); updateDashboard()"><label for="espinales-izq">Espinales</label></div>
+                                            <div class="form-item"><input type="checkbox" id="supraclaviculares-izq" onchange="updateReport(); updateDashboard()"><label for="supraclaviculares-izq">Supraclaviculares</label></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="exam-section-migrated">
+                                <h4 class="sub-header">Características de las Adenopatías</h4>
+                                <div class="measurement">
+                                    <label>Tamaño mayor:</label>
+                                    <input type="number" class="input-field" id="adenopatia-tamano" min="0" max="50" oninput="updateReport(); updateDashboard()">
+                                    <span>mm</span>
+                                </div>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="adenopatias-moviles" onchange="updateReport(); updateDashboard()"><label for="adenopatias-moviles">Móviles</label></div>
+                                    <div class="form-item"><input type="checkbox" id="adenopatias-fijas" onchange="updateReport(); updateDashboard()"><label for="adenopatias-fijas">Fijas</label></div>
+                                    <div class="form-item"><input type="checkbox" id="adenopatias-dolorosas" onchange="updateReport(); updateDashboard()"><label for="adenopatias-dolorosas">Dolorosas</label></div>
+                                    <div class="form-item"><input type="checkbox" id="adenopatias-indoloras" onchange="updateReport(); updateDashboard()"><label for="adenopatias-indoloras">Indoloras</label></div>
+                                    <div class="form-item"><input type="checkbox" id="adenopatias-blandas" onchange="updateReport(); updateDashboard()"><label for="adenopatias-blandas">Consistencia blanda</label></div>
+                                    <div class="form-item"><input type="checkbox" id="adenopatias-duras" onchange="updateReport(); updateDashboard()"><label for="adenopatias-duras">Consistencia dura</label></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-splotch"></i> Palpación de Tiroides</h4>
+                            <div class="exam-section-migrated">
+                                <h4 class="sub-header">Características de la Glándula Tiroides</h4>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="tiroides-no-palpable" onchange="updateReport(); updateDashboard()"><label for="tiroides-no-palpable">No palpable</label></div>
+                                    <div class="form-item"><input type="checkbox" id="tiroides-palpable" onchange="updateReport(); updateDashboard()"><label for="tiroides-palpable">Palpable</label></div>
+                                    <div class="form-item"><input type="checkbox" id="tiroides-aumentado" onchange="updateReport(); updateDashboard()"><label for="tiroides-aumentado">Aumentado de tamaño</label></div>
+                                    <div class="form-item"><input type="checkbox" id="tiroides-nodular" onchange="updateReport(); updateDashboard()"><label for="tiroides-nodular">Nodular</label></div>
+                                    <div class="form-item"><input type="checkbox" id="tiroides-liso" onchange="updateReport(); updateDashboard()"><label for="tiroides-liso">Superficie lisa</label></div>
+                                    <div class="form-item"><input type="checkbox" id="tiroides-irregular" onchange="updateReport(); updateDashboard()"><label for="tiroides-irregular">Superficie irregular</label></div>
+                                    <div class="form-item"><input type="checkbox" id="tiroides-movil" onchange="updateReport(); updateDashboard()"><label for="tiroides-movil">Móvil con deglución</label></div>
+                                    <div class="form-item"><input type="checkbox" id="tiroides-fijo" onchange="updateReport(); updateDashboard()"><label for="tiroides-fijo">Fijo</label></div>
+                                </div>
+                                <div class="measurement">
+                                    <label>Grado de bocio (OMS):</label>
+                                    <select id="grado-bocio" onchange="updateReport(); updateDashboard()">
+                                        <option value="">Seleccionar</option>
+                                        <option value="0">Grado 0: No palpable</option>
+                                        <option value="1">Grado 1: Palpable, no visible</option>
+                                        <option value="2">Grado 2: Visible con cuello extendido</option>
+                                        <option value="3">Grado 3: Visible con cuello en posición normal</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-container" id="neuro-exam">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-brain"></i> Evaluación Neurológica ORL</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-bezier-curve"></i> Pares Craneales Relacionados</h4>
+                            <div class="cranial-nerves-migrated">
+                                <h4 class="sub-header">Par Craneal VII (Facial)</h4>
+                                <div class="test-results">
+                                    <div class="test-item">
+                                        <label>Función motora facial</label>
+                                        <div class="test-controls">
+                                            <div class="test-checkbox"><input type="checkbox" id="facial-motor-normal" onchange="handleMutuallyExclusive('facial-motor-normal', 'facial-motor-alterado', this); updateReport(); updateDashboard()"><span class="negative">Normal</span></div>
+                                            <div class="test-checkbox"><input type="checkbox" id="facial-motor-alterado" onchange="handleMutuallyExclusive('facial-motor-normal', 'facial-motor-alterado', this); updateReport(); updateDashboard()"><span class="positive">Alterado</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="test-item">
+                                        <label>Gusto (2/3 anteriores de lengua)</label>
+                                        <div class="test-controls">
+                                            <div class="test-checkbox"><input type="checkbox" id="gusto-anterior-normal" onchange="handleMutuallyExclusive('gusto-anterior-normal', 'gusto-anterior-alterado', this); updateReport(); updateDashboard()"><span class="negative">Normal</span></div>
+                                            <div class="test-checkbox"><input type="checkbox" id="gusto-anterior-alterado" onchange="handleMutuallyExclusive('gusto-anterior-normal', 'gusto-anterior-alterado', this); updateReport(); updateDashboard()"><span class="positive">Alterado</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="cranial-nerves-migrated">
+                                <h4 class="sub-header">Par Craneal VIII (Vestibulococlear)</h4>
+                                <div class="test-results">
+                                    <div class="test-item">
+                                        <label>Función auditiva</label>
+                                        <div class="test-controls">
+                                            <div class="test-checkbox"><input type="checkbox" id="audicion-normal" onchange="handleMutuallyExclusive('audicion-normal', 'audicion-alterada', this); updateReport(); updateDashboard()"><span class="negative">Normal</span></div>
+                                            <div class="test-checkbox"><input type="checkbox" id="audicion-alterada" onchange="handleMutuallyExclusive('audicion-normal', 'audicion-alterada', this); updateReport(); updateDashboard()"><span class="positive">Alterada</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="test-item">
+                                        <label>Función vestibular</label>
+                                        <div class="test-controls">
+                                            <div class="test-checkbox"><input type="checkbox" id="vestibular-normal" onchange="handleMutuallyExclusive('vestibular-normal', 'vestibular-alterada', this); updateReport(); updateDashboard()"><span class="negative">Normal</span></div>
+                                            <div class="test-checkbox"><input type="checkbox" id="vestibular-alterada" onchange="handleMutuallyExclusive('vestibular-normal', 'vestibular-alterada', this); updateReport(); updateDashboard()"><span class="positive">Alterada</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="cranial-nerves-migrated">
+                                <h4 class="sub-header">Par Craneal IX (Glosofaríngeo)</h4>
+                                <div class="test-results">
+                                    <div class="test-item">
+                                        <label>Reflejo nauseoso</label>
+                                        <div class="test-controls">
+                                            <div class="test-checkbox"><input type="checkbox" id="reflejo-nauseoso-presente" onchange="handleMutuallyExclusive('reflejo-nauseoso-presente', 'reflejo-nauseoso-ausente', this); updateReport(); updateDashboard()"><span class="negative">Presente</span></div>
+                                            <div class="test-checkbox"><input type="checkbox" id="reflejo-nauseoso-ausente" onchange="handleMutuallyExclusive('reflejo-nauseoso-presente', 'reflejo-nauseoso-ausente', this); updateReport(); updateDashboard()"><span class="positive">Ausente</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="test-item">
+                                        <label>Gusto (1/3 posterior de lengua)</label>
+                                        <div class="test-controls">
+                                            <div class="test-checkbox"><input type="checkbox" id="gusto-posterior-normal" onchange="handleMutuallyExclusive('gusto-posterior-normal', 'gusto-posterior-alterado', this); updateReport(); updateDashboard()"><span class="negative">Normal</span></div>
+                                            <div class="test-checkbox"><input type="checkbox" id="gusto-posterior-alterado" onchange="handleMutuallyExclusive('gusto-posterior-normal', 'gusto-posterior-alterado', this); updateReport(); updateDashboard()"><span class="positive">Alterado</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="cranial-nerves-migrated">
+                                <h4 class="sub-header">Par Craneal X (Vago)</h4>
+                                <div class="test-results">
+                                    <div class="test-item">
+                                        <label>Elevación del paladar blando</label>
+                                        <div class="test-controls">
+                                            <div class="test-checkbox"><input type="checkbox" id="paladar-simetrico" onchange="handleMutuallyExclusive('paladar-simetrico', 'paladar-asimetrico', this); updateReport(); updateDashboard()"><span class="negative">Simétrica</span></div>
+                                            <div class="test-checkbox"><input type="checkbox" id="paladar-asimetrico" onchange="handleMutuallyExclusive('paladar-simetrico', 'paladar-asimetrico', this); updateReport(); updateDashboard()"><span class="positive">Asimétrica</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="test-item">
+                                        <label>Movilidad de cuerdas vocales</label>
+                                        <div class="test-controls">
+                                            <div class="test-checkbox"><input type="checkbox" id="cuerdas-moviles" onchange="handleMutuallyExclusive('cuerdas-moviles', 'cuerdas-fijas', this); updateReport(); updateDashboard()"><span class="negative">Normales</span></div>
+                                            <div class="test-checkbox"><input type="checkbox" id="cuerdas-fijas" onchange="handleMutuallyExclusive('cuerdas-moviles', 'cuerdas-fijas', this); updateReport(); updateDashboard()"><span class="positive">Alterada</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="cranial-nerves-migrated">
+                                <h4 class="sub-header">Par Craneal XII (Hipogloso)</h4>
+                                <div class="test-results">
+                                    <div class="test-item">
+                                        <label>Protrusión de lengua</label>
+                                        <div class="test-controls">
+                                            <div class="test-checkbox"><input type="checkbox" id="lengua-centrada" onchange="handleMutuallyExclusive('lengua-centrada', 'lengua-desviada', this); updateReport(); updateDashboard()"><span class="negative">Centrada</span></div>
+                                            <div class="test-checkbox"><input type="checkbox" id="lengua-desviada" onchange="handleMutuallyExclusive('lengua-centrada', 'lengua-desviada', this); updateReport(); updateDashboard()"><span class="positive">Desviada</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="test-item">
+                                        <label>Fuerza lingual</label>
+                                        <div class="test-controls">
+                                            <div class="test-checkbox"><input type="checkbox" id="fuerza-lingual-normal" onchange="handleMutuallyExclusive('fuerza-lingual-normal', 'fuerza-lingual-disminuida', this); updateReport(); updateDashboard()"><span class="negative">Normal</span></div>
+                                            <div class="test-checkbox"><input type="checkbox" id="fuerza-lingual-disminuida" onchange="handleMutuallyExclusive('fuerza-lingual-normal', 'fuerza-lingual-disminuida', this); updateReport(); updateDashboard()"><span class="positive">Disminuida</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-balance-scale-right"></i> Pruebas Vestibulares</h4>
+                            <div class="test-results">
+                                <div class="test-item">
+                                    <label>Prueba de Romberg</label>
+                                    <div class="test-controls">
+                                        <div class="test-checkbox"><input type="checkbox" id="romberg-neg" onchange="handleMutuallyExclusive('romberg-neg', 'romberg-pos', this); updateReport(); updateDashboard()"><span class="negative">Negativo</span></div>
+                                        <div class="test-checkbox"><input type="checkbox" id="romberg-pos" onchange="handleMutuallyExclusive('romberg-neg', 'romberg-pos', this); updateReport(); updateDashboard()"><span class="positive">Positivo</span></div>
+                                    </div>
+                                </div>
+                                <div class="test-item">
+                                    <label>Prueba de Unterberger</label>
+                                    <div class="test-controls">
+                                        <div class="test-checkbox"><input type="checkbox" id="unterberger-neg" onchange="handleMutuallyExclusive('unterberger-neg', 'unterberger-pos', this); updateReport(); updateDashboard()"><span class="negative">Negativo</span></div>
+                                        <div class="test-checkbox"><input type="checkbox" id="unterberger-pos" onchange="handleMutuallyExclusive('unterberger-neg', 'unterberger-pos', this); updateReport(); updateDashboard()"><span class="positive">Positivo</span></div>
+                                    </div>
+                                </div>
+                                <div class="test-item">
+                                    <label>Nistagmo espontáneo</label>
+                                    <div class="test-controls">
+                                        <div class="test-checkbox"><input type="checkbox" id="nistagmo-ausente" onchange="handleMutuallyExclusive('nistagmo-ausente', 'nistagmo-presente', this); updateReport(); updateDashboard()"><span class="negative">Ausente</span></div>
+                                        <div class="test-checkbox"><input type="checkbox" id="nistagmo-presente" onchange="handleMutuallyExclusive('nistagmo-ausente', 'nistagmo-presente', this); updateReport(); updateDashboard()"><span class="positive">Presente</span></div>
+                                    </div>
+                                </div>
+                                <div class="test-item">
+                                    <label>Prueba de Dix-Hallpike</label>
+                                    <div class="test-controls">
+                                        <div class="test-checkbox"><input type="checkbox" id="dix-hallpike-neg" onchange="handleMutuallyExclusive('dix-hallpike-neg', 'dix-hallpike-pos', this); updateReport(); updateDashboard()"><span class="negative">Negativo</span></div>
+                                        <div class="test-checkbox"><input type="checkbox" id="dix-hallpike-pos" onchange="handleMutuallyExclusive('dix-hallpike-neg', 'dix-hallpike-pos', this); updateReport(); updateDashboard()"><span class="positive">Positivo</span></div>
+                                    </div>
+                                </div>
+                                <div class="test-item">
+                                    <label>Head Impulse Test (HIT)</label>
+                                    <div class="test-controls">
+                                        <div class="test-checkbox"><input type="checkbox" id="hit-neg" onchange="handleMutuallyExclusive('hit-neg', 'hit-pos', this); updateReport(); updateDashboard()"><span class="negative">Negativo</span></div>
+                                        <div class="test-checkbox"><input type="checkbox" id="hit-pos" onchange="handleMutuallyExclusive('hit-neg', 'hit-pos', this); updateReport(); updateDashboard()"><span class="positive">Positivo</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-container" id="scales">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-chart-line"></i> Escalas de Evaluación y Severidad</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-poll"></i> Escalas Específicas ORL</h4>
+                            <div class="score-calculation-migrated">
+                                <div class="exam-section-migrated">
+                                    <h4 class="sub-header">Escala de Discapacidad por Vértigo (DHI)</h4>
+                                    <div class="exam-section-migrated">
+                                        <h4 class="sub-sub-header">Aspectos Físicos (7 preguntas)</h4>
+                                        <div class="form-grid">
+                                            <div class="form-item"><input type="checkbox" id="dhi-mirar-arriba" onchange="calculateDHI(); updateReport(); updateDashboard()"><label for="dhi-mirar-arriba">¿Mirar hacia arriba aumenta su problema?</label></div>
+                                            <div class="form-item"><input type="checkbox" id="dhi-caminar-casa" onchange="calculateDHI(); updateReport(); updateDashboard()"><label for="dhi-caminar-casa">¿Caminar por su casa aumenta su problema?</label></div>
+                                            <div class="form-item"><input type="checkbox" id="dhi-caminar-supermercado" onchange="calculateDHI(); updateReport(); updateDashboard()"><label for="dhi-caminar-supermercado">¿Caminar por un supermercado aumenta su problema?</label></div>
+                                            <div class="form-item"><input type="checkbox" id="dhi-caminar-banqueta" onchange="calculateDHI(); updateReport(); updateDashboard()"><label for="dhi-caminar-banqueta">¿Caminar en una banqueta aumenta su problema?</label></div>
+                                            <div class="form-item"><input type="checkbox" id="dhi-actividades-fisicas" onchange="calculateDHI(); updateReport(); updateDashboard()"><label for="dhi-actividades-fisicas">¿Las actividades físicas aumentan su problema?</label></div>
+                                            <div class="form-item"><input type="checkbox" id="dhi-movimientos-rapidos" onchange="calculateDHI(); updateReport(); updateDashboard()"><label for="dhi-movimientos-rapidos">¿Los movimientos rápidos de cabeza aumentan su problema?</label></div>
+                                            <div class="form-item"><input type="checkbox" id="dhi-agacharse" onchange="calculateDHI(); updateReport(); updateDashboard()"><label for="dhi-agacharse">¿Agacharse aumenta su problema?</label></div>
+                                        </div>
+                                    </div>
+                                    <div class="score-item">
+                                        <span>DHI Total (0-100):</span>
+                                        <span class="score-value" id="dhi-total">0</span>
+                                        <span id="dhi-interpretation">Sin discapacidad</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="score-calculation-migrated">
+                                <div class="exam-section-migrated">
+                                    <h4 class="sub-header">Escala de Mallampati (Predicción de Intubación Difícil)</h4>
+                                    <div class="severity-grid-migrated">
+                                        <div class="severity-item"><input type="radio" name="mallampati" id="mallampati-1" onchange="updateReport(); updateDashboard()"><label for="mallampati-1">Clase I: Pilares, úvula, paladar blando y duro visibles</label></div>
+                                        <div class="severity-item"><input type="radio" name="mallampati" id="mallampati-2" onchange="updateReport(); updateDashboard()"><label for="mallampati-2">Clase II: Úvula, paladar blando y duro visibles</label></div>
+                                        <div class="severity-item"><input type="radio" name="mallampati" id="mallampati-3" onchange="updateReport(); updateDashboard()"><label for="mallampati-3">Clase III: Paladar blando y duro visibles</label></div>
+                                        <div class="severity-item"><input type="radio" name="mallampati" id="mallampati-4" onchange="updateReport(); updateDashboard()"><label for="mallampati-4">Clase IV: Solo paladar duro visible</label></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="score-calculation-migrated">
+                                <div class="exam-section-migrated">
+                                    <h4 class="sub-header">Escala de Epworth (Somnolencia Diurna)</h4>
+                                    <div class="exam-section-migrated">
+                                        <h4 class="sub-sub-header">Probabilidad de dormirse en las siguientes situaciones (0-3):</h4>
+                                        <div class="score-item">
+                                            <span>Sentado y leyendo:</span>
+                                            <select id="epworth-lectura" onchange="calculateEpworth(); updateReport(); updateDashboard()">
+                                                <option value="0">0 - Nunca</option>
+                                                <option value="1">1 - Pocas veces</option>
+                                                <option value="2">2 - Algunas veces</option>
+                                                <option value="3">3 - Muchas veces</option>
+                                            </select>
+                                        </div>
+                                        <div class="score-item">
+                                            <span>Viendo TV:</span>
+                                            <select id="epworth-tv" onchange="calculateEpworth(); updateReport(); updateDashboard()">
+                                                <option value="0">0 - Nunca</option>
+                                                <option value="1">1 - Pocas veces</option>
+                                                <option value="2">2 - Algunas veces</option>
+                                                <option value="3">3 - Muchas veces</option>
+                                            </select>
+                                        </div>
+                                        <div class="score-item">
+                                            <span>Como pasajero en auto:</span>
+                                            <select id="epworth-auto" onchange="calculateEpworth(); updateReport(); updateDashboard()">
+                                                <option value="0">0 - Nunca</option>
+                                                <option value="1">1 - Pocas veces</option>
+                                                <option value="2">2 - Algunas veces</option>
+                                                <option value="3">3 - Muchas veces</option>
+                                            </select>
+                                        </div>
+                                        <div class="score-item">
+                                            <span>Después de almorzar:</span>
+                                            <select id="epworth-almuerzo" onchange="calculateEpworth(); updateReport(); updateDashboard()">
+                                                <option value="0">0 - Nunca</option>
+                                                <option value="1">1 - Pocas veces</option>
+                                                <option value="2">2 - Algunas veces</option>
+                                                <option value="3">3 - Muchas veces</option>
+                                            </select>
+                                        </div>
+                                        <div class="score-item">
+                                            <span>Epworth Total:</span>
+                                            <span class="score-value" id="epworth-total">0</span>
+                                            <span id="epworth-interpretation">/24 - Normal</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section-container" id="conclusion-section">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main">
+                            <i class="fas fa-file-alt"></i> Conclusión del Examen Otorrinolaringológico
+                        </h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="sub-section-card">
+                            <div id="conclusion-text" class="conclusion-text">
+                                Seleccione los parámetros del examen para generar la conclusión otorrinolaringológica...
+                            </div>
+                        </div>
+                        <div class="flex justify-end gap-4 mt-8">
+                            <button class="btn btn-secondary" onclick="showClearFormModal()">
+                                <i class="fas fa-eraser"></i> Limpiar Formulario
+                            </button>
+                            <button class="btn btn-primary" onclick="generateConclusion(); toggleStickyPanel()">
+                                <i class="fas fa-file-alt"></i> Generar Informe
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <div class="sticky-report-panel" id="stickyReportPanel">
+            <div class="sticky-header">
+                <span><i class="fas fa-file-medical-alt"></i> Informe Otorrinolaringológico en Tiempo Real</span>
+                <div class="sticky-controls">
+                    <button onclick="copyReportToClipboard()"><i class="fas fa-copy"></i></button>
+                    <button onclick="printReport()"><i class="fas fa-print"></i></button>
+                    <button onclick="toggleStickyPanel()"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+            <pre class="sticky-content" id="reportContent">
+El informe se generará aquí a medida que completes los campos del examen...
+            </pre>
+        </div>
+    </div>
+
+    <button class="theme-toggle" onclick="toggleTheme()" title="Cambiar tema">
+        <i class="fas fa-moon" id="theme-icon"></i>
+    </button>
+
+    <div id="clearFormModal" class="modal">
+        <div class="modal-content">
+            <h3>Confirmar Limpieza</h3>
+            <p>¿Está seguro de que desea limpiar todos los datos del formulario? Esta acción no se puede deshacer.</p>
+            <div class="modal-buttons">
+                <button class="btn btn-primary" onclick="clearFormConfirmed()">Sí, Limpiar</button>
+                <button class="btn btn-secondary" onclick="hideClearFormModal()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

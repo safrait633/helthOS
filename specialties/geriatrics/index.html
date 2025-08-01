@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geriatría - Sistema de Evaluación</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Main navigation sidebar -->
+        <aside class="sidebar" id="sidebar" style="overflow-y: auto; height: 100vh;">
+            <div class="sidebar-header" onclick="window.location.href='../../index.html'" style="cursor: pointer;">
+                <i class="fas fa-heartbeat logo"></i>
+                <h1 class="app-title">HealthOS</h1>
+            </div>
+            <nav class="nav-list">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-th-large nav-icon"></i>
+                        <span class="nav-text">Panel de control</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link active" id="geriatric-nav-link" onclick="toggleGeriatricSubMenu(event)">
+                        <i class="fas fa-user-clock nav-icon"></i>
+                        <span class="nav-text">Geriatría</span>
+                    </a>
+                    <!-- Submenu for Geriatric sections -->
+                    <ul class="sub-menu" id="geriatric-sub-menu">
+                        <li class="sub-menu-item"><a href="#anamnesis" onclick="scrollToSection('anamnesis')">Anamnesis</a></li>
+                        <li class="sub-menu-item"><a href="#physical-exam" onclick="scrollToSection('physical-exam')">Examen Físico</a></li>
+                        <li class="sub-menu-item"><a href="#cognitive-assessment" onclick="scrollToSection('cognitive-assessment')">Evaluación Cognitiva</a></li>
+                        <li class="sub-menu-item"><a href="#functional-assessment" onclick="scrollToSection('functional-assessment')">Evaluación Funcional</a></li>
+                        <li class="sub-menu-item"><a href="#nutritional-assessment" onclick="scrollToSection('nutritional-assessment')">Evaluación Nutricional</a></li>
+                        <li class="sub-menu-item"><a href="#social-assessment" onclick="scrollToSection('social-assessment')">Evaluación Social</a></li>
+                        <li class="sub-menu-item"><a href="#risk-assessment" onclick="scrollToSection('risk-assessment')">Evaluación de Riesgos</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="../cardiology/index.html" class="nav-link">
+                        <i class="fas fa-heartbeat nav-icon"></i>
+                        <span class="nav-text">Cardiología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../gastroenterology/index.html" class="nav-link">
+                        <i class="fas fa-stomach nav-icon"></i>
+                        <span class="nav-text">Gastroenterología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../dermatology/index.html" class="nav-link">
+                        <i class="fas fa-allergies nav-icon"></i>
+                        <span class="nav-text">Dermatología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../endocrinology/index.html" class="nav-link">
+                        <i class="fas fa-flask nav-icon"></i>
+                        <span class="nav-text">Endocrinología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../hematology/index.html" class="nav-link">
+                        <i class="fas fa-tint nav-icon"></i>
+                        <span class="nav-text">Hematología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../infectious_diseases/index.html" class="nav-link">
+                        <i class="fas fa-microscope nav-icon"></i>
+                        <span class="nav-text">Enfermedades Infecciosas</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../musculoskeletal/index.html" class="nav-link">
+                        <i class="fas fa-bone nav-icon"></i>
+                        <span class="nav-text">Musculoesquelético</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../ophthalmology/index.html" class="nav-link">
+                        <i class="fas fa-eye nav-icon"></i>
+                        <span class="nav-text">Oftalmología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../otolaryngology/index.html" class="nav-link">
+                        <i class="fas fa-ear-listen nav-icon"></i>
+                        <span class="nav-text">Otorrinolaringología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../pneumology/index.html" class="nav-link">
+                        <i class="fas fa-lungs nav-icon"></i>
+                        <span class="nav-text">Neumología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../psychiatry/index.html" class="nav-link">
+                        <i class="fas fa-brain nav-icon"></i>
+                        <span class="nav-text">Psiquiatría</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../rheumatology/index.html" class="nav-link">
+                        <i class="fas fa-joint nav-icon"></i>
+                        <span class="nav-text">Reumatología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../urology/index.html" class="nav-link">
+                        <i class="fas fa-user-md nav-icon"></i>
+                        <span class="nav-text">Urología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-notes-medical nav-icon"></i>
+                        <span class="nav-text">Registros</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-cog nav-icon"></i>
+                        <span class="nav-text">Configuración</span>
+                    </a>
+                </li>
+            </nav>
+            <!-- Toggle button to collapse/expand sidebar on large screens -->
+            <button class="btn btn-secondary mt-auto hidden md:flex items-center justify-center" onclick="toggleSidebar()">
+                <i class="fas fa-chevron-left" id="sidebar-toggle-icon"></i>
+            </button>
+        </aside>
+
+        <!-- Content area container (main-content and top-bar) -->
+        <div class="content-area" id="contentArea">
+            <!-- Fixed top bar -->
+            <div class="top-bar" id="topBar">
+                <div class="flex items-center gap-4">
+                    <!-- Button for main sidebar on mobile -->
+                    <button class="btn btn-secondary md:hidden" onclick="toggleSidebar()">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="flex items-center gap-4">
+                        <img src="../../img/15.svg" alt="Geriatría" class="h-10 w-10">
+                        <h2 class="page-title">Geriatría</h2>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <!-- Button for real-time report panel -->
+                    <button class="btn btn-primary" onclick="toggleStickyPanel()">
+                        <i class="fas fa-file-medical-alt"></i> <span class="hidden md:inline">Informe</span>
+                    </button>
+                    <div class="user-profile">
+                        <div class="user-avatar">JP</div>
+                        <span class="user-name">Dr. Juan Pérez</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main content area for specialty page -->
+            <main class="main-content" id="mainContent">
+                <!-- Specialty Dashboard / Overview Section -->
+                <div class="section-container" id="overview">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-chart-bar"></i> Resumen de la especialidad</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main expanded">
+                        <div class="specialty-dashboard">
+                            <div class="dashboard-item-specialty">
+                                <i class="fas fa-user-cog"></i>
+                                <div>Progreso Evaluación</div>
+                                <div class="value" id="exam-progress">0%</div>
+                            </div>
+                            <div class="dashboard-item-specialty">
+                                <i class="fas fa-list-check"></i>
+                                <div>Secciones Completadas</div>
+                                <div class="value" id="sections-completed">0/7</div>
+                            </div>
+                            <div class="dashboard-item-specialty" id="alerts-item">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <div>Alertas</div>
+                                <div class="value" id="alert-count">0</div>
+                            </div>
+                            <div class="dashboard-item-specialty" id="warnings-item">
+                                <i class="fas fa-exclamation-circle"></i>
+                                <div>Avisos</div>
+                                <div class="value" id="warning-count">0</div>
+                            </div>
+                            <div class="dashboard-item-specialty" id="findings-item">
+                                <i class="fas fa-search"></i>
+                                <div>Hallazgos</div>
+                                <div class="value" id="findings-count">0</div>
+                            </div>
+                            <div class="dashboard-item-specialty" id="cognitive-status-item">
+                                <i class="fas fa-brain"></i>
+                                <div>Estado Cognitivo</div>
+                                <div class="value" id="cognitive-status">Pendiente</div>
+                            </div>
+                            <div class="dashboard-item-specialty" id="functional-status-item">
+                                <i class="fas fa-walking"></i>
+                                <div>Estado Funcional</div>
+                                <div class="value" id="functional-status">Pendiente</div>
+                            </div>
+                        </div>
+                        <div class="flex justify-center gap-4 mt-8">
+                            <button class="btn btn-primary" onclick="generateConclusion()">
+                                <i class="fas fa-file-medical"></i> Generar Informe
+                            </button>
+                            <button class="btn btn-secondary" onclick="clearForm()">
+                                <i class="fas fa-eraser"></i> Limpiar Formulario
+                            </button>
+                            <button class="btn btn-secondary" onclick="expandAllSections()">
+                                <i class="fas fa-expand-alt"></i> Expandir Todo
+                            </button>
+                            <button class="btn btn-secondary" onclick="collapseAllSections()">
+                                <i class="fas fa-compress-alt"></i> Contraer Todo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section: Anamnesis Geriátrica -->
+                <div class="section-container" id="anamnesis">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-clipboard-list"></i> Anamnesis Geriátrica</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-info-circle"></i> Datos Demográficos</h4>
+                            <div class="mb-4">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Información Básica</h5>
+                                <div class="measurement">
+                                    <label>Edad:</label>
+                                    <input type="number" class="input-field" id="edad-paciente" min="65" max="120" onchange="updateDashboard()">
+                                    <span>años</span>
+                                </div>
+                                <div class="form-grid mt-2">
+                                    <div class="form-item"><input type="radio" name="sexo" id="sexo-masculino" value="masculino" onchange="updateDashboard()"><label for="sexo-masculino">Masculino</label></div>
+                                    <div class="form-item"><input type="radio" name="sexo" id="sexo-femenino" value="femenino" onchange="updateDashboard()"><label for="sexo-femenino">Femenino</label></div>
+                                </div>
+                                <div class="form-grid mt-4">
+                                    <div class="form-item"><input type="checkbox" id="vive-solo" onchange="updateDashboard()"><label for="vive-solo">Vive solo</label></div>
+                                    <div class="form-item"><input type="checkbox" id="vive-familia" onchange="updateDashboard()"><label for="vive-familia">Vive con familia</label></div>
+                                    <div class="form-item"><input type="checkbox" id="vive-institucion" onchange="updateDashboard()"><label for="vive-institucion">Vive en institución</label></div>
+                                    <div class="form-item"><input type="checkbox" id="cuidador-principal" onchange="updateDashboard()"><label for="cuidador-principal">Tiene cuidador principal</label></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-exclamation-triangle"></i> Motivo de Consulta</h4>
+                            <div class="mb-4">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Quejas Principales Geriátricas</h5>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="caidas-recientes" onchange="updateDashboard()"><label for="caidas-recientes">Caídas recientes</label></div>
+                                    <div class="form-item"><input type="checkbox" id="perdida-memoria" onchange="updateDashboard()"><label for="perdida-memoria">Pérdida de memoria</label></div>
+                                    <div class="form-item"><input type="checkbox" id="confusion" onchange="updateDashboard()"><label for="confusion">Confusión</label></div>
+                                    <div class="form-item"><input type="checkbox" id="debilidad-general" onchange="updateDashboard()"><label for="debilidad-general">Debilidad general</label></div>
+                                    <div class="form-item"><input type="checkbox" id="perdida-peso-involuntaria" onchange="updateDashboard()"><label for="perdida-peso-involuntaria">Pérdida de peso involuntaria</label></div>
+                                    <div class="form-item"><input type="checkbox" id="incontinencia" onchange="updateDashboard()"><label for="incontinencia">Incontinencia</label></div>
+                                    <div class="form-item"><input type="checkbox" id="dificultad-caminar" onchange="updateDashboard()"><label for="dificultad-caminar">Dificultad para caminar</label></div>
+                                    <div class="form-item"><input type="checkbox" id="dificultad-actividades" onchange="updateDashboard()"><label for="dificultad-actividades">Dificultad actividades diarias</label></div>
+                                    <div class="form-item"><input type="checkbox" id="dolor-cronico" onchange="updateDashboard()"><label for="dolor-cronico">Dolor crónico</label></div>
+                                    <div class="form-item"><input type="checkbox" id="insomnio" onchange="updateDashboard()"><label for="insomnio">Insomnio</label></div>
+                                    <div class="form-item"><input type="checkbox" id="depresion-ansiedad" onchange="updateDashboard()"><label for="depresion-ansiedad">Depresión/Ansiedad</label></div>
+                                    <div class="form-item"><input type="checkbox" id="problemas-vision" onchange="updateDashboard()"><label for="problemas-vision">Problemas de visión</label></div>
+                                    <div class="form-item"><input type="checkbox" id="problemas-audicion" onchange="updateDashboard()"><label for="problemas-audicion">Problemas de audición</label></div>
+                                    <div class="form-item"><input type="checkbox" id="sin-quejas-geriatricas" onchange="handleNoComplaints()"><label for="sin-quejas-geriatricas">Sin quejas específicas</label></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-history"></i> Antecedentes Médicos</h4>
+                            <div class="mb-4">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Comorbilidades Frecuentes</h5>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="hipertension" onchange="updateDashboard()"><label for="hipertension">Hipertensión arterial</label></div>
+                                    <div class="form-item"><input type="checkbox" id="diabetes" onchange="updateDashboard()"><label for="diabetes">Diabetes mellitus</label></div>
+                                    <div class="form-item"><input type="checkbox" id="cardiopatia" onchange="updateDashboard()"><label for="cardiopatia">Cardiopatía</label></div>
+                                    <div class="form-item"><input type="checkbox" id="avc" onchange="updateDashboard()"><label for="avc">ACV previo</label></div>
+                                    <div class="form-item"><input type="checkbox" id="demencia" onchange="updateDashboard()"><label for="demencia">Demencia</label></div>
+                                    <div class="form-item"><input type="checkbox" id="depresion" onchange="updateDashboard()"><label for="depresion">Depresión</label></div>
+                                    <div class="form-item"><input type="checkbox" id="osteoporosis" onchange="updateDashboard()"><label for="osteoporosis">Osteoporosis</label></div>
+                                    <div class="form-item"><input type="checkbox" id="artritis" onchange="updateDashboard()"><label for="artritis">Artritis/Artrosis</label></div>
+                                    <div class="form-item"><input type="checkbox" id="epoc" onchange="updateDashboard()"><label for="epoc">EPOC</label></div>
+                                    <div class="form-item"><input type="checkbox" id="insuficiencia-renal" onchange="updateDashboard()"><label for="insuficiencia-renal">Insuficiencia renal</label></div>
+                                    <div class="form-item"><input type="checkbox" id="cancer" onchange="updateDashboard()"><label for="cancer">Cáncer</label></div>
+                                    <div class="form-item"><input type="checkbox" id="parkinson" onchange="updateDashboard()"><label for="parkinson">Enfermedad de Parkinson</label></div>
+                                </div>
+                            </div>
+                            <div>
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Medicación Actual</h5>
+                                <div class="measurement">
+                                    <label>Número de medicamentos:</label>
+                                    <input type="number" class="input-field" id="numero-medicamentos" min="0" max="30" onchange="evaluatePolypharmacy()">
+                                    <span>medicamentos</span>
+                                </div>
+                                <div class="score-item">
+                                    <span>Evaluación polifarmacia:</span>
+                                    <span class="score-value" id="polypharmacy-assessment">--</span>
+                                </div>
+                                <div class="form-grid mt-2">
+                                    <div class="form-item"><input type="checkbox" id="medicamentos-alto-riesgo" onchange="updateInappropriateMedsCount()"><label for="medicamentos-alto-riesgo">Medicamentos de alto riesgo</label></div>
+                                    <div class="form-item"><input type="checkbox" id="interacciones-medicamentosas" onchange="updateDashboard()"><label for="interacciones-medicamentosas">Interacciones medicamentosas</label></div>
+                                    <div class="form-item"><input type="checkbox" id="efectos-adversos" onchange="updateDashboard()"><label for="efectos-adversos">Efectos adversos</label></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Section: Examen Físico Geriátrico -->
+                <div class="section-container" id="physical-exam">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-stethoscope"></i> Examen Físico Geriátrico</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-weight"></i> Antropometría y Signos Vitales</h4>
+                            <div class="mb-4">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Medidas Antropométricas</h5>
+                                <div class="measurement">
+                                    <label>Peso (kg):</label>
+                                    <input type="number" class="input-field" id="peso" min="30" max="150" step="0.1" onchange="calculateBMI()">
+                                    <span>kg</span>
+                                </div>
+                                <div class="measurement">
+                                    <label>Talla (cm):</label>
+                                    <input type="number" class="input-field" id="talla" min="120" max="200" onchange="calculateBMI()">
+                                    <span>cm</span>
+                                </div>
+                                <div class="measurement">
+                                    <label>Circunferencia pantorrilla:</label>
+                                    <input type="number" class="input-field" id="circunferencia-pantorrilla" min="15" max="50" onchange="evaluateCalfCircumference()">
+                                    <span>cm</span>
+                                </div>
+                                <div class="score-item">
+                                    <span>IMC:</span>
+                                    <span class="score-value" id="imc-value">--</span>
+                                    <span>kg/m²</span>
+                                </div>
+                                <div class="score-item">
+                                    <span>Clasificación IMC:</span>
+                                    <span class="score-value" id="imc-classification">--</span>
+                                </div>
+                                <div class="score-item">
+                                    <span>Evaluación nutricional por pantorrilla:</span>
+                                    <span class="score-value" id="calf-assessment">--</span>
+                                </div>
+                            </div>
+                            <div>
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Signos Vitales</h5>
+                                <div class="measurement">
+                                    <label>Presión arterial sistólica:</label>
+                                    <input type="number" class="input-field" id="pas" min="70" max="250" onchange="evaluateBloodPressure()">
+                                    <span>mmHg</span>
+                                </div>
+                                <div class="measurement">
+                                    <label>Presión arterial diastólica:</label>
+                                    <input type="number" class="input-field" id="pad" min="40" max="150" onchange="evaluateBloodPressure()">
+                                    <span>mmHg</span>
+                                </div>
+                                <div class="measurement">
+                                    <label>Frecuencia cardíaca:</label>
+                                    <input type="number" class="input-field" id="frecuencia-cardiaca" min="40" max="150" onchange="updateDashboard()">
+                                    <span>lpm</span>
+                                </div>
+                                <div class="score-item">
+                                    <span>Clasificación PA:</span>
+                                    <span class="score-value" id="bp-classification">--</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-eye"></i> Evaluación Sensorial</h4>
+                            <div class="bilateral-container">
+                                <div class="side-container">
+                                    <h5 class="side-header">Evaluación Visual</h5>
+                                    <div class="form-grid">
+                                        <div class="form-item"><input type="checkbox" id="vision-normal" onchange="updateDashboard()"><label for="vision-normal">Visión normal</label></div>
+                                        <div class="form-item"><input type="checkbox" id="cataratas" onchange="updateDashboard()"><label for="cataratas">Cataratas</label></div>
+                                        <div class="form-item"><input type="checkbox" id="glaucoma" onchange="updateDashboard()"><label for="glaucoma">Glaucoma</label></div>
+                                        <div class="form-item"><input type="checkbox" id="degeneracion-macular" onchange="updateDashboard()"><label for="degeneracion-macular">Degeneración macular</label></div>
+                                        <div class="form-item"><input type="checkbox" id="usa-lentes" onchange="updateDashboard()"><label for="usa-lentes">Usa lentes</label></div>
+                                        <div class="form-item"><input type="checkbox" id="deficit-visual-severo" onchange="updateDashboard()"><label for="deficit-visual-severo">Déficit visual severo</label></div>
+                                    </div>
+                                </div>
+                                <div class="side-container">
+                                    <h5 class="side-header">Evaluación Auditiva</h5>
+                                    <div class="form-grid">
+                                        <div class="form-item"><input type="checkbox" id="audicion-normal" onchange="updateDashboard()"><label for="audicion-normal">Audición normal</label></div>
+                                        <div class="form-item"><input type="checkbox" id="hipoacusia-leve" onchange="updateDashboard()"><label for="hipoacusia-leve">Hipoacusia leve</label></div>
+                                        <div class="form-item"><input type="checkbox" id="hipoacusia-moderada" onchange="updateDashboard()"><label for="hipoacusia-moderada">Hipoacusia moderada</label></div>
+                                        <div class="form-item"><input type="checkbox" id="hipoacusia-severa" onchange="updateDashboard()"><label for="hipoacusia-severa">Hipoacusia severa</label></div>
+                                        <div class="form-item"><input type="checkbox" id="usa-audifono" onchange="updateDashboard()"><label for="usa-audifono">Usa audífono</label></div>
+                                        <div class="form-item"><input type="checkbox" id="cerumen" onchange="updateDashboard()"><label for="cerumen">Tapón de cerumen</label></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-walking"></i> Evaluación Motora y Equilibrio</h4>
+                            <div class="mb-4">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Marcha y Equilibrio</h5>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="marcha-normal" onchange="updateDashboard()"><label for="marcha-normal">Marcha normal</label></div>
+                                    <div class="form-item"><input type="checkbox" id="marcha-lenta" onchange="updateDashboard()"><label for="marcha-lenta">Marcha lenta</label></div>
+                                    <div class="form-item"><input type="checkbox" id="marcha-inestable" onchange="updateDashboard()"><label for="marcha-inestable">Marcha inestable</label></div>
+                                    <div class="form-item"><input type="checkbox" id="usa-baston" onchange="updateDashboard()"><label for="usa-baston">Usa bastón</label></div>
+                                    <div class="form-item"><input type="checkbox" id="usa-andador" onchange="updateDashboard()"><label for="usa-andador">Usa andador</label></div>
+                                    <div class="form-item"><input type="checkbox" id="silla-ruedas" onchange="updateDashboard()"><label for="silla-ruedas">Usa silla de ruedas</label></div>
+                                    <div class="form-item"><input type="checkbox" id="temblor" onchange="updateDashboard()"><label for="temblor">Temblor</label></div>
+                                    <div class="form-item"><input type="checkbox" id="rigidez" onchange="updateDashboard()"><label for="rigidez">Rigidez</label></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section: Evaluación Cognitiva -->
+                <div class="section-container" id="cognitive-assessment">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-brain"></i> Evaluación Cognitiva</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="legend mb-4">
+                            <div class="legend-item">
+                                <div class="legend-color cognitive-color"></div>
+                                <span>Evaluación Cognitiva</span>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-brain"></i> Mini-Mental State Examination (MMSE)</h4>
+                            <div class="cognitive-assessment">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Evaluación por Dominios</h5>
+                                <div class="mb-3">
+                                    <h6 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Orientación Temporal (5 puntos)</h6>
+                                    <div class="measurement">
+                                        <label>Año, mes, día, día semana, fecha:</label>
+                                        <input type="number" class="input-field" id="mmse-temporal" min="0" max="5" onchange="calculateMMSE()">
+                                        <span>/5 pts</span>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <h6 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Orientación Espacial (5 puntos)</h6>
+                                    <div class="measurement">
+                                        <label>País, provincia, ciudad, lugar, piso:</label>
+                                        <input type="number" class="input-field" id="mmse-espacial" min="0" max="5" onchange="calculateMMSE()">
+                                        <span>/5 pts</span>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <h6 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Registro (3 puntos)</h6>
+                                    <div class="measurement">
+                                        <label>Repetir 3 palabras:</label>
+                                        <input type="number" class="input-field" id="mmse-registro" min="0" max="3" onchange="calculateMMSE()">
+                                        <span>/3 pts</span>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <h6 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Atención y Cálculo (5 puntos)</h6>
+                                    <div class="measurement">
+                                        <label>Sustracciones de 7 en 7:</label>
+                                        <input type="number" class="input-field" id="mmse-atencion" min="0" max="5" onchange="calculateMMSE()">
+                                        <span>/5 pts</span>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <h6 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Recuerdo (3 puntos)</h6>
+                                    <div class="measurement">
+                                        <label>Recordar las 3 palabras:</label>
+                                        <input type="number" class="input-field" id="mmse-recuerdo" min="0" max="3" onchange="calculateMMSE()">
+                                        <span>/3 pts</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h6 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Lenguaje y Praxias (9 puntos)</h6>
+                                    <div class="measurement">
+                                        <label>Nombrar, repetir, seguir órdenes, leer, escribir, copiar:</label>
+                                        <input type="number" class="input-field" id="mmse-lenguaje" min="0" max="9" onchange="calculateMMSE()">
+                                        <span>/9 pts</span>
+                                    </div>
+                                </div>
+                                <div class="score-item mt-4">
+                                    <span>Puntuación MMSE total:</span>
+                                    <span class="score-value" id="mmse-total">0</span>
+                                    <span>/30 puntos</span>
+                                </div>
+                                <div class="score-item">
+                                    <span>Interpretación MMSE:</span>
+                                    <span class="score-value" id="mmse-interpretation">--</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-clock"></i> Test del Reloj</h4>
+                            <div class="score-calculation">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Puntuación Test del Reloj</h5>
+                                <div class="measurement">
+                                    <label>Puntuación (0-10):</label>
+                                    <input type="number" class="input-field" id="clock-test-score" min="0" max="10" onchange="evaluateClockTest()">
+                                    <span>/10 pts</span>
+                                </div>
+                                <div class="score-item">
+                                    <span>Interpretación Test del Reloj:</span>
+                                    <span class="score-value" id="clock-interpretation">--</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-sad-tear"></i> Escala de Depresión Geriátrica (GDS-15)</h4>
+                            <div class="score-calculation">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Cuestionario GDS-15</h5>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="gds-satisfecho" onchange="calculateGDS()"><label for="gds-satisfecho">¿No está satisfecho con su vida?</label></div>
+                                    <div class="form-item"><input type="checkbox" id="gds-actividades" onchange="calculateGDS()"><label for="gds-actividades">¿Ha abandonado muchas actividades?</label></div>
+                                    <div class="form-item"><input type="checkbox" id="gds-vacia" onchange="calculateGDS()"><label for="gds-vacia">¿Siente que su vida está vacía?</label></div>
+                                    <div class="form-item"><input type="checkbox" id="gds-aburrido" onchange="calculateGDS()"><label for="gds-aburrido">¿Se aburre a menudo?</label></div>
+                                    <div class="form-item"><input type="checkbox" id="gds-animo" onchange="calculateGDS()"><label for="gds-animo">¿Está de buen ánimo la mayor parte del tiempo? (NO)</label></div>
+                                    <div class="form-item"><input type="checkbox" id="gds-miedo" onchange="calculateGDS()"><label for="gds-miedo">¿Tiene miedo de que algo malo le pase?</label></div>
+                                    <div class="form-item"><input type="checkbox" id="gds-feliz" onchange="calculateGDS()"><label for="gds-feliz">¿Se siente feliz la mayor parte del tiempo? (NO)</label></div>
+                                    <div class="form-item"><input type="checkbox" id="gds-desvalido" onchange="calculateGDS()"><label for="gds-desvalido">¿Se siente a menudo desvalido?</label></div>
+                                    <div class="form-item"><input type="checkbox" id="gds-quedarse" onchange="calculateGDS()"><label for="gds-quedarse">¿Prefiere quedarse en casa que salir?</label></div>
+                                    <div class="form-item"><input type="checkbox" id="gds-memoria" onchange="calculateGDS()"><label for="gds-memoria">¿Siente que tiene más problemas de memoria que otros?</label></div>
+                                    <div class="form-item"><input type="checkbox" id="gds-vivir" onchange="calculateGDS()"><label for="gds-vivir">¿Piensa que es maravilloso estar vivo? (NO)</label></div>
+                                    <div class="form-item"><input type="checkbox" id="gds-inutil" onchange="calculateGDS()"><label for="gds-inutil">¿Se siente inútil?</label></div>
+                                    <div class="form-item"><input type="checkbox" id="gds-energia" onchange="calculateGDS()"><label for="gds-energia">¿Se siente lleno de energía? (NO)</label></div>
+                                    <div class="form-item"><input type="checkbox" id="gds-esperanza" onchange="calculateGDS()"><label for="gds-esperanza">¿Siente que su situación es desesperanzada?</label></div>
+                                    <div class="form-item"><input type="checkbox" id="gds-mejor" onchange="calculateGDS()"><label for="gds-mejor">¿Piensa que otros están mejor que usted?</label></div>
+                                </div>
+                                <div class="score-item mt-4">
+                                    <span>Puntuación GDS-15:</span>
+                                    <span class="score-value" id="gds-score">0</span>
+                                    <span>/15 puntos</span>
+                                </div>
+                                <div class="score-item">
+                                    <span>Riesgo de depresión:</span>
+                                    <span class="score-value" id="gds-risk">--</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section: Evaluación Funcional -->
+                <div class="section-container" id="functional-assessment">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-walking"></i> Evaluación Funcional</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="legend mb-4">
+                            <div class="legend-item">
+                                <div class="legend-color functional-color"></div>
+                                <span>Evaluación Funcional</span>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-list-check"></i> Índice de Barthel</h4>
+                            <div class="functional-assessment">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Actividades Básicas de la Vida Diaria</h5>
+                                <div class="mb-3">
+                                    <h6 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Alimentación</h6>
+                                    <div class="severity-grid">
+                                        <div class="severity-item"><input type="radio" name="barthel-alimentacion" value="0" onchange="calculateBarthel()"><label>Incapaz (0)</label></div>
+                                        <div class="severity-item"><input type="radio" name="barthel-alimentacion" value="5" onchange="calculateBarthel()"><label>Necesita ayuda para cortar, etc. (5)</label></div>
+                                        <div class="severity-item"><input type="radio" name="barthel-alimentacion" value="10" onchange="calculateBarthel()"><label>Independiente (10)</label></div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <h6 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Baño</h6>
+                                    <div class="severity-grid">
+                                        <div class="severity-item"><input type="radio" name="barthel-bano" value="0" onchange="calculateBarthel()"><label>Dependiente (0)</label></div>
+                                        <div class="severity-item"><input type="radio" name="barthel-bano" value="5" onchange="calculateBarthel()"><label>Independiente (5)</label></div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <h6 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Vestido</h6>
+                                    <div class="severity-grid">
+                                        <div class="severity-item"><input type="radio" name="barthel-vestido" value="0" onchange="calculateBarthel()"><label>Dependiente (0)</label></div>
+                                        <div class="severity-item"><input type="radio" name="barthel-vestido" value="5" onchange="calculateBarthel()"><label>Necesita ayuda pero hace la mitad (5)</label></div>
+                                        <div class="severity-item"><input type="radio" name="barthel-vestido" value="10" onchange="calculateBarthel()"><label>Independiente (10)</label></div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <h6 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Arreglo Personal</h6>
+                                    <div class="severity-grid">
+                                        <div class="severity-item"><input type="radio" name="barthel-arreglo" value="0" onchange="calculateBarthel()"><label>Necesita ayuda (0)</label></div>
+                                        <div class="severity-item"><input type="radio" name="barthel-arreglo" value="5" onchange="calculateBarthel()"><label>Independiente (5)</label></div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <h6 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Deposición</h6>
+                                    <div class="severity-grid">
+                                        <div class="severity-item"><input type="radio" name="barthel-deposicion" value="0" onchange="calculateBarthel()"><label>Incontinente (0)</label></div>
+                                        <div class="severity-item"><input type="radio" name="barthel-deposicion" value="5" onchange="calculateBarthel()"><label>Accidente ocasional (5)</label></div>
+                                        <div class="severity-item"><input type="radio" name="barthel-deposicion" value="10" onchange="calculateBarthel()"><label>Continente (10)</label></div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <h6 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Micción</h6>
+                                    <div class="severity-grid">
+                                        <div class="severity-item"><input type="radio" name="barthel-miccion" value="0" onchange="calculateBarthel()"><label>Incontinente (0)</label></div>
+                                        <div class="severity-item"><input type="radio" name="barthel-miccion" value="5" onchange="calculateBarthel()"><label>Accidente ocasional (5)</label></div>
+                                        <div class="severity-item"><input type="radio" name="barthel-miccion" value="10" onchange="calculateBarthel()"><label>Continente (10)</label></div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <h6 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Uso del Retrete</h6>
+                                    <div class="severity-grid">
+                                        <div class="severity-item"><input type="radio" name="barthel-retrete" value="0" onchange="calculateBarthel()"><label>Dependiente (0)</label></div>
+                                        <div class="severity-item"><input type="radio" name="barthel-retrete" value="5" onchange="calculateBarthel()"><label>Necesita ayuda (5)</label></div>
+                                        <div class="severity-item"><input type="radio" name="barthel-retrete" value="10" onchange="calculateBarthel()"><label>Independiente (10)</label></div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <h6 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Traslado Sillón/Cama</h6>
+                                    <div class="severity-grid">
+                                        <div class="severity-item"><input type="radio" name="barthel-traslado" value="0" onchange="calculateBarthel()"><label>Incapaz (0)</label></div>
+                                        <div class="severity-item"><input type="radio" name="barthel-traslado" value="5" onchange="calculateBarthel()"><label>Ayuda importante (5)</label></div>
+                                        <div class="severity-item"><input type="radio" name="barthel-traslado" value="10" onchange="calculateBarthel()"><label>Ayuda mínima (10)</label></div>
+                                        <div class="severity-item"><input type="radio" name="barthel-traslado" value="15" onchange="calculateBarthel()"><label>Independiente (15)</label></div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <h6 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Deambulación</h6>
+                                    <div class="severity-grid">
+                                        <div class="severity-item"><input type="radio" name="barthel-deambulacion" value="0" onchange="calculateBarthel()"><label>Inmóvil (0)</label></div>
+                                        <div class="severity-item"><input type="radio" name="barthel-deambulacion" value="5" onchange="calculateBarthel()"><label>Silla de ruedas independiente (5)</label></div>
+                                        <div class="severity-item"><input type="radio" name="barthel-deambulacion" value="10" onchange="calculateBarthel()"><label>Camina con ayuda (10)</label></div>
+                                        <div class="severity-item"><input type="radio" name="barthel-deambulacion" value="15" onchange="calculateBarthel()"><label>Independiente (15)</label></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h6 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Subir/Bajar Escaleras</h6>
+                                    <div class="severity-grid">
+                                        <div class="severity-item"><input type="radio" name="barthel-escaleras" value="0" onchange="calculateBarthel()"><label>Incapaz (0)</label></div>
+                                        <div class="severity-item"><input type="radio" name="barthel-escaleras" value="5" onchange="calculateBarthel()"><label>Necesita ayuda (5)</label></div>
+                                        <div class="severity-item"><input type="radio" name="barthel-escaleras" value="10" onchange="calculateBarthel()"><label>Independiente (10)</label></div>
+                                    </div>
+                                </div>
+                                <div class="score-item mt-4">
+                                    <span>Índice de Barthel:</span>
+                                    <span class="score-value" id="barthel-score">0</span>
+                                    <span>/100 puntos</span>
+                                </div>
+                                <div class="score-item">
+                                    <span>Nivel de dependencia:</span>
+                                    <span class="score-value" id="barthel-dependency">--</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-home"></i> Escala de Lawton y Brody</h4>
+                            <div class="score-calculation">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Actividades Instrumentales de la Vida Diaria</h5>
+                                <div class="mb-3">
+                                    <h6 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Teléfono</h6>
+                                    <div class="severity-grid">
+                                        <div class="severity-item"><input type="radio" name="lawton-telefono" value="1" onchange="calculateLawton()"><label>Utiliza el teléfono por iniciativa propia (1)</label></div>
+                                        <div class="severity-item"><input type="radio" name="lawton-telefono" value="1" onchange="calculateLawton()"><label>Es capaz de marcar números conocidos (1)</label></div>
+                                        <div class="severity-item"><input type="radio" name="lawton-telefono" value="1" onchange="calculateLawton()"><label>Es capaz de contestar pero no marcar (1)</label></div>
+                                        <div class="severity-item"><input type="radio" name="lawton-telefono" value="0" onchange="calculateLawton()"><label>No es capaz de usar el teléfono (0)</label></div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <h6 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Compras</h6>
+                                    <div class="severity-grid">
+                                        <div class="severity-item"><input type="radio" name="lawton-compras" value="1" onchange="calculateLawton()"><label>Realiza las compras independientemente (1)</label></div>
+                                        <div class="severity-item"><input type="radio" name="lawton-compras" value="0" onchange="calculateLawton()"><label>Realiza pequeñas compras (0)</label></div>
+                                        <div class="severity-item"><input type="radio" name="lawton-compras" value="0" onchange="calculateLawton()"><label>Necesita ir acompañado (0)</label></div>
+                                        <div class="severity-item"><input type="radio" name="lawton-compras" value="0" onchange="calculateLawton()"><label>Totalmente incapaz de comprar (0)</label></div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <h6 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Preparación de Comida</h6>
+                                    <div class="severity-grid">
+                                        <div class="severity-item"><input type="radio" name="lawton-comida" value="1" onchange="calculateLawton()"><label>Organiza, prepara y sirve las comidas (1)</label></div>
+                                        <div class="severity-item"><input type="radio" name="lawton-comida" value="0" onchange="calculateLawton()"><label>Prepara comidas si se le proporcionan ingredientes (0)</label></div>
+                                        <div class="severity-item"><input type="radio" name="lawton-comida" value="0" onchange="calculateLawton()"><label>Calienta y sirve comidas (0)</label></div>
+                                        <div class="severity-item"><input type="radio" name="lawton-comida" value="0" onchange="calculateLawton()"><label>Necesita que le preparen la comida (0)</label></div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <h6 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Cuidado de la Casa</h6>
+                                    <div class="severity-grid">
+                                        <div class="severity-item"><input type="radio" name="lawton-casa" value="1" onchange="calculateLawton()"><label>Mantiene la casa solo (1)</label></div>
+                                        <div class="severity-item"><input type="radio" name="lawton-casa" value="1" onchange="calculateLawton()"><label>Realiza tareas ligeras (1)</label></div>
+                                        <div class="severity-item"><input type="radio" name="lawton-casa" value="1" onchange="calculateLawton()"><label>Realiza tareas ligeras pero no mantiene limpieza (1)</label></div>
+                                        <div class="severity-item"><input type="radio" name="lawton-casa" value="1" onchange="calculateLawton()"><label>Necesita ayuda en todas las tareas (1)</label></div>
+                                        <div class="severity-item"><input type="radio" name="lawton-casa" value="0" onchange="calculateLawton()"><label>No participa en ninguna tarea (0)</label></div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <h6 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Lavado de Ropa</h6>
+                                    <div class="severity-grid">
+                                        <div class="severity-item"><input type="radio" name="lawton-ropa" value="1" onchange="calculateLawton()"><label>Lava por sí solo toda su ropa (1)</label></div>
+                                        <div class="severity-item"><input type="radio" name="lawton-ropa" value="1" onchange="calculateLawton()"><label>Lava pequeñas prendas (1)</label></div>
+                                        <div class="severity-item"><input type="radio" name="lawton-ropa" value="0" onchange="calculateLawton()"><label>Todo el lavado debe ser hecho por otros (0)</label></div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <h6 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Uso de Medios de Transporte</h6>
+                                    <div class="severity-grid">
+                                        <div class="severity-item"><input type="radio" name="lawton-transporte" value="1" onchange="calculateLawton()"><label>Viaja independientemente en transporte público (1)</label></div>
+                                        <div class="severity-item"><input type="radio" name="lawton-transporte" value="1" onchange="calculateLawton()"><label>Es capaz de coger un taxi (1)</label></div>
+                                        <div class="severity-item"><input type="radio" name="lawton-transporte" value="1" onchange="calculateLawton()"><label>Viaja en transporte público acompañado (1)</label></div>
+                                        <div class="severity-item"><input type="radio" name="lawton-transporte" value="0" onchange="calculateLawton()"><label>Limitado al taxi o automóvil con ayuda (0)</label></div>
+                                        <div class="severity-item"><input type="radio" name="lawton-transporte" value="0" onchange="calculateLawton()"><label>No viaja (0)</label></div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <h6 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Responsabilidad sobre Medicación</h6>
+                                    <div class="severity-grid">
+                                        <div class="severity-item"><input type="radio" name="lawton-medicacion" value="1" onchange="calculateLawton()"><label>Es responsable de tomar medicación (1)</label></div>
+                                        <div class="severity-item"><input type="radio" name="lawton-medicacion" value="0" onchange="calculateLawton()"><label>Toma responsablemente si se le prepara (0)</label></div>
+                                        <div class="severity-item"><input type="radio" name="lawton-medicacion" value="0" onchange="calculateLawton()"><label>Incapaz de administrarse medicación (0)</label></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h6 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Manejo de Asuntos Económicos</h6>
+                                    <div class="severity-grid">
+                                        <div class="severity-item"><input type="radio" name="lawton-economia" value="1" onchange="calculateLawton()"><label>Maneja los asuntos financieros independientemente (1)</label></div>
+                                        <div class="severity-item"><input type="radio" name="lawton-economia" value="1" onchange="calculateLawton()"><label>Realiza las compras de cada día (1)</label></div>
+                                        <div class="severity-item"><input type="radio" name="lawton-economia" value="0" onchange="calculateLawton()"><label>Incapaz de manejar dinero (0)</label></div>
+                                    </div>
+                                </div>
+                                <div class="score-item mt-4">
+                                    <span>Escala de Lawton:</span>
+                                    <span class="score-value" id="lawton-score">0</span>
+                                    <span>/8 puntos</span>
+                                </div>
+                                <div class="score-item">
+                                    <span>Nivel de dependencia instrumental:</span>
+                                    <span class="score-value" id="lawton-dependency">--</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section: Evaluación Nutricional -->
+                <div class="section-container" id="nutritional-assessment">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-utensils"></i> Evaluación Nutricional</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="legend mb-4">
+                            <div class="legend-item">
+                                <div class="legend-color nutritional-color"></div>
+                                <span>Evaluación Nutricional</span>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-scale-balanced"></i> Mini Nutritional Assessment (MNA)</h4>
+                            <div class="nutritional-assessment">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Evaluación Nutricional</h5>
+                                <div class="mb-3">
+                                    <h6 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Pérdida de Apetito</h6>
+                                    <div class="severity-grid">
+                                        <div class="severity-item"><input type="radio" name="mna-apetito" value="0" onchange="calculateMNA()"><label>Pérdida severa del apetito (0)</label></div>
+                                        <div class="severity-item"><input type="radio" name="mna-apetito" value="1" onchange="calculateMNA()"><label>Pérdida moderada del apetito (1)</label></div>
+                                        <div class="severity-item"><input type="radio" name="mna-apetito" value="2" onchange="calculateMNA()"><label>Sin pérdida del apetito (2)</label></div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <h6 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Pérdida de Peso</h6>
+                                    <div class="severity-grid">
+                                        <div class="severity-item"><input type="radio" name="mna-peso" value="0" onchange="calculateMNA()"><label>Pérdida de peso >3 kg (0)</label></div>
+                                        <div class="severity-item"><input type="radio" name="mna-peso" value="1" onchange="calculateMNA()"><label>No lo sabe (1)</label></div>
+                                        <div class="severity-item"><input type="radio" name="mna-peso" value="2" onchange="calculateMNA()"><label>Pérdida 1-3 kg (2)</label></div>
+                                        <div class="severity-item"><input type="radio" name="mna-peso" value="3" onchange="calculateMNA()"><label>Sin pérdida de peso (3)</label></div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <h6 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Movilidad</h6>
+                                    <div class="severity-grid">
+                                        <div class="severity-item"><input type="radio" name="mna-movilidad" value="0" onchange="calculateMNA()"><label>Confinado en cama o silla (0)</label></div>
+                                        <div class="severity-item"><input type="radio" name="mna-movilidad" value="1" onchange="calculateMNA()"><label>Es capaz de levantarse pero no sale (1)</label></div>
+                                        <div class="severity-item"><input type="radio" name="mna-movilidad" value="2" onchange="calculateMNA()"><label>Sale del domicilio (2)</label></div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <h6 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Estrés Psicológico o Enfermedad Aguda</h6>
+                                    <div class="severity-grid">
+                                        <div class="severity-item"><input type="radio" name="mna-estres" value="0" onchange="calculateMNA()"><label>Sí (0)</label></div>
+                                        <div class="severity-item"><input type="radio" name="mna-estres" value="2" onchange="calculateMNA()"><label>No (2)</label></div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <h6 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Problemas Neuropsicológicos</h6>
+                                    <div class="severity-grid">
+                                        <div class="severity-item"><input type="radio" name="mna-neuro" value="0" onchange="calculateMNA()"><label>Demencia o depresión severa (0)</label></div>
+                                        <div class="severity-item"><input type="radio" name="mna-neuro" value="1" onchange="calculateMNA()"><label>Demencia leve (1)</label></div>
+                                        <div class="severity-item"><input type="radio" name="mna-neuro" value="2" onchange="calculateMNA()"><label>Sin problemas psicológicos (2)</label></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h6 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Índice de Masa Corporal</h6>
+                                    <div class="severity-grid">
+                                        <div class="severity-item"><input type="radio" name="mna-imc" value="0" onchange="calculateMNA()"><label>IMC <19 (0)</label></div>
+                                        <div class="severity-item"><input type="radio" name="mna-imc" value="1" onchange="calculateMNA()"><label>IMC 19-21 (1)</label></div>
+                                        <div class="severity-item"><input type="radio" name="mna-imc" value="2" onchange="calculateMNA()"><label>IMC 21-23 (2)</label></div>
+                                        <div class="severity-item"><input type="radio" name="mna-imc" value="3" onchange="calculateMNA()"><label>IMC ≥23 (3)</label></div>
+                                    </div>
+                                </div>
+                                <div class="score-item mt-4">
+                                    <span>Puntuación MNA:</span>
+                                    <span class="score-value" id="mna-score">0</span>
+                                    <span>/14 puntos</span>
+                                </div>
+                                <div class="score-item">
+                                    <span>Estado nutricional:</span>
+                                    <span class="score-value" id="mna-status">--</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section: Evaluación Social -->
+                <div class="section-container" id="social-assessment">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-users"></i> Evaluación Social</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="legend mb-4">
+                            <div class="legend-item">
+                                <div class="legend-color social-color"></div>
+                                <span>Evaluación Social</span>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-home"></i> Situación Sociofamiliar</h4>
+                            <div class="social-assessment">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Red de Apoyo Social</h5>
+                                <div class="mb-3">
+                                    <h6 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Situación Familiar</h6>
+                                    <div class="form-grid">
+                                        <div class="form-item"><input type="checkbox" id="familia-disponible" onchange="updateDashboard()"><label for="familia-disponible">Familia disponible y dispuesta</label></div>
+                                        <div class="form-item"><input type="checkbox" id="familia-sobrecargada" onchange="updateDashboard()"><label for="familia-sobrecargada">Familia sobrecargada</label></div>
+                                        <div class="form-item"><input type="checkbox" id="familia-ausente" onchange="updateDashboard()"><label for="familia-ausente">Familia ausente o poco disponible</label></div>
+                                        <div class="form-item"><input type="checkbox" id="conflictos-familiares" onchange="updateDashboard()"><label for="conflictos-familiares">Conflictos familiares</label></div>
+                                        <div class="form-item"><input type="checkbox" id="aislamiento-social" onchange="updateDashboard()"><label for="aislamiento-social">Aislamiento social</label></div>
+                                        <div class="form-item"><input type="checkbox" id="maltrato-sospecha" onchange="updateDashboard()"><label for="maltrato-sospecha">Sospecha de maltrato</label></div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <h6 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Recursos Sociales</h6>
+                                    <div class="form-grid">
+                                        <div class="form-item"><input type="checkbox" id="servicio-domestico" onchange="updateDashboard()"><label for="servicio-domestico">Servicio doméstico</label></div>
+                                        <div class="form-item"><input type="checkbox" id="centro-dia" onchange="updateDashboard()"><label for="centro-dia">Centro de día</label></div>
+                                        <div class="form-item"><input type="checkbox" id="teleasistencia" onchange="updateDashboard()"><label for="teleasistencia">Teleasistencia</label></div>
+                                        <div class="form-item"><input type="checkbox" id="ayuda-domiciliaria" onchange="updateDashboard()"><label for="ayuda-domiciliaria">Ayuda domiciliaria</label></div>
+                                        <div class="form-item"><input type="checkbox" id="recursos-inadecuados" onchange="updateDashboard()"><label for="recursos-inadecuados">Recursos inadecuados</label></div>
+                                        <div class="form-item"><input type="checkbox" id="sin-recursos" onchange="updateDashboard()"><label for="sin-recursos">Sin recursos sociales</label></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h6 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Situación Económica</h6>
+                                    <div class="form-grid">
+                                        <div class="form-item"><input type="checkbox" id="economia-suficiente" onchange="updateDashboard()"><label for="economia-suficiente">Recursos económicos suficientes</label></div>
+                                        <div class="form-item"><input type="checkbox" id="economia-ajustada" onchange="updateDashboard()"><label for="economia-ajustada">Economía ajustada pero suficiente</label></div>
+                                        <div class="form-item"><input type="checkbox" id="economia-insuficiente" onchange="updateDashboard()"><label for="economia-insuficiente">Recursos económicos insuficientes</label></div>
+                                        <div class="form-item"><input type="checkbox" id="problemas-medicacion-economicos" onchange="updateDashboard()"><label for="problemas-medicacion-economicos">Problemas para costear medicación</label></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-shield-alt"></i> Escala de Gijón</h4>
+                            <div class="score-calculation">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Evaluación Sociofamiliar</h5>
+                                <div class="mb-3">
+                                    <h6 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Situación Familiar</h6>
+                                    <div class="severity-grid">
+                                        <div class="severity-item"><input type="radio" name="gijon-familia" value="1" onchange="calculateGijon()"><label>Vive con familia sin dependencia físico/psíquica (1)</label></div>
+                                        <div class="severity-item"><input type="radio" name="gijon-familia" value="2" onchange="calculateGijon()"><label>Vive con familia, ligera dependencia (2)</label></div>
+                                        <div class="severity-item"><input type="radio" name="gijon-familia" value="3" onchange="calculateGijon()"><label>Vive con familia, marcada dependencia (3)</label></div>
+                                        <div class="severity-item"><input type="radio" name="gijon-familia" value="4" onchange="calculateGijon()"><label>Vive solo, buenas relaciones familiares (4)</label></div>
+                                        <div class="severity-item"><input type="radio" name="gijon-familia" value="5" onchange="calculateGijon()"><label>Vive solo, relaciones familiares escasas (5)</label></div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <h6 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Situación Económica</h6>
+                                    <div class="severity-grid">
+                                        <div class="severity-item"><input type="radio" name="gijon-economia" value="1" onchange="calculateGijon()"><label>Más de 1.5 veces el salario mínimo (1)</label></div>
+                                        <div class="severity-item"><input type="radio" name="gijon-economia" value="2" onchange="calculateGijon()"><label>Desde 1.5 veces a 1 vez el salario mínimo (2)</label></div>
+                                        <div class="severity-item"><input type="radio" name="gijon-economia" value="3" onchange="calculateGijon()"><label>Desde 1 vez el salario mínimo a pensión mínima (3)</label></div>
+                                        <div class="severity-item"><input type="radio" name="gijon-economia" value="4" onchange="calculateGijon()"><label>Pensión mínima (4)</label></div>
+                                        <div class="severity-item"><input type="radio" name="gijon-economia" value="5" onchange="calculateGijon()"><label>Sin pensión o subsidio social (5)</label></div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <h6 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Vivienda</h6>
+                                    <div class="severity-grid">
+                                        <div class="severity-item"><input type="radio" name="gijon-vivienda" value="1" onchange="calculateGijon()"><label>Adecuada a necesidades (1)</label></div>
+                                        <div class="severity-item"><input type="radio" name="gijon-vivienda" value="2" onchange="calculateGijon()"><label>Barreras arquitectónicas en la vivienda (2)</label></div>
+                                        <div class="severity-item"><input type="radio" name="gijon-vivienda" value="3" onchange="calculateGijon()"><label>Mala conservación, equipamiento inadecuado (3)</label></div>
+                                        <div class="severity-item"><input type="radio" name="gijon-vivienda" value="4" onchange="calculateGijon()"><label>Vivienda inadecuada (4)</label></div>
+                                        <div class="severity-item"><input type="radio" name="gijon-vivienda" value="5" onchange="calculateGijon()"><label>Vivienda inadecuada y peligrosa (5)</label></div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <h6 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Relaciones Sociales</h6>
+                                    <div class="severity-grid">
+                                        <div class="severity-item"><input type="radio" name="gijon-social" value="1" onchange="calculateGijon()"><label>Relaciones sociales (1)</label></div>
+                                        <div class="severity-item"><input type="radio" name="gijon-social" value="2" onchange="calculateGijon()"><label>Relación social sólo con familia/vecinos (2)</label></div>
+                                        <div class="severity-item"><input type="radio" name="gijon-social" value="3" onchange="calculateGijon()"><label>Relación social sólo con familia (3)</label></div>
+                                        <div class="severity-item"><input type="radio" name="gijon-social" value="4" onchange="calculateGijon()"><label>No sale del domicilio pero recibe visitas (4)</label></div>
+                                        <div class="severity-item"><input type="radio" name="gijon-social" value="5" onchange="calculateGijon()"><label>No sale y no recibe visitas (5)</label></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h6 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Apoyo de la Red Social</h6>
+                                    <div class="severity-grid">
+                                        <div class="severity-item"><input type="radio" name="gijon-apoyo" value="1" onchange="calculateGijon()"><label>Con apoyo familiar y vecinal (1)</label></div>
+                                        <div class="severity-item"><input type="radio" name="gijon-apoyo" value="2" onchange="calculateGijon()"><label>Voluntariado social, ayuda domiciliaria (2)</label></div>
+                                        <div class="severity-item"><input type="radio" name="gijon-apoyo" value="3" onchange="calculateGijon()"><label>No cuenta con nadie (3)</label></div>
+                                        <div class="severity-item"><input type="radio" name="gijon-apoyo" value="4" onchange="calculateGijon()"><label>Pendiente de ingreso en residencia (4)</label></div>
+                                        <div class="severity-item"><input type="radio" name="gijon-apoyo" value="5" onchange="calculateGijon()"><label>Tiene cuidador pero con alto nivel de estrés (5)</label></div>
+                                    </div>
+                                </div>
+                                <div class="score-item mt-4">
+                                    <span>Puntuación Escala de Gijón:</span>
+                                    <span class="score-value" id="gijon-score">0</span>
+                                    <span>/25 puntos</span>
+                                </div>
+                                <div class="score-item">
+                                    <span>Riesgo social:</span>
+                                    <span class="score-value" id="gijon-risk">--</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section: Evaluación de Riesgos -->
+                <div class="section-container" id="risk-assessment">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-shield-alt"></i> Evaluación de Riesgos</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="legend mb-4">
+                            <div class="legend-item">
+                                <div class="legend-color fragility-color"></div>
+                                <span>Evaluación de Fragilidad</span>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-exclamation-triangle"></i> Escala de Fragilidad de Fried</h4>
+                            <div class="fragility-assessment">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Criterios de Fragilidad</h5>
+                                <div class="mb-3">
+                                    <h6 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Pérdida de Peso Involuntaria</h6>
+                                    <div class="form-grid">
+                                        <div class="form-item"><input type="checkbox" id="fried-peso" onchange="calculateFried()"><label for="fried-peso">Pérdida >4.5 kg en el último año</label></div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <h6 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Agotamiento</h6>
+                                    <div class="form-grid">
+                                        <div class="form-item"><input type="checkbox" id="fried-agotamiento" onchange="calculateFried()"><label for="fried-agotamiento">Se siente agotado/a</label></div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <h6 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Debilidad (Fuerza de Prensión)</h6>
+                                    <div class="form-grid">
+                                        <div class="form-item"><input type="checkbox" id="fried-debilidad" onchange="calculateFried()"><label for="fried-debilidad">Fuerza de prensión disminuida</label></div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <h6 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Lentitud</h6>
+                                    <div class="measurement">
+                                        <label>Tiempo caminata 4.6m:</label>
+                                        <input type="number" class="input-field" id="fried-tiempo-caminata" min="0" max="60" step="0.1" onchange="evaluateWalkingSpeed()">
+                                        <span>segundos</span>
+                                    </div>
+                                    <div class="form-grid mt-2">
+                                        <div class="form-item"><input type="checkbox" id="fried-lentitud" onchange="calculateFried()"><label for="fried-lentitud">Velocidad de marcha lenta</label></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h6 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Baja Actividad Física</h6>
+                                    <div class="form-grid">
+                                        <div class="form-item"><input type="checkbox" id="fried-actividad" onchange="calculateFried()"><label for="fried-actividad">Actividad física baja</label></div>
+                                    </div>
+                                </div>
+                                <div class="score-item mt-4">
+                                    <span>Criterios de fragilidad:</span>
+                                    <span class="score-value" id="fried-score">0</span>
+                                    <span>/5</span>
+                                </div>
+                                <div class="score-item">
+                                    <span>Estado de fragilidad:</span>
+                                    <span class="score-value" id="fried-status">--</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-falling"></i> Evaluación del Riesgo de Caídas</h4>
+                            <div class="mb-4">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Factores de Riesgo de Caídas</h5>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="caidas-previas" onchange="updateFallRiskCount()"><label for="caidas-previas">Caídas previas (último año)</label></div>
+                                    <div class="form-item"><input type="checkbox" id="miedo-caer" onchange="updateFallRiskCount()"><label for="miedo-caer">Miedo a caer</label></div>
+                                    <div class="form-item"><input type="checkbox" id="mareos-vertigo" onchange="updateFallRiskCount()"><label for="mareos-vertigo">Mareos/vértigo</label></div>
+                                    <div class="form-item"><input type="checkbox" id="hipotension-ortostatica" onchange="updateFallRiskCount()"><label for="hipotension-ortostatica">Hipotensión ortostática</label></div>
+                                    <div class="form-item"><input type="checkbox" id="alteraciones-equilibrio" onchange="updateFallRiskCount()"><label for="alteraciones-equilibrio">Alteraciones del equilibrio</label></div>
+                                    <div class="form-item"><input type="checkbox" id="medicamentos-sedantes" onchange="updateFallRiskCount()"><label for="medicamentos-sedantes">Medicamentos sedantes</label></div>
+                                    <div class="form-item"><input type="checkbox" id="deficit-cognitivo" onchange="updateFallRiskCount()"><label for="deficit-cognitivo">Déficit cognitivo</label></div>
+                                    <div class="form-item"><input type="checkbox" id="barreras-arquitectonicas" onchange="updateFallRiskCount()"><label for="barreras-arquitectonicas">Barreras arquitectónicas</label></div>
+                                    <div class="form-item"><input type="checkbox" id="calzado-inadecuado" onchange="updateFallRiskCount()"><label for="calzado-inadecuado">Calzado inadecuado</label></div>
+                                    <div class="form-item"><input type="checkbox" id="problemas-pies" onchange="updateFallRiskCount()"><label for="problemas-pies">Problemas en los pies</label></div>
+                                </div>
+                                <div class="measurement mt-4">
+                                    <label>Número de factores de riesgo:</label>
+                                    <span class="score-value" id="fall-risk-count">0</span>
+                                </div>
+                                <div class="score-item">
+                                    <span>Riesgo de caídas:</span>
+                                    <span class="score-value" id="fall-risk-level">--</span>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Pruebas de Equilibrio y Marcha</h5>
+                                <div class="test-item">
+                                    <label>Test "Levántate y Anda" (Timed Up and Go)</label>
+                                    <div class="measurement">
+                                        <input type="number" class="input-field" id="tug-time" min="0" max="120" step="0.1" onchange="evaluateTUG()">
+                                        <span>segundos</span>
+                                    </div>
+                                </div>
+                                <div class="score-item">
+                                    <span>Evaluación TUG:</span>
+                                    <span class="score-value" id="tug-assessment">--</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-pills"></i> Riesgo Farmacológico</h4>
+                            <div class="mb-4">
+                                <h5 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-2">Medicamentos de Alto Riesgo en Ancianos</h5>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="benzodiacepinas" onchange="updateInappropriateMedsCount()"><label for="benzodiacepinas">Benzodiacepinas</label></div>
+                                    <div class="form-item"><input type="checkbox" id="anticolinergicos" onchange="updateInappropriateMedsCount()"><label for="anticolinergicos">Anticolinérgicos</label></div>
+                                    <div class="form-item"><input type="checkbox" id="antipsicotcos" onchange="updateInappropriateMedsCount()"><label for="antipsicotcos">Antipsicóticos</label></div>
+                                    <div class="form-item"><input type="checkbox" id="aines" onchange="updateInappropriateMedsCount()"><label for="aines">AINEs</label></div>
+                                    <div class="form-item"><input type="checkbox" id="antidepresivos-triciclicos" onchange="updateInappropriateMedsCount()"><label for="antidepresivos-triciclicos">Antidepresivos tricíclicos</label></div>
+                                    <div class="form-item"><input type="checkbox" id="digoxina" onchange="updateInappropriateMedsCount()"><label for="digoxina">Digoxina</label></div>
+                                    <div class="form-item"><input type="checkbox" id="antihistaminicos" onchange="updateInappropriateMedsCount()"><label for="antihistaminicos">Antihistamínicos sedantes</label></div>
+                                    <div class="form-item"><input type="checkbox" id="relajantes-musculares" onchange="updateInappropriateMedsCount()"><label for="relajantes-musculares">Relajantes musculares</label></div>
+                                </div>
+                                <div class="measurement mt-4">
+                                    <label>Medicamentos potencialmente inapropiados:</label>
+                                    <span class="score-value" id="inappropriate-meds-count">0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- Fixed report panel (right) -->
+        <div class="sticky-report-panel" id="stickyConclusion">
+            <div class="sticky-header">
+                <span><i class="fas fa-file-medical-alt"></i> Informe Geriátrico en Tiempo Real</span>
+                <div class="sticky-controls">
+                    <button class="sticky-btn" onclick="copyStickyToClipboard()" title="Copiar informe">
+                        <i class="fas fa-copy"></i>
+                    </button>
+                    <button class="sticky-btn" onclick="printStickyConclusion()" title="Imprimir informe">
+                        <i class="fas fa-print"></i>
+                    </button>
+                    <button class="sticky-btn" onclick="generateStickyConclusion()" title="Actualizar informe">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+                </div>
+            </div>
+            <pre class="sticky-content" id="stickyContent">
+Seleccione los parámetros de la evaluación geriátrica para generar el informe en tiempo real...
+            </pre>
+        </div>
+    </div>
+
+    <!-- Copy notification -->
+    <div class="copy-notification fixed bottom-8 right-8 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg opacity-0 transition-opacity duration-300" id="copyNotification">
+        <i class="fas fa-check-circle mr-2"></i>
+        <span>¡Informe copiado al portapapeles!</span>
+    </div>
+
+    <!-- Theme toggle button -->
+    <button class="theme-toggle" onclick="toggleTheme()">
+        <i class="fas fa-moon" id="theme-icon"></i>
+    </button>
+
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

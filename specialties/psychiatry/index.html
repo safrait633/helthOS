@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen Psiquiátrica - Sistema HealthOS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- SIDEBAR -->
+        <aside class="sidebar" id="sidebar" style="overflow-y: auto; height: 100vh;">
+            <div class="sidebar-header" onclick="window.location.href='../../index.html'" style="cursor: pointer;">
+                <i class="fas fa-heartbeat logo"></i>
+                <h1 class="app-title">HealthOS</h1>
+            </div>
+            <nav class="nav-list">
+                <li class="nav-item">
+                    <a href="../cardiology/index.html" class="nav-link">
+                        <i class="fas fa-heartbeat nav-icon"></i>
+                        <span class="nav-text">Cardiología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../dermatology/index.html" class="nav-link">
+                        <i class="fas fa-allergies nav-icon"></i>
+                        <span class="nav-text">Dermatología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../endocrinology/index.html" class="nav-link">
+                        <i class="fas fa-pills nav-icon"></i>
+                        <span class="nav-text">Endocrinología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../gastroenterology/index.html" class="nav-link">
+                        <i class="fas fa-stomach nav-icon"></i>
+                        <span class="nav-text">Gastroenterología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../geriatrics/index.html" class="nav-link">
+                        <i class="fas fa-users nav-icon"></i>
+                        <span class="nav-text">Geriatría</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../hematology/index.html" class="nav-link">
+                        <i class="fas fa-tint nav-icon"></i>
+                        <span class="nav-text">Hematología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../infectious_diseases/index.html" class="nav-link">
+                        <i class="fas fa-virus nav-icon"></i>
+                        <span class="nav-text">Infectología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../musculoskeletal/index.html" class="nav-link">
+                        <i class="fas fa-bone nav-icon"></i>
+                        <span class="nav-text">Musculoesquelético</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../ophthalmology/index.html" class="nav-link">
+                        <i class="fas fa-eye nav-icon"></i>
+                        <span class="nav-text">Oftalmología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../otolaryngology/index.html" class="nav-link">
+                        <i class="fas fa-ear-listen nav-icon"></i>
+                        <span class="nav-text">Otorrinolaringología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../pneumology/index.html" class="nav-link">
+                        <i class="fas fa-lungs nav-icon"></i>
+                        <span class="nav-text">Neumología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="./index.html" class="nav-link active" id="specialty-nav-link" onclick="toggleSpecialtySubMenu(event)">
+                        <i class="fas fa-brain nav-icon"></i>
+                        <span class="nav-text">Psiquiatría</span>
+                    </a>
+                    <ul class="sub-menu" id="specialty-sub-menu">
+                        <li class="sub-menu-item"><a href="#anamnesis" onclick="scrollToSection('anamnesis')">Anamnesis</a></li>
+                        <li class="sub-menu-item"><a href="#mental-status" onclick="scrollToSection('mental-status')">Estado Mental</a></li>
+                        <li class="sub-menu-item"><a href="#thought-perception" onclick="scrollToSection('thought-perception')">Pensamiento y Percepción</a></li>
+                        <li class="sub-menu-item"><a href="#risk-assessment" onclick="scrollToSection('risk-assessment')">Evaluación de Riesgo</a></li>
+                        <li class="sub-menu-item"><a href="#cognitive-assessment" onclick="scrollToSection('cognitive-assessment')">Evaluación Cognitiva</a></li>
+                        <li class="sub-menu-item"><a href="#scales-assessment" onclick="scrollToSection('scales-assessment')">Escalas Clínicas</a></li>
+                        <li class="sub-menu-item"><a href="#conclusion-report" onclick="scrollToSection('conclusion-report')">Conclusión</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-notes-medical nav-icon"></i>
+                        <span class="nav-text">Registros</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-cog nav-icon"></i>
+                        <span class="nav-text">Configuración</span>
+                    </a>
+                </li>
+            </nav>
+            <button class="btn btn-secondary mt-auto hidden md:flex items-center justify-center" onclick="toggleSidebar()">
+                <i class="fas fa-chevron-left" id="sidebar-toggle-icon"></i>
+            </button>
+        </aside>
+
+        <!-- CONTENT AREA -->
+        <div class="content-area" id="contentArea">
+            <!-- TOP BAR -->
+            <div class="top-bar" id="topBar">
+                <div class="flex items-center gap-4">
+                    <button class="btn btn-secondary md:hidden" onclick="toggleSidebar()">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div style="display: flex; align-items: center;">
+                    <img src="../../img/16.svg" alt="Psiquiatría" class="h-10 w-10">
+                    <h2 class="page-title">Psiquiátrica</h2>
+                </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button class="btn btn-primary" onclick="toggleStickyPanel()" id="sticky-toggle-btn">
+                        <i class="fas fa-file-medical-alt"></i> <span class="hidden md:inline">Informe</span>
+                    </button>
+                    <div class="user-profile">
+                        <div class="user-avatar">JP</div>
+                        <span class="user-name">Dr. Juan Pérez</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MAIN CONTENT -->
+            <main class="main-content" id="mainContent">
+                <!-- DASHBOARD WIDGET -->
+                <div class="dashboard-widget" id="dashboard-summary">
+                    <div class="section-title-main">
+                        <i class="fas fa-chart-bar"></i> Dashboard del Examen Psiquiátrica
+                    </div>
+                    <div class="dashboard-grid">
+                        <!-- Métricas generales -->
+                        <div class="dashboard-item">
+                            <i class="fas fa-user-md"></i>
+                            <div class="label">Progreso del Examen</div>
+                            <div class="value" id="exam-progress">0%</div>
+                        </div>
+                        <div class="dashboard-item">
+                            <i class="fas fa-clipboard-list"></i>
+                            <div class="label">Secciones Completadas</div>
+                            <div class="value" id="sections-completed">0/X</div>
+                        </div>
+                        <div class="dashboard-item" id="alerts-item">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <div class="label">Alertas Críticas</div>
+                            <div class="value" id="alert-count">0</div>
+                        </div>
+                        <div class="dashboard-item" id="warnings-item">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <div class="label">Avisos</div>
+                            <div class="value" id="warning-count">0</div>
+                        </div>
+                        <div class="dashboard-item" id="findings-item">
+                            <i class="fas fa-search"></i>
+                            <div class="label">Hallazgos</div>
+                            <div class="value" id="findings-count">0</div>
+                        </div>
+                        <!-- Métricas específicas de la especialidad -->
+                        <div class="dashboard-item" id="risk-status-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <div class="label">Riesgo Suicida</div>
+                            <div class="value" id="suicide-risk">Bajo</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECCIONES DEL EXAMEN -->
+                <!-- Anamnesis y Motivo de Consulta -->
+                <div class="section-container" id="section-anamnesis">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main">
+                            <i class="fas fa-user-edit"></i> Anamnesis y Motivo de Consulta
+                        </h3>
+                        <div class="flex items-center gap-2">
+                            <div class="completion-badge" id="badge-anamnesis">
+                                <i class="fas fa-circle"></i>
+                            </div>
+                            <i class="fas fa-chevron-down section-arrow"></i>
+                        </div>
+                    </div>
+                    <div class="section-content-main" id="anamnesis">
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-clipboard-list"></i> Síntomas Psiquiátricos Actuales</h4>
+                            <div class="form-grid">
+                                <div class="form-item"><input type="checkbox" id="tristeza" onchange="updateDashboard()"><label for="tristeza">Tristeza/Anhedonia</label></div>
+                                <div class="form-item"><input type="checkbox" id="ansiedad" onchange="updateDashboard()"><label for="ansiedad">Ansiedad</label></div>
+                                <div class="form-item"><input type="checkbox" id="irritabilidad" onchange="updateDashboard()"><label for="irritabilidad">Irritabilidad</label></div>
+                                <div class="form-item"><input type="checkbox" id="euforia" onchange="updateDashboard()"><label for="euforia">Euforia/Hiperactividad</label></div>
+                                <div class="form-item"><input type="checkbox" id="alucinaciones" onchange="updateDashboard()"><label for="alucinaciones">Alucinaciones</label></div>
+                                <div class="form-item"><input type="checkbox" id="delirios" onchange="updateDashboard()"><label for="delirios">Ideas delirantes</label></div>
+                                <div class="form-item"><input type="checkbox" id="insomnio" onchange="updateDashboard()"><label for="insomnio">Alteraciones del sueño</label></div>
+                                <div class="form-item"><input type="checkbox" id="apetito" onchange="updateDashboard()"><label for="apetito">Alteraciones del apetito</label></div>
+                                <div class="form-item"><input type="checkbox" id="concentracion" onchange="updateDashboard()"><label for="concentracion">Problemas de concentración</label></div>
+                                <div class="form-item"><input type="checkbox" id="memoria" onchange="updateDashboard()"><label for="memoria">Problemas de memoria</label></div>
+                                <div class="form-item"><input type="checkbox" id="obsesiones" onchange="updateDashboard()"><label for="obsesiones">Obsesiones/Compulsiones</label></div>
+                                <div class="form-item"><input type="checkbox" id="panico" onchange="updateDashboard()"><label for="panico">Crisis de pánico</label></div>
+                                <div class="form-item"><input type="checkbox" id="fobias" onchange="updateDashboard()"><label for="fobias">Fobias específicas</label></div>
+                                <div class="form-item"><input type="checkbox" id="agitacion" onchange="updateDashboard()"><label for="agitacion">Agitación psicomotora</label></div>
+                                <div class="form-item"><input type="checkbox" id="lentitud" onchange="updateDashboard()"><label for="lentitud">Lentitud psicomotora</label></div>
+                                <div class="form-item"><input type="checkbox" id="ideas-suicidas" onchange="updateDashboard()"><label for="ideas-suicidas">Ideas de muerte/suicidas</label></div>
+                                <div class="form-item"><input type="checkbox" id="ideas-homicidas" onchange="updateDashboard()"><label for="ideas-homicidas">Ideas de daño a otros</label></div>
+                                <div class="form-item"><input type="checkbox" id="consumo-sustancias" onchange="updateDashboard()"><label for="consumo-sustancias">Consumo de sustancias</label></div>
+                                <div class="form-item"><input type="checkbox" id="sin-sintomas" onchange="handleNoSymptoms()"><label for="sin-sintomas">Sin síntomas aparentes</label></div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-clock"></i> Cronología y Duración</h4>
+                            <div class="form-item flex-col items-start">
+                                <label for="duracion-sintomas" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Duración síntomas actuales:</label>
+                                <div class="flex items-center gap-2 w-full">
+                                    <input type="number" class="input-field w-24" id="duracion-sintomas" min="1" max="120" onchange="updateDashboard()">
+                                    <select id="unidad-duracion" class="input-field flex-grow" onchange="updateDashboard()">
+                                        <option value="dias">Días</option>
+                                        <option value="semanas">Semanas</option>
+                                        <option value="meses">Meses</option>
+                                        <option value="años">Años</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-grid mt-4">
+                                <div class="form-item"><input type="checkbox" id="inicio-gradual" onchange="updateDashboard()"><label for="inicio-gradual">Inicio gradual</label></div>
+                                <div class="form-item"><input type="checkbox" id="inicio-subito" onchange="updateDashboard()"><label for="inicio-subito">Inicio súbito</label></div>
+                                <div class="form-item"><input type="checkbox" id="episodios-previos" onchange="updateDashboard()"><label for="episodios-previos">Episodios previos similares</label></div>
+                                <div class="form-item"><input type="checkbox" id="primer-episodio" onchange="updateDashboard()"><label for="primer-episodio">Primer episodio</label></div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-history"></i> Antecedentes Psiquiátricos</h4>
+                            <div class="sub-section-content">
+                                <h5 class="sub-header">Historia Personal</h5>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="depresion-previa" onchange="updateDashboard()"><label for="depresion-previa">Episodios depresivos</label></div>
+                                    <div class="form-item"><input type="checkbox" id="mania-previa" onchange="updateDashboard()"><label for="mania-previa">Episodios maníacos/hipomaníacos</label></div>
+                                    <div class="form-item"><input type="checkbox" id="psicosis-previa" onchange="updateDashboard()"><label for="psicosis-previa">Episodios psicóticos</label></div>
+                                    <div class="form-item"><input type="checkbox" id="ansiedad-previa" onchange="updateDashboard()"><label for="ansiedad-previa">Trastornos de ansiedad</label></div>
+                                    <div class="form-item"><input type="checkbox" id="hospitalizaciones" onchange="updateDashboard()"><label for="hospitalizaciones">Hospitalizaciones psiquiátricas</label></div>
+                                    <div class="form-item"><input type="checkbox" id="intentos-suicidas" onchange="updateDashboard()"><label for="intentos-suicidas">Intentos de suicidio</label></div>
+                                    <div class="form-item"><input type="checkbox" id="autolesiones" onchange="updateDashboard()"><label for="autolesiones">Autolesiones</label></div>
+                                    <div class="form-item"><input type="checkbox" id="terapia-previa" onchange="updateDashboard()"><label for="terapia-previa">Psicoterapia previa</label></div>
+                                </div>
+                            </div>
+                            <div class="sub-section-content mt-4">
+                                <h5 class="sub-header">Historia Familiar</h5>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="familia-depresion" onchange="updateDashboard()"><label for="familia-depresion">Depresión familiar</label></div>
+                                    <div class="form-item"><input type="checkbox" id="familia-bipolar" onchange="updateDashboard()"><label for="familia-bipolar">Trastorno bipolar familiar</label></div>
+                                    <div class="form-item"><input type="checkbox" id="familia-esquizofrenia" onchange="updateDashboard()"><label for="familia-esquizofrenia">Esquizofrenia familiar</label></div>
+                                    <div class="form-item"><input type="checkbox" id="familia-suicidio" onchange="updateDashboard()"><label for="familia-suicidio">Suicidio familiar</label></div>
+                                    <div class="form-item"><input type="checkbox" id="familia-adicciones" onchange="updateDashboard()"><label for="familia-adicciones">Adicciones familiares</label></div>
+                                </div>
+                            </div>
+                            <div class="sub-section-content mt-4">
+                                <h5 class="sub-header">Medicación Psiquiátrica Actual</h5>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="antidepresivos" onchange="updateDashboard()"><label for="antidepresivos">Antidepresivos</label></div>
+                                    <div class="form-item"><input type="checkbox" id="antipsicoticos" onchange="updateDashboard()"><label for="antipsicoticos">Antipsicóticos</label></div>
+                                    <div class="form-item"><input type="checkbox" id="estabilizadores" onchange="updateDashboard()"><label for="estabilizadores">Estabilizadores del ánimo</label></div>
+                                    <div class="form-item"><input type="checkbox" id="ansioliticos" onchange="updateDashboard()"><label for="ansioliticos">Ansiolíticos</label></div>
+                                    <div class="form-item"><input type="checkbox" id="sin-medicacion" onchange="updateDashboard()"><label for="sin-medicacion">Sin medicación psiquiátrica</label></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Examen del Estado Mental -->
+                <div class="section-container" id="section-mental-status">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main">
+                            <i class="fas fa-brain"></i> Examen del Estado Mental
+                        </h3>
+                        <div class="flex items-center gap-2">
+                            <div class="completion-badge" id="badge-mental-status">
+                                <i class="fas fa-circle"></i>
+                            </div>
+                            <i class="fas fa-chevron-down section-arrow"></i>
+                        </div>
+                    </div>
+                    <div class="section-content-main" id="mental-status">
+                        <div class="legend">
+                            <div class="legend-item">
+                                <div class="legend-color mental-color"></div>
+                                <span>Estado Mental</span>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-eye"></i> Apariencia y Conducta</h4>
+                            <div class="mental-status-card">
+                                <h5 class="sub-header">Presentación General</h5>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="bien-vestido" onchange="updateDashboard()"><label for="bien-vestido">Bien vestido/aseado</label></div>
+                                    <div class="form-item"><input type="checkbox" id="descuidado" onchange="updateDashboard()"><label for="descuidado">Aspecto descuidado</label></div>
+                                    <div class="form-item"><input type="checkbox" id="extravagante" onchange="updateDashboard()"><label for="extravagante">Vestimenta extravagante</label></div>
+                                    <div class="form-item"><input type="checkbox" id="contacto-visual" onchange="updateDashboard()"><label for="contacto-visual">Contacto visual adecuado</label></div>
+                                    <div class="form-item"><input type="checkbox" id="evita-mirada" onchange="updateDashboard()"><label for="evita-mirada">Evita el contacto visual</label></div>
+                                    <div class="form-item"><input type="checkbox" id="hipervigilante" onchange="updateDashboard()"><label for="hipervigilante">Hipervigilante</label></div>
+                                </div>
+                            </div>
+                            <div class="sub-section-content mt-4">
+                                <h5 class="sub-header">Actividad Psicomotora</h5>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="actividad-normal" onchange="updateDashboard()"><label for="actividad-normal">Actividad normal</label></div>
+                                    <div class="form-item"><input type="checkbox" id="agitacion-psicomotora" onchange="updateDashboard()"><label for="agitacion-psicomotora">Agitación psicomotora</label></div>
+                                    <div class="form-item"><input type="checkbox" id="retardo-psicomotor" onchange="updateDashboard()"><label for="retardo-psicomotor">Retardo psicomotor</label></div>
+                                    <div class="form-item"><input type="checkbox" id="manierismos" onchange="updateDashboard()"><label for="manierismos">Manierismos</label></div>
+                                    <div class="form-item"><input type="checkbox" id="estereotipias" onchange="updateDashboard()"><label for="estereotipias">Estereotipias</label></div>
+                                    <div class="form-item"><input type="checkbox" id="catatonia" onchange="updateDashboard()"><label for="catatonia">Signos catatónicos</label></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-comments"></i> Lenguaje y Habla</h4>
+                            <div class="sub-section-content">
+                                <h5 class="sub-header">Características del Habla</h5>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="habla-normal" onchange="updateDashboard()"><label for="habla-normal">Habla normal</label></div>
+                                    <div class="form-item"><input type="checkbox" id="habla-rapida" onchange="updateDashboard()"><label for="habla-rapida">Habla rápida/presionada</label></div>
+                                    <div class="form-item"><input type="checkbox" id="habla-lenta" onchange="updateDashboard()"><label for="habla-lenta">Habla lenta</label></div>
+                                    <div class="form-item"><input type="checkbox" id="mutismo" onchange="updateDashboard()"><label for="mutismo">Mutismo</label></div>
+                                    <div class="form-item"><input type="checkbox" id="volumen-alto" onchange="updateDashboard()"><label for="volumen-alto">Volumen elevado</label></div>
+                                    <div class="form-item"><input type="checkbox" id="volumen-bajo" onchange="updateDashboard()"><label for="volumen-bajo">Volumen bajo</label></div>
+                                </div>
+                            </div>
+                            <div class="sub-section-content mt-4">
+                                <h5 class="sub-header">Contenido del Lenguaje</h5>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="lenguaje-coherente" onchange="updateDashboard()"><label for="lenguaje-coherente">Lenguaje coherente</label></div>
+                                    <div class="form-item"><input type="checkbox" id="circunstancial" onchange="updateDashboard()"><label for="circunstancial">Circunstancialidad</label></div>
+                                    <div class="form-item"><input type="checkbox" id="tangencial" onchange="updateDashboard()"><label for="tangencial">Tangencialidad</label></div>
+                                    <div class="form-item"><input type="checkbox" id="fuga-ideas" onchange="updateDashboard()"><label for="fuga-ideas">Fuga de ideas</label></div>
+                                    <div class="form-item"><input type="checkbox" id="incoherente" onchange="updateDashboard()"><label for="incoherente">Incoherente</label></div>
+                                    <div class="form-item"><input type="checkbox" id="neologismos" onchange="updateDashboard()"><label for="neologismos">Neologismos</label></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-heart"></i> Estado Afectivo y Emocional</h4>
+                            <div class="sub-section-content">
+                                <h5 class="sub-header">Ánimo (Estado Afectivo Basal)</h5>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="animo-eutimico" onchange="updateDashboard()"><label for="animo-eutimico">Eutímico</label></div>
+                                    <div class="form-item"><input type="checkbox" id="animo-deprimido" onchange="updateDashboard()"><label for="animo-deprimido">Deprimido</label></div>
+                                    <div class="form-item"><input type="checkbox" id="animo-elevado" onchange="updateDashboard()"><label for="animo-elevado">Elevado/Eufórico</label></div>
+                                    <div class="form-item"><input type="checkbox" id="animo-irritable" onchange="updateDashboard()"><label for="animo-irritable">Irritable</label></div>
+                                    <div class="form-item"><input type="checkbox" id="animo-ansioso" onchange="updateDashboard()"><label for="animo-ansioso">Ansioso</label></div>
+                                    <div class="form-item"><input type="checkbox" id="animo-disfórico" onchange="updateDashboard()"><label for="animo-disfórico">Disfórico</label></div>
+                                </div>
+                            </div>
+                            <div class="sub-section-content mt-4">
+                                <h5 class="sub-header">Afecto (Expresión Emocional Observada)</h5>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="afecto-congruente" onchange="updateDashboard()"><label for="afecto-congruente">Congruente con el estado de ánimo</label></div>
+                                    <div class="form-item"><input type="checkbox" id="afecto-incongruente" onchange="updateDashboard()"><label for="afecto-incongruente">Incongruente</label></div>
+                                    <div class="form-item"><input type="checkbox" id="afecto-embotado" onchange="updateDashboard()"><label for="afecto-embotado">Embotado</label></div>
+                                    <div class="form-item"><input type="checkbox" id="afecto-plano" onchange="updateDashboard()"><label for="afecto-plano">Plano</label></div>
+                                    <div class="form-item"><input type="checkbox" id="afecto-labil" onchange="updateDashboard()"><label for="afecto-labil">Lábil</label></div>
+                                    <div class="form-item"><input type="checkbox" id="afecto-restringido" onchange="updateDashboard()"><label for="afecto-restringido">Restringido</label></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Evaluación del Pensamiento y Percepción -->
+                <div class="section-container" id="section-thought-perception">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main">
+                            <i class="fas fa-lightbulb"></i> Pensamiento y Percepción
+                        </h3>
+                        <div class="flex items-center gap-2">
+                            <div class="completion-badge" id="badge-thought-perception">
+                                <i class="fas fa-circle"></i>
+                            </div>
+                            <i class="fas fa-chevron-down section-arrow"></i>
+                        </div>
+                    </div>
+                    <div class="section-content-main" id="thought-perception">
+                        <div class="legend">
+                            <div class="legend-item">
+                                <div class="legend-color thought-color"></div>
+                                <span>Pensamiento y Percepción</span>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-cogs"></i> Proceso del Pensamiento</h4>
+                            <div class="thought-perception-card">
+                                <h5 class="sub-header">Curso del Pensamiento</h5>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="pensamiento-normal" onchange="updateDashboard()"><label for="pensamiento-normal">Curso normal</label></div>
+                                    <div class="form-item"><input type="checkbox" id="pensamiento-acelerado" onchange="updateDashboard()"><label for="pensamiento-acelerado">Acelerado</label></div>
+                                    <div class="form-item"><input type="checkbox" id="pensamiento-lentificado" onchange="updateDashboard()"><label for="pensamiento-lentificado">Lentificado</label></div>
+                                    <div class="form-item"><input type="checkbox" id="bloqueo-pensamiento" onchange="updateDashboard()"><label for="bloqueo-pensamiento">Bloqueo del pensamiento</label></div>
+                                    <div class="form-item"><input type="checkbox" id="perseveracion" onchange="updateDashboard()"><label for="perseveracion">Perseveración</label></div>
+                                </div>
+                            </div>
+                            <div class="sub-section-content mt-4">
+                                <h5 class="sub-header">Contenido del Pensamiento</h5>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="contenido-normal" onchange="updateDashboard()"><label for="contenido-normal">Contenido normal</label></div>
+                                    <div class="form-item"><input type="checkbox" id="ideas-delirantes-persecucion" onchange="updateDashboard()"><label for="ideas-delirantes-persecucion">Ideas delirantes de persecución</label></div>
+                                    <div class="form-item"><input type="checkbox" id="ideas-delirantes-grandeza" onchange="updateDashboard()"><label for="ideas-delirantes-grandeza">Ideas delirantes de grandeza</label></div>
+                                    <div class="form-item"><input type="checkbox" id="ideas-delirantes-referencia" onchange="updateDashboard()"><label for="ideas-delirantes-referencia">Ideas de referencia</label></div>
+                                    <div class="form-item"><input type="checkbox" id="ideas-sobrevaloradas" onchange="updateDashboard()"><label for="ideas-sobrevaloradas">Ideas sobrevaloradas</label></div>
+                                    <div class="form-item"><input type="checkbox" id="obsesiones-mentales" onchange="updateDashboard()"><label for="obsesiones-mentales">Obsesiones</label></div>
+                                    <div class="form-item"><input type="checkbox" id="fobias-mentales" onchange="updateDashboard()"><label for="fobias-mentales">Fobias</label></div>
+                                    <div class="form-item"><input type="checkbox" id="preocupaciones-hipocondria" onchange="updateDashboard()"><label for="preocupaciones-hipocondria">Preocupaciones hipocondríacas</label></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-eye-slash"></i> Alteraciones Perceptuales</h4>
+                            <div class="sub-section-content">
+                                <h5 class="sub-header">Alucinaciones</h5>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="sin-alucinaciones" onchange="updateDashboard()"><label for="sin-alucinaciones">Sin alucinaciones</label></div>
+                                    <div class="form-item"><input type="checkbox" id="alucinaciones-auditivas" onchange="updateDashboard()"><label for="alucinaciones-auditivas">Alucinaciones auditivas</label></div>
+                                    <div class="form-item"><input type="checkbox" id="alucinaciones-visuales" onchange="updateDashboard()"><label for="alucinaciones-visuales">Alucinaciones visuales</label></div>
+                                    <div class="form-item"><input type="checkbox" id="alucinaciones-tactiles" onchange="updateDashboard()"><label for="alucinaciones-tactiles">Alucinaciones táctiles</label></div>
+                                    <div class="form-item"><input type="checkbox" id="alucinaciones-olfativas" onchange="updateDashboard()"><label for="alucinaciones-olfativas">Alucinaciones olfativas</label></div>
+                                    <div class="form-item"><input type="checkbox" id="pseudoalucinaciones" onchange="updateDashboard()"><label for="pseudoalucinaciones">Pseudoalucinaciones</label></div>
+                                </div>
+                            </div>
+                            <div class="sub-section-content mt-4">
+                                <h5 class="sub-header">Otras Alteraciones Perceptuales</h5>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="ilusiones" onchange="updateDashboard()"><label for="ilusiones">Ilusiones</label></div>
+                                    <div class="form-item"><input type="checkbox" id="despersonalizacion" onchange="updateDashboard()"><label for="despersonalizacion">Despersonalización</label></div>
+                                    <div class="form-item"><input type="checkbox" id="desrealizacion" onchange="updateDashboard()"><label for="desrealizacion">Desrealización</label></div>
+                                    <div class="form-item"><input type="checkbox" id="distorsiones-perceptuales" onchange="updateDashboard()"><label for="distorsiones-perceptuales">Distorsiones perceptuales</label></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Evaluación de Riesgo -->
+                <div class="section-container" id="section-risk-assessment">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main">
+                            <i class="fas fa-shield-alt"></i> Evaluación de Riesgo
+                        </h3>
+                        <div class="flex items-center gap-2">
+                            <div class="completion-badge" id="badge-risk-assessment">
+                                <i class="fas fa-circle"></i>
+                            </div>
+                            <i class="fas fa-chevron-down section-arrow"></i>
+                        </div>
+                    </div>
+                    <div class="section-content-main" id="risk-assessment">
+                        <div class="legend">
+                            <div class="legend-item">
+                                <div class="legend-color risk-color"></div>
+                                <span>Evaluación de Riesgo</span>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-skull-crossbones"></i> Riesgo Suicida</h4>
+                            <div class="risk-assessment-card">
+                                <h5 class="sub-header">Ideas de Muerte y Suicidio</h5>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="sin-ideas-muerte" onchange="calculateSuicideRisk()"><label for="sin-ideas-muerte">Sin ideas de muerte</label></div>
+                                    <div class="form-item"><input type="checkbox" id="ideas-muerte-pasivas" onchange="calculateSuicideRisk()"><label for="ideas-muerte-pasivas">Ideas de muerte pasivas</label></div>
+                                    <div class="form-item"><input type="checkbox" id="ideas-suicidas-sin-plan" onchange="calculateSuicideRisk()"><label for="ideas-suicidas-sin-plan">Ideas suicidas sin plan</label></div>
+                                    <div class="form-item"><input type="checkbox" id="ideas-suicidas-con-plan" onchange="calculateSuicideRisk()"><label for="ideas-suicidas-con-plan">Ideas suicidas con plan</label></div>
+                                    <div class="form-item"><input type="checkbox" id="plan-detallado" onchange="calculateSuicideRisk()"><label for="plan-detallado">Plan detallado</label></div>
+                                    <div class="form-item"><input type="checkbox" id="acceso-medios" onchange="calculateSuicideRisk()"><label for="acceso-medios">Acceso a medios letales</label></div>
+                                    <div class="form-item"><input type="checkbox" id="intento-reciente" onchange="calculateSuicideRisk()"><label for="intento-reciente">Intento reciente (&lt;6 meses)</label></div>
+                                    <div class="form-item"><input type="checkbox" id="intentos-previos" onchange="calculateSuicideRisk()"><label for="intentos-previos">Intentos previos múltiples</label></div>
+                                </div>
+                                <div class="score-item">
+                                    <span>Nivel de Riesgo Suicida:</span>
+                                    <span class="score-value" id="suicide-risk-level">Bajo</span>
+                                </div>
+                            </div>
+                            <div class="sub-section-content mt-4">
+                                <h5 class="sub-header">Factores de Riesgo Adicionales</h5>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="desesperanza" onchange="calculateSuicideRisk()"><label for="desesperanza">Desesperanza</label></div>
+                                    <div class="form-item"><input type="checkbox" id="aislamiento-social" onchange="calculateSuicideRisk()"><label for="aislamiento-social">Aislamiento social</label></div>
+                                    <div class="form-item"><input type="checkbox" id="impulsividad" onchange="calculateSuicideRisk()"><label for="impulsividad">Impulsividad</label></div>
+                                    <div class="form-item"><input type="checkbox" id="abuso-sustancias-riesgo" onchange="calculateSuicideRisk()"><label for="abuso-sustancias-riesgo">Abuso de sustancias</label></div>
+                                    <div class="form-item"><input type="checkbox" id="perdidas-recientes" onchange="calculateSuicideRisk()"><label for="perdidas-recientes">Pérdidas recientes</label></div>
+                                    <div class="form-item"><input type="checkbox" id="problemas-legales" onchange="calculateSuicideRisk()"><label for="problemas-legales">Problemas legales/financieros</label></div>
+                                </div>
+                            </div>
+                            <div class="sub-section-content mt-4">
+                                <h5 class="sub-header">Factores Protectores</h5>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="apoyo-familiar" onchange="calculateSuicideRisk()"><label for="apoyo-familiar">Apoyo familiar</label></div>
+                                    <div class="form-item"><input type="checkbox" id="red-social" onchange="calculateSuicideRisk()"><label for="red-social">Red social sólida</label></div>
+                                    <div class="form-item"><input type="checkbox" id="razones-vivir" onchange="calculateSuicideRisk()"><label for="razones-vivir">Razones para vivir</label></div>
+                                    <div class="form-item"><input type="checkbox" id="adherencia-tratamiento" onchange="calculateSuicideRisk()"><label for="adherencia-tratamiento">Adherencia al tratamiento</label></div>
+                                    <div class="form-item"><input type="checkbox" id="creencias-religiosas" onchange="calculateSuicideRisk()"><label for="creencias-religiosas">Creencias religiosas</label></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-fist-raised"></i> Riesgo de Heteroagresividad</h4>
+                            <div class="sub-section-content">
+                                <h5 class="sub-header">Ideas y Planes de Daño a Otros</h5>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="sin-ideas-violentas" onchange="updateDashboard()"><label for="sin-ideas-violentas">Sin ideas violentas</label></div>
+                                    <div class="form-item"><input type="checkbox" id="fantasias-violentas" onchange="updateDashboard()"><label for="fantasias-violentas">Fantasías violentas</label></div>
+                                    <div class="form-item"><input type="checkbox" id="ideas-homicidas-aggro" onchange="updateDashboard()"><label for="ideas-homicidas-aggro">Ideas homicidas</label></div>
+                                    <div class="form-item"><input type="checkbox" id="amenazas-directas" onchange="updateDashboard()"><label for="amenazas-directas">Amenazas directas</label></div>
+                                    <div class="form-item"><input type="checkbox" id="agresion-previa" onchange="updateDashboard()"><label for="agresion-previa">Historia de agresión</label></div>
+                                    <div class="form-item"><input type="checkbox" id="control-impulsos" onchange="updateDashboard()"><label for="control-impulsos">Pobre control de impulsos</label></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Evaluación Cognitiva -->
+                <div class="section-container" id="section-cognitive-assessment">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main">
+                            <i class="fas fa-memory"></i> Evaluación Cognitiva
+                        </h3>
+                        <div class="flex items-center gap-2">
+                            <div class="completion-badge" id="badge-cognitive-assessment">
+                                <i class="fas fa-circle"></i>
+                            </div>
+                            <i class="fas fa-chevron-down section-arrow"></i>
+                        </div>
+                    </div>
+                    <div class="section-content-main" id="cognitive-assessment">
+                        <div class="legend">
+                            <div class="legend-item">
+                                <div class="legend-color cognitive-color"></div>
+                                <span>Evaluación Cognitiva</span>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-compass"></i> Orientación</h4>
+                            <div class="sub-section-content">
+                                <h5 class="sub-header">Orientación Temporoespacial</h5>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="orientado-tiempo" onchange="calculateCognition()"><label for="orientado-tiempo">Orientado en tiempo</label></div>
+                                    <div class="form-item"><input type="checkbox" id="orientado-espacio" onchange="calculateCognition()"><label for="orientado-espacio">Orientado en espacio</label></div>
+                                    <div class="form-item"><input type="checkbox" id="orientado-persona" onchange="calculateCognition()"><label for="orientado-persona">Orientado en persona</label></div>
+                                    <div class="form-item"><input type="checkbox" id="desorientado-tiempo" onchange="calculateCognition()"><label for="desorientado-tiempo">Desorientado en tiempo</label></div>
+                                    <div class="form-item"><input type="checkbox" id="desorientado-espacio" onchange="calculateCognition()"><label for="desorientado-espacio">Desorientado en espacio</label></div>
+                                    <div class="form-item"><input type="checkbox" id="desorientado-persona" onchange="calculateCognition()"><label for="desorientado-persona">Desorientado en persona</label></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-brain"></i> Funciones Cognitivas</h4>
+                            <div class="sub-section-content">
+                                <h5 class="sub-header">Atención y Concentración</h5>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="atencion-normal" onchange="calculateCognition()"><label for="atencion-normal">Atención normal</label></div>
+                                    <div class="form-item"><input type="checkbox" id="atencion-disminuida" onchange="calculateCognition()"><label for="atencion-disminuida">Atención disminuida</label></div>
+                                    <div class="form-item"><input type="checkbox" id="distractibilidad" onchange="calculateCognition()"><label for="distractibilidad">Distractibilidad</label></div>
+                                    <div class="form-item"><input type="checkbox" id="hiperconcentracion" onchange="calculateCognition()"><label for="hiperconcentracion">Hiperconcentración</label></div>
+                                </div>
+                                <div class="form-item measurement mt-4">
+                                    <label>Repetición de dígitos (directo):</label>
+                                    <input type="number" class="input-field w-24" id="digitos-directo" min="0" max="9" onchange="calculateCognition()">
+                                    <span>/9</span>
+                                </div>
+                                <div class="form-item measurement">
+                                    <label>Repetición de dígitos (inverso):</label>
+                                    <input type="number" class="input-field w-24" id="digitos-inverso" min="0" max="8" onchange="calculateCognition()">
+                                    <span>/8</span>
+                                </div>
+                            </div>
+                            <div class="sub-section-content mt-4">
+                                <h5 class="sub-header">Memoria</h5>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="memoria-normal" onchange="calculateCognition()"><label for="memoria-normal">Memoria normal</label></div>
+                                    <div class="form-item"><input type="checkbox" id="amnesia-anterograda" onchange="calculateCognition()"><label for="amnesia-anterograda">Amnesia anterógrada</label></div>
+                                    <div class="form-item"><input type="checkbox" id="amnesia-retrograda" onchange="calculateCognition()"><label for="amnesia-retrograda">Amnesia retrógrada</label></div>
+                                    <div class="form-item"><input type="checkbox" id="confabulaciones" onchange="calculateCognition()"><label for="confabulaciones">Confabulaciones</label></div>
+                                </div>
+                                <div class="form-item measurement mt-4">
+                                    <label>Recuerdo de 3 palabras (inmediato):</label>
+                                    <input type="number" class="input-field w-24" id="memoria-inmediata" min="0" max="3" onchange="calculateCognition()">
+                                    <span>/3</span>
+                                </div>
+                                <div class="form-item measurement">
+                                    <label>Recuerdo de 3 palabras (5 min):</label>
+                                    <input type="number" class="input-field w-24" id="memoria-diferida" min="0" max="3" onchange="calculateCognition()">
+                                    <span>/3</span>
+                                </div>
+                            </div>
+                            <div class="sub-section-content mt-4">
+                                <h5 class="sub-header">Funciones Ejecutivas</h5>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="funciones-ejecutivas-normal" onchange="calculateCognition()"><label for="funciones-ejecutivas-normal">Funciones ejecutivas normales</label></div>
+                                    <div class="form-item"><input type="checkbox" id="planificacion-alterada" onchange="calculateCognition()"><label for="planificacion-alterada">Planificación alterada</label></div>
+                                    <div class="form-item"><input type="checkbox" id="flexibilidad-alterada" onchange="calculateCognition()"><label for="flexibilidad-alterada">Flexibilidad cognitiva alterada</label></div>
+                                    <div class="form-item"><input type="checkbox" id="juicio-alterado" onchange="calculateCognition()"><label for="juicio-alterado">Juicio alterado</label></div>
+                                    <div class="form-item"><input type="checkbox" id="insight-alterado" onchange="calculateCognition()"><label for="insight-alterado">Insight alterado</label></div>
+                                </div>
+                            </div>
+                            <div class="score-item mt-4">
+                                <span>Estado Cognitivo Global:</span>
+                                <span class="score-value" id="cognitive-status">Normal</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Escalas de Evaluación -->
+                <div class="section-container" id="section-scales-assessment">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main">
+                            <i class="fas fa-calculator"></i> Escalas de Evaluación Clínica
+                        </h3>
+                        <div class="flex items-center gap-2">
+                            <div class="completion-badge" id="badge-scales-assessment">
+                                <i class="fas fa-circle"></i>
+                            </div>
+                            <i class="fas fa-chevron-down section-arrow"></i>
+                        </div>
+                    </div>
+                    <div class="section-content-main" id="scales-assessment">
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-sad-tear"></i> Escala de Depresión de Hamilton (HAM-D)</h4>
+                            <div class="sub-section-content">
+                                <h5 class="sub-header">Evaluación de Síntomas Depresivos</h5>
+                                <div class="form-item measurement">
+                                    <label for="hamilton-humor">Estado de ánimo deprimido:</label>
+                                    <select id="hamilton-humor" class="input-field flex-grow" onchange="calculateHamiltonDepression()">
+                                        <option value="0">0 - Ausente</option>
+                                        <option value="1">1 - Se siente triste y sin esperanza solo si se pregunta</option>
+                                        <option value="2">2 - Refiere espontáneamente sentimientos de tristeza</option>
+                                        <option value="3">3 - Comunica no verbalmente su tristeza</option>
+                                        <option value="4">4 - Prácticamente solo se puede comunicar su tristeza</option>
+                                    </select>
+                                </div>
+                                <div class="form-item measurement">
+                                    <label for="hamilton-culpa">Sentimientos de culpa:</label>
+                                    <select id="hamilton-culpa" class="input-field flex-grow" onchange="calculateHamiltonDepression()">
+                                        <option value="0">0 - Ausente</option>
+                                        <option value="1">1 - Se culpa a sí mismo, siente que ha decepcionado</option>
+                                        <option value="2">2 - Ideas de culpa</option>
+                                        <option value="3">3 - La enfermedad actual es un castigo</option>
+                                        <option value="4">4 - Alucinaciones de culpa</option>
+                                    </select>
+                                </div>
+                                <div class="form-item measurement">
+                                    <label for="hamilton-suicidio">Suicidio:</label>
+                                    <select id="hamilton-suicidio" class="input-field flex-grow" onchange="calculateHamiltonDepression()">
+                                        <option value="0">0 - Ausente</option>
+                                        <option value="1">1 - Siente que la vida no vale la pena</option>
+                                        <option value="2">2 - Desearía estar muerto</option>
+                                        <option value="3">3 - Ideas suicidas o gestos</option>
+                                        <option value="4">4 - Intentos de suicidio</option>
+                                    </select>
+                                </div>
+                                <div class="form-item measurement">
+                                    <label for="hamilton-insomnio-precoz">Insomnio precoz:</label>
+                                    <select id="hamilton-insomnio-precoz" class="input-field flex-grow" onchange="calculateHamiltonDepression()">
+                                        <option value="0">0 - No hay dificultad</option>
+                                        <option value="1">1 - Dificultad ocasional para dormirse</option>
+                                        <option value="2">2 - Dificultad para dormirse cada noche</option>
+                                    </select>
+                                </div>
+                                <div class="form-item measurement">
+                                    <label for="hamilton-insomnio-medio">Insomnio medio:</label>
+                                    <select id="hamilton-insomnio-medio" class="input-field flex-grow" onchange="calculateHamiltonDepression()">
+                                        <option value="0">0 - No hay dificultad</option>
+                                        <option value="1">1 - Inquieto durante la noche</option>
+                                        <option value="2">2 - Se despierta durante la noche</option>
+                                    </select>
+                                </div>
+                                <div class="form-item measurement">
+                                    <label for="hamilton-insomnio-tardio">Insomnio tardío:</label>
+                                    <select id="hamilton-insomnio-tardio" class="input-field flex-grow" onchange="calculateHamiltonDepression()">
+                                        <option value="0">0 - No hay dificultad</option>
+                                        <option value="1">1 - Se despierta temprano pero vuelve a dormirse</option>
+                                        <option value="2">2 - No puede volver a dormirse</option>
+                                    </select>
+                                </div>
+                                <div class="score-item mt-4">
+                                    <span>Puntuación HAM-D (6 ítems):</span>
+                                    <span class="score-value" id="hamilton-score">0</span>
+                                    <span>/24</span>
+                                </div>
+                                <div class="score-item">
+                                    <span>Severidad de la depresión:</span>
+                                    <span class="score-value" id="hamilton-severity">Normal</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-anxiety"></i> Escala de Ansiedad de Hamilton (HAM-A)</h4>
+                            <div class="sub-section-content">
+                                <h5 class="sub-header">Síntomas de Ansiedad</h5>
+                                <div class="form-item measurement">
+                                    <label for="hamilton-ansiedad-humor">Estado de ánimo ansioso:</label>
+                                    <select id="hamilton-ansiedad-humor" class="input-field flex-grow" onchange="calculateHamiltonAnxiety()">
+                                        <option value="0">0 - Ausente</option>
+                                        <option value="1">1 - Leve</option>
+                                        <option value="2">2 - Moderado</option>
+                                        <option value="3">3 - Severo</option>
+                                        <option value="4">4 - Muy severo</option>
+                                    </select>
+                                </div>
+                                <div class="form-item measurement">
+                                    <label for="hamilton-tension">Tensión:</label>
+                                    <select id="hamilton-tension" class="input-field flex-grow" onchange="calculateHamiltonAnxiety()">
+                                        <option value="0">0 - Ausente</option>
+                                        <option value="1">1 - Leve</option>
+                                        <option value="2">2 - Moderado</option>
+                                        <option value="3">3 - Severo</option>
+                                        <option value="4">4 - Muy severo</option>
+                                    </select>
+                                </div>
+                                <div class="form-item measurement">
+                                    <label for="hamilton-miedos">Miedos:</label>
+                                    <select id="hamilton-miedos" class="input-field flex-grow" onchange="calculateHamiltonAnxiety()">
+                                        <option value="0">0 - Ausente</option>
+                                        <option value="1">1 - Leve</option>
+                                        <option value="2">2 - Moderado</option>
+                                        <option value="3">3 - Severo</option>
+                                        <option value="4">4 - Muy severo</option>
+                                    </select>
+                                </div>
+                                <div class="form-item measurement">
+                                    <label for="hamilton-somaticos-musculares">Síntomas somáticos musculares:</label>
+                                    <select id="hamilton-somaticos-musculares" class="input-field flex-grow" onchange="calculateHamiltonAnxiety()">
+                                        <option value="0">0 - Ausente</option>
+                                        <option value="1">1 - Leve</option>
+                                        <option value="2">2 - Moderado</option>
+                                        <option value="3">3 - Severo</option>
+                                        <option value="4">4 - Muy severo</option>
+                                    </select>
+                                </div>
+                                <div class="score-item mt-4">
+                                    <span>Puntuación HAM-A (4 ítems):</span>
+                                    <span class="score-value" id="hamilton-anxiety-score">0</span>
+                                    <span>/16</span>
+                                </div>
+                                <div class="score-item">
+                                    <span>Severidad de la ansiedad:</span>
+                                    <span class="score-value" id="hamilton-anxiety-severity">Normal</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-user-check"></i> Mini Mental State Examination (MMSE)</h4>
+                            <div class="sub-section-content">
+                                <h5 class="sub-header">Evaluación Cognitiva Breve</h5>
+                                <div class="form-item measurement">
+                                    <label for="mmse-tiempo">Orientación temporal:</label>
+                                    <input type="number" class="input-field w-24" id="mmse-tiempo" min="0" max="5" onchange="calculateMMSE()">
+                                    <span>/5</span>
+                                </div>
+                                <div class="form-item measurement">
+                                    <label for="mmse-espacio">Orientación espacial:</label>
+                                    <input type="number" class="input-field w-24" id="mmse-espacio" min="0" max="5" onchange="calculateMMSE()">
+                                    <span>/5</span>
+                                </div>
+                                <div class="form-item measurement">
+                                    <label for="mmse-registro">Registro:</label>
+                                    <input type="number" class="input-field w-24" id="mmse-registro" min="0" max="3" onchange="calculateMMSE()">
+                                    <span>/3</span>
+                                </div>
+                                <div class="form-item measurement">
+                                    <label for="mmse-atencion">Atención y cálculo:</label>
+                                    <input type="number" class="input-field w-24" id="mmse-atencion" min="0" max="5" onchange="calculateMMSE()">
+                                    <span>/5</span>
+                                </div>
+                                <div class="form-item measurement">
+                                    <label for="mmse-recuerdo">Recuerdo:</label>
+                                    <input type="number" class="input-field w-24" id="mmse-recuerdo" min="0" max="3" onchange="calculateMMSE()">
+                                    <span>/3</span>
+                                </div>
+                                <div class="form-item measurement">
+                                    <label for="mmse-lenguaje">Lenguaje:</label>
+                                    <input type="number" class="input-field w-24" id="mmse-lenguaje" min="0" max="9" onchange="calculateMMSE()">
+                                    <span>/9</span>
+                                </div>
+                                <div class="score-item mt-4">
+                                    <span>Puntuación MMSE Total:</span>
+                                    <span class="score-value" id="mmse-total">0</span>
+                                    <span>/30</span>
+                                </div>
+                                <div class="score-item">
+                                    <span>Estado cognitivo:</span>
+                                    <span class="score-value" id="mmse-interpretation">Normal</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- CONCLUSIÓN -->
+                <div class="section-container" id="conclusion-report">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main">
+                            <i class="fas fa-file-alt"></i> Conclusión del Examen Psiquiátrica
+                        </h3>
+                        <div class="flex items-center gap-2">
+                            <div class="completion-badge" id="badge-conclusion-report">
+                                <i class="fas fa-circle"></i>
+                            </div>
+                            <i class="fas fa-chevron-down section-arrow"></i>
+                        </div>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="sub-section-card">
+                            <div id="conclusion-text" class="conclusion-text">
+                                Seleccione los parámetros del examen para generar la conclusión...
+                            </div>
+                        </div>
+                        <div class="flex justify-end gap-4 mt-8">
+                            <button class="btn btn-secondary" onclick="clearForm()">
+                                <i class="fas fa-eraser"></i> Limpiar Formulario
+                            </button>
+                            <button class="btn btn-primary" onclick="generateConclusion(); toggleStickyPanel()">
+                                <i class="fas fa-file-alt"></i> Generar Informe
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- STICKY REPORT PANEL -->
+        <div class="sticky-report-panel" id="stickyReportPanel">
+            <div class="sticky-header">
+                <span><i class="fas fa-file-medical-alt"></i> Informe Psiquiátrica en Tiempo Real</span>
+                <div class="sticky-controls">
+                    <button onclick="copyReportToClipboard()"><i class="fas fa-copy"></i></button>
+                    <button onclick="printReport()"><i class="fas fa-print"></i></button>
+                    <button onclick="toggleStickyPanel()"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+            <pre class="sticky-content" id="reportContent">
+El informe se generará aquí a medida que completes los campos del examen...
+            </pre>
+            <div class="update-indicator" id="updateIndicator">
+                <div class="spinner"></div>
+                <span>Actualizando informe...</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Modals for Alert/Confirm -->
+    <div id="customModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle"></h3>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="modalMessage"></p>
+            </div>
+            <div class="modal-footer" id="modalFooter">
+                <!-- Buttons will be injected here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification for Copy -->
+    <div class="copy-notification" id="copyNotification">
+        <i class="fas fa-check-circle"></i>
+        <span>¡Texto copiado al portapapeles!</span>
+    </div>
+
+    <!-- Theme toggle button -->
+    <button class="theme-toggle" onclick="toggleTheme()">
+        <i class="fas fa-moon" id="theme-icon"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>

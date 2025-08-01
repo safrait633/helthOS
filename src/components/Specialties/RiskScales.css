@@ -1,0 +1,264 @@
+.risk-scales-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.risk-scales-container h2 {
+  color: var(--primary-color);
+  margin-bottom: 30px;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.risk-scale-section {
+  background: var(--card-background);
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.risk-scale-section:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.risk-scale-section h3 {
+  color: var(--text-primary);
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+  font-weight: 600;
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 8px;
+}
+
+.criteria-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  background: var(--input-background);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.95rem;
+}
+
+.checkbox-item:hover {
+  background: var(--hover-background);
+  border-color: var(--primary-color);
+}
+
+.checkbox-item input[type="checkbox"] {
+  margin-right: 12px;
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary-color);
+  cursor: pointer;
+}
+
+.checkbox-item span {
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+.result-display {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.result-display .score {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.result-display .risk {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  opacity: 0.95;
+}
+
+.result-display .recommendation {
+  font-size: 1rem;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+.result-display .capacity {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.result-display .percentage {
+  font-size: 1.2rem;
+  opacity: 0.95;
+}
+
+/* Test de Marcha específico */
+.walk-test-inputs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group label {
+  color: var(--text-primary);
+  font-weight: 500;
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+}
+
+.input-group input,
+.input-group select {
+  padding: 12px;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--input-background);
+  color: var(--text-primary);
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.1);
+}
+
+.input-group input::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.7;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .risk-scales-container {
+    padding: 16px;
+  }
+  
+  .risk-scales-container h2 {
+    font-size: 1.6rem;
+  }
+  
+  .risk-scale-section {
+    padding: 16px;
+  }
+  
+  .risk-scale-section h3 {
+    font-size: 1.2rem;
+  }
+  
+  .criteria-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .checkbox-item {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+  
+  .result-display .score {
+    font-size: 1.5rem;
+  }
+  
+  .result-display .risk {
+    font-size: 1.1rem;
+  }
+  
+  .walk-test-inputs {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Modo oscuro */
+[data-theme="dark"] .risk-scale-section {
+  background: var(--dark-card-background);
+  border-color: var(--dark-border-color);
+}
+
+[data-theme="dark"] .checkbox-item {
+  background: var(--dark-input-background);
+  border-color: var(--dark-border-color);
+}
+
+[data-theme="dark"] .checkbox-item:hover {
+  background: var(--dark-hover-background);
+}
+
+[data-theme="dark"] .input-group input,
+[data-theme="dark"] .input-group select {
+  background: var(--dark-input-background);
+  border-color: var(--dark-border-color);
+  color: var(--dark-text-primary);
+}
+
+[data-theme="dark"] .input-group input::placeholder {
+  color: var(--dark-text-secondary);
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.risk-scale-section {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.result-display {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Estados de resultado */
+.result-display.low-risk {
+  background: linear-gradient(135deg, #4CAF50, #45a049);
+}
+
+.result-display.moderate-risk {
+  background: linear-gradient(135deg, #FF9800, #f57c00);
+}
+
+.result-display.high-risk {
+  background: linear-gradient(135deg, #f44336, #d32f2f);
+}
+
+/* Efectos hover para checkboxes */
+.checkbox-item input[type="checkbox"]:checked + span {
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+[data-theme="dark"] .checkbox-item input[type="checkbox"]:checked + span {
+  color: var(--primary-color);
+}

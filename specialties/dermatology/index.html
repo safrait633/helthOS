@@ -1,0 +1,1610 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen Dermatológico - Algoritmo de Evaluación</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- SIDEBAR -->
+        <aside class="sidebar" id="sidebar" style="overflow-y: auto; height: 100vh;">
+            <div class="sidebar-header" onclick="window.location.href='../../index.html'" style="cursor: pointer;">
+                <i class="fas fa-heartbeat logo"></i>
+                <h1 class="app-title">HealthOS</h1>
+            </div>
+            <nav class="nav-list">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-th-large nav-icon"></i>
+                        <span class="nav-text">Panel de control</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link active" id="dermatologia-nav-link" onclick="toggleDermatologiaSubMenu(event)">
+                        <i class="fas fa-user-tag nav-icon"></i>
+                        <span class="nav-text">Dermatología</span>
+                    </a>
+                    <ul class="sub-menu" id="dermatologia-sub-menu">
+                        <li class="sub-menu-item"><a href="#dashboard-summary" onclick="scrollToSection('dashboard-summary')">Dashboard</a></li>
+                        <li class="sub-menu-item"><a href="#antecedentes" onclick="scrollToSection('antecedentes')">Antecedentes</a></li>
+                        <li class="sub-menu-item"><a href="#anamnesis" onclick="scrollToSection('anamnesis')">Anamnesis</a></li>
+                        <li class="sub-menu-item"><a href="#lesiones-pigmentadas" onclick="scrollToSection('lesiones-pigmentadas')">Lesiones Pigmentadas</a></li>
+                        <li class="sub-menu-item"><a href="#primary-lesions" onclick="scrollToSection('primary-lesions')">Lesiones Primarias</a></li>
+                        <li class="sub-menu-item"><a href="#secondary-lesions" onclick="scrollToSection('secondary-lesions')">Lesiones Secundarias</a></li>
+                        <li class="sub-menu-item"><a href="#distribution" onclick="scrollToSection('distribution')">Distribución</a></li>
+                        <li class="sub-menu-item"><a href="#appendages" onclick="scrollToSection('appendages')">Anexos Cutáneos</a></li>
+                        <li class="sub-menu-item"><a href="#special-tests" onclick="scrollToSection('special-tests')">Pruebas Especiales</a></li>
+                        <li class="sub-menu-item"><a href="#severity" onclick="scrollToSection('severity')">Evaluación Severidad</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="../cardiology/index.html" class="nav-link">
+                        <i class="fas fa-heartbeat nav-icon"></i>
+                        <span class="nav-text">Cardiología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../gastroenterology/index.html" class="nav-link">
+                        <i class="fas fa-stomach nav-icon"></i>
+                        <span class="nav-text">Gastroenterología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../endocrinology/index.html" class="nav-link">
+                        <i class="fas fa-prescription-bottle-alt nav-icon"></i>
+                        <span class="nav-text">Endocrinología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../geriatrics/index.html" class="nav-link">
+                        <i class="fas fa-user-friends nav-icon"></i>
+                        <span class="nav-text">Geriatría</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../hematology/index.html" class="nav-link">
+                        <i class="fas fa-tint nav-icon"></i>
+                        <span class="nav-text">Hematología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../infectious_diseases/index.html" class="nav-link">
+                        <i class="fas fa-microscope nav-icon"></i>
+                        <span class="nav-text">Enfermedades Infecciosas</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../musculoskeletal/index.html" class="nav-link">
+                        <i class="fas fa-bone nav-icon"></i>
+                        <span class="nav-text">Musculoesquelético</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../ophthalmology/index.html" class="nav-link">
+                        <i class="fas fa-eye nav-icon"></i>
+                        <span class="nav-text">Oftalmología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../otolaryngology/index.html" class="nav-link">
+                        <i class="fas fa-ear-listen nav-icon"></i>
+                        <span class="nav-text">Otorrinolaringología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../pneumology/index.html" class="nav-link">
+                        <i class="fas fa-lungs nav-icon"></i>
+                        <span class="nav-text">Neumología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../psychiatry/index.html" class="nav-link">
+                        <i class="fas fa-brain nav-icon"></i>
+                        <span class="nav-text">Psiquiatría</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../rheumatology/index.html" class="nav-link">
+                        <i class="fas fa-joint nav-icon"></i>
+                        <span class="nav-text">Reumatología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../urology/index.html" class="nav-link">
+                        <i class="fas fa-user-md nav-icon"></i>
+                        <span class="nav-text">Urología</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-notes-medical nav-icon"></i>
+                        <span class="nav-text">Registros</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-cog nav-icon"></i>
+                        <span class="nav-text">Configuración</span>
+                    </a>
+                </li>
+            </nav>
+            <button class="btn btn-secondary mt-auto hidden md:flex items-center justify-center" onclick="toggleSidebar()">
+                <i class="fas fa-chevron-left" id="sidebar-toggle-icon"></i>
+            </button>
+        </aside>
+
+        <!-- CONTENT AREA -->
+        <div class="content-area" id="contentArea">
+            <!-- TOP BAR -->
+            <div class="top-bar" id="topBar">
+                <div class="flex items-center gap-4">
+                    <button class="btn btn-secondary md:hidden" onclick="toggleSidebar()">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="flex items-center gap-4">
+                        <img src="../../img/6.svg" alt="Dermatología" class="h-10 w-10">
+                        <h2 class="page-title">Examen Dermatológico</h2>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button class="btn btn-primary" onclick="toggleStickyPanel()">
+                        <i class="fas fa-file-medical-alt"></i> <span class="hidden md:inline">Informe</span>
+                    </button>
+                    <div class="user-profile">
+                        <div class="user-avatar">DR</div>
+                        <span class="user-name">Dr. Dermatólogo</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MAIN CONTENT -->
+            <main class="main-content" id="mainContent">
+                <!-- DASHBOARD WIDGET -->
+                <div class="dashboard-widget" id="dashboard-summary">
+                    <h3 class="section-title-main"><i class="fas fa-chart-bar"></i> Dashboard Dermatológico</h3>
+                    <div class="dashboard-grid">
+                        <div class="dashboard-item">
+                            <i class="fas fa-user-md"></i>
+                            <div>Examen</div>
+                            <div id="exam-progress">0%</div>
+                        </div>
+                        <div class="dashboard-item">
+                            <i class="fas fa-clipboard-list"></i>
+                            <div>Secciones</div>
+                            <div id="sections-completed">0/9</div>
+                        </div>
+                        <div class="dashboard-item">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <div>Alertas</div>
+                            <div id="alert-count">0</div>
+                        </div>
+                        <div class="dashboard-item">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <div>Avisos</div>
+                            <div id="warning-count">0</div>
+                        </div>
+                        <div class="dashboard-item">
+                            <i class="fas fa-search"></i>
+                            <div>Hallazgos</div>
+                            <div id="findings-count">0</div>
+                        </div>
+                        <div class="dashboard-item">
+                            <i class="fas fa-heart"></i>
+                            <div>Calidad de Vida</div>
+                            <div id="quality-of-life-status">Pendiente</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECCIÓN ANTECEDENTES -->
+                <div class="section-container" id="antecedentes">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-history"></i> Antecedentes</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-notes-medical"></i> Antecedentes Personales Patológicos</h4>
+                            
+                            <div class="sub-section-card">
+                                <h5 class="sub-section-title">Alergias Conocidas</h5>
+                                <div class="form-grid">
+                                    <div class="form-item">
+                                        <input type="checkbox" id="alergia-medicamentos" onchange="toggleSpecification('alergia-medicamentos', 'spec-medicamentos')">
+                                        <label for="alergia-medicamentos">Medicamentos</label>
+                                    </div>
+                                    <div class="form-item">
+                                        <input type="checkbox" id="alergia-alimentos" onchange="toggleSpecification('alergia-alimentos', 'spec-alimentos')">
+                                        <label for="alergia-alimentos">Alimentos</label>
+                                    </div>
+                                    <div class="form-item">
+                                        <input type="checkbox" id="alergia-contacto" onchange="toggleSpecification('alergia-contacto', 'spec-contacto')">
+                                        <label for="alergia-contacto">Alérgenos de contacto</label>
+                                    </div>
+                                    <div class="form-item">
+                                        <input type="checkbox" id="sin-alergias" onchange="toggleSinAlergias()">
+                                        <label for="sin-alergias">Sin alergias conocidas</label>
+                                    </div>
+                                </div>
+                                <input type="text" class="specification-field" id="spec-medicamentos" placeholder="Especificar medicamentos...">
+                                <input type="text" class="specification-field" id="spec-alimentos" placeholder="Especificar alimentos...">
+                                <input type="text" class="specification-field" id="spec-contacto" placeholder="Especificar alérgenos...">
+                            </div>
+
+                            <div class="sub-section-card">
+                                <h5 class="sub-section-title">Historia de Atopia</h5>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="asma-bronquial"><label for="asma-bronquial">Asma bronquial</label></div>
+                                    <div class="form-item"><input type="checkbox" id="rinitis-alergica"><label for="rinitis-alergica">Rinitis alérgica</label></div>
+                                    <div class="form-item"><input type="checkbox" id="dermatitis-atopica"><label for="dermatitis-atopica">Dermatitis atópica</label></div>
+                                    <div class="form-item"><input type="checkbox" id="conjuntivitis-alergica"><label for="conjuntivitis-alergica">Conjuntivitis alérgica</label></div>
+                                </div>
+                            </div>
+
+                            <div class="sub-section-card">
+                                <h5 class="sub-section-title">Enfermedades Crónicas</h5>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="diabetes"><label for="diabetes">Diabetes mellitus</label></div>
+                                    <div class="form-item"><input type="checkbox" id="hipertension"><label for="hipertension">Hipertensión arterial</label></div>
+                                    <div class="form-item"><input type="checkbox" id="enf-autoinmune"><label for="enf-autoinmune">Enfermedad autoinmune</label></div>
+                                    <div class="form-item"><input type="checkbox" id="cancer-piel"><label for="cancer-piel">Historia de cáncer de piel</label></div>
+                                    <div class="form-item"><input type="checkbox" id="inmunodepresion"><label for="inmunodepresion">Inmunodepresión</label></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-users"></i> Antecedentes Familiares</h4>
+                            <div class="form-grid">
+                                <div class="form-item"><input type="checkbox" id="fam-psoriasis"><label for="fam-psoriasis">Psoriasis</label></div>
+                                <div class="form-item"><input type="checkbox" id="fam-atopia"><label for="fam-atopia">Atopia</label></div>
+                                <div class="form-item"><input type="checkbox" id="fam-melanoma"><label for="fam-melanoma">Melanoma</label></div>
+                                <div class="form-item"><input type="checkbox" id="fam-cancer-piel"><label for="fam-cancer-piel">Cáncer de piel no melanoma</label></div>
+                                <div class="form-item"><input type="checkbox" id="fam-vitiligo"><label for="fam-vitiligo">Vitíligo</label></div>
+                                <div class="form-item"><input type="checkbox" id="sin-antec-fam" onchange="toggleSinAntecedentesFam()"><label for="sin-antec-fam">Sin antecedentes familiares relevantes</label></div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-pills"></i> Tratamientos Previos y Actuales</h4>
+                            <div class="sub-section-card">
+                                <h5 class="sub-section-title">Tratamientos para la Condición Actual</h5>
+                                <div class="form-item">
+                                    <textarea id="tratamientos-previos" rows="3" placeholder="Detallar tratamientos utilizados (tópicos, sistémicos) y resultados obtenidos..."></textarea>
+                                </div>
+                            </div>
+                            <div class="sub-section-card">
+                                <h5 class="sub-section-title">Medicación Habitual</h5>
+                                <div class="form-item">
+                                    <textarea id="medicacion-habitual" rows="3" placeholder="Listar medicación actual no relacionada directamente con la condición dermatológica..."></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECCIÓN ANAMNESIS -->
+                <div class="section-container" id="anamnesis">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-question-circle"></i> Anamnesis y Quejas Principales</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-hand-holding-medical"></i> Quejas Dermatológicas Principales</h4>
+                            <div class="form-grid">
+                                <div class="form-item"><input type="checkbox" id="prurito"><label for="prurito">Prurito</label></div>
+                                <div class="form-item"><input type="checkbox" id="dolor-cutaneo"><label for="dolor-cutaneo">Dolor cutáneo</label></div>
+                                <div class="form-item"><input type="checkbox" id="ardor"><label for="ardor">Ardor/Quemazón</label></div>
+                                <div class="form-item"><input type="checkbox" id="erupciones"><label for="erupciones">Erupciones cutáneas</label></div>
+                                <div class="form-item"><input type="checkbox" id="descamacion"><label for="descamacion">Descamación</label></div>
+                                <div class="form-item"><input type="checkbox" id="cambio-color"><label for="cambio-color">Cambio de coloración</label></div>
+                                <div class="form-item"><input type="checkbox" id="caida-cabello"><label for="caida-cabello">Caída del cabello</label></div>
+                                <div class="form-item"><input type="checkbox" id="cambios-unas"><label for="cambios-unas">Cambios en uñas</label></div>
+                                <div class="form-item"><input type="checkbox" id="lesiones-mucosas"><label for="lesiones-mucosas">Lesiones en mucosas</label></div>
+                                <div class="form-item"><input type="checkbox" id="fotosensibilidad"><label for="fotosensibilidad">Fotosensibilidad</label></div>
+                                <div class="form-item"><input type="checkbox" id="sin-quejas" onchange="handleNoComplaints()"><label for="sin-quejas">Sin quejas</label></div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-clock"></i> Características Temporales</h4>
+                            <div class="sub-section-card">
+                                <h5 class="sub-section-title">Tiempo de evolución</h5>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="radio" name="tiempo-evolucion" id="agudo"><label for="agudo">Agudo (&lt; 6 semanas)</label></div>
+                                    <div class="form-item"><input type="radio" name="tiempo-evolucion" id="subagudo"><label for="subagudo">Subagudo (6 semanas - 3 meses)</label></div>
+                                    <div class="form-item"><input type="radio" name="tiempo-evolucion" id="cronico"><label for="cronico">Crónico (&gt; 3 meses)</label></div>
+                                </div>
+                            </div>
+                            <div class="sub-section-card">
+                                <h5 class="sub-section-title">Patrón de presentación</h5>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="episodico"><label for="episodico">Episódico/Recurrente</label></div>
+                                    <div class="form-item"><input type="checkbox" id="persistente"><label for="persistente">Persistente</label></div>
+                                    <div class="form-item"><input type="checkbox" id="estacional"><label for="estacional">Estacional</label></div>
+                                    <div class="form-item"><input type="checkbox" id="primera-vez"><label for="primera-vez">Primera vez</label></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-exclamation-triangle"></i> Factores Desencadenantes</h4>
+                            <div class="form-grid">
+                                <div class="form-item"><input type="checkbox" id="exposicion-solar"><label for="exposicion-solar">Exposición solar</label></div>
+                                <div class="form-item">
+                                    <input type="checkbox" id="contacto-quimicos" onchange="toggleSpecification('contacto-quimicos', 'spec-quimicos')">
+                                    <label for="contacto-quimicos">Contacto con químicos</label>
+                                </div>
+                                <div class="form-item">
+                                    <input type="checkbox" id="nuevos-cosmeticos" onchange="toggleSpecification('nuevos-cosmeticos', 'spec-cosmeticos')">
+                                    <label for="nuevos-cosmeticos">Nuevos cosméticos</label>
+                                </div>
+                                <div class="form-item">
+                                    <input type="checkbox" id="medicamentos-factor" onchange="toggleSpecification('medicamentos-factor', 'spec-medicamentos-factor')">
+                                    <label for="medicamentos-factor">Medicamentos</label>
+                                </div>
+                                <div class="form-item">
+                                    <input type="checkbox" id="alimentos-factor" onchange="toggleSpecification('alimentos-factor', 'spec-alimentos-factor')">
+                                    <label for="alimentos-factor">Alimentos</label>
+                                </div>
+                                <div class="form-item"><input type="checkbox" id="estres"><label for="estres">Estrés</label></div>
+                                <div class="form-item"><input type="checkbox" id="infecciones"><label for="infecciones">Infecciones previas</label></div>
+                                <div class="form-item"><input type="checkbox" id="cambios-hormonales"><label for="cambios-hormonales">Cambios hormonales</label></div>
+                                <div class="form-item"><input type="checkbox" id="picaduras"><label for="picaduras">Picaduras de insectos</label></div>
+                                <div class="form-item"><input type="checkbox" id="contacto-animales"><label for="contacto-animales">Contacto con animales</label></div>
+                            </div>
+                            <input type="text" class="specification-field" id="spec-quimicos" placeholder="Especificar químicos...">
+                            <input type="text" class="specification-field" id="spec-cosmeticos" placeholder="Especificar cosméticos...">
+                            <input type="text" class="specification-field" id="spec-medicamentos-factor" placeholder="Especificar medicamentos...">
+                            <input type="text" class="specification-field" id="spec-alimentos-factor" placeholder="Especificar alimentos...">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECCIÓN LESIONES PIGMENTADAS -->
+                <div class="section-container" id="lesiones-pigmentadas">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-eye-dropper"></i> Evaluación de Lesiones Pigmentadas (Regla ABCDE)</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-sun"></i> Presencia de Lesiones Pigmentadas</h4>
+                            <div class="form-grid">
+                                <div class="form-item">
+                                    <input type="checkbox" id="tiene-nevus" onchange="toggleABCDESection()">
+                                    <label for="tiene-nevus">Paciente presenta nevus/lunares para evaluar</label>
+                                </div>
+                                <div class="form-item">
+                                    <input type="checkbox" id="lesion-sospechosa" onchange="toggleABCDESection()">
+                                    <label for="lesion-sospechosa">Lesión pigmentada sospechosa</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="abcde-section" id="abcde-evaluation" style="display: none;">
+                            <h4>🔍 REGLA ABCDE PARA EVALUACIÓN DE MELANOMA</h4>
+                            <div class="form-grid">
+                                <div class="sub-section-card">
+                                    <div class="sub-section-title">A - ASIMETRÍA</div>
+                                    <p>Una mitad de la lesión es diferente a la otra</p>
+                                    <div class="form-grid">
+                                        <div class="form-item"><input type="radio" name="abcde-asimetria" id="asimetria-si"><label for="asimetria-si">Asimétrica</label></div>
+                                        <div class="form-item"><input type="radio" name="abcde-asimetria" id="asimetria-no"><label for="asimetria-no">Simétrica</label></div>
+                                    </div>
+                                </div>
+
+                                <div class="sub-section-card">
+                                    <div class="sub-section-title">B - BORDES</div>
+                                    <p>Bordes irregulares, dentados o mal definidos</p>
+                                    <div class="form-grid">
+                                        <div class="form-item"><input type="radio" name="abcde-bordes" id="bordes-irregulares"><label for="bordes-irregulares">Irregulares</label></div>
+                                        <div class="form-item"><input type="radio" name="abcde-bordes" id="bordes-regulares"><label for="bordes-regulares">Regulares</label></div>
+                                    </div>
+                                </div>
+
+                                <div class="sub-section-card">
+                                    <div class="sub-section-title">C - COLOR</div>
+                                    <p>Múltiples colores o color no uniforme</p>
+                                    <div class="form-grid">
+                                        <div class="form-item"><input type="checkbox" id="color-negro"><label for="color-negro">Negro</label></div>
+                                        <div class="form-item"><input type="checkbox" id="color-marron"><label for="color-marron">Marrón</label></div>
+                                        <div class="form-item"><input type="checkbox" id="color-azul"><label for="color-azul">Azul</label></div>
+                                        <div class="form-item"><input type="checkbox" id="color-rojo"><label for="color-rojo">Rojo</label></div>
+                                        <div class="form-item"><input type="checkbox" id="color-blanco"><label for="color-blanco">Blanco</label></div>
+                                        <div class="form-item"><input type="radio" name="abcde-color" id="color-uniforme"><label for="color-uniforme">Uniforme</label></div>
+                                    </div>
+                                </div>
+
+                                <div class="sub-section-card">
+                                    <div class="sub-section-title">D - DIÁMETRO</div>
+                                    <p>Mayor a 6 mm (tamaño de borrador de lápiz)</p>
+                                    <div class="form-item">
+                                        <label>Diámetro mayor:</label>
+                                        <input type="number" id="abcde-diametro" min="0" max="100" onchange="evaluateDiameter()">
+                                        <span>mm</span>
+                                    </div>
+                                    <div class="form-grid">
+                                        <div class="form-item"><input type="radio" name="abcde-diametro-eval" id="diametro-mayor-6"><label for="diametro-mayor-6">&gt; 6 mm</label></div>
+                                        <div class="form-item"><input type="radio" name="abcde-diametro-eval" id="diametro-menor-6"><label for="diametro-menor-6">≤ 6 mm</label></div>
+                                    </div>
+                                </div>
+
+                                <div class="sub-section-card">
+                                    <div class="sub-section-title">E - EVOLUCIÓN</div>
+                                    <p>Cambios recientes en tamaño, forma o color</p>
+                                    <div class="form-grid">
+                                        <div class="form-item"><input type="checkbox" id="evol-tamaño"><label for="evol-tamaño">Cambio de tamaño</label></div>
+                                        <div class="form-item"><input type="checkbox" id="evol-forma"><label for="evol-forma">Cambio de forma</label></div>
+                                        <div class="form-item"><input type="checkbox" id="evol-color"><label for="evol-color">Cambio de color</label></div>
+                                        <div class="form-item"><input type="checkbox" id="evol-sintomas"><label for="evol-sintomas">Nuevos síntomas</label></div>
+                                        <div class="form-item"><input type="radio" name="abcde-evolucion" id="sin-cambios"><label for="sin-cambios">Sin cambios</label></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="scale-section">
+                                <h4>🚨 EVALUACIÓN DE RIESGO</h4>
+                                <div class="form-item">
+                                    <span>Criterios positivos:</span>
+                                    <span id="abcde-score">0/5</span>
+                                </div>
+                                <div class="form-item">
+                                    <span>Nivel de riesgo:</span>
+                                    <span id="abcde-risk">Bajo</span>
+                                </div>
+                                <div class="form-item">
+                                    <strong>Recomendación:</strong> <span id="abcde-recommendation">Seguimiento de rutina</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECCIÓN LESIONES PRIMARIAS -->
+                <div class="section-container" id="primary-lesions">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-viruses"></i> Elementos Primarios de las Lesiones Cutáneas</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title">Lesiones Planas</h4>
+                            <div class="sub-section-card">
+                                <h5 class="sub-section-title">Máculas y Manchas</h5>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="macula-hiperpigmentada"><label for="macula-hiperpigmentada">Mácula hiperpigmentada</label></div>
+                                    <div class="form-item"><input type="checkbox" id="macula-hipopigmentada"><label for="macula-hipopigmentada">Mácula hipopigmentada</label></div>
+                                    <div class="form-item"><input type="checkbox" id="macula-eritematosa"><label for="macula-eritematosa">Mácula eritematosa</label></div>
+                                    <div class="form-item"><input type="checkbox" id="macula-purpurica"><label for="macula-purpurica">Mácula purpúrica</label></div>
+                                    <div class="form-item"><input type="checkbox" id="petequias"><label for="petequias">Petequias</label></div>
+                                    <div class="form-item"><input type="checkbox" id="equimosis"><label for="equimosis">Equimosis</label></div>
+                                </div>
+                                <div class="form-item">
+                                    <label>Tamaño promedio:</label>
+                                    <input type="number" id="macula-size" min="0" max="100">
+                                    <span>mm</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title">Lesiones Elevadas Sólidas</h4>
+                            <div class="sub-section-card">
+                                <h5 class="sub-section-title">Pápulas</h5>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="papula-eritematosa"><label for="papula-eritematosa">Pápula eritematosa</label></div>
+                                    <div class="form-item"><input type="checkbox" id="papula-normocromica"><label for="papula-normocromica">Pápula normocrómica</label></div>
+                                    <div class="form-item"><input type="checkbox" id="papula-pigmentada"><label for="papula-pigmentada">Pápula pigmentada</label></div>
+                                    <div class="form-item"><input type="checkbox" id="papula-perlada"><label for="papula-perlada">Pápula perlada</label></div>
+                                </div>
+                                <div class="form-item">
+                                    <label>Tamaño promedio:</label>
+                                    <input type="number" id="papula-size" min="0" max="50">
+                                    <span>mm (&lt;5mm)</span>
+                                </div>
+                            </div>
+                            <div class="sub-section-card">
+                                <h5 class="sub-section-title">Placas</h5>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="placa-eritematosa"><label for="placa-eritematosa">Placa eritematosa</label></div>
+                                    <div class="form-item"><input type="checkbox" id="placa-escamosa"><label for="placa-escamosa">Placa escamosa</label></div>
+                                    <div class="form-item"><input type="checkbox" id="placa-liquenificada"><label for="placa-liquenificada">Placa liquenificada</label></div>
+                                    <div class="form-item"><input type="checkbox" id="placa-infiltrada"><label for="placa-infiltrada">Placa infiltrada</label></div>
+                                </div>
+                                <div class="form-item">
+                                    <label>Tamaño promedio:</label>
+                                    <input type="number" id="placa-size" min="5" max="200">
+                                    <span>mm (&gt;5mm)</span>
+                                </div>
+                            </div>
+                            <div class="sub-section-card">
+                                <h5 class="sub-section-title">Nódulos</h5>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="nodulo-subcutaneo"><label for="nodulo-subcutaneo">Nódulo subcutáneo</label></div>
+                                    <div class="form-item"><input type="checkbox" id="nodulo-dermico"><label for="nodulo-dermico">Nódulo dérmico</label></div>
+                                    <div class="form-item"><input type="checkbox" id="nodulo-doloroso"><label for="nodulo-doloroso">Nódulo doloroso</label></div>
+                                    <div class="form-item"><input type="checkbox" id="nodulo-no-doloroso"><label for="nodulo-no-doloroso">Nódulo no doloroso</label></div>
+                                </div>
+                                <div class="form-item">
+                                    <label>Tamaño promedio:</label>
+                                    <input type="number" id="nodulo-size" min="5" max="50">
+                                    <span>mm</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title">Lesiones con Contenido Líquido</h4>
+                            <div class="sub-section-card">
+                                <h5 class="sub-section-title">Vesículas</h5>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="vesicula-clara"><label for="vesicula-clara">Vesícula de contenido claro</label></div>
+                                    <div class="form-item"><input type="checkbox" id="vesicula-turbia"><label for="vesicula-turbia">Vesícula de contenido turbio</label></div>
+                                    <div class="form-item"><input type="checkbox" id="vesicula-hemorrhagica"><label for="vesicula-hemorrhagica">Vesícula hemorrágica</label></div>
+                                    <div class="form-item"><input type="checkbox" id="vesicula-herpetiforme"><label for="vesicula-herpetiforme">Vesícula herpetiforme</label></div>
+                                </div>
+                                <div class="form-item">
+                                    <label>Tamaño promedio:</label>
+                                    <input type="number" id="vesicula-size" min="1" max="10">
+                                    <span>mm (&lt;5mm)</span>
+                                </div>
+                            </div>
+                            <div class="sub-section-card">
+                                <h5 class="sub-section-title">Ampollas/Bulas</h5>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="ampolla-clara"><label for="ampolla-clara">Ampolla de contenido claro</label></div>
+                                    <div class="form-item"><input type="checkbox" id="ampolla-hemorrhagica"><label for="ampolla-hemorrhagica">Ampolla hemorrágica</label></div>
+                                    <div class="form-item"><input type="checkbox" id="ampolla-tensa"><label for="ampolla-tensa">Ampolla tensa</label></div>
+                                    <div class="form-item"><input type="checkbox" id="ampolla-flacida"><label for="ampolla-flacida">Ampolla fláccida</label></div>
+                                </div>
+                                <div class="form-item">
+                                    <label>Tamaño promedio:</label>
+                                    <input type="number" id="ampolla-size" min="5" max="100">
+                                    <span>mm (&gt;5mm)</span>
+                                </div>
+                            </div>
+                            <div class="sub-section-card">
+                                <h5 class="sub-section-title">Pústulas</h5>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="pustula-folicular"><label for="pustula-folicular">Pústula folicular</label></div>
+                                    <div class="form-item"><input type="checkbox" id="pustula-no-folicular"><label for="pustula-no-folicular">Pústula no folicular</label></div>
+                                    <div class="form-item"><input type="checkbox" id="pustula-esteril"><label for="pustula-esteril">Pústula estéril</label></div>
+                                    <div class="form-item"><input type="checkbox" id="pustula-infectada"><label for="pustula-infectada">Pústula infectada</label></div>
+                                </div>
+                                <div class="form-item">
+                                    <label>Tamaño promedio:</label>
+                                    <input type="number" id="pustula-size" min="1" max="20">
+                                    <span>mm</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECCIÓN LESIONES SECUNDARIAS -->
+                <div class="section-container" id="secondary-lesions">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-burn"></i> Elementos Secundarios de las Lesiones Cutáneas</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title">Pérdida de Sustancia</h4>
+                            <div class="sub-section-card">
+                                <h5 class="sub-section-title">Erosiones y Excoriaciones</h5>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="erosion-superficial"><label for="erosion-superficial">Erosión superficial</label></div>
+                                    <div class="form-item"><input type="checkbox" id="excoriacion-lineal"><label for="excoriacion-lineal">Excoriación lineal</label></div>
+                                    <div class="form-item"><input type="checkbox" id="excoriacion-puntiforme"><label for="excoriacion-puntiforme">Excoriación puntiforme</label></div>
+                                    <div class="form-item"><input type="checkbox" id="erosion-post-ampolla"><label for="erosion-post-ampolla">Erosión post-ampolla</label></div>
+                                </div>
+                            </div>
+                            <div class="sub-section-card">
+                                <h5 class="sub-section-title">Úlceras</h5>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="ulcera-superficial"><label for="ulcera-superficial">Úlcera superficial</label></div>
+                                    <div class="form-item"><input type="checkbox" id="ulcera-profunda"><label for="ulcera-profunda">Úlcera profunda</label></div>
+                                    <div class="form-item"><input type="checkbox" id="ulcera-bordes-regulares"><label for="ulcera-bordes-regulares">Bordes regulares</label></div>
+                                    <div class="form-item"><input type="checkbox" id="ulcera-bordes-irregulares"><label for="ulcera-bordes-irregulares">Bordes irregulares</label></div>
+                                    <div class="form-item"><input type="checkbox" id="ulcera-bordes-sobreelevados"><label for="ulcera-bordes-sobreelevados">Bordes sobreelevados</label></div>
+                                </div>
+                                <div class="form-item">
+                                    <label>Tamaño mayor:</label>
+                                    <input type="number" id="ulcera-size" min="1" max="500">
+                                    <span>mm</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title">Depósitos y Acumulaciones</h4>
+                            <div class="sub-section-card">
+                                <h5 class="sub-section-title">Escamas</h5>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="escamas-finas"><label for="escamas-finas">Escamas finas</label></div>
+                                    <div class="form-item"><input type="checkbox" id="escamas-gruesas"><label for="escamas-gruesas">Escamas gruesas</label></div>
+                                    <div class="form-item"><input type="checkbox" id="escamas-plateadas"><label for="escamas-plateadas">Escamas plateadas</label></div>
+                                    <div class="form-item"><input type="checkbox" id="escamas-oleosas"><label for="escamas-oleosas">Escamas oleosas</label></div>
+                                    <div class="form-item"><input type="checkbox" id="descamacion-en-copos"><label for="descamacion-en-copos">Descamación en copos</label></div>
+                                </div>
+                            </div>
+                            <div class="sub-section-card">
+                                <h5 class="sub-section-title">Costras</h5>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="costra-serotica"><label for="costra-serotica">Costra serótica (amarillenta)</label></div>
+                                    <div class="form-item"><input type="checkbox" id="costra-hemorrhagica"><label for="costra-hemorrhagica">Costra hemorrágica</label></div>
+                                    <div class="form-item"><input type="checkbox" id="costra-purulenta"><label for="costra-purulenta">Costra purulenta</label></div>
+                                    <div class="form-item"><input type="checkbox" id="costra-melicerica"><label for="costra-melicerica">Costra melicérica</label></div>
+                                </div>
+                            </div>
+                            <div class="sub-section-card">
+                                <h5 class="sub-section-title">Hiperqueratosis</h5>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="hiperqueratosis-difusa"><label for="hiperqueratosis-difusa">Hiperqueratosis difusa</label></div>
+                                    <div class="form-item"><input type="checkbox" id="hiperqueratosis-localizada"><label for="hiperqueratosis-localizada">Hiperqueratosis localizada</label></div>
+                                    <div class="form-item"><input type="checkbox" id="callos"><label for="callos">Callos</label></div>
+                                    <div class="form-item"><input type="checkbox" id="cuernos-cutaneos"><label for="cuernos-cutaneos">Cuernos cutáneos</label></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title">Cambios de Textura</h4>
+                            <div class="sub-section-card">
+                                <h5 class="sub-section-title">Liquenificación</h5>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="liquenificacion-leve"><label for="liquenificacion-leve">Liquenificación leve</label></div>
+                                    <div class="form-item"><input type="checkbox" id="liquenificacion-moderada"><label for="liquenificacion-moderada">Liquenificación moderada</label></div>
+                                    <div class="form-item"><input type="checkbox" id="liquenificacion-severa"><label for="liquenificacion-severa">Liquenificación severa</label></div>
+                                </div>
+                            </div>
+                            <div class="sub-section-card">
+                                <h5 class="sub-section-title">Atrofia</h5>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="atrofia-epidermica"><label for="atrofia-epidermica">Atrofia epidérmica</label></div>
+                                    <div class="form-item"><input type="checkbox" id="atrofia-dermica"><label for="atrofia-dermica">Atrofia dérmica</label></div>
+                                    <div class="form-item"><input type="checkbox" id="atrofia-subcutanea"><label for="atrofia-subcutanea">Atrofia subcutánea</label></div>
+                                    <div class="form-item"><input type="checkbox" id="piel-papel-cigarro"><label for="piel-papel-cigarro">Piel en papel de cigarrillo</label></div>
+                                </div>
+                            </div>
+                            <div class="sub-section-card">
+                                <h5 class="sub-section-title">Cicatrices</h5>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="cicatriz-atrofica"><label for="cicatriz-atrofica">Cicatriz atrófica</label></div>
+                                    <div class="form-item"><input type="checkbox" id="cicatriz-hipertrofica"><label for="cicatriz-hipertrofica">Cicatriz hipertrófica</label></div>
+                                    <div class="form-item"><input type="checkbox" id="queloides"><label for="queloides">Queloides</label></div>
+                                    <div class="form-item"><input type="checkbox" id="cicatrices-varioliformes"><label for="cicatrices-varioliformes">Cicatrices varioliformes</label></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECCIÓN DISTRIBUCIÓN -->
+                <!-- SECCIÓN DISTRIBUCIÓN CON MAPA CORPORAL DERMATOLÓGICO DETALLADO -->
+<div class="section-container" id="distribution">
+    <div class="section-header-main" onclick="toggleSection(this)">
+        <h3 class="section-title-main"><i class="fas fa-map-marker-alt"></i> Distribución y Localización de las Lesiones</h3>
+        <i class="fas fa-chevron-down section-arrow"></i>
+    </div>
+    <div class="section-content-main">
+        <div class="sub-section-card">
+            <h4 class="sub-section-title"><i class="fas fa-sitemap"></i> Patrón de Distribución</h4>
+            <div class="sub-section-card">
+                <h5 class="sub-section-title">Distribución General</h5>
+                <div class="form-grid">
+                    <div class="form-item"><input type="checkbox" id="dist-localizada"><label for="dist-localizada">Localizada</label></div>
+                    <div class="form-item"><input type="checkbox" id="dist-regional"><label for="dist-regional">Regional</label></div>
+                    <div class="form-item"><input type="checkbox" id="dist-generalizada"><label for="dist-generalizada">Generalizada</label></div>
+                    <div class="form-item"><input type="checkbox" id="dist-universal"><label for="dist-universal">Universal</label></div>
+                </div>
+            </div>
+            <div class="sub-section-card">
+                <h5 class="sub-section-title">Patrón Morfológico</h5>
+                <div class="form-grid">
+                    <div class="form-item"><input type="checkbox" id="patron-simetrico"><label for="patron-simetrico">Simétrico</label></div>
+                    <div class="form-item"><input type="checkbox" id="patron-asimetrico"><label for="patron-asimetrico">Asimétrico</label></div>
+                    <div class="form-item"><input type="checkbox" id="patron-linear"><label for="patron-linear">Lineal</label></div>
+                    <div class="form-item"><input type="checkbox" id="patron-anular"><label for="patron-anular">Anular</label></div>
+                    <div class="form-item"><input type="checkbox" id="patron-serpiginoso"><label for="patron-serpiginoso">Serpiginoso</label></div>
+                    <div class="form-item"><input type="checkbox" id="patron-herpetiforme"><label for="patron-herpetiforme">Herpetiforme</label></div>
+                    <div class="form-item"><input type="checkbox" id="patron-reticular"><label for="patron-reticular">Reticular</label></div>
+                    <div class="form-item"><input type="checkbox" id="patron-corimbiforme"><label for="patron-corimbiforme">Corimbiforme</label></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sub-section-card">
+            <h4 class="sub-section-title">🗺️ Mapa Corporal Dermatológico Interactivo</h4>
+            <p style="font-size: 12px; color: #666; margin-bottom: 15px;">
+                Haga clic en las áreas anatómicas para marcar la localización de las lesiones cutáneas
+            </p>
+            
+            <div class="body-map-container">
+                <!-- VISTA FRONTAL -->
+                <div class="body-diagram">
+                    <h6>🔍 Vista Anterior</h6>
+                    <svg viewBox="0 0 360 680" style="width: 100%; max-width: 400px; height: auto;">
+                        <!-- CABEZA Y CUERO CABELLUDO -->
+                        <ellipse class="body-part" data-area="Cuero cabelludo frontal" cx="180" cy="45" rx="35" ry="25" fill="#f8f9fa" stroke="#666" stroke-width="1.5"/>
+                        <text x="180" y="35" font-size="8" text-anchor="middle" fill="#333">Cuero cabelludo</text>
+                        
+                        <!-- CARA DETALLADA -->
+                        <rect class="body-part" data-area="Frente" x="155" y="50" width="50" height="25" fill="#f8f9fa" stroke="#666" stroke-width="1.5"/>
+                        <text x="180" y="65" font-size="7" text-anchor="middle" fill="#333">Frente</text>
+                        
+                        <ellipse class="body-part" data-area="Párpado derecho" cx="170" cy="80" rx="8" ry="4" fill="#f8f9fa" stroke="#666" stroke-width="1"/>
+                        <ellipse class="body-part" data-area="Párpado izquierdo" cx="190" cy="80" rx="8" ry="4" fill="#f8f9fa" stroke="#666" stroke-width="1"/>
+                        
+                        <polygon class="body-part" data-area="Nariz" points="180,85 175,95 185,95" fill="#f8f9fa" stroke="#666" stroke-width="1"/>
+                        <text x="180" y="92" font-size="6" text-anchor="middle" fill="#333">Nariz</text>
+                        
+                        <ellipse class="body-part" data-area="Mejilla derecha" cx="160" cy="95" rx="15" ry="12" fill="#f8f9fa" stroke="#666" stroke-width="1"/>
+                        <ellipse class="body-part" data-area="Mejilla izquierda" cx="200" cy="95" rx="15" ry="12" fill="#f8f9fa" stroke="#666" stroke-width="1"/>
+                        <text x="160" y="100" font-size="6" text-anchor="middle" fill="#333">Mejilla D</text>
+                        <text x="200" y="100" font-size="6" text-anchor="middle" fill="#333">Mejilla I</text>
+                        
+                        <rect class="body-part" data-area="Labios" x="170" y="100" width="20" height="8" fill="#f8f9fa" stroke="#666" stroke-width="1"/>
+                        <text x="180" y="106" font-size="6" text-anchor="middle" fill="#333">Labios</text>
+                        
+                        <rect class="body-part" data-area="Mentón" x="165" y="108" width="30" height="15" fill="#f8f9fa" stroke="#666" stroke-width="1"/>
+                        <text x="180" y="118" font-size="6" text-anchor="middle" fill="#333">Mentón</text>
+                        
+                        <!-- CUELLO -->
+                        <rect class="body-part" data-area="Cuello anterior" x="165" y="123" width="30" height="30" fill="#f8f9fa" stroke="#666" stroke-width="1.5"/>
+                        <text x="180" y="140" font-size="8" text-anchor="middle" fill="#333">Cuello</text>
+                        
+                        <!-- HOMBROS Y BRAZOS -->
+                        <ellipse class="body-part" data-area="Hombro derecho" cx="130" cy="165" rx="25" ry="18" fill="#f8f9fa" stroke="#666" stroke-width="1.5"/>
+                        <ellipse class="body-part" data-area="Hombro izquierdo" cx="230" cy="165" rx="25" ry="18" fill="#f8f9fa" stroke="#666" stroke-width="1.5"/>
+                        <text x="130" y="170" font-size="7" text-anchor="middle" fill="#333">Hombro D</text>
+                        <text x="230" y="170" font-size="7" text-anchor="middle" fill="#333">Hombro I</text>
+                        
+                        <!-- AXILAS -->
+                        <ellipse class="body-part" data-area="Axila derecha" cx="155" cy="180" rx="8" ry="12" fill="#f8f9fa" stroke="#666" stroke-width="1"/>
+                        <ellipse class="body-part" data-area="Axila izquierda" cx="205" cy="180" rx="8" ry="12" fill="#f8f9fa" stroke="#666" stroke-width="1"/>
+                        <text x="155" y="185" font-size="5" text-anchor="middle" fill="#333">Axila D</text>
+                        <text x="205" y="185" font-size="5" text-anchor="middle" fill="#333">Axila I</text>
+                        
+                        <!-- TÓRAX -->
+                        <rect class="body-part" data-area="Tórax superior" x="155" y="153" width="50" height="40" fill="#f8f9fa" stroke="#666" stroke-width="1.5"/>
+                        <text x="180" y="175" font-size="8" text-anchor="middle" fill="#333">Tórax superior</text>
+                        
+                        <!-- MAMAS -->
+                        <ellipse class="body-part" data-area="Mama derecha" cx="165" cy="195" rx="15" ry="12" fill="#f8f9fa" stroke="#666" stroke-width="1"/>
+                        <ellipse class="body-part" data-area="Mama izquierda" cx="195" cy="195" rx="15" ry="12" fill="#f8f9fa" stroke="#666" stroke-width="1"/>
+                        <text x="165" y="200" font-size="6" text-anchor="middle" fill="#333">Mama D</text>
+                        <text x="195" y="200" font-size="6" text-anchor="middle" fill="#333">Mama I</text>
+                        
+                        <!-- PLIEGUE SUBMAMARIO -->
+                        <rect class="body-part" data-area="Pliegue submamario" x="155" y="207" width="50" height="8" fill="#f8f9fa" stroke="#666" stroke-width="1"/>
+                        <text x="180" y="213" font-size="5" text-anchor="middle" fill="#333">Pl. submamario</text>
+                        
+                        <!-- BRAZOS -->
+                        <rect class="body-part" data-area="Brazo derecho anterior" x="90" y="183" width="30" height="90" fill="#f8f9fa" stroke="#666" stroke-width="1.5"/>
+                        <rect class="body-part" data-area="Brazo izquierdo anterior" x="240" y="183" width="30" height="90" fill="#f8f9fa" stroke="#666" stroke-width="1.5"/>
+                        <text x="105" y="230" font-size="7" text-anchor="middle" fill="#333">Brazo D</text>
+                        <text x="255" y="230" font-size="7" text-anchor="middle" fill="#333">Brazo I</text>
+                        
+                        <!-- CODOS -->
+                        <ellipse class="body-part" data-area="Codo derecho anterior" cx="105" cy="280" rx="12" ry="8" fill="#f8f9fa" stroke="#666" stroke-width="1"/>
+                        <ellipse class="body-part" data-area="Codo izquierdo anterior" cx="255" cy="280" rx="12" ry="8" fill="#f8f9fa" stroke="#666" stroke-width="1"/>
+                        
+                        <!-- ANTEBRAZOS -->
+                        <rect class="body-part" data-area="Antebrazo derecho anterior" x="90" y="288" width="30" height="80" fill="#f8f9fa" stroke="#666" stroke-width="1.5"/>
+                        <rect class="body-part" data-area="Antebrazo izquierdo anterior" x="240" y="288" width="30" height="80" fill="#f8f9fa" stroke="#666" stroke-width="1.5"/>
+                        <text x="105" y="330" font-size="7" text-anchor="middle" fill="#333">Antebrazo D</text>
+                        <text x="255" y="330" font-size="7" text-anchor="middle" fill="#333">Antebrazo I</text>
+                        
+                        <!-- MUÑECAS -->
+                        <ellipse class="body-part" data-area="Muñeca derecha" cx="105" cy="375" rx="10" ry="6" fill="#f8f9fa" stroke="#666" stroke-width="1"/>
+                        <ellipse class="body-part" data-area="Muñeca izquierda" cx="255" cy="375" rx="10" ry="6" fill="#f8f9fa" stroke="#666" stroke-width="1"/>
+                        
+                        <!-- MANOS -->
+                        <ellipse class="body-part" data-area="Palma derecha" cx="105" cy="395" rx="12" ry="20" fill="#f8f9fa" stroke="#666" stroke-width="1.5"/>
+                        <ellipse class="body-part" data-area="Palma izquierda" cx="255" cy="395" rx="12" ry="20" fill="#f8f9fa" stroke="#666" stroke-width="1.5"/>
+                        <text x="105" y="400" font-size="6" text-anchor="middle" fill="#333">Palma D</text>
+                        <text x="255" y="400" font-size="6" text-anchor="middle" fill="#333">Palma I</text>
+                        
+                        <!-- UÑAS DE MANOS -->
+                        <rect class="body-part" data-area="Uñas manos" x="95" y="385" width="20" height="5" fill="#f8f9fa" stroke="#666" stroke-width="1"/>
+                        <rect class="body-part" data-area="Uñas manos" x="245" y="385" width="20" height="5" fill="#f8f9fa" stroke="#666" stroke-width="1"/>
+                        
+                        <!-- ABDOMEN -->
+                        <rect class="body-part" data-area="Abdomen superior" x="155" y="215" width="50" height="35" fill="#f8f9fa" stroke="#666" stroke-width="1.5"/>
+                        <text x="180" y="235" font-size="8" text-anchor="middle" fill="#333">Abdomen sup</text>
+                        
+                        <rect class="body-part" data-area="Abdomen inferior" x="155" y="250" width="50" height="40" fill="#f8f9fa" stroke="#666" stroke-width="1.5"/>
+                        <text x="180" y="275" font-size="8" text-anchor="middle" fill="#333">Abdomen inf</text>
+                        
+                        <!-- OMBLIGO -->
+                        <circle class="body-part" data-area="Ombligo" cx="180" cy="260" r="5" fill="#f8f9fa" stroke="#666" stroke-width="1"/>
+                        
+                        <!-- INGLE -->
+                        <rect class="body-part" data-area="Ingle derecha" x="155" y="290" width="20" height="15" fill="#f8f9fa" stroke="#666" stroke-width="1"/>
+                        <rect class="body-part" data-area="Ingle izquierda" x="185" y="290" width="20" height="15" fill="#f8f9fa" stroke="#666" stroke-width="1"/>
+                        <text x="165" y="300" font-size="6" text-anchor="middle" fill="#333">Ingle D</text>
+                        <text x="195" y="300" font-size="6" text-anchor="middle" fill="#333">Ingle I</text>
+                        
+                        <!-- GENITALES -->
+                        <rect class="body-part" data-area="Genitales externos" x="170" y="305" width="20" height="25" fill="#ffe6e6" stroke="#666" stroke-width="1"/>
+                        <text x="180" y="320" font-size="6" text-anchor="middle" fill="#333">Genitales</text>
+                        
+                        <!-- MUSLOS -->
+                        <rect class="body-part" data-area="Muslo derecho anterior" x="145" y="330" width="30" height="100" fill="#f8f9fa" stroke="#666" stroke-width="1.5"/>
+                        <rect class="body-part" data-area="Muslo izquierdo anterior" x="185" y="330" width="30" height="100" fill="#f8f9fa" stroke="#666" stroke-width="1.5"/>
+                        <text x="160" y="380" font-size="7" text-anchor="middle" fill="#333">Muslo D</text>
+                        <text x="200" y="380" font-size="7" text-anchor="middle" fill="#333">Muslo I</text>
+                        
+                        <!-- RODILLAS -->
+                        <ellipse class="body-part" data-area="Rodilla derecha anterior" cx="160" cy="440" rx="18" ry="12" fill="#f8f9fa" stroke="#666" stroke-width="1.5"/>
+                        <ellipse class="body-part" data-area="Rodilla izquierda anterior" cx="200" cy="440" rx="18" ry="12" fill="#f8f9fa" stroke="#666" stroke-width="1.5"/>
+                        <text x="160" y="445" font-size="6" text-anchor="middle" fill="#333">Rodilla D</text>
+                        <text x="200" y="445" font-size="6" text-anchor="middle" fill="#333">Rodilla I</text>
+                        
+                        <!-- PIERNAS -->
+                        <rect class="body-part" data-area="Pierna derecha anterior" x="150" y="452" width="20" height="90" fill="#f8f9fa" stroke="#666" stroke-width="1.5"/>
+                        <rect class="body-part" data-area="Pierna izquierda anterior" x="190" y="452" width="20" height="90" fill="#f8f9fa" stroke="#666" stroke-width="1.5"/>
+                        <text x="160" y="500" font-size="7" text-anchor="middle" fill="#333">Pierna D</text>
+                        <text x="200" y="500" font-size="7" text-anchor="middle" fill="#333">Pierna I</text>
+                        
+                        <!-- TOBILLOS -->
+                        <ellipse class="body-part" data-area="Tobillo derecho anterior" cx="160" cy="550" rx="12" ry="8" fill="#f8f9fa" stroke="#666" stroke-width="1"/>
+                        <ellipse class="body-part" data-area="Tobillo izquierdo anterior" cx="200" cy="550" rx="12" ry="8" fill="#f8f9fa" stroke="#666" stroke-width="1"/>
+                        
+                        <!-- DORSO DE PIES -->
+                        <ellipse class="body-part" data-area="Dorso pie derecho" cx="160" cy="575" rx="15" ry="25" fill="#f8f9fa" stroke="#666" stroke-width="1.5"/>
+                        <ellipse class="body-part" data-area="Dorso pie izquierdo" cx="200" cy="575" rx="15" ry="25" fill="#f8f9fa" stroke="#666" stroke-width="1.5"/>
+                        <text x="160" y="580" font-size="6" text-anchor="middle" fill="#333">Dorso pie D</text>
+                        <text x="200" y="580" font-size="6" text-anchor="middle" fill="#333">Dorso pie I</text>
+                        
+                        <!-- UÑAS DE PIES -->
+                        <rect class="body-part" data-area="Uñas pies" x="150" y="560" width="20" height="5" fill="#f8f9fa" stroke="#666" stroke-width="1"/>
+                        <rect class="body-part" data-area="Uñas pies" x="190" y="560" width="20" height="5" fill="#f8f9fa" stroke="#666" stroke-width="1"/>
+                        
+                        <!-- DEDOS PIES -->
+                        <ellipse class="body-part" data-area="Dedos pie derecho" cx="160" cy="600" rx="12" ry="8" fill="#f8f9fa" stroke="#666" stroke-width="1"/>
+                        <ellipse class="body-part" data-area="Dedos pie izquierdo" cx="200" cy="600" rx="12" ry="8" fill="#f8f9fa" stroke="#666" stroke-width="1"/>
+                    </svg>
+                    
+                    <div style="margin-top: 15px; border-top: 1px solid #ddd; padding-top: 10px;">
+                        <strong>📍 Áreas seleccionadas (Vista Anterior):</strong>
+                        <div id="selected-areas-front" style="min-height: 25px; padding: 8px; background: #f8f9fa; border-radius: 6px; margin-top: 8px; border: 1px solid #e0e6ed; font-size: 12px; line-height: 1.4;">Ninguna área seleccionada</div>
+                    </div>
+                </div>
+                
+                <!-- VISTA POSTERIOR -->
+                <div class="body-diagram">
+                    <h6>🔍 Vista Posterior</h6>
+                    <svg viewBox="0 0 360 680" style="width: 100%; max-width: 400px; height: auto;">
+                        <!-- CUERO CABELLUDO POSTERIOR -->
+                        <ellipse class="body-part" data-area="Cuero cabelludo posterior" cx="180" cy="45" rx="35" ry="25" fill="#f8f9fa" stroke="#666" stroke-width="1.5"/>
+                        <text x="180" y="35" font-size="8" text-anchor="middle" fill="#333">Cuero cabelludo</text>
+                        
+                        <!-- OCCIPITAL -->
+                        <ellipse class="body-part" data-area="Región occipital" cx="180" cy="70" rx="30" ry="20" fill="#f8f9fa" stroke="#666" stroke-width="1.5"/>
+                        <text x="180" y="75" font-size="7" text-anchor="middle" fill="#333">Occipital</text>
+                        
+                        <!-- OREJAS -->
+                        <ellipse class="body-part" data-area="Oreja derecha" cx="150" cy="80" rx="8" ry="12" fill="#f8f9fa" stroke="#666" stroke-width="1"/>
+                        <ellipse class="body-part" data-area="Oreja izquierda" cx="210" cy="80" rx="8" ry="12" fill="#f8f9fa" stroke="#666" stroke-width="1"/>
+                        <text x="150" y="85" font-size="5" text-anchor="middle" fill="#333">Oreja D</text>
+                        <text x="210" y="85" font-size="5" text-anchor="middle" fill="#333">Oreja I</text>
+                        
+                        <!-- NUCA -->
+                        <rect class="body-part" data-area="Nuca" x="165" y="90" width="30" height="30" fill="#f8f9fa" stroke="#666" stroke-width="1.5"/>
+                        <text x="180" y="108" font-size="8" text-anchor="middle" fill="#333">Nuca</text>
+                        
+                        <!-- CUELLO POSTERIOR -->
+                        <rect class="body-part" data-area="Cuello posterior" x="165" y="120" width="30" height="25" fill="#f8f9fa" stroke="#666" stroke-width="1.5"/>
+                        <text x="180" y="135" font-size="7" text-anchor="middle" fill="#333">Cuello post</text>
+                        
+                        <!-- HOMBROS POSTERIORES -->
+                        <ellipse class="body-part" data-area="Hombro derecho posterior" cx="130" cy="165" rx="25" ry="18" fill="#f8f9fa" stroke="#666" stroke-width="1.5"/>
+                        <ellipse class="body-part" data-area="Hombro izquierdo posterior" cx="230" cy="165" rx="25" ry="18" fill="#f8f9fa" stroke="#666" stroke-width="1.5"/>
+                        
+                        <!-- ESPALDA SUPERIOR -->
+                        <rect class="body-part" data-area="Espalda superior" x="155" y="145" width="50" height="60" fill="#f8f9fa" stroke="#666" stroke-width="1.5"/>
+                        <text x="180" y="178" font-size="8" text-anchor="middle" fill="#333">Espalda superior</text>
+                        
+                        <!-- BRAZOS POSTERIORES -->
+                        <rect class="body-part" data-area="Brazo derecho posterior" x="90" y="183" width="30" height="90" fill="#f8f9fa" stroke="#666" stroke-width="1.5"/>
+                        <rect class="body-part" data-area="Brazo izquierdo posterior" x="240" y="183" width="30" height="90" fill="#f8f9fa" stroke="#666" stroke-width="1.5"/>
+                        
+                        <!-- CODOS POSTERIORES -->
+                        <ellipse class="body-part" data-area="Codo derecho posterior" cx="105" cy="280" rx="12" ry="8" fill="#f8f9fa" stroke="#666" stroke-width="1"/>
+                        <ellipse class="body-part" data-area="Codo izquierdo posterior" cx="255" cy="280" rx="12" ry="8" fill="#f8f9fa" stroke="#666" stroke-width="1"/>
+                        
+                        <!-- ANTEBRAZOS POSTERIORES -->
+                        <rect class="body-part" data-area="Antebrazo derecho posterior" x="90" y="288" width="30" height="80" fill="#f8f9fa" stroke="#666" stroke-width="1.5"/>
+                        <rect class="body-part" data-area="Antebrazo izquierdo posterior" x="240" y="288" width="30" height="80" fill="#f8f9fa" stroke="#666" stroke-width="1.5"/>
+                        
+                        <!-- DORSO DE MANOS -->
+                        <ellipse class="body-part" data-area="Dorso mano derecha" cx="105" cy="395" rx="12" ry="20" fill="#f8f9fa" stroke="#666" stroke-width="1.5"/>
+                        <ellipse class="body-part" data-area="Dorso mano izquierda" cx="255" cy="395" rx="12" ry="20" fill="#f8f9fa" stroke="#666" stroke-width="1.5"/>
+                        <text x="105" y="400" font-size="6" text-anchor="middle" fill="#333">Dorso D</text>
+                        <text x="255" y="400" font-size="6" text-anchor="middle" fill="#333">Dorso I</text>
+                        
+                        <!-- ESPALDA MEDIA -->
+                        <rect class="body-part" data-area="Espalda media" x="155" y="205" width="50" height="50" fill="#f8f9fa" stroke="#666" stroke-width="1.5"/>
+                        <text x="180" y="233" font-size="8" text-anchor="middle" fill="#333">Espalda media</text>
+                        
+                        <!-- ESPALDA BAJA/LUMBAR -->
+                        <rect class="body-part" data-area="Región lumbar" x="155" y="255" width="50" height="40" fill="#f8f9fa" stroke="#666" stroke-width="1.5"/>
+                        <text x="180" y="278" font-size="8" text-anchor="middle" fill="#333">Región lumbar</text>
+                        
+                        <!-- REGIÓN SACRA -->
+                        <rect class="body-part" data-area="Región sacra" x="165" y="295" width="30" height="25" fill="#f8f9fa" stroke="#666" stroke-width="1"/>
+                        <text x="180" y="310" font-size="7" text-anchor="middle" fill="#333">Región sacra</text>
+                        
+                        <!-- GLÚTEOS -->
+                        <ellipse class="body-part" data-area="Glúteo derecho" cx="165" cy="335" rx="20" ry="25" fill="#f8f9fa" stroke="#666" stroke-width="1.5"/>
+                        <ellipse class="body-part" data-area="Glúteo izquierdo" cx="195" cy="335" rx="20" ry="25" fill="#f8f9fa" stroke="#666" stroke-width="1.5"/>
+                        <text x="165" y="340" font-size="7" text-anchor="middle" fill="#333">Glúteo D</text>
+                        <text x="195" y="340" font-size="7" text-anchor="middle" fill="#333">Glúteo I</text>
+                        
+                        <!-- PLIEGUE INTERGLÚTEO -->
+                        <rect class="body-part" data-area="Pliegue interglúteo" x="178" y="320" width="4" height="40" fill="#ffe6e6" stroke="#666" stroke-width="1"/>
+                        
+                        <!-- REGIÓN PERIANAL -->
+                        <circle class="body-part" data-area="Región perianal" cx="180" cy="365" r="8" fill="#ffe6e6" stroke="#666" stroke-width="1"/>
+                        <text x="180" y="370" font-size="5" text-anchor="middle" fill="#333">Perianal</text>
+                        
+                        <!-- MUSLOS POSTERIORES -->
+                        <rect class="body-part" data-area="Muslo derecho posterior" x="145" y="365" width="30" height="100" fill="#f8f9fa" stroke="#666" stroke-width="1.5"/>
+                        <rect class="body-part" data-area="Muslo izquierdo posterior" x="185" y="365" width="30" height="100" fill="#f8f9fa" stroke="#666" stroke-width="1.5"/>
+                        <text x="160" y="415" font-size="7" text-anchor="middle" fill="#333">Muslo D</text>
+                        <text x="200" y="415" font-size="7" text-anchor="middle" fill="#333">Muslo I</text>
+                        
+                        <!-- PLIEGUE POPLÍTEO -->
+                        <ellipse class="body-part" data-area="Pliegue poplíteo derecho" cx="160" cy="440" rx="15" ry="8" fill="#f8f9fa" stroke="#666" stroke-width="1"/>
+                        <ellipse class="body-part" data-area="Pliegue poplíteo izquierdo" cx="200" cy="440" rx="15" ry="8" fill="#f8f9fa" stroke="#666" stroke-width="1"/>
+                        <text x="160" y="445" font-size="5" text-anchor="middle" fill="#333">Poplíteo D</text>
+                        <text x="200" y="445" font-size="5" text-anchor="middle" fill="#333">Poplíteo I</text>
+                        
+                        <!-- PANTORRILLAS -->
+                        <rect class="body-part" data-area="Pantorrilla derecha" x="150" y="452" width="20" height="90" fill="#f8f9fa" stroke="#666" stroke-width="1.5"/>
+                        <rect class="body-part" data-area="Pantorrilla izquierda" x="190" y="452" width="20" height="90" fill="#f8f9fa" stroke="#666" stroke-width="1.5"/>
+                        <text x="160" y="500" font-size="7" text-anchor="middle" fill="#333">Pantorrilla D</text>
+                        <text x="200" y="500" font-size="7" text-anchor="middle" fill="#333">Pantorrilla I</text>
+                        
+                        <!-- TENDÓN DE AQUILES -->
+                        <rect class="body-part" data-area="Tendón Aquiles derecho" x="158" y="535" width="4" height="20" fill="#f8f9fa" stroke="#666" stroke-width="1"/>
+                        <rect class="body-part" data-area="Tendón Aquiles izquierdo" x="198" y="535" width="4" height="20" fill="#f8f9fa" stroke="#666" stroke-width="1"/>
+                        
+                        <!-- TALONES -->
+                        <ellipse class="body-part" data-area="Talón derecho" cx="160" cy="560" rx="12" ry="15" fill="#f8f9fa" stroke="#666" stroke-width="1"/>
+                        <ellipse class="body-part" data-area="Talón izquierdo" cx="200" cy="560" rx="12" ry="15" fill="#f8f9fa" stroke="#666" stroke-width="1"/>
+                        <text x="160" y="565" font-size="6" text-anchor="middle" fill="#333">Talón D</text>
+                        <text x="200" y="565" font-size="6" text-anchor="middle" fill="#333">Talón I</text>
+                        
+                        <!-- PLANTAS DE PIES -->
+                        <ellipse class="body-part" data-area="Planta pie derecho" cx="160" cy="590" rx="15" ry="25" fill="#f8f9fa" stroke="#666" stroke-width="1.5"/>
+                        <ellipse class="body-part" data-area="Planta pie izquierdo" cx="200" cy="590" rx="15" ry="25" fill="#f8f9fa" stroke="#666" stroke-width="1.5"/>
+                        <text x="160" y="595" font-size="6" text-anchor="middle" fill="#333">Planta D</text>
+                        <text x="200" y="595" font-size="6" text-anchor="middle" fill="#333">Planta I</text>
+                    </svg>
+                    
+                    <div style="margin-top: 15px; border-top: 1px solid #ddd; padding-top: 10px;">
+                        <strong>📍 Áreas seleccionadas (Vista Posterior):</strong>
+                        <div id="selected-areas-back" style="min-height: 25px; padding: 8px; background: #f8f9fa; border-radius: 6px; margin-top: 8px; border: 1px solid #e0e6ed; font-size: 12px; line-height: 1.4;">Ninguna área seleccionada</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ÁREAS ESPECIALES -->
+            <div class="sub-section-card" style="margin-top: 20px;">
+                <h5 class="sub-section-title">📋 Localización en Mucosas y Áreas Especiales</h5>
+                <div class="form-grid">
+                    <div class="form-item"><input type="checkbox" id="mucosa-oral"><label for="mucosa-oral">Mucosa oral</label></div>
+                    <div class="form-item"><input type="checkbox" id="mucosa-nasal"><label for="mucosa-nasal">Mucosa nasal</label></div>
+                    <div class="form-item"><input type="checkbox" id="mucosa-genital"><label for="mucosa-genital">Mucosa genital</label></div>
+                    <div class="form-item"><input type="checkbox" id="mucosa-anal"><label for="mucosa-anal">Mucosa anal</label></div>
+                    <div class="form-item"><input type="checkbox" id="mucosa-conjuntival"><label for="mucosa-conjuntival">Mucosa conjuntival</label></div>
+                    <div class="form-item"><input type="checkbox" id="cuero-cabelludo"><label for="cuero-cabelludo">Cuero cabelludo</label></div>
+                    <div class="form-item"><input type="checkbox" id="unas-manos-detalle"><label for="unas-manos-detalle">Uñas de manos</label></div>
+                    <div class="form-item"><input type="checkbox" id="unas-pies-detalle"><label for="unas-pies-detalle">Uñas de pies</label></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+/* Estilos específicos para el mapa corporal dermatológico */
+.body-map-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin: 20px 0;
+    padding: 25px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 15px;
+    border: 2px solid #2c5aa0;
+    box-shadow: 0 4px 15px rgba(44, 90, 160, 0.1);
+}
+
+.body-diagram {
+    position: relative;
+    background: white;
+    border: 2px solid #2c5aa0;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+}
+
+.body-diagram:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+.body-diagram h6 {
+    margin: 0 0 15px 0;
+    color: #2c5aa0;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid #2c5aa0;
+    padding-bottom: 8px;
+}
+
+.body-part {
+    cursor: pointer;
+    transition: fill 0.2s ease, stroke 0.2s ease;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.body-part:hover {
+    fill: #4a90e2 !important;
+    stroke: #2c5aa0 !important;
+    stroke-width: 2.5;
+    opacity: 0.9;
+}
+
+.body-part.selected {
+    fill: #2c5aa0 !important;
+    stroke: #1e3f73 !important;
+    stroke-width: 3;
+}
+
+/* Colores especiales para áreas específicas */
+.body-part[data-area*="Genital"], 
+.body-part[data-area*="genital"],
+.body-part[data-area*="perianal"],
+.body-part[data-area*="interglúteo"] {
+    fill: #ffe6e6 !important;
+}
+
+.body-part[data-area*="Mucosa"], 
+.body-part[data-area*="mucosa"] {
+    fill: #fff0f5 !important;
+}
+
+.body-part[data-area*="Uña"], 
+.body-part[data-area*="uña"] {
+    fill: #f0f8ff !important;
+}
+
+.body-part[data-area*="Pliegue"], 
+.body-part[data-area*="pliegue"],
+.body-part[data-area*="Axila"],
+.body-part[data-area*="axila"] {
+    fill: #f5f5dc !important;
+}
+
+/* Texto en SVG */
+svg text {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    pointer-events: none;
+    user-select: none;
+}
+
+/* Áreas seleccionadas */
+#selected-areas-front, #selected-areas-back {
+    max-height: 120px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #2c5aa0 #f8f9fa;
+}
+
+#selected-areas-front::-webkit-scrollbar, 
+#selected-areas-back::-webkit-scrollbar {
+    width: 6px;
+}
+
+#selected-areas-front::-webkit-scrollbar-track, 
+#selected-areas-back::-webkit-scrollbar-track {
+    background: #f8f9fa;
+    border-radius: 3px;
+}
+
+#selected-areas-front::-webkit-scrollbar-thumb, 
+#selected-areas-back::-webkit-scrollbar-thumb {
+    background: #2c5aa0;
+    border-radius: 3px;
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+    .body-map-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 15px;
+    }
+    
+    .body-diagram {
+        padding: 15px;
+    }
+    
+    .body-diagram svg {
+        max-width: 320px;
+    }
+    
+    .body-diagram h6 {
+        font-size: 1rem;
+    }
+    
+    svg text {
+        font-size: 6px;
+    }
+}
+
+@media (max-width: 480px) {
+    .body-diagram svg {
+        max-width: 280px;
+    }
+    
+    svg text {
+        font-size: 5px;
+    }
+    
+    .body-part {
+        stroke-width: 1;
+    }
+    
+    .body-part:hover {
+        stroke-width: 2;
+    }
+    
+    .body-part.selected {
+        stroke-width: 2.5;
+    }
+}
+
+/* Indicadores visuales adicionales */
+.body-diagram::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #2c5aa0, #4a90e2);
+    border-radius: 17px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.body-diagram:hover::before {
+    opacity: 0.1;
+}
+</style>
+
+                <!-- SECCIÓN ANEXOS CUTÁNEOS -->
+                <div class="section-container" id="appendages">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-hand-sparkles"></i> Estado de los Anexos Cutáneos</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="form-grid">
+                            <div class="sub-section-card">
+                                <h4 class="sub-section-title">Cabello y Cuero Cabelludo</h4>
+                                <div class="sub-section-card">
+                                    <h5 class="sub-section-title">Características del Cabello</h5>
+                                    <div class="form-grid">
+                                        <div class="form-item"><input type="checkbox" id="cabello-normal"><label for="cabello-normal">Aspecto normal</label></div>
+                                        <div class="form-item"><input type="checkbox" id="cabello-graso"><label for="cabello-graso">Cabello graso</label></div>
+                                        <div class="form-item"><input type="checkbox" id="cabello-seco"><label for="cabello-seco">Cabello seco</label></div>
+                                        <div class="form-item"><input type="checkbox" id="cabello-quebradizo"><label for="cabello-quebradizo">Cabello quebradizo</label></div>
+                                        <div class="form-item"><input type="checkbox" id="cabello-fino"><label for="cabello-fino">Cabello fino</label></div>
+                                        <div class="form-item"><input type="checkbox" id="cabello-grueso"><label for="cabello-grueso">Cabello grueso</label></div>
+                                    </div>
+                                </div>
+                                <div class="sub-section-card">
+                                    <h5 class="sub-section-title">Alopecia</h5>
+                                    <div class="form-grid">
+                                        <div class="form-item"><input type="checkbox" id="alopecia-areata"><label for="alopecia-areata">Alopecia areata</label></div>
+                                        <div class="form-item"><input type="checkbox" id="alopecia-androgenetica"><label for="alopecia-androgenetica">Alopecia androgenética</label></div>
+                                        <div class="form-item"><input type="checkbox" id="alopecia-difusa"><label for="alopecia-difusa">Alopecia difusa</label></div>
+                                        <div class="form-item"><input type="checkbox" id="alopecia-cicatricial"><label for="alopecia-cicatricial">Alopecia cicatricial</label></div>
+                                        <div class="form-item"><input type="checkbox" id="tricotillomania"><label for="tricotillomania">Tricotilomanía</label></div>
+                                    </div>
+                                </div>
+                                <div class="sub-section-card">
+                                    <h5 class="sub-section-title">Cuero Cabelludo</h5>
+                                    <div class="form-grid">
+                                        <div class="form-item"><input type="checkbox" id="cuero-cabelludo-normal"><label for="cuero-cabelludo-normal">Aspecto normal</label></div>
+                                        <div class="form-item"><input type="checkbox" id="descamacion-cuero-cabelludo"><label for="descamacion-cuero-cabelludo">Descamación</label></div>
+                                        <div class="form-item"><input type="checkbox" id="eritema-cuero-cabelludo"><label for="eritema-cuero-cabelludo">Eritema</label></div>
+                                        <div class="form-item"><input type="checkbox" id="costras-cuero-cabelludo"><label for="costras-cuero-cabelludo">Costras</label></div>
+                                        <div class="form-item"><input type="checkbox" id="placas-cuero-cabelludo"><label for="placas-cuero-cabelludo">Placas</label></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="sub-section-card">
+                                <h4 class="sub-section-title">Uñas</h4>
+                                <div class="sub-section-card">
+                                    <h5 class="sub-section-title">Uñas de las Manos</h5>
+                                    <div class="form-grid">
+                                        <div class="form-item"><input type="checkbox" id="unas-manos-normales"><label for="unas-manos-normales">Aspecto normal</label></div>
+                                        <div class="form-item"><input type="checkbox" id="onicolisis-manos"><label for="onicolisis-manos">Onicólisis</label></div>
+                                        <div class="form-item"><input type="checkbox" id="onicodistrofia-manos"><label for="onicodistrofia-manos">Onicodistrofia</label></div>
+                                        <div class="form-item"><input type="checkbox" id="leuconiquia-manos"><label for="leuconiquia-manos">Leuconiquia</label></div>
+                                        <div class="form-item"><input type="checkbox" id="melanoniquia-manos"><label for="melanoniquia-manos">Melanoniquia</label></div>
+                                        <div class="form-item"><input type="checkbox" id="pitting-ungueal-manos"><label for="pitting-ungueal-manos">Pitting ungueal</label></div>
+                                        <div class="form-item"><input type="checkbox" id="surcos-beau-manos"><label for="surcos-beau-manos">Surcos de Beau</label></div>
+                                        <div class="form-item"><input type="checkbox" id="onicorrexis-manos"><label for="onicorrexis-manos">Onicorrexis</label></div>
+                                        <div class="form-item"><input type="checkbox" id="onicomicosis-manos"><label for="onicomicosis-manos">Onicomicosis</label></div>
+                                    </div>
+                                </div>
+                                <div class="sub-section-card">
+                                    <h5 class="sub-section-title">Uñas de los Pies</h5>
+                                    <div class="form-grid">
+                                        <div class="form-item"><input type="checkbox" id="unas-pies-normales"><label for="unas-pies-normales">Aspecto normal</label></div>
+                                        <div class="form-item"><input type="checkbox" id="onicolisis-pies"><label for="onicolisis-pies">Onicólisis</label></div>
+                                        <div class="form-item"><input type="checkbox" id="onicodistrofia-pies"><label for="onicodistrofia-pies">Onicodistrofia</label></div>
+                                        <div class="form-item"><input type="checkbox" id="onicomicosis-pies"><label for="onicomicosis-pies">Onicomicosis</label></div>
+                                        <div class="form-item"><input type="checkbox" id="una-encarnada"><label for="una-encarnada">Uña encarnada</label></div>
+                                        <div class="form-item"><input type="checkbox" id="onicogrifosis"><label for="onicogrifosis">Onicogrifosis</label></div>
+                                    </div>
+                                </div>
+                                <div class="sub-section-card">
+                                    <h5 class="sub-section-title">Pliegues Ungueales</h5>
+                                    <div class="form-grid">
+                                        <div class="form-item"><input type="checkbox" id="pliegues-normales"><label for="pliegues-normales">Aspecto normal</label></div>
+                                        <div class="form-item"><input type="checkbox" id="paroniquia-aguda"><label for="paroniquia-aguda">Paroniquia aguda</label></div>
+                                        <div class="form-item"><input type="checkbox" id="paroniquia-cronica"><label for="paroniquia-cronica">Paroniquia crónica</label></div>
+                                        <div class="form-item"><input type="checkbox" id="pterigion"><label for="pterigion">Pterigion</label></div>
+                                        <div class="form-item"><input type="checkbox" id="hipertrofia-pliegue"><label for="hipertrofia-pliegue">Hipertrofia de pliegue</label></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECCIÓN PRUEBAS ESPECIALES -->
+                <div class="section-container" id="special-tests">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-flask"></i> Pruebas Especiales y Signos Dermatológicos</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-hand-point-up"></i> Pruebas Físicas</h4>
+                            <div class="form-grid">
+                                <div class="form-item">
+                                    <label>Signo de Nikolsky</label>
+                                    <div style="display: flex; gap: 15px;">
+                                        <div class="form-item"><input type="checkbox" id="nikolsky-pos" onchange="handleMutuallyExclusive('nikolsky-pos', 'nikolsky-neg', this)"><span style="color: var(--alert-color);">+</span></div>
+                                        <div class="form-item"><input type="checkbox" id="nikolsky-neg" onchange="handleMutuallyExclusive('nikolsky-pos', 'nikolsky-neg', this)"><span style="color: var(--specialty-main-color);">-</span></div>
+                                    </div>
+                                </div>
+                                <div class="form-item">
+                                    <label>Signo de Asboe-Hansen</label>
+                                    <div style="display: flex; gap: 15px;">
+                                        <div class="form-item"><input type="checkbox" id="asboe-hansen-pos" onchange="handleMutuallyExclusive('asboe-hansen-pos', 'asboe-hansen-neg', this)"><span style="color: var(--alert-color);">+</span></div>
+                                         <div class="form-item"><input type="checkbox" id="asboe-hansen-neg" onchange="handleMutuallyExclusive('asboe-hansen-pos', 'asboe-hansen-neg', this)"><span style="color: var(--specialty-main-color);">-</span></div>
+                                    </div>
+                                </div>
+                                <div class="form-item">
+                                    <label>Signo de Darier</label>
+                                    <div style="display: flex; gap: 15px;">
+                                        <div class="form-item"><input type="checkbox" id="darier-pos" onchange="handleMutuallyExclusive('darier-pos', 'darier-neg', this)"><span style="color: var(--alert-color);">+</span></div>
+                                         <div class="form-item"><input type="checkbox" id="darier-neg" onchange="handleMutuallyExclusive('darier-pos', 'darier-neg', this)"><span style="color: var(--specialty-main-color);">-</span></div>
+                                    </div>
+                                </div>
+                                <div class="form-item">
+                                    <label>Dermografismo</label>
+                                    <div style="display: flex; gap: 15px;">
+                                        <div class="form-item"><input type="checkbox" id="dermografismo-pos" onchange="handleMutuallyExclusive('dermografismo-pos', 'dermografismo-neg', this)"><span style="color: var(--alert-color);">+</span></div>
+                                         <div class="form-item"><input type="checkbox" id="dermografismo-neg" onchange="handleMutuallyExclusive('dermografismo-pos', 'dermografismo-neg', this)"><span style="color: var(--specialty-main-color);">-</span></div>
+                                    </div>
+                                </div>
+                                <div class="form-item">
+                                    <label>Signo de Köbner</label>
+                                    <div style="display: flex; gap: 15px;">
+                                        <div class="form-item"><input type="checkbox" id="kobner-pos" onchange="handleMutuallyExclusive('kobner-pos', 'kobner-neg', this)"><span style="color: var(--alert-color);">+</span></div>
+                                         <div class="form-item"><input type="checkbox" id="kobner-neg" onchange="handleMutuallyExclusive('kobner-pos', 'kobner-neg', this)"><span style="color: var(--specialty-main-color);">-</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-microscope"></i> Pruebas con KOH</h4>
+                            <div class="form-grid">
+                                <div class="form-item">
+                                    <label>KOH de escamas cutáneas</label>
+                                    <div style="display: flex; gap: 15px;">
+                                        <div class="form-item"><input type="checkbox" id="koh-escamas-pos" onchange="handleMutuallyExclusive('koh-escamas-pos', 'koh-escamas-neg', this)"><span style="color: var(--alert-color);">+</span></div>
+                                         <div class="form-item"><input type="checkbox" id="koh-escamas-neg" onchange="handleMutuallyExclusive('koh-escamas-pos', 'koh-escamas-neg', this)"><span style="color: var(--specialty-main-color);">-</span></div>
+                                        <input type="text" id="koh-escamas-note" placeholder="Observaciones" style="width: 120px;">
+                                    </div>
+                                </div>
+                                <div class="form-item">
+                                    <label>KOH de uñas</label>
+                                    <div style="display: flex; gap: 15px;">
+                                        <div class="form-item"><input type="checkbox" id="koh-unas-pos" onchange="handleMutuallyExclusive('koh-unas-pos', 'koh-unas-neg', this)"><span style="color: var(--alert-color);">+</span></div>
+                                         <div class="form-item"><input type="checkbox" id="koh-unas-neg" onchange="handleMutuallyExclusive('koh-unas-pos', 'koh-unas-neg', this)"><span style="color: var(--specialty-main-color);">-</span></div>
+                                        <input type="text" id="koh-unas-note" placeholder="Observaciones" style="width: 120px;">
+                                    </div>
+                                </div>
+                                <div class="form-item">
+                                    <label>KOH de cabello</label>
+                                    <div style="display: flex; gap: 15px;">
+                                        <div class="form-item"><input type="checkbox" id="koh-cabello-pos" onchange="handleMutuallyExclusive('koh-cabello-pos', 'koh-cabello-neg', this)"><span style="color: var(--alert-color);">+</span></div>
+                                         <div class="form-item"><input type="checkbox" id="koh-cabello-neg" onchange="handleMutuallyExclusive('koh-cabello-pos', 'koh-cabello-neg', this)"><span style="color: var(--specialty-main-color);">-</span></div>
+                                        <input type="text" id="koh-cabello-note" placeholder="Observaciones" style="width: 120px;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-lightbulb"></i> Otras Pruebas Diagnósticas</h4>
+                            <div class="form-grid">
+                                <div class="form-item">
+                                    <label>Lámpara de Wood</label>
+                                    <div style="display: flex; gap: 15px;">
+                                        <div class="form-item"><input type="checkbox" id="wood-pos" onchange="handleMutuallyExclusive('wood-pos', 'wood-neg', this)"><span style="color: var(--alert-color);">+</span></div>
+                                         <div class="form-item"><input type="checkbox" id="wood-neg" onchange="handleMutuallyExclusive('wood-pos', 'wood-neg', this)"><span style="color: var(--specialty-main-color);">-</span></div>
+                                        <input type="text" id="wood-color" placeholder="Color fluorescencia" style="width: 120px;">
+                                    </div>
+                                </div>
+                                <div class="form-item">
+                                    <label>Prueba de contacto (Patch test)</label>
+                                    <div style="display: flex; gap: 15px;">
+                                        <div class="form-item"><input type="checkbox" id="patch-test-pos" onchange="handleMutuallyExclusive('patch-test-pos', 'patch-test-neg', this)"><span style="color: var(--alert-color);">+</span></div>
+                                         <div class="form-item"><input type="checkbox" id="patch-test-neg" onchange="handleMutuallyExclusive('patch-test-pos', 'patch-test-neg', this)"><span style="color: var(--specialty-main-color);">-</span></div>
+                                        <input type="text" id="patch-test-allergen" placeholder="Alérgeno" style="width: 120px;">
+                                    </div>
+                                </div>
+                                <div class="form-item">
+                                    <label>Biopsia cutánea</label>
+                                    <div style="display: flex; gap: 15px;">
+                                        <div class="form-item"><input type="checkbox" id="biopsia-realizada"><span>Realizada</span></div>
+                                        <div class="form-item"><input type="checkbox" id="biopsia-pendiente"><span>Pendiente</span></div>
+                                        <input type="text" id="biopsia-sitio" placeholder="Sitio" style="width: 120px;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECCIÓN EVALUACIÓN DE SEVERIDAD -->
+                <div class="section-container" id="severity">
+                    <div class="section-header-main" onclick="toggleSection(this)">
+                        <h3 class="section-title-main"><i class="fas fa-chart-line"></i> Evaluación de Severidad</h3>
+                        <i class="fas fa-chevron-down section-arrow"></i>
+                    </div>
+                    <div class="section-content-main">
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-ruler-combined"></i> Extensión de las Lesiones</h4>
+                            <div class="severity-section">
+                                <h5>Superficie Corporal Afectada</h5>
+                                <div class="form-item">
+                                    <label>Porcentaje estimado:</label>
+                                    <input type="number" id="superficie-afectada" min="0" max="100">
+                                    <span>% de superficie corporal</span>
+                                </div>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="radio" name="extension-severidad" id="extension-leve"><label for="extension-leve">Leve (&lt;10%)</label></div>
+                                    <div class="form-item"><input type="radio" name="extension-severidad" id="extension-moderada"><label for="extension-moderada">Moderada (10-30%)</label></div>
+                                    <div class="form-item"><input type="radio" name="extension-severidad" id="extension-severa"><label for="extension-severa">Severa (&gt;30%)</label></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-user-injured"></i> Impacto Funcional</h4>
+                            <div class="sub-section-card">
+                                <h5 class="sub-section-title">Intensidad del Prurito</h5>
+                                <div class="form-item">
+                                    <label>Escala Visual Análoga:</label>
+                                    <input type="range" id="prurito-intensity" min="0" max="10" value="0" oninput="updatePruritoValue(this.value)">
+                                    <span id="prurito-value">0</span><span>/10</span>
+                                </div>
+                            </div>
+                            <div class="sub-section-card">
+                                <h5 class="sub-section-title">Interferencia con Actividades</h5>
+                                <div class="form-grid">
+                                    <div class="form-item"><input type="checkbox" id="interfiere-sueno"><label for="interfiere-sueno">Interfiere con el sueño</label></div>
+                                    <div class="form-item"><input type="checkbox" id="interfiere-trabajo"><label for="interfiere-trabajo">Interfiere con el trabajo</label></div>
+                                    <div class="form-item"><input type="checkbox" id="interfiere-social"><label for="interfiere-social">Interfiere con actividades sociales</label></div>
+                                    <div class="form-item"><input type="checkbox" id="interfiere-deportes"><label for="interfiere-deportes">Interfiere con deportes</label></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section-card">
+                            <h4 class="sub-section-title"><i class="fas fa-calculator"></i> Escalas de Severidad Específicas</h4>
+                            <div class="scale-section">
+                                <div class="sub-section-card">
+                                    <h5 class="sub-section-title">PASI (Psoriasis Area and Severity Index)</h5>
+                                    <div class="form-item">
+                                        <span>Eritema (0-4):</span>
+                                        <input type="number" id="pasi-eritema" min="0" max="4" onchange="calculatePASI()">
+                                    </div>
+                                    <div class="form-item">
+                                        <span>Infiltración (0-4):</span>
+                                        <input type="number" id="pasi-infiltracion" min="0" max="4" onchange="calculatePASI()">
+                                    </div>
+                                    <div class="form-item">
+                                        <span>Descamación (0-4):</span>
+                                        <input type="number" id="pasi-descamacion" min="0" max="4" onchange="calculatePASI()">
+                                    </div>
+                                    <div class="form-item">
+                                        <span>Área afectada cabeza (0-6):</span>
+                                        <input type="number" id="pasi-area-cabeza" min="0" max="6" onchange="calculatePASI()">
+                                    </div>
+                                    <div class="form-item">
+                                        <span>PASI Total:</span>
+                                        <span id="pasi-total">0</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="scale-section">
+                                <h5 class="sub-section-title">SCORAD (SCORing Atopic Dermatitis)</h5>
+                                <div class="sub-section-card">
+                                    <h6>A. Extensión (0-100%)</h6>
+                                    <div class="form-item">
+                                        <label>Superficie corporal afectada:</label>
+                                        <input type="number" id="scorad-extension" min="0" max="100" onchange="calculateSCORAD()">
+                                        <span>%</span>
+                                    </div>
+                                </div>
+                                <div class="sub-section-card">
+                                    <h6>B. Intensidad (0-3 cada síntoma)</h6>
+                                    <div class="form-item">
+                                        <span>Eritema:</span>
+                                        <input type="number" id="scorad-eritema" min="0" max="3" onchange="calculateSCORAD()">
+                                    </div>
+                                    <div class="form-item">
+                                        <span>Edema/Pápulas:</span>
+                                        <input type="number" id="scorad-edema" min="0" max="3" onchange="calculateSCORAD()">
+                                    </div>
+                                    <div class="form-item">
+                                        <span>Excoriación:</span>
+                                        <input type="number" id="scorad-excoriacion" min="0" max="3" onchange="calculateSCORAD()">
+                                    </div>
+                                    <div class="form-item">
+                                        <span>Liquenificación:</span>
+                                        <input type="number" id="scorad-liquenificacion" min="0" max="3" onchange="calculateSCORAD()">
+                                    </div>
+                                    <div class="form-item">
+                                        <span>Descamación:</span>
+                                        <input type="number" id="scorad-descamacion" min="0" max="3" onchange="calculateSCORAD()">
+                                    </div>
+                                    <div class="form-item">
+                                        <span>Xerosis:</span>
+                                        <input type="number" id="scorad-xerosis" min="0" max="3" onchange="calculateSCORAD()">
+                                    </div>
+                                </div>
+                                <div class="sub-section-card">
+                                    <h6>C. Síntomas Subjetivos (0-10 cada uno)</h6>
+                                    <div class="form-item">
+                                        <span>Prurito (0-10):</span>
+                                        <input type="number" id="scorad-prurito" min="0" max="10" onchange="calculateSCORAD()">
+                                    </div>
+                                    <div class="form-item">
+                                        <span>Pérdida de sueño (0-10):</span>
+                                        <input type="number" id="scorad-sueno" min="0" max="10" onchange="calculateSCORAD()">
+                                    </div>
+                                </div>
+                                <div class="scale-section">
+                                    <div class="form-item">
+                                        <span>SCORAD Total:</span>
+                                        <span id="scorad-total">0</span>
+                                    </div>
+                                    <div style="font-size: 11px; margin-top: 5px; color: var(--text-medium);">
+                                        <strong>Fórmula:</strong> A/5 + 7B/2 + C
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="scale-section">
+                                <h5 class="sub-section-title">📊 DLQI (Dermatology Life Quality Index)</h5>
+                                <p style="font-size: 12px; color: var(--text-medium); margin-bottom: 15px;">
+                                    Cuestionario para evaluar el impacto de la condición dermatológica en la calidad de vida del paciente.
+                                </p>
+                                
+                                <div class="sub-section-card">
+                                    <label>1. En la última semana, ¿cuánto le ha picado, dolido, escozido o molestado la piel?</label>
+                                    <div class="form-grid">
+                                        <div class="form-item"><input type="radio" name="dlqi-1" value="3" onchange="calculateDLQI()"><label>Muchísimo (3)</label></div>
+                                        <div class="form-item"><input type="radio" name="dlqi-1" value="2" onchange="calculateDLQI()"><label>Mucho (2)</label></div>
+                                        <div class="form-item"><input type="radio" name="dlqi-1" value="1" onchange="calculateDLQI()"><label>Un poco (1)</label></div>
+                                        <div class="form-item"><input type="radio" name="dlqi-1" value="0" onchange="calculateDLQI()"><label>Nada (0)</label></div>
+                                    </div>
+                                </div>
+
+                                <div class="sub-section-card">
+                                    <label>2. En la última semana, ¿cuánto le ha dado vergüenza o le ha hecho sentirse cohibido su problema de piel?</label>
+                                    <div class="form-grid">
+                                        <div class="form-item"><input type="radio" name="dlqi-2" value="3" onchange="calculateDLQI()"><label>Muchísimo (3)</label></div>
+                                        <div class="form-item"><input type="radio" name="dlqi-2" value="2" onchange="calculateDLQI()"><label>Mucho (2)</label></div>
+                                        <div class="form-item"><input type="radio" name="dlqi-2" value="1" onchange="calculateDLQI()"><label>Un poco (1)</label></div>
+                                        <div class="form-item"><input type="radio" name="dlqi-2" value="0" onchange="calculateDLQI()"><label>Nada (0)</label></div>
+                                    </div>
+                                </div>
+
+                                <div class="scale-section">
+                                    <div class="form-item">
+                                        <span>DLQI Total:</span>
+                                        <span id="dlqi-total">0</span><span>/30</span>
+                                    </div>
+                                    <div class="form-item">
+                                        <span>Interpretación:</span>
+                                        <span id="dlqi-interpretation">Sin impacto</span>
+                                    </div>
+                                    <div style="font-size: 11px; margin-top: 8px; color: var(--text-medium);">
+                                        <strong>Rangos:</strong> 0-1: Sin impacto | 2-5: Impacto pequeño | 6-10: Impacto moderado | 11-20: Impacto muy grande | 21-30: Impacto extremadamente grande
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-end gap-4 mt-8">
+                            <button class="btn btn-secondary" onclick="clearForm()">
+                                <i class="fas fa-eraser"></i> Limpiar
+                            </button>
+                            <button class="btn btn-primary" onclick="generateReport(); toggleStickyPanel()">
+                                <i class="fas fa-file-alt"></i> Generar informe
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- STICKY PANEL -->
+        <div class="sticky-report-panel" id="stickyReportPanel">
+            <div class="sticky-header">
+                <span><i class="fas fa-file-medical-alt"></i> Informe dermatológico</span>
+                <div class="sticky-controls">
+                    <button onclick="copyReportToClipboard()"><i class="fas fa-copy"></i></button>
+                    <button onclick="toggleStickyPanel()"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+            <pre class="sticky-content" id="reportContent">
+El informe se generará aquí a medida que completes los campos.
+            </pre>
+        </div>
+    </div>
+
+    <!-- THEME TOGGLE -->
+    <button class="theme-toggle" onclick="toggleTheme()">
+        <i class="fas fa-moon" id="theme-icon"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>

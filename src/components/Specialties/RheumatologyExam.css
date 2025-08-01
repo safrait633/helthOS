@@ -1,0 +1,537 @@
+/* Rheumatology Exam Styles */
+.rheumatology-exam-container {
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+  background: var(--background-color);
+  min-height: 100vh;
+}
+
+/* Header */
+.exam-header {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  padding: 30px;
+  border-radius: 15px;
+  margin-bottom: 30px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.exam-header h1 {
+  margin: 0 0 20px 0;
+  font-size: 2.5rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.progress-indicator {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+/* Dashboard */
+.dashboard-section {
+  background: var(--card-background);
+  border-radius: 15px;
+  padding: 25px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--border-color);
+}
+
+.dashboard-section h2 {
+  color: var(--text-primary);
+  margin-bottom: 25px;
+  font-size: 1.8rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.dashboard-item {
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.dashboard-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  border-color: var(--primary-color);
+}
+
+.dashboard-item i {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 12px;
+  display: block;
+}
+
+.dashboard-item .label {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.dashboard-item .value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* Section Navigation */
+.section-navigation {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+  overflow-x: auto;
+  padding: 10px 0;
+}
+
+.nav-btn {
+  background: var(--card-background);
+  border: 2px solid var(--border-color);
+  color: var(--text-primary);
+  padding: 15px 25px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 160px;
+  justify-content: center;
+}
+
+.nav-btn:hover {
+  background: var(--hover-background);
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+}
+
+.nav-btn.active {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+  box-shadow: 0 4px 15px rgba(var(--primary-color-rgb), 0.3);
+}
+
+.nav-btn i {
+  font-size: 1.1rem;
+}
+
+/* Section Content */
+.section-content {
+  background: var(--card-background);
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--border-color);
+}
+
+.anamnesis-section h2 {
+  color: var(--text-primary);
+  margin-bottom: 30px;
+  font-size: 2rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 3px solid var(--primary-color);
+  padding-bottom: 15px;
+}
+
+/* Subsection Cards */
+.subsection-card {
+  background: var(--input-background);
+  border-radius: 12px;
+  padding: 25px;
+  margin-bottom: 25px;
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.subsection-card:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  border-color: var(--primary-color);
+}
+
+.subsection-card h3 {
+  color: var(--text-primary);
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 10px;
+}
+
+.subsection-card h4 {
+  color: var(--text-primary);
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+/* Form Elements */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  background: var(--card-background);
+  border-radius: 8px;
+  border: 2px solid var(--border-color);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.95rem;
+}
+
+.checkbox-item:hover {
+  background: var(--hover-background);
+  border-color: var(--primary-color);
+}
+
+.checkbox-item.special {
+  background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+  border-color: #f39c12;
+  font-weight: 600;
+}
+
+.checkbox-item input[type="checkbox"] {
+  margin-right: 12px;
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary-color);
+  cursor: pointer;
+}
+
+.checkbox-item input[type="checkbox"]:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.checkbox-item span {
+  color: var(--text-primary);
+  line-height: 1.4;
+  text-transform: capitalize;
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.radio-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  background: var(--card-background);
+  border-radius: 8px;
+  border: 2px solid var(--border-color);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.radio-item:hover {
+  background: var(--hover-background);
+  border-color: var(--primary-color);
+}
+
+.radio-item input[type="radio"] {
+  margin-right: 12px;
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary-color);
+  cursor: pointer;
+}
+
+.radio-item span {
+  color: var(--text-primary);
+  font-size: 0.95rem;
+}
+
+/* Pain Assessment */
+.pain-assessment {
+  background: var(--card-background);
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  margin-bottom: 20px;
+}
+
+.measurement {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+  padding: 12px;
+  background: var(--input-background);
+  border-radius: 8px;
+}
+
+.measurement label {
+  min-width: 150px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.measurement input[type="range"] {
+  flex: 1;
+  height: 6px;
+  background: var(--border-color);
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+}
+
+.measurement input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.measurement input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.measurement span {
+  min-width: 50px;
+  font-weight: 600;
+  color: var(--primary-color);
+  font-size: 1.1rem;
+}
+
+/* Input Fields */
+.input-field {
+  padding: 12px 15px;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--input-background);
+  color: var(--text-primary);
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  width: 100px;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.1);
+}
+
+/* Exam Section */
+.exam-section {
+  margin-bottom: 25px;
+  padding: 20px;
+  background: var(--card-background);
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+}
+
+/* Stiffness Assessment */
+.stiffness-assessment {
+  background: var(--card-background);
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  margin-bottom: 20px;
+}
+
+.score-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 15px;
+  background: var(--input-background);
+  border-radius: 8px;
+  margin-bottom: 10px;
+  border: 1px solid var(--border-color);
+}
+
+.score-item span:first-child {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.score-value {
+  font-weight: 600;
+  color: var(--primary-color);
+  font-size: 1.1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .rheumatology-exam-container {
+    padding: 15px;
+  }
+  
+  .exam-header {
+    padding: 20px;
+  }
+  
+  .exam-header h1 {
+    font-size: 2rem;
+  }
+  
+  .dashboard-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+  }
+  
+  .section-navigation {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .nav-btn {
+    min-width: auto;
+    width: 100%;
+  }
+  
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .measurement {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .measurement label {
+    min-width: auto;
+  }
+  
+  .measurement input[type="range"] {
+    width: 100%;
+  }
+}
+
+/* Dark Mode */
+[data-theme="dark"] .dashboard-item {
+  background: linear-gradient(135deg, var(--dark-card-background), var(--dark-input-background));
+}
+
+[data-theme="dark"] .checkbox-item.special {
+  background: linear-gradient(135deg, #3a3a3a, #4a4a4a);
+  border-color: var(--primary-color);
+}
+
+[data-theme="dark"] .subsection-card {
+  background: var(--dark-input-background);
+  border-color: var(--dark-border-color);
+}
+
+[data-theme="dark"] .pain-assessment,
+[data-theme="dark"] .stiffness-assessment,
+[data-theme="dark"] .exam-section {
+  background: var(--dark-card-background);
+  border-color: var(--dark-border-color);
+}
+
+[data-theme="dark"] .measurement {
+  background: var(--dark-input-background);
+}
+
+[data-theme="dark"] .score-item {
+  background: var(--dark-input-background);
+  border-color: var(--dark-border-color);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.subsection-card {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.dashboard-item {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Hover Effects */
+.checkbox-item input[type="checkbox"]:checked + span {
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.radio-item input[type="radio"]:checked + span {
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+/* Focus States */
+.nav-btn:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+.checkbox-item:focus-within,
+.radio-item:focus-within {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.1);
+}
